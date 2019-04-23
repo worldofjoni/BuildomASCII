@@ -11,7 +11,7 @@
     </Filter>
     <Filter Include="Ressourcendateien">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms;</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,12 +24,18 @@
     <ClCompile Include="src\Game\Game.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\friendlyConsole\friendlyConsole.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Game\Game.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\friendlyConsole\friendlyConsole.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\friendlyConsole\friendlyConsole.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\Main\BuildomASCII.cpp" />
     <ClCompile Include="src\pch\pch.cpp">
@@ -33,6 +34,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\friendlyConsole\friendlyConsole.hpp" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\pch\pch.h" />
   </ItemGroup>
