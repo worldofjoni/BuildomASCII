@@ -47,7 +47,8 @@ namespace fc {
 	void clearScreen(Color color);
 	void setTitle(const char name[]);
 	void setCurserPos(int x, int y);
-	void setWindowSize(int with, int height);
+	void setWindowSizePX(int with, int height); //size in Pixel (shouldn't use)
+	void setWindowSize(int with, int height);	//Size in characters (when Font=Rasterschrift; FontSize=8x8)
 	void setWindowPos(int x, int y);
 	void setFontSize(int with, int height = 0); // experimental
 	int getRandom(int min, int max);

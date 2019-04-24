@@ -32,11 +32,13 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="src\Screen\Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\friendlyConsole\friendlyConsole.hpp" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\pch\pch.h" />
+    <ClInclude Include="src\Screen\Screen.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

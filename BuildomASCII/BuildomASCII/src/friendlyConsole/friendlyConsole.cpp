@@ -65,12 +65,20 @@ namespace fc {
 		SetConsoleCursorPosition(hStdOut, pos);
 	}
 
-	// sets the size of the window
-	void setWindowSize(int with, int height)
+	// sets the size of the window in pixel
+	void setWindowSizePX(int with, int height)
 	{
 		RECT r;
 		GetWindowRect(hWindow, &r);
 		MoveWindow(hWindow, r.left, r.top, with, height, false);
+	}
+
+	// sets the size of the window in chars
+	void setWindowSize(int with, int height)
+	{
+		with = (with * 40 + 184)/5;
+		height = (height * 40 + 212)/5;
+		setWindowSizePX(with, height);
 	}
 
 	// sets the pos of the window
