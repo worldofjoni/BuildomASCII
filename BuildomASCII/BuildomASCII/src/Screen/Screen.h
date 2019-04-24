@@ -14,7 +14,8 @@ public:
 	static const fc::Color
 		defaultBackgroundColor = LIGHT_GRAY,
 		defaultTextColor = BLUE_LIGHT;
-
+	virtual void printScreen() = 0;
+	virtual ~Screen() {};
 };
 
 
