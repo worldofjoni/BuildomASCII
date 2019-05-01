@@ -1,4 +1,4 @@
-#include "../pch/pch.h"
+#include "pch.h"
 #include "Build.h"
 
 void Build::run()

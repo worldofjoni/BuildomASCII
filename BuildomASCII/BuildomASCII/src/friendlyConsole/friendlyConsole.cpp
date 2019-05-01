@@ -1,6 +1,6 @@
 
 #pragma once
-#include "../pch/pch.h"
+#include "pch.h"
 #include <Windows.h>
 #include "friendlyConsole.hpp"
 #include <random>

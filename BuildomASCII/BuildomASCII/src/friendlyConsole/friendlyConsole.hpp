@@ -8,9 +8,6 @@
 #ifndef _FRIENDLY_CONSOLE_
 #define _FRIENDLY_CONSOLE
 
-// library includes
-#include <Windows.h>
-//#include <bitset>
 
 
 #define gotoxy fc::setCurserPos
