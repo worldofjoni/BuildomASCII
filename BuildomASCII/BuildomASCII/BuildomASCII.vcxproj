@@ -22,7 +22,9 @@
     <ClCompile Include="src\Build\Build.cpp" />
     <ClCompile Include="src\friendlyConsole\friendlyConsole.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
+    <ClCompile Include="src\LevelElement\Empty\Empty.cpp" />
     <ClCompile Include="src\LevelElement\LevelElement.cpp" />
+    <ClCompile Include="src\LevelElement\Solid\Solid.cpp" />
     <ClCompile Include="src\Level\Level.cpp" />
     <ClCompile Include="src\Main\BuildomASCII.cpp" />
     <ClCompile Include="src\pch\pch.cpp">
@@ -41,7 +43,9 @@
     <ClInclude Include="src\Build\Build.h" />
     <ClInclude Include="src\friendlyConsole\friendlyConsole.hpp" />
     <ClInclude Include="src\Game\Game.h" />
+    <ClInclude Include="src\LevelElement\Empty\Empty.h" />
     <ClInclude Include="src\LevelElement\LevelElement.h" />
+    <ClInclude Include="src\LevelElement\Solid\Solid.h" />
     <ClInclude Include="src\Level\Level.h" />
     <ClInclude Include="src\pch\pch.h" />
     <ClInclude Include="src\Screen\Screen.h" />

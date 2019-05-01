@@ -15,9 +15,9 @@ public:
 	void printScreen();
 	virtual ~Screen() {};
 
-private:
-
+protected:
 	char content[WIDTH][HEIGHT];
+
 };
 
 

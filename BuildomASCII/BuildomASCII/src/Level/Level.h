@@ -11,13 +11,15 @@ public:
 	Level(int with, int height);
 
 	~Level(); // Rule of vive
-	Level(const Level& other) = delete;
-	Level(Level&& other) = delete;
-	Level& operator=(const Level& other) = delete;
-	Level& operator=(Level&& other) = delete;
+	Level(const Level& other); // Copy Constructor
+	Level(Level&& other) = delete; // Move Constructor
+	Level& operator=(const Level& other) = delete; // copy asignment
+	Level& operator=(Level&& other) = delete; // move asignment
 
 
 };
+
+
 
 
 #endif // !LEVEL_H

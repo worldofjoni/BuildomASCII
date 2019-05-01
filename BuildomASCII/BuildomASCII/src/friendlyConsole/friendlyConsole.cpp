@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include "friendlyConsole.hpp"
 #include <random>
+#include <chrono>
 
 
 
@@ -100,6 +101,7 @@ namespace fc {
 		SetCurrentConsoleFontEx(hStdOut, false, &info);
 	}
 
+	// returns a random Value
 	int getRandom(int min, int max)
 	{
 		
@@ -109,6 +111,14 @@ namespace fc {
 		dist6(rng); dist6(rng); dist6(rng); dist6(rng); dist6(rng); dist6(rng); dist6(rng); dist6(rng);
 		return dist6(rng);
 		
+	}
+
+
+	// waits a specific amount of time
+	void waitMs(int ms)
+	{
+		auto t1 = std::chrono::system_clock::now();
+		while (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - t1).count() < ms);
 	}
 
 

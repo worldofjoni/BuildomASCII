@@ -12,6 +12,7 @@
 
 #define gotoxy fc::setCurserPos
 #define getrandom_int fc::getRandom
+#define wait fc::waitMs
 
 // defines diffrent colors
 #define BLACK 0x0000
@@ -49,6 +50,7 @@ namespace fc {
 	void setWindowPos(int x, int y);
 	void setFontSize(int with, int height = 0); // experimental
 	int getRandom(int min, int max);
+	void waitMs(int ms);
 
 
 }
