@@ -3,19 +3,20 @@
 #define STARTSCREEN_H
 
 #include "../Screen/Screen.h"
+#include "../Button/Button.h"
+#include "../PlayStoryButton/PlayStoryButton.h"
 
 
-class StartScreen : public Screen
+class StartScreen : Screen
 {
 private:
 
 public:
 	
-	static const int wordArraySize = 10;
-	int selection = 0;
+	PlayStoryButton* playButton = new PlayStoryButton();
+	void placeWord(int px, int py, char word[Button::wordArraySize], int wordSize);
 	void run();
 
-	void placeWord(int px, int py, char word[wordArraySize]);
 };
 
 
