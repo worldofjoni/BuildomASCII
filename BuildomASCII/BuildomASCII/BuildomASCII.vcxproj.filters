@@ -30,6 +30,9 @@
     <ClCompile Include="src\Screen\Screen.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\StartScreen\StartScreen.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
@@ -42,6 +45,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Screen\Screen.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StartScreen\StartScreen.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

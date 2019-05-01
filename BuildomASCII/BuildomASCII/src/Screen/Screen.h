@@ -5,17 +5,23 @@
 
 class Screen
 {
-private:
-
 public:
+	
 	static const int 
-		WITH = 100, 
+		WIDTH = 100, 
 		HEIGHT = 50;
 	static const fc::Color
 		defaultBackgroundColor = LIGHT_GRAY,
 		defaultTextColor = BLUE_LIGHT;
-	virtual void printScreen() = 0;
+	void printScreen();
+	void setBlank();
 	virtual ~Screen() {};
+
+protected:
+	char content[WIDTH][HEIGHT];
+
+private:
+
 };
 
 
