@@ -1,4 +1,4 @@
-#include "../pch/pch.h"
+#include "pch/pch.h"
 #include "Button.h"
 
 Button::Button()

@@ -1,6 +1,6 @@
-#include "../pch/pch.h"
+#include "pch/pch.h"
 #include "Game.h"
-#include "../StartScreen/StartScreen.h"
+#include "Screen/StartScreen/StartScreen.h"
 //#include "StartScreen/StartScreen.h"
 
 

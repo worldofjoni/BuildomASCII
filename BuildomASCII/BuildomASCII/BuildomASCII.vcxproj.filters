@@ -33,10 +33,13 @@
     <ClCompile Include="src\Button\Button.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="src\PlayStoryButton\PlayStoryButton.cpp">
+    <ClCompile Include="src\Screen\StartScreen\StartScreen.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="src\StartScreen\StartScreen.cpp">
+    <ClCompile Include="src\Button\PlayStoryButton\PlayStoryButton.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Button\ExitButton\ExitButton.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,10 +59,13 @@
     <ClInclude Include="src\Button\Button.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\PlayStoryButton\PlayStoryButton.h">
+    <ClInclude Include="src\Screen\StartScreen\StartScreen.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\StartScreen\StartScreen.h">
+    <ClInclude Include="src\Button\PlayStoryButton\PlayStoryButton.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Button\ExitButton\ExitButton.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

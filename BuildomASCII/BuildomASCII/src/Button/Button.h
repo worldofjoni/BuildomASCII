@@ -2,22 +2,24 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include "pch/pch.h"
+
 class Button
 {
 private:
 
 public:
 	Button();
-	~Button();
+	virtual ~Button();
 
-	static const int wordArraySize = 50;
 	int wordSize = 0;
 
-	char word[wordArraySize] = "Base";
+	std::string word = "Base";
 
-	void run();
+	virtual void run();
 
 };
 
 
-#endif // !1
+
+#endif // !BUTTON_H
