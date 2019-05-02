@@ -6,6 +6,10 @@
 #include "Button/PlayStoryButton/PlayStoryButton.h"
 #include "Button/ExitButton/ExitButton.h"
 
+struct Position
+{
+	int x = 0, y = 0;
+};
 
 class StartScreen : public Screen
 {

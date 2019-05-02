@@ -2,25 +2,75 @@
 #include "StartScreen.h"
 
 #include "Button/Button.h"
+#include <conio.h>
 
 void StartScreen::run() 
 {
 	setBlank();
-	/*placeWord(1, 1, playButton->word, playButton->wordSize);
-	placeWord(1, 2, exitButton->word, exitButton->wordSize);*/
 
-	placeWord(1, 1, playButton);
-	placeWord(1, 2, exitButton);
+	int gap = 2;
+
+	// Create Coordinates
+	Position startPos;
+	startPos.x = 1;
+	startPos.y = 1;
+
+
+	Position currentPos;
+	currentPos.x = startPos.x;
+	currentPos.y = startPos.y;
+
+
+
+	// Create Buttons
+	placeWord(startPos.x, startPos.y, playButton);
+	placeWord(startPos.x, startPos.y + gap, exitButton);
+	const int maxSel = 2;
+
 	printScreen();
 
 
-	
-
-	playButton->run();
-
+	// Begin main loop
 	Button* select = playButton;
+	int curSel = 0;
+	char input;
+	while (true)
+	{
+		if (_kbhit())
+		{
+			input = _getch();
 
-	select->run();
+			switch (input)
+			{
+			case 'w':
+				if (curSel > 0)
+				{
+					curSel--;
+				}
+
+				break;
+			case 'a':
+
+				break;
+			case 's':
+				if (curSel < maxSel)
+				{
+					curSel++;
+				}
+				break;
+			case 'd':
+
+				break;
+			default:
+				break;
+			}
+			
+			
+		}
+
+	}
+
+	
 
 }
 
