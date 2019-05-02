@@ -1,7 +1,8 @@
+#pragma once
 #ifndef SOLID_H
 #define SOLID_H
 
-#include "../LevelElement.h"
+#include "LevelElement/LevelElement.h"
 
 class Solid : public LevelElement
 {

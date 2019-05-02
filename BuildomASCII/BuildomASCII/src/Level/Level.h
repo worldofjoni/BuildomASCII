@@ -1,6 +1,7 @@
+#pragma once
 #ifndef LEVEL_H
 #define LEVEL_H
-#include "../LevelElement/LevelElement.h"
+#include "LevelElement/LevelElement.h"
 
 class Level
 {

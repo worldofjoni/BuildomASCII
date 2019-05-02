@@ -1,7 +1,8 @@
+#pragma once
 #ifndef EMPTY_H
 #define EMPTY_H
 
-#include "../LevelElement.h"
+#include "LevelElement/LevelElement.h"
 
 class Empty : public LevelElement
 {

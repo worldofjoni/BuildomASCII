@@ -1,6 +1,6 @@
-#include "pch.h"
+#include "pch/pch.h"
 #include "Game.h"
-//#include "StartScreen/StartScreen.h"
+#include "Screen/Screen.h"
 
 
 
@@ -22,7 +22,7 @@ void Game::run()
 // Does setup stuff like screensize etc.
 void Game::setup()
 {
-	//fc::setWindowSize(Screen::with, Screen.height);
-	//fc::clearScreen(Screen::defaultBackgroundColor)
-	//fc::setTextColor(Screen::defaultTextColor);
+	fc::setWindowSize(Screen::WIDTH, Screen::HEIGHT);
+	fc::clearScreen(Screen::defaultBackgroundColor);
+	fc::setTextColor(Screen::defaultTextColor);
 }

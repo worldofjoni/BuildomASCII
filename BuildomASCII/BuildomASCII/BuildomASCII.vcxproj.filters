@@ -45,6 +45,9 @@
     <ClCompile Include="src\LevelElement\Empty\Empty.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\Build\Curser\Curser.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
@@ -72,6 +75,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\LevelElement\Empty\Empty.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Build\Curser\Curser.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,41 +1,8 @@
-#include "pch.h"
+#include "pch/pch.h"
 #include "Build.h"
 
-#include "../LevelElement/LevelElement.h"
-
-
-Curser::Curser(Level* level)
-	:level(level)
-{
-}
-
-// Moves Curser in direction
-void Curser::move(Direction dir)
-{
-	switch (dir)
-	{
-	case NONE:
-		break;
-	case UP:
-		if(y > 0)
-			y--;
-		break;
-	case DOWN:
-		if(y < level ->HEIGHT-1)
-			y++;
-		break;
-	case LEFT:
-		if (x > 0)
-			x--;
-		break;
-	case RIGHT:
-		if (x < level->WIDTH-1)
-			x++;
-		break;
-	default:
-		break;
-	}
-}
+#include "LevelElement/LevelElement.h"
+#include "Curser/Curser.h"
 
 
 Build::Build(Level level)
@@ -105,26 +72,35 @@ void Build::run()
 
 			// deleting old
 			fc::setCurserPos(curser.x, curser.y);
+			fc::setTextColor(level.map[curser.x][curser.y]->color);
 			std::cout << level.map[curser.x][curser.y]->symbol;
 
 			curser.move(dir);
 
 			
 			// printing new
-			if (curser.isVisable)
-			{
-				fc::setCurserPos(curser.x, curser.y);
-				std::cout << curser.symbol;
+			
+			
+			fc::setCurserPos(curser.x, curser.y);
+			fc::setTextColor(curser.color);
+			std::cout << curser.symbol;
 				
-			}
+			
 			
 			
 
 		}
+		else
+		{
+			// only blinking when not moving
+			fc::setCurserPos(curser.x, curser.y);
+			fc::setTextColor(curser.isVisable ? curser.color : level.map[curser.x][curser.y]->color);
+			std::cout << (curser.isVisable ? curser.symbol : level.map[curser.x][curser.y]->symbol); // Prints curser or not for blinking
+
+		}
+
 		dir = NONE;
 
-		fc::setCurserPos(curser.x, curser.y);
-		std::cout << (curser.isVisable ? curser.symbol : level.map[curser.x][curser.y]->symbol); // Prints curser or not for blinking
 		
 
 		fc::setCurserPos(0, 0);// put Console curser away

@@ -2,7 +2,7 @@
 #ifndef PCH_H
 
 #include <iostream>
-#include "../friendlyConsole/friendlyConsole.hpp"
+#include "friendlyConsole/friendlyConsole.hpp"
 #include <conio.h>
 #include <chrono>
 

@@ -1,11 +1,11 @@
 // BuildomASCII.cpp : Diese Datei enthält die Funktion "main". Hier beginnt und endet die Ausführung des Programms.
 //
 
-#include "pch.h"
-#include "../Game/Game.h"
+#include "pch/pch.h"
+#include "Game/Game.h"
 
-#include "../Level/Level.h"
-#include "../Build/Build.h"
+#include "Level/Level.h"
+#include "Build/Build.h"
 
 
 int main()

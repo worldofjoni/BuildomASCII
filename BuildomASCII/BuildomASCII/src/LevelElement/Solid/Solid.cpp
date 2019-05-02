@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "pch/pch.h"
 #include "Solid.h"
 
 // Constructor
@@ -7,6 +7,7 @@ Solid::Solid()
 	id = 1;
 	symbol = 219;
 	deletable = false;
+	color = LIGHT_GRAY;
 }
 
 // gets called when on block

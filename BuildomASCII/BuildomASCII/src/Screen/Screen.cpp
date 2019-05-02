@@ -1,5 +1,5 @@
-#include "pch.h"
-#include "../Screen/Screen.h"
+#include "pch/pch.h"
+#include "Screen/Screen.h"
 
 
 void Screen::printScreen()

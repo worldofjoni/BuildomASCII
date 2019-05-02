@@ -1,5 +1,6 @@
-#include "pch.h"
+#include "pch/pch.h"
 #include "Empty.h"
+#include "Screen/Screen.h"
 
 // Constructor
 Empty::Empty()
@@ -7,6 +8,7 @@ Empty::Empty()
 	id = 0;
 	symbol = ' ';
 	deletable = true;
+	color = Screen::defaultTextColor;
 }
 
 // gets called when on block
