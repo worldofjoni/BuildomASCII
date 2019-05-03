@@ -8,7 +8,7 @@ ExitButton::ExitButton()
 	word = "Exit";
 }
 
-void ExitButton::run()
+int ExitButton::run()
 {
-	std::cout << "Exiting";
+	return 1;
 }

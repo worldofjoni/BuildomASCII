@@ -20,6 +20,10 @@ public:
 	PlayStoryButton* playButton = new PlayStoryButton();
 	ExitButton *exitButton = new ExitButton();
 
+	static const int maxSel = 2;
+	
+	
+
 
 
 	void placeWord(int px, int py, Button *button);

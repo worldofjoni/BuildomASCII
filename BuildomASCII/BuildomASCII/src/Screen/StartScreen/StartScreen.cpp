@@ -10,22 +10,32 @@ void StartScreen::run()
 
 	int gap = 2;
 
+	
+
 	// Create Coordinates
 	Position startPos;
-	startPos.x = 1;
-	startPos.y = 1;
+	startPos.x = 4;
+	startPos.y = 4;
 
 
 	Position currentPos;
-	currentPos.x = startPos.x;
+	currentPos.x = startPos.x - 1;
 	currentPos.y = startPos.y;
 
 
 
-	// Create Buttons
+	// Create Buttons and change maxSel accordingly
 	placeWord(startPos.x, startPos.y, playButton);
 	placeWord(startPos.x, startPos.y + gap, exitButton);
-	const int maxSel = 2;
+	
+	
+	
+	
+
+	
+	
+	
+	
 
 	printScreen();
 
@@ -33,12 +43,22 @@ void StartScreen::run()
 	// Begin main loop
 	Button* select = playButton;
 	int curSel = 0;
-	char input;
+	int input;
+
+	gotoxy(currentPos.x, currentPos.y);
+	std::cout << '>';
+	gotoxy(0, 0);
 	while (true)
 	{
 		if (_kbhit())
 		{
 			input = _getch();
+
+			if (input == 32) {
+				if (select->run() == 1) {
+					return;
+				}
+			}
 
 			switch (input)
 			{
@@ -47,13 +67,13 @@ void StartScreen::run()
 				{
 					curSel--;
 				}
-
+			
 				break;
 			case 'a':
 
 				break;
 			case 's':
-				if (curSel < maxSel)
+				if (curSel < maxSel -1)
 				{
 					curSel++;
 				}
@@ -64,7 +84,27 @@ void StartScreen::run()
 			default:
 				break;
 			}
+
 			
+			switch (curSel)	// Add options if added more buttons
+			{
+			case 0:
+				select = playButton;
+				break;
+			case 1:
+				select = exitButton;
+				break;
+			default:
+				break;
+			}
+			
+			gotoxy(currentPos.x, currentPos.y);
+			std::cout << ' ';
+
+			currentPos.y = startPos.y + (curSel * gap);
+			gotoxy(currentPos.x, currentPos.y);
+			std::cout << '>';
+			gotoxy(0, 0);
 			
 		}
 
@@ -73,6 +113,8 @@ void StartScreen::run()
 	
 
 }
+
+
 
 StartScreen::~StartScreen()
 {

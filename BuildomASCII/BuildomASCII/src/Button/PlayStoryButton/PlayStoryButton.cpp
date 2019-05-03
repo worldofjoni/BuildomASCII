@@ -7,7 +7,9 @@ PlayStoryButton::PlayStoryButton()
 	word = "Play";
 }
 
-void PlayStoryButton::run()
+int PlayStoryButton::run()
 {
-	std::cout << "Working";
+	// Add Build
+
+	return 0;
 }

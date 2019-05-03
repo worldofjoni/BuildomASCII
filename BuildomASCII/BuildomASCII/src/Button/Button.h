@@ -16,7 +16,7 @@ public:
 
 	std::string word = "Base";
 
-	virtual void run();
+	virtual int run();
 
 };
 

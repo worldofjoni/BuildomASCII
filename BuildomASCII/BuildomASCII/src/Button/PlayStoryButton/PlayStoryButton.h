@@ -10,7 +10,7 @@ public:
 	PlayStoryButton();
 	
 
-	void run() override;
+	int run() override;
 };
 
 

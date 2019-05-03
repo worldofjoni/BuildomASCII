@@ -9,7 +9,8 @@ Button::~Button()
 {
 }
 
-void Button::run()
+int Button::run()
 {
 	std::cout << "ERROR:" << word << " not defined";
+	return 1;
 }

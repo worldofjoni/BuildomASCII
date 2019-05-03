@@ -9,7 +9,7 @@ class ExitButton : public Button
 public:
 	ExitButton();
 
-	void run() override;
+	int run() override;
 };
 
 #endif // !EXITBUTTON_H
