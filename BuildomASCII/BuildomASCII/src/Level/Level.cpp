@@ -22,6 +22,13 @@ Level::Level(int with, int height)
 
 }
 
+void Level::addAt(LevelElement *&element, int x, int y)
+{
+	delete map[x][y];
+	map[x][y] = element;
+	element = nullptr;
+}
+
 
 // destructor
 Level::~Level()

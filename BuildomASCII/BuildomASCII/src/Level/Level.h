@@ -10,6 +10,7 @@ public:
 	const int WIDTH, HEIGHT;
 	LevelElement ***map;
 	Level(int with, int height);
+	void addAt(LevelElement *&element, int x, int y);
 
 	~Level(); // Rule of vive
 	Level(const Level& other); // Copy Constructor

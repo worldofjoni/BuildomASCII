@@ -24,7 +24,7 @@ public:
 	void move(Direction dir);
 	bool isVisable = true; // if curser is visible
 	char symbol = 'x';
-	fc::Color color = WHITE;
+	fc::Color color = RED_LIGHT;
 };
 
 

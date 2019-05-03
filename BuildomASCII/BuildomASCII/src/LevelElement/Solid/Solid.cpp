@@ -7,7 +7,7 @@ Solid::Solid()
 	id = 1;
 	symbol = 219;
 	deletable = false;
-	color = LIGHT_GRAY;
+	color = BLACK;
 }
 
 // gets called when on block

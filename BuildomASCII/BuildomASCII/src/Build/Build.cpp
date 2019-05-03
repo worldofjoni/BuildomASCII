@@ -32,6 +32,7 @@ void Build::run()
 	Curser curser(&level);
 	printScreen();
 
+	
 	while (true)
 	{
 		if (_kbhit())
@@ -51,12 +52,14 @@ void Build::run()
 			case 'd':
 				dir = RIGHT;
 				break;
-			case '1':
+			case ' ':
 				setElement = new Solid;
 				break;
-			case '2':
+			case 8://backspace
 				setElement = new Empty;
 				break;
+				
+
 			default:
 				dir = NONE;
 				break;
@@ -65,8 +68,7 @@ void Build::run()
 			// if a new Element schould be set...
 			if (setElement != nullptr)
 			{
-				delete level.map[curser.x][curser.y];
-				level.map[curser.x][curser.y] = setElement;
+				level.addAt(setElement, curser.x, curser.y);
 				setElement = nullptr;
 			}
 

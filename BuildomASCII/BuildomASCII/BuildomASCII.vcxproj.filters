@@ -48,6 +48,12 @@
     <ClCompile Include="src\Build\Curser\Curser.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\LevelElement\SlopeUp\SlopeUp.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LevelElement\SlopeDown\SlopeDown.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
@@ -78,6 +84,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Build\Curser\Curser.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LevelElement\SlopeUp\SlopeUp.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LevelElement\SlopeDown\SlopeDown.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
