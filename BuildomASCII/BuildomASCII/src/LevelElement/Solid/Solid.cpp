@@ -2,11 +2,11 @@
 #include "Solid.h"
 
 // Constructor
-Solid::Solid()
+Solid::Solid(bool deletable)
 {
 	id = 1;
 	symbol = 219;
-	deletable = false;
+	this->deletable = deletable;
 	color = BLACK;
 }
 

@@ -58,6 +58,19 @@ Build::Build(Level level)
 			content[x+1][y+1].backgroundColor = this->defaultBackgroundColor;
 		}
 	}
+
+	// mark start and end
+
+
+	//content[level.start.x + 1][level.start.y + 1].textColor = startColor; // +1 offset is for frame 
+	//content[level.start.x + 1][level.start.y + 1].content = startChar; // ...
+
+	//content[level.end.x + 1][level.end.y + 1].textColor = endColor;
+	//content[level.end.x + 1][level.end.y + 1].content = endChar;
+
+
+
+	// init for menu bar
 	
 }
 
@@ -74,7 +87,8 @@ void Build::run()
 	Cursor cursor(&level);
 	printScreen();
 
-	
+
+
 	while (true)
 	{
 		if (_kbhit())
@@ -95,18 +109,22 @@ void Build::run()
 				dir = RIGHT;
 				break;
 			case ' ':
-				setElement = new Solid;
+				setElement = new Solid(true);
 				break;
 			case 8://backspace
-				setElement = new Empty;
+				setElement = new Empty(true);
 				break;
 			case '1':
-				setElement = new SlopeUp;
+				setElement = new SlopeUp(true);
 				break;
 			case '2':
-				setElement = new SlopeDown;
+				setElement = new SlopeDown(true);
 				break;
 				
+
+			case 27: // ESC
+				return;
+				break;
 
 			default:
 				dir = NONE;

@@ -9,7 +9,7 @@ class Empty : public LevelElement
 private:
 
 public:
-	Empty();
+	Empty(bool deletable);
 	void steppedOn() override;
 	void steppedIn() override;
 	Empty* clone() override;

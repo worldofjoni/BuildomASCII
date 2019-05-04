@@ -1,13 +1,15 @@
 #include "pch/pch.h"
 #include "SlopeUp.h"
 
-SlopeUp::SlopeUp()
+SlopeUp::SlopeUp(bool deletable)
 {
 	id = 2;
 	symbol = '/';
-	deletable = true;
+	this->deletable = deletable;
 	color = BLACK;
 }
+
+
 
 void SlopeUp::steppedOn()
 {

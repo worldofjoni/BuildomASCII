@@ -5,17 +5,23 @@
 
 // constructor
 Level::Level(int with, int height)
-	: WIDTH(with), HEIGHT(height)
+	: WIDTH(with), HEIGHT(height), start(start), end(end)
 {
-	map = new LevelElement** [WIDTH];
+	map = new LevelElement * *[WIDTH];
 
 	for (int x = 0; x < WIDTH; x++)
 	{
-		map[x] = new LevelElement* [HEIGHT];
+		map[x] = new LevelElement * [HEIGHT];
 		for (int y = 0; y < HEIGHT; y++)
 		{
-			map[x][y] = new Empty;
+			map[x][y] = new Empty(true);
 		}
+	}
+
+	// init maxElements to -1
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+		maxElements[i] = -1;
 	}
 
 	
@@ -27,7 +33,7 @@ void Level::addAt(LevelElement *&element, int x, int y)
 	// Handeling limited Blocks
 	int id = element->id;
 
-	if (setElements[id] < maxElements[id] || maxElements[id] == -1)
+	if ( (setElements[id] < maxElements[id] || maxElements[id] == -1) && map[x][y]->deletable)
 	{
 		setElements[map[x][y]->id]--; // decrement deleted
 
@@ -54,6 +60,22 @@ void Level::setMaxElements(int list[LevelElement::countOfElements])
 	}
 }
 
+void Level::setStartEnd(Pos start, Pos end)
+{
+	this->start = start;
+	this->end = end;
+
+	map[start.x][start.y]->color = MAGENTA;
+	map[start.x][start.y]->symbol = '#';
+	map[start.x][start.y]->deletable = false;
+
+	map[end.x][end.y]->color = GREEN;
+	map[end.x][end.y]->symbol = 'P';
+	map[end.x][end.y]->deletable = false;
+
+
+}
+
 
 // destructor
 Level::~Level()
@@ -74,7 +96,7 @@ Level::~Level()
 
 // copy constructor
 Level::Level(const Level& other)
-	:WIDTH(other.WIDTH), HEIGHT(other.HEIGHT)
+	:WIDTH(other.WIDTH), HEIGHT(other.HEIGHT), start(other.start), end(other.end)
 {
 	map = new LevelElement** [WIDTH];
 

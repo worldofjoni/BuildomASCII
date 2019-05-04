@@ -9,7 +9,7 @@ class Solid : public LevelElement
 private:
 
 public:
-	Solid();
+	Solid(bool deletable);
 	void steppedOn() override;
 	void steppedIn() override;
 	Solid* clone() override;

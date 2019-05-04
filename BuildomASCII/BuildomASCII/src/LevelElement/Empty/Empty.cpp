@@ -3,11 +3,11 @@
 #include "Screen/Screen.h"
 
 // Constructor
-Empty::Empty()
+Empty::Empty(bool deletable)
 {
 	id = 0;
 	symbol = ' ';
-	deletable = true;
+	this->deletable = deletable;
 	color = Screen::defaultTextColor;
 }
 

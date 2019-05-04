@@ -10,7 +10,7 @@ class SlopeUp : public LevelElement
 private:
 
 public:
-	SlopeUp();
+	SlopeUp(bool deletable);
 	void steppedOn() override;
 	void steppedIn() override;
 	SlopeUp* clone() override;

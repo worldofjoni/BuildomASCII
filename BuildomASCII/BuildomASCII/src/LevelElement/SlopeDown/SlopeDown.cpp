@@ -1,13 +1,14 @@
 #include "pch/pch.h"
 #include "SlopeDown.h"
 
-SlopeDown::SlopeDown()
+SlopeDown::SlopeDown(bool deletable)
 {
 	id = 3;
 	symbol = '\\';
-	deletable = true;
+	this->deletable = deletable;
 	color = BLACK;
 }
+
 
 void SlopeDown::steppedOn()
 {
