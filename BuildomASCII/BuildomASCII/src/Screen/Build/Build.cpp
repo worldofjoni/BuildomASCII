@@ -26,24 +26,24 @@ Build::Build(Level level)
 	for (int y = 0; y < HEIGHT; y++)
 	{
 		content[0][y].content = ' ';
-		content[0][y].textColor = defaultTextColor;
+		content[0][y].textColor = frameTextColor;
 		content[0][y].backgroundColor = frameColor;
 
 		content[WIDTH-1][y].content = ' ';
-		content[WIDTH-1][y].textColor = defaultTextColor;
+		content[WIDTH-1][y].textColor = frameTextColor;
 		content[WIDTH-1][y].backgroundColor = frameColor;
 	}
 
 	for (int x = 0; x < WIDTH; x++)
 	{
 		content[x][0].content = ' ';
-		content[x][0].textColor = defaultTextColor;
+		content[x][0].textColor = frameTextColor;
 		content[x][0].backgroundColor = frameColor;
 
 		for (int y = HEIGHT - 10; y < HEIGHT; y++)
 		{
 			content[x][y].content = ' ';
-			content[x][y].textColor = defaultTextColor;
+			content[x][y].textColor = frameTextColor;
 			content[x][y].backgroundColor = frameColor;
 		}
 	}

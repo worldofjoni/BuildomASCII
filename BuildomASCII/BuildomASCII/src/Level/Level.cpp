@@ -24,9 +24,34 @@ Level::Level(int with, int height)
 
 void Level::addAt(LevelElement *&element, int x, int y)
 {
-	delete map[x][y];
-	map[x][y] = element;
-	element = nullptr;
+	// Handeling limited Blocks
+	int id = element->id;
+
+	if (setElements[id] < maxElements[id] || maxElements[id] == -1)
+	{
+		setElements[map[x][y]->id]--; // decrement deleted
+
+		setElements[id]++; // increment new
+
+		delete map[x][y];
+		map[x][y] = element;
+		element = nullptr;
+
+	}
+	else
+	{
+		delete element;
+		element = nullptr;
+	}
+
+}
+
+void Level::setMaxElements(int list[LevelElement::countOfElements])
+{
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+		maxElements[i] = list[i];
+	}
 }
 
 
@@ -64,6 +89,12 @@ Level::Level(const Level& other)
 		{
 			map[x][y] = other.map[x][y]->clone();
 		}
+	}
+
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+		this->maxElements[i] = other.maxElements[i];
+		this->setElements[i] = other.setElements[i];
 	}
 
 }
