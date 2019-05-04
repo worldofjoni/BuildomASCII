@@ -10,7 +10,7 @@
 
 
 
-#define gotoxy fc::setCurserPos
+#define gotoxy fc::setCursorPos
 #define getrandom_int fc::getRandom
 #define wait fc::waitMs
 
@@ -44,13 +44,17 @@ namespace fc {
 	inline void clearScreen();
 	void clearScreen(Color color);
 	void setTitle(const char name[]);
-	void setCurserPos(int x, int y);
+	void setCursorPos(int x, int y);
 	void setWindowSizePX(int with, int height); //size in Pixel (shouldn't use)
 	void setWindowSize(int with, int height);	//Size in characters (when Font=Rasterschrift; FontSize=8x8)
 	void setWindowPos(int x, int y);
 	void setFontSize(int with, int height = 0); // experimental
 	int getRandom(int min, int max);
 	void waitMs(int ms);
+	void waitMsWithInterupt(int ms, bool(*func)());
+	void getCursorPosition(int& x, int& y);
+	void hideCursor();
+	void showCursor();
 
 
 }

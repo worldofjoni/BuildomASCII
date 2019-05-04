@@ -25,4 +25,6 @@ void Game::setup()
 	fc::setWindowSize(Screen::WIDTH, Screen::HEIGHT);
 	fc::clearScreen(Screen::defaultBackgroundColor);
 	fc::setTextColor(Screen::defaultTextColor);
+	fc::hideCursor();
+	fc::setCursorPos(0, 0);
 }

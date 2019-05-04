@@ -13,12 +13,15 @@ public:
 	virtual void steppedIn() = 0;
 	virtual LevelElement* clone() = 0; // copy function
 	fc::Color color;
+	static const int countOfElements = 4; // num of different element
 
 };
 
 
-#include "LevelElement/Empty/Empty.h"
-#include "LevelElement/Solid/Solid.h"
+#include "Empty/Empty.h"
+#include "Solid/Solid.h"
+#include "SlopeUp/SlopeUp.h"
+#include "SlopeDown/SlopeDown.h"
 
 
 

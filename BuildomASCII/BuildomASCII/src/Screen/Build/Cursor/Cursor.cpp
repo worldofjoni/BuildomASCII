@@ -1,14 +1,14 @@
 #include "pch/pch.h"
-#include "Curser.h"
+#include "Cursor.h"
 
 
-Curser::Curser(Level* level)
+Cursor::Cursor(Level* level)
 	:level(level)
 {
 }
 
-// Moves Curser in direction
-void Curser::move(Direction dir)
+// Moves Cursor in direction
+void Cursor::move(Direction dir)
 {
 	switch (dir)
 	{

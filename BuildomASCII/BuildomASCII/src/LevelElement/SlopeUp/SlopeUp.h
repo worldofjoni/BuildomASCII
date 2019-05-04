@@ -5,6 +5,18 @@
 #include "LevelElement/LevelElement.h"
 
 
+class SlopeUp : public LevelElement
+{
+private:
+
+public:
+	SlopeUp();
+	void steppedOn() override;
+	void steppedIn() override;
+	SlopeUp* clone() override;
+
+};
+
 
 
 

@@ -21,9 +21,6 @@
     <ClCompile Include="src\pch\pch.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Game.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="src\friendlyConsole\friendlyConsole.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -31,9 +28,6 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\LevelElement\LevelElement.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Build\Build.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\Level\Level.cpp">
@@ -45,21 +39,24 @@
     <ClCompile Include="src\LevelElement\Empty\Empty.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="src\Build\Curser\Curser.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="src\LevelElement\SlopeUp\SlopeUp.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\LevelElement\SlopeDown\SlopeDown.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\Game\Game.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Screen\Build\Build.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Screen\Build\Cursor\Cursor.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Game\Game.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\friendlyConsole\friendlyConsole.hpp">
@@ -71,9 +68,6 @@
     <ClInclude Include="src\LevelElement\LevelElement.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\Build\Build.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="src\Level\Level.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -83,13 +77,19 @@
     <ClInclude Include="src\LevelElement\Empty\Empty.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\Build\Curser\Curser.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="src\LevelElement\SlopeUp\SlopeUp.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\LevelElement\SlopeDown\SlopeDown.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game\Game.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Screen\Build\Build.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Screen\Build\Cursor\Cursor.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

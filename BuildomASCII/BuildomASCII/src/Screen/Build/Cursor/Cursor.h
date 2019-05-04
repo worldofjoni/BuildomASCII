@@ -2,7 +2,7 @@
 #ifndef CURSER_H
 #define CURSER_H
 
-#include "Build/Build.h"
+#include "Screen/Build/Build.h"
 #include "pch/pch.h"
 
 enum Direction
@@ -14,15 +14,15 @@ enum Direction
 	RIGHT,
 };
 
-class Curser
+class Cursor
 {
 private:
 	Level * level;
 public:
-	Curser(Level* level);
+	Cursor(Level* level);
 	int x = 0, y = 0;
 	void move(Direction dir);
-	bool isVisable = true; // if curser is visible
+	bool isVisable = true; // if cursor is visible
 	char symbol = 'x';
 	fc::Color color = RED_LIGHT;
 };

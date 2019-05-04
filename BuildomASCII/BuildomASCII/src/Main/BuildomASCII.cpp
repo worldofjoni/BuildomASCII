@@ -5,7 +5,7 @@
 #include "Game/Game.h"
 
 #include "Level/Level.h"
-#include "Build/Build.h"
+#include "Screen/Build/Build.h"
 
 
 int main()
@@ -17,7 +17,7 @@ int main()
 
 	// TEst
 	
-	Level level(Screen::WIDTH, Screen::HEIGHT -20);
+	Level level(Screen::WIDTH-2, Screen::HEIGHT -10); // Space for Frame and menu bar
 
 	Build build(level);
 	
