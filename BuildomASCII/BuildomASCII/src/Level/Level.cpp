@@ -57,7 +57,7 @@ void Level::setStartEnd(Pos start, Pos end)
 	map[start.x][start.y]->symbol = '#';
 	map[start.x][start.y]->deletable = false;
 
-	map[end.x][end.y]->color = GREEN;
+	map[end.x][end.y]->color = GREEN_LIGHT;
 	map[end.x][end.y]->symbol = 'P';
 	map[end.x][end.y]->deletable = false;
 

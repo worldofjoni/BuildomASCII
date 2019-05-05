@@ -69,6 +69,7 @@ Build::Build(Level level)
 
 	for (int i = 1; i < LevelElement::countOfElements; i++) // 1 because empty field is NOT displayed
 	{
+		content[pos.x][pos.y].textColor = GREEN;
 		pos = writeAt(pos, symbols[i]);
 		pos = writeAt(pos, " [");
 		pos = writeAt(pos, keybind[i]);
@@ -80,11 +81,20 @@ Build::Build(Level level)
 			pos = writeAt(pos, level.maxElements[i], 3);
 		if (i != LevelElement::countOfElements - 1)
 		{
-			pos = writeAt(pos, "  |  ");
-			content[pos.x - 3][pos.y].textColor = RED;
+			pos = writeAt(pos, "  ");
+			content[pos.x][pos.y].textColor = RED;
+			pos = writeAt(pos, 179);
+			pos = writeAt(pos, "  ");
 		}
 
 	}
+
+	//Delete & Quit
+	pos = { Screen::WIDTH - 35, Screen::HEIGHT - 3 };
+	pos = writeAt(pos, "[BACK] : Delete  ");
+	content[pos.x][pos.y].textColor = RED;
+	pos = writeAt(pos, 179);
+	pos = writeAt(pos, "  [ESC] : Quit");
 
 }
 
