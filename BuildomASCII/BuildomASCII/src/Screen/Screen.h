@@ -14,6 +14,11 @@ struct Pixel // Struct containig all the information for each pixel
 
 };
 
+struct Pos
+{
+	int x, y;
+};
+
 class Screen
 {
 public:
@@ -28,6 +33,18 @@ public:
 
 
 	virtual ~Screen() {};
+
+
+	// Functions to write on content
+	Pos writeAt(int x, int y, char c);
+	Pos writeAt(Pos pos, char c);
+
+	Pos writeAt(int x, int y, const char str[]);
+	Pos writeAt(Pos pos, const char str[]);
+
+	Pos writeAt(int x, int y, int num);
+	Pos writeAt(int x, int y, int num, unsigned int digis);
+	Pos writeAt(Pos pos, int num, unsigned int digis);
 
 protected:
 	Pixel content[WIDTH][HEIGHT];

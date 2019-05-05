@@ -28,27 +28,15 @@ Level::Level(int with, int height)
 
 }
 
-void Level::addAt(LevelElement *&element, int x, int y)
+
+// replaces Element at position (with deleation)
+void Level::placeAt(LevelElement *element, int x, int y)
 {
-	// Handeling limited Blocks
-	int id = element->id;
+	
+	delete map[x][y];
+	map[x][y] = element;
+	element = nullptr;
 
-	if ( (setElements[id] < maxElements[id] || maxElements[id] == -1) && map[x][y]->deletable)
-	{
-		setElements[map[x][y]->id]--; // decrement deleted
-
-		setElements[id]++; // increment new
-
-		delete map[x][y];
-		map[x][y] = element;
-		element = nullptr;
-
-	}
-	else
-	{
-		delete element;
-		element = nullptr;
-	}
 
 }
 

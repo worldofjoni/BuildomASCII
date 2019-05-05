@@ -7,15 +7,17 @@
 #include "Level/Level.h"
 #include "Screen/Build/Build.h"
 
+#include <Windows.h>
 
 int main()
 {
+	
 	Game game;
 
 	game.run();
 
 
-	// TEst
+	// Test
 	
 	Level level(Screen::WIDTH - 2, Screen::HEIGHT - 10); // Space for Frame and menu bar
 	level.setStartEnd({ 5, 5 }, { 90, 30 });

@@ -16,12 +16,18 @@ private:
 	template <typename T>
 	void printOnLevel(T content, int x, int y, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
 
-	const fc::Color frameColor = DARK_GRAY, frameTextColor = WHITE, startColor = GREEN, endColor = MAGENTA;
+	const fc::Color frameColor = DARK_GRAY, frameTextColor = CYAN;
 	char startChar = '#', endChar = 'P';
 
 public:
 	Build(Level level);
 	void run();
+	
+	Pos countPos[LevelElement::countOfElements]; // index is id of element
+	void placeOnLevelAt(LevelElement*& element, int x, int y);
+
+
+	
 	
 
 
