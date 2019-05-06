@@ -1,5 +1,6 @@
-#include "pch.h"
+#include "pch/pch.h"
 #include "Game.h"
+#include "Screen/StartScreen/StartScreen.h"
 //#include "StartScreen/StartScreen.h"
 
 
@@ -11,8 +12,8 @@ void Game::run()
 
 
 
-	/*StartScreen startScreen;
-	startScreen.run();*/
+	StartScreen startScreen;
+	startScreen.run();
 
 
 
