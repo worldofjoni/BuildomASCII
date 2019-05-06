@@ -20,6 +20,9 @@ public:
 
 };
 
+#include "Button/PlayStoryButton/PlayStoryButton.h"
+#include "Button/ExitButton/ExitButton.h"
+
 
 
 #endif // !BUTTON_H

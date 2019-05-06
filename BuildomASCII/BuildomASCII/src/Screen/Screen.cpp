@@ -24,7 +24,7 @@ void Screen::setBlank()
 	{
 		for (int y = 0; y < HEIGHT; y++)
 		{
-			content[x][y] = ' ';
+			content[x][y].content = ' ';
 		}
 		
 	}
@@ -142,3 +142,5 @@ Pos Screen::writeAt(Pos pos, int num, unsigned int digis)
 {
 	return writeAt(pos.x, pos.y, num, digis);
 }
+
+

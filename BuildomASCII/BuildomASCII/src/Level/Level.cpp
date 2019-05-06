@@ -11,7 +11,7 @@ Level::Level(int with, int height)
 
 	for (int x = 0; x < WIDTH; x++)
 	{
-		map[x] = new LevelElement * [HEIGHT];
+		map[x] = new LevelElement* [HEIGHT];
 		for (int y = 0; y < HEIGHT; y++)
 		{
 			map[x][y] = new Empty(true);

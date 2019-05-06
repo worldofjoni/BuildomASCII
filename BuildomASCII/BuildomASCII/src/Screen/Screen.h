@@ -24,8 +24,8 @@ class Screen
 public:
 	
 	static const int 
-		WIDTH = 50, 
-		HEIGHT = 100;
+		WIDTH = 100, 
+		HEIGHT = 50;
 	static const fc::Color
 		defaultBackgroundColor = _defaultBackgroundColor,
 		defaultTextColor = _defaultTextColor;

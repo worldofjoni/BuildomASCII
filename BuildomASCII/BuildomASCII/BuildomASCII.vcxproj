@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Button\Button.cpp" />
+    <ClCompile Include="src\Button\ExitButton\ExitButton.cpp" />
+    <ClCompile Include="src\Button\PlayStoryButton\PlayStoryButton.cpp" />
     <ClCompile Include="src\Screen\Build\Build.cpp" />
     <ClCompile Include="src\Screen\Build\Cursor\Cursor.cpp" />
     <ClCompile Include="src\friendlyConsole\friendlyConsole.cpp" />
@@ -41,8 +44,12 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="src\Screen\Screen.cpp" />
+    <ClCompile Include="src\Screen\StartScreen\StartScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Button\Button.h" />
+    <ClInclude Include="src\Button\ExitButton\ExitButton.h" />
+    <ClInclude Include="src\Button\PlayStoryButton\PlayStoryButton.h" />
     <ClInclude Include="src\Screen\Build\Build.h" />
     <ClInclude Include="src\Screen\Build\Cursor\Cursor.h" />
     <ClInclude Include="src\friendlyConsole\friendlyConsole.hpp" />
@@ -55,6 +62,7 @@
     <ClInclude Include="src\Level\Level.h" />
     <ClInclude Include="src\pch\pch.h" />
     <ClInclude Include="src\Screen\Screen.h" />
+    <ClInclude Include="src\Screen\StartScreen\StartScreen.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
