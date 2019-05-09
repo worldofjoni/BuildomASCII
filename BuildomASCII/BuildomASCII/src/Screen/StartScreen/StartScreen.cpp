@@ -25,8 +25,8 @@ void StartScreen::run()
 
 
 	// Create Buttons and change maxSel accordingly
-	placeWord(startPos.x, startPos.y, playButton);
-	placeWord(startPos.x, startPos.y + gap, exitButton);
+	writeAt(startPos.x, startPos.y, playButton->word.c_str());
+	writeAt(startPos.x, startPos.y + gap, exitButton->word.c_str());
 	
 	
 	
@@ -57,6 +57,13 @@ void StartScreen::run()
 			if (input == 32) {
 				if (select->run() == 1) {
 					return;
+				}
+				else
+				{
+					// reinit screen
+					printScreen();
+					select = playButton;
+					curSel = 0;
 				}
 			}
 
@@ -116,22 +123,13 @@ void StartScreen::run()
 
 
 
+StartScreen::StartScreen()
+{
+}
+
 StartScreen::~StartScreen()
 {
 	delete playButton;
 	delete exitButton;
 }
 
-void StartScreen::placeWord(int px, int py, Button *button) {
-	
-	
-	int x = px;
-	for (int i = 0; i < button->wordSize; i++)
-	{
-		
-		content[py][x] = button->word[i];
-		x++;
-		
-		
-	}
-}

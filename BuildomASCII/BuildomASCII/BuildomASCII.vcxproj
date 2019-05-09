@@ -22,8 +22,16 @@
     <ClCompile Include="src\Button\Button.cpp" />
     <ClCompile Include="src\Button\ExitButton\ExitButton.cpp" />
     <ClCompile Include="src\Button\PlayStoryButton\PlayStoryButton.cpp" />
+    <ClCompile Include="src\Screen\Build\Build.cpp" />
+    <ClCompile Include="src\Screen\Build\Cursor\Cursor.cpp" />
     <ClCompile Include="src\friendlyConsole\friendlyConsole.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
+    <ClCompile Include="src\LevelElement\Empty\Empty.cpp" />
+    <ClCompile Include="src\LevelElement\LevelElement.cpp" />
+    <ClCompile Include="src\LevelElement\SlopeDown\SlopeDown.cpp" />
+    <ClCompile Include="src\LevelElement\SlopeUp\SlopeUp.cpp" />
+    <ClCompile Include="src\LevelElement\Solid\Solid.cpp" />
+    <ClCompile Include="src\Level\Level.cpp" />
     <ClCompile Include="src\Main\BuildomASCII.cpp" />
     <ClCompile Include="src\pch\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -42,8 +50,16 @@
     <ClInclude Include="src\Button\Button.h" />
     <ClInclude Include="src\Button\ExitButton\ExitButton.h" />
     <ClInclude Include="src\Button\PlayStoryButton\PlayStoryButton.h" />
+    <ClInclude Include="src\Screen\Build\Build.h" />
+    <ClInclude Include="src\Screen\Build\Cursor\Cursor.h" />
     <ClInclude Include="src\friendlyConsole\friendlyConsole.hpp" />
     <ClInclude Include="src\Game\Game.h" />
+    <ClInclude Include="src\LevelElement\Empty\Empty.h" />
+    <ClInclude Include="src\LevelElement\LevelElement.h" />
+    <ClInclude Include="src\LevelElement\SlopeDown\SlopeDown.h" />
+    <ClInclude Include="src\LevelElement\SlopeUp\SlopeUp.h" />
+    <ClInclude Include="src\LevelElement\Solid\Solid.h" />
+    <ClInclude Include="src\Level\Level.h" />
     <ClInclude Include="src\pch\pch.h" />
     <ClInclude Include="src\Screen\Screen.h" />
     <ClInclude Include="src\Screen\StartScreen\StartScreen.h" />
@@ -130,7 +146,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,7 +163,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -166,7 +182,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -187,7 +203,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
