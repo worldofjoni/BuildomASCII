@@ -11,12 +11,15 @@ SlopeUp::SlopeUp(bool deletable)
 
 
 
-void SlopeUp::steppedOn()
+bool SlopeUp::steppedOn(Pos &pos)
 {
+	return false;
 }
 
-void SlopeUp::steppedIn()
+bool SlopeUp::steppedIn(Pos &pos)
 {
+	pos.y--;
+	return false;
 }
 
 SlopeUp* SlopeUp::clone()

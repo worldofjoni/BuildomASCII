@@ -11,8 +11,8 @@ private:
 
 public:
 	SlopeUp(bool deletable);
-	void steppedOn() override;
-	void steppedIn() override;
+	bool steppedOn(Pos &pos) override;
+	bool steppedIn(Pos &pos) override;
 	SlopeUp* clone() override;
 
 };

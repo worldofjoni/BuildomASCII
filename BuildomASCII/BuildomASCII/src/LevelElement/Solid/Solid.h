@@ -10,8 +10,8 @@ private:
 
 public:
 	Solid(bool deletable);
-	void steppedOn() override;
-	void steppedIn() override;
+	bool steppedOn(Pos &pos) override;
+	bool steppedIn(Pos &pos) override;
 	Solid* clone() override;
 	
 };

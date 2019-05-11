@@ -10,12 +10,14 @@ SlopeDown::SlopeDown(bool deletable)
 }
 
 
-void SlopeDown::steppedOn()
+bool SlopeDown::steppedOn(Pos &pos)
 {
+	return false;
 }
 
-void SlopeDown::steppedIn()
+bool SlopeDown::steppedIn(Pos &pos)
 {
+	return true;
 }
 
 SlopeDown* SlopeDown::clone()

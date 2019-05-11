@@ -128,5 +128,8 @@
     <ClInclude Include="src\Screen\Credits\Credits.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="src\Position\Pos.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

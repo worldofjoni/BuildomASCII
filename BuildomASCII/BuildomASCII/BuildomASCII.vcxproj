@@ -49,6 +49,7 @@
     <ClCompile Include="src\Screen\StartScreen\StartScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Position\Pos.h" />
     <ClInclude Include="src\Screen\Credits\Credits.h" />
     <ClInclude Include="src\Button\Button.h" />
     <ClInclude Include="src\Button\CreditsButton\CreditsButton.h" />

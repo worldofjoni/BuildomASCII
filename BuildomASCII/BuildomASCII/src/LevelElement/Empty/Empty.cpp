@@ -12,15 +12,18 @@ Empty::Empty(bool deletable)
 }
 
 // gets called when on block
-void Empty::steppedOn()
+bool Empty::steppedOn(Pos &pos)
 {
+	pos.y++;
+	return false;
 	//std::cout << "darauf" << std::endl;
 
 }
 
 // gets called when in Block
-void Empty::steppedIn()
+bool Empty::steppedIn(Pos &pos)
 {
+	return false;
 	//std::cout << "darin" << std::endl;
 }
 

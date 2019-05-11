@@ -151,6 +151,12 @@ void Build::run()
 				return;
 				break;
 
+
+			case 13: // Space
+				printOnLevel(level.map[cursor.x][cursor.y]->symbol, cursor.x, cursor.y, level.map[cursor.x][cursor.y]->color);
+				runLevel(level);
+				break;
+
 			default:
 				dir = NONE;
 				break;
@@ -208,6 +214,52 @@ void Build::run()
 
 
 
+}
+
+bool Build::runLevel(Level level)
+{
+	Pos currentPos = { level.start.x, level.start.y };
+
+	bool playerGameOver = false;
+
+	while (!playerGameOver)
+	{
+		currentPos.x++;
+
+		if (currentPos.x == level.end.x && currentPos.y == level.end.y)
+		{
+			return true;
+		}
+
+		if (level.map[currentPos.x][currentPos.y]->steppedIn(currentPos) == true)
+		{
+			playerGameOver = true;
+		}
+		if (level.map[currentPos.x][currentPos.y + 1]->steppedOn(currentPos) == true)
+		{
+			playerGameOver = true;
+		}
+		printOnLevel(playerChar, currentPos.x, currentPos.y, RED_LIGHT);
+
+		fc::waitMs(100);
+		/*playerGameOver = level.map[currentPos.x][currentPos.y]->steppedIn(currentPos);
+		playerGameOver = level.map[currentPos.x][currentPos.y - 1]->steppedOn(currentPos);*/
+
+		//For Loop
+		//On empty = current.y--;
+		//Check
+		//On empty = current.y--;
+		//Check
+		
+
+
+		
+
+		printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
+		
+
+		
+	}
 }
 
 

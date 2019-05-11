@@ -2,6 +2,7 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 #include "friendlyConsole/friendlyConsole.hpp"
+#include "Position/Pos.h"
 
 static const fc::Color _defaultTextColor = BLUE_LIGHT;
 static const fc::Color _defaultBackgroundColor = LIGHT_GRAY;
@@ -14,10 +15,7 @@ struct Pixel // Struct containig all the information for each pixel
 
 };
 
-struct Pos
-{
-	int x, y;
-};
+
 
 class Screen
 {

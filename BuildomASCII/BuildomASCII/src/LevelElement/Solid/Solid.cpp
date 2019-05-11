@@ -11,16 +11,18 @@ Solid::Solid(bool deletable)
 }
 
 // gets called when on block
-void Solid::steppedOn()
+bool Solid::steppedOn(Pos &pos)
 {
-	std::cout << "darauf" << std::endl;
+	return false;
 
 }
 
+
+
 // gets Called when in Block
-void Solid::steppedIn()
+bool Solid::steppedIn(Pos &pos)
 {
-	std::cout << "darin" << std::endl;
+	return true;
 }
 
 
