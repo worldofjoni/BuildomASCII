@@ -2,20 +2,19 @@
 #include "StartScreen.h"
 
 #include "Button/Button.h"
-#include <conio.h>
 
 void StartScreen::run() 
 {
 	setBlank();
 
-	int gap = 2;
+	int gap = 3;
 
-	
+	std::string title = "Buildom ASCII";
 
 	// Create Coordinates
 	Position startPos;
-	startPos.x = 4;
-	startPos.y = 4;
+	startPos.x = WIDTH / 2;
+	startPos.y = HEIGHT / 2;
 
 
 	Position currentPos;
@@ -25,9 +24,10 @@ void StartScreen::run()
 
 
 	// Create Buttons and change maxSel accordingly
-	placeWord(startPos.x, startPos.y, playButton);
-	placeWord(startPos.x, startPos.y + gap, exitButton);
-	
+	writeAt(startPos.x, startPos.y, playButton->word.c_str());
+	writeAt(startPos.x, startPos.y + gap, creditsButton->word.c_str());
+	writeAt(startPos.x, startPos.y + gap * 2, exitButton->word.c_str());
+	writeAt(startPos.x - 4, startPos.y - (gap + 2), title.c_str());
 	
 	
 	
@@ -54,9 +54,17 @@ void StartScreen::run()
 		{
 			input = _getch();
 
-			if (input == 32) {
+			if (input == 32 || input == 13) {
 				if (select->run() == 1) {
 					return;
+				}
+				else
+				{
+					// reinit screen
+					printScreen();
+					select = playButton;
+					curSel = 0;
+					input = 0;
 				}
 			}
 
@@ -92,6 +100,9 @@ void StartScreen::run()
 				select = playButton;
 				break;
 			case 1:
+				select = creditsButton;
+				break;
+			case 2:
 				select = exitButton;
 				break;
 			default:
@@ -116,22 +127,14 @@ void StartScreen::run()
 
 
 
+
 StartScreen::~StartScreen()
 {
 	delete playButton;
 	delete exitButton;
+	delete creditsButton;
 }
 
-void StartScreen::placeWord(int px, int py, Button *button) {
-	
-	
-	int x = px;
-	for (int i = 0; i < button->wordSize; i++)
-	{
-		
-		content[py][x] = button->word[i];
-		x++;
-		
-		
-	}
+StartScreen::StartScreen()
+{
 }

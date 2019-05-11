@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include "friendlyConsole.hpp"
 #include <random>
+#include <chrono>
 
 
 
@@ -56,8 +57,8 @@ namespace fc {
 		SetConsoleTitleA(name);
 	}
 
-	// sets the actual curser position (equivilent to gotoxy)
-	void setCurserPos(int x, int y)
+	// sets the actual cursor position (equivilent to gotoxy)
+	void setCursorPos(int x, int y)
 	{
 		COORD pos;
 		pos.X = x;
@@ -100,6 +101,7 @@ namespace fc {
 		SetCurrentConsoleFontEx(hStdOut, false, &info);
 	}
 
+	// returns a random Value
 	int getRandom(int min, int max)
 	{
 		
@@ -110,6 +112,54 @@ namespace fc {
 		return dist6(rng);
 		
 	}
+
+
+	// waits a specific amount of time
+	void waitMs(int ms)
+	{
+		auto t1 = std::chrono::system_clock::now();
+		while (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - t1).count() < ms);
+	}
+
+	// waits a specific amout of time or until functionreturns true
+	void waitMsWithInterupt(int ms, bool(*func)())
+	{
+		auto t1 = std::chrono::system_clock::now();
+		while (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - t1).count() < ms)
+		{
+			if (func()) return;
+		}
+	}
+
+	// overrides the given variables with the actual cursor Position
+	void getCursorPosition(int& x, int& y)
+	{
+		CONSOLE_SCREEN_BUFFER_INFO info;
+		GetConsoleScreenBufferInfo(hStdOut, &info);
+		x = info.dwCursorPosition.X;
+		y = info.dwCursorPosition.Y;
+	}
+
+	// Hides Cursor
+	void hideCursor()
+	{
+		CONSOLE_CURSOR_INFO info;
+		GetConsoleCursorInfo(hStdOut, &info);
+		info.bVisible = false;
+		SetConsoleCursorInfo(hStdOut, &info);
+		
+	}
+
+	// Shows Cursor
+	void showCursor()
+	{
+		CONSOLE_CURSOR_INFO info;
+		GetConsoleCursorInfo(hStdOut, &info);
+		info.bVisible = true;
+		SetConsoleCursorInfo(hStdOut, &info);
+		
+	}
+
 
 
 

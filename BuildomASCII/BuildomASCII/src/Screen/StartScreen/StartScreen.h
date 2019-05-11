@@ -3,8 +3,7 @@
 #define STARTSCREEN_H
 
 #include "Screen/Screen.h"
-#include "Button/PlayStoryButton/PlayStoryButton.h"
-#include "Button/ExitButton/ExitButton.h"
+#include "Button/Button.h"
 
 struct Position
 {
@@ -19,17 +18,18 @@ public:
 	
 	PlayStoryButton* playButton = new PlayStoryButton();
 	ExitButton *exitButton = new ExitButton();
+	CreditsButton* creditsButton = new CreditsButton();
 
-	static const int maxSel = 2;
+	static const int maxSel = 3;
 	
 	
 
 
 
-	void placeWord(int px, int py, Button *button);
+	
 	void run();
 
-	StartScreen() {};
+	StartScreen();
 	~StartScreen();
 
 	StartScreen(const StartScreen& other) = delete;
