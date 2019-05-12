@@ -65,8 +65,8 @@ Build::Build(Level level)
 	
 	Pos pos = { 3, Screen::HEIGHT - 7 };
 
-	char symbols[LevelElement::countOfElements] = { ' ', 219, '/', '\\' }; // has to be manualy updated ###############################
-	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", "1", "2" }; // same ##########################################
+	char symbols[LevelElement::countOfElements] = { ' ', 219, '/', '\\', 29 }; // has to be manualy updated ###############################
+	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", "1", "2", "3" }; // same ##########################################
 
 	for (int i = 1; i < LevelElement::countOfElements; i++) // 1 because empty field is NOT displayed
 	{
@@ -145,8 +145,9 @@ void Build::run()
 			case '2':
 				setElement = new SlopeDown(true);
 				break;
-				
-
+			case '3':
+				setElement = new ChangeDir(true);
+				break;
 			case 27: // ESC
 				return;
 				break;
@@ -154,7 +155,10 @@ void Build::run()
 
 			case 13: // Space
 				printOnLevel(level.map[cursor.x][cursor.y]->symbol, cursor.x, cursor.y, level.map[cursor.x][cursor.y]->color);
-				runLevel(level);
+				if (runLevel(level))
+				{
+					return;
+				}
 				break;
 
 			default:
@@ -224,8 +228,17 @@ bool Build::runLevel(Level level)
 
 	while (!playerGameOver)
 	{
+
+
+
 		if (playerDirection == RIGHT) { currentPos.x++; }
 		else if (playerDirection == LEFT) { currentPos.x--; }
+
+		if (currentPos.x + 1 >= level.WIDTH|| currentPos.y + 1 >= level.HEIGHT || currentPos.x <= 0 || currentPos.y <= 0)
+		{
+			playerGameOver = true;
+			continue;
+		}
 
 		level.map[currentPos.x][currentPos.y]->steppedIn(build);
 		level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
@@ -244,7 +257,19 @@ bool Build::runLevel(Level level)
 		//Check
 		
 
+		if (_kbhit())
+		{
+			if (_getch() == 27)
+			{
+				playerGameOver = true;
+			}
+		}
 
+		if (currentPos.x == level.end.x && currentPos.y == level.end.y)
+		{
+			
+			return true; 
+		}
 		
 
 		printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
@@ -252,6 +277,9 @@ bool Build::runLevel(Level level)
 
 		
 	}
+	printOnLevel(playerDeadChar, currentPos.x, currentPos.y, BLUE_LIGHT);
+	fc::waitMs(500);
+	printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
 	return false;
 }
 

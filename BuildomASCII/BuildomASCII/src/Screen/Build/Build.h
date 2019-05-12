@@ -18,7 +18,7 @@ private:
 	void printOnLevel(T content, int x, int y, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
 
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
-	char startChar = '#', endChar = 'P', playerChar = 2;
+	char startChar = '#', endChar = 'P', playerChar = 2, playerDeadChar = 1;
 
 	
 	Build* build = this;

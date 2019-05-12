@@ -21,7 +21,7 @@ public:
 
 	virtual LevelElement* clone() = 0; // copy function
 	fc::Color color;
-	static const int countOfElements = 4; // num of different element
+	static const int countOfElements = 5; // num of different element
 
 };
 
@@ -30,6 +30,7 @@ public:
 #include "Solid/Solid.h"
 #include "SlopeUp/SlopeUp.h"
 #include "SlopeDown/SlopeDown.h"
+#include "ChangeDir/ChangeDir.h"
 
 
 
