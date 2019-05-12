@@ -249,6 +249,11 @@ bool Build::runLevel(Level level)
 			}
 
 
+			if (currentPos.x == level.end.x && currentPos.y == level.end.y)
+			{
+
+				return true;
+			}
 			if (level.map[currentPos.x][currentPos.y + 1]->fallable)
 			{
 				currentPos.y++;
@@ -256,6 +261,7 @@ bool Build::runLevel(Level level)
 			}
 			
 			repeats++;
+
 
 
 		} while (repeats < fallSpeed); 
