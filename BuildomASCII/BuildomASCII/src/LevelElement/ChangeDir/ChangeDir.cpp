@@ -7,6 +7,7 @@ ChangeDir::ChangeDir(bool deletable)
 	symbol = 29;
 	this->deletable = deletable;
 	color = YELLOW_LIGHT;
+	fallable = true;
 }
 
 

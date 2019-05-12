@@ -14,7 +14,7 @@ public:
 	char symbol;
 	int id;
 	bool deletable = true; // If an Element can be removed By player
-
+	bool fallable = false; // If an Element can be falled through
 	
 	virtual void steppedOn(Build *build) = 0;
 	virtual void steppedIn(Build *build) = 0;

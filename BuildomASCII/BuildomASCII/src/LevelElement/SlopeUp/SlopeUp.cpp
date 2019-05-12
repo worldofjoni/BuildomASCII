@@ -7,6 +7,7 @@ SlopeUp::SlopeUp(bool deletable)
 	symbol = '/';
 	this->deletable = deletable;
 	color = BLACK;
+	fallable = false;
 }
 
 

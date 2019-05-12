@@ -226,13 +226,40 @@ bool Build::runLevel(Level level)
 	playerGameOver = false;
 	playerDirection = RIGHT;
 
+	int repeats;
+
 	while (!playerGameOver)
 	{
-
+		repeats = 0;
 
 
 		if (playerDirection == RIGHT) { currentPos.x++; }
 		else if (playerDirection == LEFT) { currentPos.x--; }
+
+		level.map[currentPos.x][currentPos.y]->steppedIn(build);
+
+		do
+		{
+
+			if (currentPos.x + 1 >= level.WIDTH || currentPos.y + 1 >= level.HEIGHT || currentPos.x <= 0 || currentPos.y <= 0)
+			{
+				playerGameOver = true;
+				repeats = fallSpeed;
+				continue;
+			}
+
+
+			if (level.map[currentPos.x][currentPos.y + 1]->fallable)
+			{
+				currentPos.y++;
+				level.map[currentPos.x][currentPos.y]->steppedIn(build);
+			}
+			
+			repeats++;
+
+
+		} while (repeats < fallSpeed); 
+
 
 		if (currentPos.x + 1 >= level.WIDTH|| currentPos.y + 1 >= level.HEIGHT || currentPos.x <= 0 || currentPos.y <= 0)
 		{
@@ -240,22 +267,14 @@ bool Build::runLevel(Level level)
 			continue;
 		}
 
-		level.map[currentPos.x][currentPos.y]->steppedIn(build);
 		level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
+
 		
 		
 		printOnLevel(playerChar, currentPos.x, currentPos.y, RED_LIGHT);
 
 		fc::waitMs(100);
-		/*playerGameOver = level.map[currentPos.x][currentPos.y]->steppedIn(currentPos);
-		playerGameOver = level.map[currentPos.x][currentPos.y - 1]->steppedOn(currentPos);*/
 
-		//For Loop
-		//On empty = current.y--;
-		//Check
-		//On empty = current.y--;
-		//Check
-		
 
 		if (_kbhit())
 		{

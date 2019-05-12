@@ -8,6 +8,7 @@ Solid::Solid(bool deletable)
 	symbol = 219;
 	this->deletable = deletable;
 	color = BLACK;
+	fallable = false;
 }
 
 // gets called when on block

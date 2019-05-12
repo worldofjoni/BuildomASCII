@@ -9,13 +9,14 @@ Empty::Empty(bool deletable)
 	symbol = ' ';
 	this->deletable = deletable;
 	color = Screen::defaultTextColor;
+	fallable = true;
 }
 
 // gets called when on block
 void Empty::steppedOn(Build *build)
 {
-	build->currentPos.y++;
-	//std::cout << "darauf" << std::endl;
+	//build->currentPos.y += 2;
+	////std::cout << "darauf" << std::endl;
 
 }
 

@@ -22,6 +22,7 @@ private:
 
 	
 	Build* build = this;
+	int fallSpeed = 2;
 
 public:
 	Build(Level level);

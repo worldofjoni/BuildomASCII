@@ -7,6 +7,7 @@ SlopeDown::SlopeDown(bool deletable)
 	symbol = '\\';
 	this->deletable = deletable;
 	color = BLACK;
+	fallable = false;
 }
 
 
