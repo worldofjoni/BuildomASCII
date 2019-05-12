@@ -11,15 +11,16 @@ SlopeUp::SlopeUp(bool deletable)
 
 
 
-bool SlopeUp::steppedOn(Pos &pos)
+void SlopeUp::steppedOn(Build* build)
 {
-	return false;
+	
 }
 
-bool SlopeUp::steppedIn(Pos &pos)
+void SlopeUp::steppedIn(Build* build)
 {
-	pos.y--;
-	return false;
+	if(build->playerDirection == RIGHT){ build->currentPos.y--; }
+	else { build->playerGameOver = true; }
+	
 }
 
 SlopeUp* SlopeUp::clone()

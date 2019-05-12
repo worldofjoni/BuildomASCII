@@ -10,14 +10,15 @@ SlopeDown::SlopeDown(bool deletable)
 }
 
 
-bool SlopeDown::steppedOn(Pos &pos)
+void SlopeDown::steppedOn(Build *build)
 {
-	return false;
+	
 }
 
-bool SlopeDown::steppedIn(Pos &pos)
+void SlopeDown::steppedIn(Build* build)
 {
-	return true;
+	if (build->playerDirection == LEFT) { build->currentPos.y--; }
+	else { build->playerGameOver = true; }
 }
 
 SlopeDown* SlopeDown::clone()

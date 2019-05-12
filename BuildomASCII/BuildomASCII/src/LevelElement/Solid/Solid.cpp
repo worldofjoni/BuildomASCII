@@ -11,18 +11,19 @@ Solid::Solid(bool deletable)
 }
 
 // gets called when on block
-bool Solid::steppedOn(Pos &pos)
+void Solid::steppedOn(Build* build)
 {
-	return false;
+	
 
 }
 
 
 
 // gets Called when in Block
-bool Solid::steppedIn(Pos &pos)
+void Solid::steppedIn(Build* build)
 {
-	return true;
+	build->playerGameOver = true;
+	
 }
 
 

@@ -4,6 +4,9 @@
 
 #include "pch/pch.h"
 #include "Position/Pos.h"
+#include "Screen/Build/Build.h"
+
+class Build;
 
 class LevelElement
 {
@@ -13,8 +16,8 @@ public:
 	bool deletable = true; // If an Element can be removed By player
 
 	
-	virtual bool steppedOn(Pos &pos) = 0;
-	virtual bool steppedIn(Pos &pos) = 0;
+	virtual void steppedOn(Build *build) = 0;
+	virtual void steppedIn(Build *build) = 0;
 
 	virtual LevelElement* clone() = 0; // copy function
 	fc::Color color;

@@ -2,7 +2,7 @@
 #include "Build.h"
 
 #include "LevelElement/LevelElement.h"
-#include "Cursor/Cursor.h"
+
 
 
 
@@ -218,27 +218,19 @@ void Build::run()
 
 bool Build::runLevel(Level level)
 {
-	Pos currentPos = { level.start.x, level.start.y };
-
-	bool playerGameOver = false;
+	currentPos = { level.start.x, level.start.y };
+	playerGameOver = false;
+	playerDirection = RIGHT;
 
 	while (!playerGameOver)
 	{
-		currentPos.x++;
+		if (playerDirection == RIGHT) { currentPos.x++; }
+		else if (playerDirection == LEFT) { currentPos.x--; }
 
-		if (currentPos.x == level.end.x && currentPos.y == level.end.y)
-		{
-			return true;
-		}
-
-		if (level.map[currentPos.x][currentPos.y]->steppedIn(currentPos) == true)
-		{
-			playerGameOver = true;
-		}
-		if (level.map[currentPos.x][currentPos.y + 1]->steppedOn(currentPos) == true)
-		{
-			playerGameOver = true;
-		}
+		level.map[currentPos.x][currentPos.y]->steppedIn(build);
+		level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
+		
+		
 		printOnLevel(playerChar, currentPos.x, currentPos.y, RED_LIGHT);
 
 		fc::waitMs(100);
@@ -260,6 +252,7 @@ bool Build::runLevel(Level level)
 
 		
 	}
+	return false;
 }
 
 

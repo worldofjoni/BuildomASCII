@@ -12,19 +12,17 @@ Empty::Empty(bool deletable)
 }
 
 // gets called when on block
-bool Empty::steppedOn(Pos &pos)
+void Empty::steppedOn(Build *build)
 {
-	pos.y++;
-	return false;
+	build->currentPos.y++;
 	//std::cout << "darauf" << std::endl;
 
 }
 
 // gets called when in Block
-bool Empty::steppedIn(Pos &pos)
+void Empty::steppedIn(Build *build)
 {
-	return false;
-	//std::cout << "darin" << std::endl;
+	
 }
 
 // Copys Element

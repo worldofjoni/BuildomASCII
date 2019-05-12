@@ -10,8 +10,8 @@ private:
 
 public:
 	Empty(bool deletable);
-	bool steppedOn(Pos &pos) override;
-	bool steppedIn(Pos &pos) override;
+	void steppedOn(Build *build) override;
+	void steppedIn(Build *build) override;
 	Empty* clone() override;
 	
 };

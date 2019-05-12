@@ -4,9 +4,10 @@
 #include "Screen/Screen.h"
 #include "Level/Level.h"
 #include "friendlyConsole/friendlyConsole.hpp"
- 
+#include "Cursor/Cursor.h"
 
 
+enum Direction;
 
 class Build : public Screen
 {
@@ -19,6 +20,9 @@ private:
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
 	char startChar = '#', endChar = 'P', playerChar = 2;
 
+	
+	Build* build = this;
+
 public:
 	Build(Level level);
 	void run();
@@ -28,6 +32,11 @@ public:
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
 	void placeOnLevelAt(LevelElement*& element, int x, int y);
 
+
+	// For runLevel
+	Pos currentPos = { 0,0 };
+	bool playerGameOver = false;
+	Direction playerDirection;
 
 	
 	
