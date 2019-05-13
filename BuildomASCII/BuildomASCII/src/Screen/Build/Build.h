@@ -7,7 +7,14 @@
 #include "Cursor/Cursor.h"
 
 
-enum Direction;
+enum Direction
+{
+	NONE = 0,
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+};
 
 class Build : public Screen
 {
@@ -27,6 +34,8 @@ private:
 public:
 	Build(Level level);
 	void run();
+	bool keyHandeling(LevelElement *&setElement, Direction &dir);
+	
 
 	bool runLevel(Level level);
 	

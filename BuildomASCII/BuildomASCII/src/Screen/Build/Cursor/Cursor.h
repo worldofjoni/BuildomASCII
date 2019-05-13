@@ -6,19 +6,10 @@
 #include "pch/pch.h"
 
 
-enum Direction
-{
-	NONE = 0,
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
-};
-
 class Cursor
 {
 private:
-	Level* level;
+	Level * level;
 public:
 	Cursor(Level* level);
 	int x = level->start.x, y = level->start.y;
