@@ -4,9 +4,18 @@
 #include "Screen/Screen.h"
 #include "Level/Level.h"
 #include "friendlyConsole/friendlyConsole.hpp"
- 
 
 
+enum Direction
+{
+	NONE = 0,
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+};
+
+typedef Direction;
 
 class Build : public Screen
 {
@@ -22,6 +31,7 @@ private:
 public:
 	Build(Level level);
 	void run();
+	bool keyHandeling(LevelElement *&setElement, Direction &dir);
 	
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
 	void placeOnLevelAt(LevelElement*& element, int x, int y);

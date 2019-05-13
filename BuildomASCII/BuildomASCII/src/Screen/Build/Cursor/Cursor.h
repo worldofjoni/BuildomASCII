@@ -5,14 +5,6 @@
 #include "Screen/Build/Build.h"
 #include "pch/pch.h"
 
-enum Direction
-{
-	NONE = 0,
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
-};
 
 class Cursor
 {
