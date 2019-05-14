@@ -62,7 +62,7 @@ Build::Build(Level level)
 	
 	// init for menu bar
 	bool firstIsPlaced = false;
-	Pos pos = { 3, Screen::HEIGHT - 7 };
+	Pos menuPos = { 3, Screen::HEIGHT - 7 };
 
 	char symbols[LevelElement::countOfElements] = { ' ', 219, '/', '\\', 29 }; // has to be manualy updated ###############################
 	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", "1", "2", "3" }; // same ##########################################
@@ -101,14 +101,14 @@ Build::Build(Level level)
 	}
 
 	//Delete & Quit
-	pos = { Screen::WIDTH - 55, Screen::HEIGHT - 3 };
-	pos = writeAt(pos, "[BACK] : Delete  ");
-	content[pos.x][pos.y].textColor = RED;
-	pos = writeAt(pos, 179);
-	pos = writeAt(pos, "  [ESC] : Quit ");
-	content[pos.x][pos.y].textColor = RED;
-	pos = writeAt(pos, 179);
-	pos = writeAt(pos, "  [ENTER] : Start ");
+	menuPos = { Screen::WIDTH - 55, Screen::HEIGHT - 3 };
+	menuPos = writeAt(menuPos, "[BACK] : Delete  ");
+	content[menuPos.x][menuPos.y].textColor = RED;
+	menuPos = writeAt(menuPos, 179);
+	menuPos = writeAt(menuPos, "  [ESC] : Quit ");
+	content[menuPos.x][menuPos.y].textColor = RED;
+	menuPos = writeAt(menuPos, 179);
+	menuPos = writeAt(menuPos, "  [ENTER] : Start ");
 }
 
 
@@ -122,6 +122,7 @@ void Build::run()
 	LevelElement *setElement = nullptr; // Elemet player can set on screen
 	Direction dir = NONE;
 	Cursor cursor(&level);
+	bool enteredRun = false;
 	printScreen();
 
 
@@ -130,8 +131,18 @@ void Build::run()
 	{
 		if (_kbhit())
 		{
-			if (keyHandeling(setElement, dir))
+			if (keyHandeling(setElement, dir, enteredRun))
 				return;
+
+			if (enteredRun)
+			{
+				enteredRun = false;
+				printOnLevel(level.map[cursor.x][cursor.y]->symbol, cursor.x, cursor.y, level.map[cursor.x][cursor.y]->color);
+				if (runLevel(level))
+				{
+					return;
+				}
+			}
 
 
 			// if a new Element should be set...
@@ -271,7 +282,7 @@ bool Build::runLevel(Level level)
 	return false;
 }
 
-bool Build::keyHandeling(LevelElement*& setElement, Direction& dir)
+bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, bool &enteredRun)
 {
 
 	int key = _getch();
@@ -304,6 +315,10 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir)
 	case '3':
 		setElement = new ChangeDir(true);
 		break;
+	case 13: // Space
+		enteredRun = true;
+		break;
+		
 
 
 	case 27: // ESC

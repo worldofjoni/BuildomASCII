@@ -34,7 +34,7 @@ private:
 public:
 	Build(Level level);
 	void run();
-	bool keyHandeling(LevelElement *&setElement, Direction &dir);
+	bool keyHandeling(LevelElement *&setElement, Direction &dir, bool &enteredRun);
 	
 
 	bool runLevel(Level level);
