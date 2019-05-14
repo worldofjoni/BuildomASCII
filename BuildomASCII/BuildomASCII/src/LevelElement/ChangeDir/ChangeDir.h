@@ -6,7 +6,10 @@
 
 class ChangeDir : public LevelElement
 {
+private:
 public:
+	static const char ownSym = 29;
+	static const char ownKey = '3';
 	ChangeDir(bool deletable);
 	void steppedOn(Build* build) override;
 	void steppedIn(Build* build) override;

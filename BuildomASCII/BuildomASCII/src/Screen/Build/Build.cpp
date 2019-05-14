@@ -64,8 +64,7 @@ Build::Build(Level level)
 	bool firstIsPlaced = false;
 	Pos menuPos = { 3, Screen::HEIGHT - 7 };
 
-	char symbols[LevelElement::countOfElements] = { ' ', 219, '/', '\\', 29 }; // has to be manualy updated ###############################
-	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", "1", "2", "3" }; // same ##########################################
+	
 
 	for (int i = 1; i < LevelElement::countOfElements; i++) // 1 because empty field is NOT displayed
 	{
@@ -78,12 +77,12 @@ Build::Build(Level level)
 		if (firstIsPlaced)
 		{
 			menuPos = writeAt(menuPos, "  ");
-			content[menuPos.x][menuPos.y].textColor = RED;
+			content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
 			menuPos = writeAt(menuPos, 179);
 			menuPos = writeAt(menuPos, "  ");
 		}
 
-		content[menuPos.x][menuPos.y].textColor = GREEN;
+		content[menuPos.x][menuPos.y].textColor = menuBarSymColor;
 		menuPos = writeAt(menuPos, symbols[i]);
 		menuPos = writeAt(menuPos, " [");
 		menuPos = writeAt(menuPos, keybind[i]);
@@ -103,12 +102,14 @@ Build::Build(Level level)
 	//Delete & Quit
 	menuPos = { Screen::WIDTH - 55, Screen::HEIGHT - 3 };
 	menuPos = writeAt(menuPos, "[BACK] : Delete  ");
-	content[menuPos.x][menuPos.y].textColor = RED;
+	content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
 	menuPos = writeAt(menuPos, 179);
 	menuPos = writeAt(menuPos, "  [ESC] : Quit ");
-	content[menuPos.x][menuPos.y].textColor = RED;
+	content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
 	menuPos = writeAt(menuPos, 179);
-	menuPos = writeAt(menuPos, "  [ENTER] : Start ");
+	menuPos = writeAt(menuPos, "  [");
+	menuPos = writeAt(menuPos, keybind[0]);
+	menuPos = writeAt(menuPos, "] : Start ");
 }
 
 
@@ -300,20 +301,23 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, bool &entere
 	case 'd':
 		dir = RIGHT;
 		break;
-	case ' ':
+	case Solid::ownKey:
 		setElement = new Solid(true);
 		break;
-	case 8://backspace
+	case Empty::ownKey://backspace
 		setElement = new Empty(true);
 		break;
-	case '1':
+	case SlopeUp::ownKey:
 		setElement = new SlopeUp(true);
 		break;
-	case '2':
+	case SlopeDown::ownKey:
 		setElement = new SlopeDown(true);
 		break;
-	case '3':
+	case ChangeDir::ownKey:
 		setElement = new ChangeDir(true);
+		break;
+	case Spike::ownKey:
+		setElement = new Spike(true);
 		break;
 	case 13: // Space
 		enteredRun = true;

@@ -7,8 +7,9 @@
 class Empty : public LevelElement
 {
 private:
-
 public:
+	static const char ownSym = ' ';
+	static const char ownKey = 8;
 	Empty(bool deletable);
 	void steppedOn(Build *build) override;
 	void steppedIn(Build *build) override;

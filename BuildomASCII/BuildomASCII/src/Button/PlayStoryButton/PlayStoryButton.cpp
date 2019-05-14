@@ -19,7 +19,7 @@ int PlayStoryButton::run()
 	Level level(Screen::WIDTH - 2, Screen::HEIGHT - 10); // Space for Frame and menu bar
 	level.setStartEnd({ 50, 5 }, { 90, 30 });
 	// max count of elements
-	int maxElements[LevelElement::countOfElements] = { -1, -1, -1, -1, -1 };
+	int maxElements[LevelElement::countOfElements] = { -1, -1, -1, -1, -1 , -1};
 	level.setMaxElements(maxElements);
 
 	Build build(level);

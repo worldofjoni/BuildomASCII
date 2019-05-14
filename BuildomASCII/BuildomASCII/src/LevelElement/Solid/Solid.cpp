@@ -5,7 +5,7 @@
 Solid::Solid(bool deletable)
 {
 	id = 1;
-	symbol = 219;
+	symbol = ownSym;
 	this->deletable = deletable;
 	color = BLACK;
 	fallable = false;

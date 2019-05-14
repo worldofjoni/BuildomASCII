@@ -4,7 +4,7 @@
 ChangeDir::ChangeDir(bool deletable)
 {
 	id = 4;
-	symbol = 29;
+	symbol = ownSym;
 	this->deletable = deletable;
 	color = YELLOW_LIGHT;
 	fallable = true;

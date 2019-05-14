@@ -4,7 +4,7 @@
 SlopeUp::SlopeUp(bool deletable)
 {
 	id = 2;
-	symbol = '/';
+	symbol = ownSym;
 	this->deletable = deletable;
 	color = BLACK;
 	fallable = false;

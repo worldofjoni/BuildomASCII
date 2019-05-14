@@ -4,7 +4,7 @@
 SlopeDown::SlopeDown(bool deletable)
 {
 	id = 3;
-	symbol = '\\';
+	symbol = ownSym;
 	this->deletable = deletable;
 	color = BLACK;
 	fallable = false;
