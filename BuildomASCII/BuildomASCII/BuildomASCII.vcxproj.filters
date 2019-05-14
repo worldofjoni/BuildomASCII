@@ -75,6 +75,9 @@
     <ClCompile Include="src\LevelElement\ChangeDir\ChangeDir.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\LevelElement\Spike\Spike.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
@@ -135,6 +138,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\LevelElement\ChangeDir\ChangeDir.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LevelElement\Spike\Spike.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
