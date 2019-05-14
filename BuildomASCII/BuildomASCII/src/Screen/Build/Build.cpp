@@ -91,12 +91,14 @@ Build::Build(Level level)
 	}
 
 	//Delete & Quit
-	pos = { Screen::WIDTH - 35, Screen::HEIGHT - 3 };
+	pos = { Screen::WIDTH - 55, Screen::HEIGHT - 3 };
 	pos = writeAt(pos, "[BACK] : Delete  ");
 	content[pos.x][pos.y].textColor = RED;
 	pos = writeAt(pos, 179);
 	pos = writeAt(pos, "  [ESC] : Quit");
-
+	content[pos.x][pos.y].textColor = RED;
+	pos = writeAt(pos, 179);
+	pos = writeAt(pos, "  [ENTER] : Start");
 }
 
 

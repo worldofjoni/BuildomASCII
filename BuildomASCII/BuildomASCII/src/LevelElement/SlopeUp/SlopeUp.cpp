@@ -19,8 +19,9 @@ void SlopeUp::steppedOn(Build* build)
 
 void SlopeUp::steppedIn(Build* build)
 {
-	if(build->playerDirection == RIGHT){ build->currentPos.y--; }
-	else { build->playerGameOver = true; }
+	if(build->playerDirection == RIGHT)
+		build->currentPos.y--; 
+	//else { build->playerGameOver = true; }
 	
 }
 
