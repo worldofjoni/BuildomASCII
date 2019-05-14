@@ -3,13 +3,29 @@
 
 #include "Button/Button.h"
 
-void StartScreen::run() 
+StartScreen::StartScreen()
 {
 	setBlank();
+	Pos logoStart = { (Screen::WIDTH - LOGO_WIDTH) / 2, 5 };
+	for (int y = 0; y < LOGO_HEIGHT; y++)
+	{
+		for (int x = 0; x < LOGO_WIDTH; x++)
+		{
+			writeAt({ x + logoStart.x, y + logoStart.y }, logo[y][x]);
+			content[x + logoStart.x][y + logoStart.y].textColor = YELLOW_LIGHT;
+		}
+	}
+	
+}
+
+
+void StartScreen::run() 
+{
+	
 
 	int gap = 3;
 
-	std::string title = "Buildom ASCII";
+	//std::string title = "Buildom ASCII";
 
 	// Create Coordinates
 	Position startPos;
@@ -27,7 +43,7 @@ void StartScreen::run()
 	writeAt(startPos.x, startPos.y, playButton->word.c_str());
 	writeAt(startPos.x, startPos.y + gap, creditsButton->word.c_str());
 	writeAt(startPos.x, startPos.y + gap * 2, exitButton->word.c_str());
-	writeAt(startPos.x - 4, startPos.y - (gap + 2), title.c_str());
+	//writeAt(startPos.x - 4, startPos.y - (gap + 2), title.c_str());
 	
 	
 	
@@ -135,6 +151,3 @@ StartScreen::~StartScreen()
 	delete creditsButton;
 }
 
-StartScreen::StartScreen()
-{
-}

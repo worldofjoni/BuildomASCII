@@ -10,5 +10,6 @@ ExitButton::ExitButton()
 
 int ExitButton::run()
 {
+	fc::clearScreen(BLACK);
 	return 1;
 }
