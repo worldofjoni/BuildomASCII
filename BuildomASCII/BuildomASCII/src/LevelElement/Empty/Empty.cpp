@@ -9,19 +9,21 @@ Empty::Empty(bool deletable)
 	symbol = ' ';
 	this->deletable = deletable;
 	color = Screen::defaultTextColor;
+	fallable = true;
 }
 
 // gets called when on block
-void Empty::steppedOn()
+void Empty::steppedOn(Build *build)
 {
-	//std::cout << "darauf" << std::endl;
+	//build->currentPos.y += 2;
+	////std::cout << "darauf" << std::endl;
 
 }
 
 // gets called when in Block
-void Empty::steppedIn()
+void Empty::steppedIn(Build *build)
 {
-	//std::cout << "darin" << std::endl;
+	
 }
 
 // Copys Element

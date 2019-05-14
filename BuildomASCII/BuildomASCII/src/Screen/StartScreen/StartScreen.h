@@ -18,8 +18,9 @@ public:
 	
 	PlayStoryButton* playButton = new PlayStoryButton();
 	ExitButton *exitButton = new ExitButton();
+	CreditsButton* creditsButton = new CreditsButton();
 
-	static const int maxSel = 2;
+	static const int maxSel = 3;
 	
 	
 

@@ -7,16 +7,22 @@ SlopeUp::SlopeUp(bool deletable)
 	symbol = '/';
 	this->deletable = deletable;
 	color = BLACK;
+	fallable = false;
 }
 
 
 
-void SlopeUp::steppedOn()
+void SlopeUp::steppedOn(Build* build)
 {
+	
 }
 
-void SlopeUp::steppedIn()
+void SlopeUp::steppedIn(Build* build)
 {
+	if(build->playerDirection == RIGHT)
+		build->currentPos.y--; 
+	//else { build->playerGameOver = true; }
+	
 }
 
 SlopeUp* SlopeUp::clone()

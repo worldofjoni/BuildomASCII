@@ -8,19 +8,23 @@ Solid::Solid(bool deletable)
 	symbol = 219;
 	this->deletable = deletable;
 	color = BLACK;
+	fallable = false;
 }
 
 // gets called when on block
-void Solid::steppedOn()
+void Solid::steppedOn(Build* build)
 {
-	std::cout << "darauf" << std::endl;
+	
 
 }
 
+
+
 // gets Called when in Block
-void Solid::steppedIn()
+void Solid::steppedIn(Build* build)
 {
-	std::cout << "darin" << std::endl;
+	build->playerGameOver = true;
+	
 }
 
 

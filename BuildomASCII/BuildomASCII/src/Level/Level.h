@@ -4,6 +4,7 @@
 #include "LevelElement/LevelElement.h"
 #include "Screen/Screen.h"
 
+
 class Level
 {
 private:
@@ -22,7 +23,7 @@ public:
 	void setMaxElements(int list[LevelElement::countOfElements]);
 	void setStartEnd(Pos start, Pos end);
 
-	~Level(); // Rule of vive
+	~Level(); // Rule of five
 	Level(const Level& other); // Copy Constructor
 	Level(Level&& other) = delete; // Move Constructor
 	Level& operator=(const Level& other) = delete; // copy asignment

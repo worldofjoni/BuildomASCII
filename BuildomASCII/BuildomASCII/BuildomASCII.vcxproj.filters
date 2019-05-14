@@ -66,6 +66,18 @@
     <ClCompile Include="src\Button\PlayStoryButton\PlayStoryButton.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\Button\CreditsButton\CreditsButton.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Screen\Credits\Credits.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LevelElement\ChangeDir\ChangeDir.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LevelElement\Spike\Spike.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
@@ -114,6 +126,21 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Button\PlayStoryButton\PlayStoryButton.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Button\CreditsButton\CreditsButton.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Screen\Credits\Credits.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Position\Pos.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LevelElement\ChangeDir\ChangeDir.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LevelElement\Spike\Spike.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

@@ -25,10 +25,14 @@ void Screen::setBlank()
 		for (int y = 0; y < HEIGHT; y++)
 		{
 			content[x][y].content = ' ';
+			content[x][y].backgroundColor = defaultBackgroundColor;
+			content[x][y].textColor = defaultTextColor;
 		}
 		
 	}
 }
+
+
 
 
 

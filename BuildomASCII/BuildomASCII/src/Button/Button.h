@@ -22,6 +22,7 @@ public:
 
 #include "Button/PlayStoryButton/PlayStoryButton.h"
 #include "Button/ExitButton/ExitButton.h"
+#include "Button/CreditsButton/CreditsButton.h"
 
 
 

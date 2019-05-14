@@ -10,8 +10,8 @@ private:
 
 public:
 	SlopeDown(bool deletable);
-	void steppedOn() override;
-	void steppedIn() override;
+	void steppedOn(Build* build) override;
+	void steppedIn(Build* build) override;
 	SlopeDown* clone() override;
 
 };
