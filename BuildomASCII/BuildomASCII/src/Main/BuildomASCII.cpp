@@ -7,14 +7,25 @@
 #include "Level/Level.h"
 #include "Screen/Build/Build.h"
 
-#include <Windows.h>
+
+// test
+#include "Screen/LevelEditor/LevelEditor.h"
 
 int main()
 {
-	
-	Game game;
 
-	game.run();
+	// Level Editor
+	
+	LevelEditor levelEditor;
+	levelEditor.run();
+
+
+
+
+	
+	/*Game game;
+
+	game.run();*/
 
 
 	

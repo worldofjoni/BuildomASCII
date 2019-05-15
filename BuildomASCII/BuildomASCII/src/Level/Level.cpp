@@ -4,8 +4,7 @@
 
 
 // constructor
-Level::Level(int with, int height)
-	: WIDTH(with), HEIGHT(height), start(start), end(end)
+Level::Level()
 {
 	map = new LevelElement * *[WIDTH];
 
@@ -24,7 +23,7 @@ Level::Level(int with, int height)
 		maxElements[i] = -1;
 	}
 
-	
+	setStartEnd(start, end);
 
 }
 
@@ -53,11 +52,11 @@ void Level::setStartEnd(Pos start, Pos end)
 	this->start = start;
 	this->end = end;
 
-	map[start.x][start.y]->color = MAGENTA;
+	map[start.x][start.y]->color = Build::startColor;
 	map[start.x][start.y]->symbol = Build::startChar;
 	map[start.x][start.y]->deletable = false;
 
-	map[end.x][end.y]->color = GREEN_LIGHT;
+	map[end.x][end.y]->color = Build::endColor;
 	map[end.x][end.y]->symbol = Build::endChar;
 	map[end.x][end.y]->deletable = false;
 
@@ -84,7 +83,7 @@ Level::~Level()
 
 // copy constructor
 Level::Level(const Level& other)
-	:WIDTH(other.WIDTH), HEIGHT(other.HEIGHT), start(other.start), end(other.end)
+	: start(other.start), end(other.end)
 {
 	map = new LevelElement** [WIDTH];
 
@@ -107,6 +106,50 @@ Level::Level(const Level& other)
 		this->setElements[i] = other.setElements[i];
 	}
 
+}
+
+Level& Level::operator=(const Level& other)
+{
+	start = other.start;
+	end = other.end;
+
+	// delete old
+	for (int x = 0; x < WIDTH; x++)
+	{
+		for (int y = 0; y < HEIGHT; y++)
+		{
+			delete map[x][y];
+			map[x][y] = nullptr;
+		}
+		delete[] map[x];
+		map[x] = nullptr;
+	}
+	delete[] map;
+
+	// copy new
+
+	map = new LevelElement * *[WIDTH];
+
+	for (int i = 0; i < WIDTH; i++)
+	{
+		map[i] = new LevelElement * [HEIGHT];
+	}
+
+	for (int x = 0; x < WIDTH; x++)
+	{
+		for (int y = 0; y < HEIGHT; y++)
+		{
+			map[x][y] = other.map[x][y]->clone();
+		}
+	}
+
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+		this->maxElements[i] = other.maxElements[i];
+		this->setElements[i] = other.setElements[i];
+	}
+
+	return *this;
 }
 
 
