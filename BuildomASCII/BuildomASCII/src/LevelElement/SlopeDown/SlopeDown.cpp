@@ -18,8 +18,9 @@ void SlopeDown::steppedOn(Build *build)
 
 void SlopeDown::steppedIn(Build* build)
 {
-	if (build->playerDirection == LEFT)  
-		build->currentPos.y--; 
+	if (build->playerDirection == LEFT)
+		build->movePlayer(0, -1);
+		
 	//else { build->playerGameOver = true; }
 }
 

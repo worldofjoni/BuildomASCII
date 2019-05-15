@@ -157,7 +157,7 @@ void Build::run()
 
 			case 13: // Space
 				printOnLevel(level.map[cursor.x][cursor.y]->symbol, cursor.x, cursor.y, level.map[cursor.x][cursor.y]->color);
-				if (runLevel(level))
+				if (runLevel())
 				{
 					return;
 				}
@@ -222,11 +222,12 @@ void Build::run()
 
 }
 
-bool Build::runLevel(Level level)
+bool Build::runLevel()
 {
 	currentPos = { level.start.x, level.start.y };
 	playerGameOver = false;
 	playerDirection = RIGHT;
+	
 
 	int repeats;
 
@@ -234,11 +235,20 @@ bool Build::runLevel(Level level)
 	{
 		repeats = 0;
 
+		/*while (level.map[currentPos.x][currentPos.y]->id != previousElementID)
+		{
+			level.map[currentPos.x][currentPos.y]->steppedIn(build);
+			previousElementID = level.map[currentPos.x][currentPos.y]->id;
+		}*/
+		
 
-		if (playerDirection == RIGHT) { currentPos.x++; }
-		else if (playerDirection == LEFT) { currentPos.x--; }
+		if (playerDirection == RIGHT)
+			movePlayer(1, 0);
 
-		level.map[currentPos.x][currentPos.y]->steppedIn(build);
+		else if (playerDirection == LEFT)
+			movePlayer(-1, 0);
+
+		
 
 		do
 		{
@@ -258,8 +268,7 @@ bool Build::runLevel(Level level)
 			}
 			if (level.map[currentPos.x][currentPos.y + 1]->fallable)
 			{
-				currentPos.y++;
-				level.map[currentPos.x][currentPos.y]->steppedIn(build);
+				movePlayer(0, 1);
 			}
 			
 			repeats++;
@@ -275,7 +284,6 @@ bool Build::runLevel(Level level)
 			continue;
 		}
 
-		level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
 
 		
 		
@@ -350,6 +358,20 @@ void Build::placeOnLevelAt(LevelElement*& element, int x, int y)
 	{
 		delete element;
 		element = nullptr;
+	}
+}
+
+void Build::movePlayer(int xOffset, int yOffset)
+{
+	previousElementID = level.map[currentPos.x][currentPos.y]->id;
+	currentPos.x += xOffset;
+	currentPos.y += yOffset;
+	while (level.map[currentPos.x][currentPos.y]->id != previousElementID)
+	{
+		level.map[currentPos.x][currentPos.y]->steppedIn(build);
+		level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
+		previousElementID = level.map[currentPos.x][currentPos.y]->id;
+		
 	}
 }
 

@@ -12,7 +12,6 @@ enum Direction;
 class Build : public Screen
 {
 private:
-	Level level;
 
 	template <typename T>
 	void printOnLevel(T content, int x, int y, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
@@ -25,10 +24,11 @@ private:
 	int fallSpeed = 3;
 
 public:
+	Level level;
 	Build(Level level);
 	void run();
 
-	bool runLevel(Level level);
+	bool runLevel( );
 	
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
 	void placeOnLevelAt(LevelElement*& element, int x, int y);
@@ -38,6 +38,8 @@ public:
 	Pos currentPos = { 0,0 };
 	bool playerGameOver = false;
 	Direction playerDirection;
+	void movePlayer(int xOffset, int yOffset);
+	int previousElementID = -1;
 
 	
 	
