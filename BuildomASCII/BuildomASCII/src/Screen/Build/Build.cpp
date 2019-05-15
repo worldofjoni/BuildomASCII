@@ -249,7 +249,10 @@ bool Build::runLevel()
 		else if (playerDirection == LEFT)
 			movePlayer(-1, 0);
 
-
+		if (playerGameOver)
+		{
+			break;
+		}
 		
 
 		do
