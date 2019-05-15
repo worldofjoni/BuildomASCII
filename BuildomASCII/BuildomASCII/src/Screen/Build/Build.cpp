@@ -249,16 +249,12 @@ bool Build::runLevel()
 		else if (playerDirection == LEFT)
 			movePlayer(-1, 0);
 
-		if (playerGameOver)
-		{
-			break;
-		}
 		
 
 		do
 		{
 
-			if (currentPos.x + 1 >= level.WIDTH || currentPos.y + 1 >= level.HEIGHT || currentPos.x <= 0 || currentPos.y <= 0)
+			if (currentPos.x + 1 >= level.WIDTH || currentPos.y + 1 >= level.HEIGHT || currentPos.x <= 0 || currentPos.y <= 0 || playerGameOver)
 			{
 				playerGameOver = true;
 				repeats = fallSpeed;
