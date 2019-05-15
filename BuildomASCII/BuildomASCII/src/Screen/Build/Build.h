@@ -40,6 +40,7 @@ public:
 	Direction playerDirection;
 	void movePlayer(int xOffset, int yOffset);
 	int previousElementID = -1;
+	Pos previousPos = currentPos;
 
 	
 	

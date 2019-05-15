@@ -242,11 +242,13 @@ bool Build::runLevel()
 		}*/
 		
 
+		
 		if (playerDirection == RIGHT)
 			movePlayer(1, 0);
 
 		else if (playerDirection == LEFT)
 			movePlayer(-1, 0);
+
 
 		
 
@@ -278,7 +280,7 @@ bool Build::runLevel()
 		} while (repeats < fallSpeed); 
 
 
-		if (currentPos.x + 1 >= level.WIDTH|| currentPos.y + 1 >= level.HEIGHT || currentPos.x <= 0 || currentPos.y <= 0)
+		if ((currentPos.x + 1 >= level.WIDTH) || (currentPos.y + 1 >= level.HEIGHT) || (currentPos.x <= 0) || (currentPos.y <= 0))
 		{
 			playerGameOver = true;
 			continue;
@@ -363,6 +365,7 @@ void Build::placeOnLevelAt(LevelElement*& element, int x, int y)
 
 void Build::movePlayer(int xOffset, int yOffset)
 {
+	previousPos = currentPos;
 	previousElementID = level.map[currentPos.x][currentPos.y]->id;
 	currentPos.x += xOffset;
 	currentPos.y += yOffset;
