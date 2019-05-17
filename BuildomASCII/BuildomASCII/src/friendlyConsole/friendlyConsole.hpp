@@ -1,14 +1,16 @@
-// ####################################################
-// #    Header to easily change console colours       #
-// #               by Jonatan Ziegler                 #
-// ####################################################
+// #################################################################
+// #    Library to easily change console colours and much more     #
+// #                      © Jonatan Ziegler                        #
+// #################################################################
+
 
 
 #pragma once
 #ifndef _FRIENDLY_CONSOLE_
 #define _FRIENDLY_CONSOLE
 
-
+#pragma comment(lib, "Winmm.lib")
+#include <ostream>
 
 #define gotoxy fc::setCursorPos
 #define getrandom_int fc::getRandom
@@ -32,11 +34,40 @@
 #define YELLOW 0x000E
 #define WHITE 0x000F
 
+// defines diffrent Tones
+#define NOTE_C 	523
+#define NOTE_D 	587
+#define NOTE_E 	659
+#define NOTE_F 	698
+#define NOTE_G 	784
+#define NOTE_A 	880
+#define NOTE_B 	988
+#define NOTE_H 	NOTE_B // for german note
+
+
 namespace fc {
 
 
 	// abbr. for unsigned short
 	typedef unsigned short Color;
+
+	// functions and structs for cout integration
+	
+	enum Action
+	{
+		COLOR = 1,
+		BACK_COLOR = 2,
+	};
+
+	struct Cmd
+	{
+		Action action;
+		Color value;
+	};
+	
+	Cmd color(Color color);
+	Cmd backColor(Color color);
+	std::ostream& operator<<(std::ostream& os, Cmd cmd);
 
 	// function prototypes
 	void setTextColor(Color color);
@@ -55,7 +86,16 @@ namespace fc {
 	void getCursorPosition(int& x, int& y);
 	void hideCursor();
 	void showCursor();
-
+	void beep(int freq, int duration = 300);
+	void playSound(const char file[]);
+	void playSoundRepeat(const char file[]);
+	void playSoundWait(const char file[]);
+	void stopSound();
+	std::string getPath();
+	void openExplorer(const char path[]);
+	void openExplorer(std::string path);
+	void openBrowser(const char url[]);
+	void openBrowser(std::string url);
 
 }
 

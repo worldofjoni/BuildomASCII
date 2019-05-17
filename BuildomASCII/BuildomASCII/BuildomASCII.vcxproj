@@ -28,7 +28,12 @@
     <ClCompile Include="src\Button\PlayStoryButton\PlayStoryButton.cpp" />
     <ClCompile Include="src\Screen\Build\Build.cpp" />
     <ClCompile Include="src\Screen\Build\Cursor\Cursor.cpp" />
-    <ClCompile Include="src\friendlyConsole\friendlyConsole.cpp" />
+    <ClCompile Include="src\friendlyConsole\friendlyConsole.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\LevelElement\Empty\Empty.cpp" />
     <ClCompile Include="src\LevelElement\LevelElement.cpp" />
@@ -97,7 +102,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
