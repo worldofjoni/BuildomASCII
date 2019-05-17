@@ -32,7 +32,9 @@ void LevelEditor::run()
 		fc::setCursorPos(5, 5+i);
 		std::cout << "Maximalanzahl f" <<(char)129 << "r \"" << fc::color(levelEditor.elements[i]->color) << levelEditor.elements[i]->symbol << fc::color(levelEditor.defaultTextColor)<< "\" : ";
 		std::string input;
+		fc::showCursor();
 		std::cin >> input;
+		fc::hideCursor();
 		if (!isInt(input))
 		{
 			fc::setCursorPos(5 + 23, 5 + i);
@@ -46,7 +48,9 @@ void LevelEditor::run()
 	std::string input;
 	fc::setCursorPos(5, 5 + LevelElement::countOfElements);
 	std::cout << "Name der Datei (max 10 Zeichen): ";
+	fc::showCursor();
 	std::cin >> input;
+	fc::hideCursor();
 
 	// todo save Level With Name
 

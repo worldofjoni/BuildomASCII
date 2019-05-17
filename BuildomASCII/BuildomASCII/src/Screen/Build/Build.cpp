@@ -21,6 +21,9 @@ void Build::printOnLevel(T content, int x, int y, fc::Color color, fc::Color bac
 Build::Build(Level level, bool asEditor)
 	:level(level), isEditor(asEditor)
 {
+
+	if (this->level.start.x == INVALID) this->level.setStartEnd({ 5,5 }, { level.WIDTH - 6, level.HEIGHT - 6 });
+
 	setBlank();
 	// init frame
 	for (int y = 0; y < HEIGHT; y++)

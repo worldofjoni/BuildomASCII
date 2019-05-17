@@ -13,25 +13,12 @@
 
 int main()
 {
-
-	// Level Editor
 	
-	LevelEditor levelEditor;
-	levelEditor.run();
-	
-	
+		
+	Game game;
 
-
-
+	game.run();
 
 	
-	/*Game game;
-
-	game.run();*/
-
-
-	
-
-
 }
 

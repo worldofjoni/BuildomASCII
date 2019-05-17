@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Button\PlayCustomButton\PlayCustomButton.cpp" />
     <ClCompile Include="src\LevelElement\ChangeDir\ChangeDir.cpp" />
     <ClCompile Include="src\LevelElement\Spike\Spike.cpp" />
     <ClCompile Include="src\Screen\Credits\Credits.cpp" />
@@ -57,6 +58,7 @@
     <ClCompile Include="src\Screen\StartScreen\StartScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Button\PlayCustomButton\PlayCustomButton.h" />
     <ClInclude Include="src\LevelElement\ChangeDir\ChangeDir.h" />
     <ClInclude Include="src\LevelElement\Spike\Spike.h" />
     <ClInclude Include="src\Position\Pos.h" />

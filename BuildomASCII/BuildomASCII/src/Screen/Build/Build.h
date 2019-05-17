@@ -59,7 +59,6 @@ public:
 	Direction playerDirection;
 
 	// for level Editor
-	void setValues(); // sets start, end, maxElements
 	bool cancelEdit = false;
 	
 
