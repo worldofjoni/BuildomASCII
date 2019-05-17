@@ -1,6 +1,10 @@
+// #################################################################
+// #    Library to easily change console colours and much more     #
+// #                      © Jonatan Ziegler                        #
+// #################################################################
+
 
 #pragma once
-#include "pch/pch.h"
 #include <Windows.h>
 #include "friendlyConsole.hpp"
 #include <random>
@@ -16,6 +20,33 @@ namespace fc {
 	static HWND hWindow = GetConsoleWindow();
 
 
+	//functions and structs for cout integration
+	// use in ostream to set color
+	Cmd color(Color color)
+	{
+		return { COLOR, color };
+	}
+
+	// use in ostream to set Backgroundcolor
+	Cmd backColor(Color color)
+	{
+		return { BACK_COLOR, color };
+	}
+
+	// overloaded Operator for in ostram controll
+	std::ostream& operator<<(std::ostream& os, Cmd cmd)
+	{
+		switch (cmd.action)
+		{
+		case COLOR:
+			fc::setTextColor(cmd.value);
+			break;
+		case BACK_COLOR:
+			fc::setBackgroundColor(cmd.value);
+			break;
+		}
+		return os;
+	}
 
 
 	// function to set text color
@@ -160,7 +191,68 @@ namespace fc {
 		
 	}
 
+	// beeps with Note as freq, default duration 300
+	void beep(int freq, int duration)
+	{
+		Beep(freq, duration);
+	}
 
+
+	// plays file at relative path
+	void playSound(const char file[])
+	{
+		PlaySoundA(file, NULL, SND_ASYNC);
+	}
+
+	// same as playSound, but repeats until stopSound
+	void playSoundRepeat(const char file[])
+	{
+		PlaySoundA(file, NULL, SND_ASYNC | SND_LOOP);
+	}
+
+	// same as playSound, but returns not until sound finished
+	void playSoundWait(const char file[])
+	{
+		PlaySoundA(file, NULL, SND_SYNC);
+	}
+
+	// stops playing sound
+	void stopSound()
+	{
+		PlaySoundA(NULL, NULL, NULL);
+	}
+
+	// returns current path, Note: in VS *Debugger* this is NOT the .exe path!
+	std::string getPath()
+	{
+		char* pszFileName = NULL;
+		char path[200];
+		GetFullPathNameA(".", 200, path, &pszFileName);
+		return std::string(path);
+	}
+
+
+	// opens file explorer at path
+	void openExplorer(const char path[])
+	{
+		ShellExecuteA(NULL, "explore", path, NULL, NULL, SW_SHOWDEFAULT);
+	}
+
+	void openExplorer(std::string path)
+	{
+		openExplorer(path.c_str());
+	}
+
+	// opens default browser at url
+	void openBrowser(const char url[])
+	{
+		ShellExecuteA(NULL, "open", url, NULL, NULL, SW_SHOWDEFAULT);
+	}
+
+	void openBrowser(std::string url)
+	{
+		openBrowser(url.c_str());
+	}
 
 
 
