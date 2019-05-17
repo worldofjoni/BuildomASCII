@@ -26,7 +26,7 @@ public:
 
 	~Level(); // Rule of five
 	Level(const Level& other); // Copy Constructor
-	Level(Level&& other) = delete; // Move Constructor
+	Level(Level&& other); // Move Constructor
 	Level& operator=(const Level& other); // copy asignment
 	Level& operator=(Level&& other) = delete; // move asignment
 

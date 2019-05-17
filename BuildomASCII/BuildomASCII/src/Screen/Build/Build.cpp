@@ -82,8 +82,9 @@ Build::Build(Level level, bool asEditor)
 			menuPos = writeAt(menuPos, "  ");
 		}
 
-		content[menuPos.x][menuPos.y].textColor = menuBarSymColor;
-		menuPos = writeAt(menuPos, symbols[i]);
+		content[menuPos.x][menuPos.y].textColor = elements[i]->color;
+		content[menuPos.x][menuPos.y].backgroundColor = WHITE;
+		menuPos = writeAt(menuPos, elements[i]->symbol);
 		menuPos = writeAt(menuPos, " [");
 		menuPos = writeAt(menuPos, keybind[i]);
 		menuPos = writeAt(menuPos, "] : ");
@@ -142,8 +143,7 @@ void Build::run()
 	{
 		if (_kbhit())
 		{
-			if (keyHandeling(setElement, dir, cursor))
-				return;
+			if (keyHandeling(setElement, dir, cursor)) return;
 
 
 
@@ -193,8 +193,6 @@ void Build::run()
 	
 
 
-
-
 }
 
 bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor cursor)
@@ -234,17 +232,17 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 		setElement = new Spike(true);
 		break;
 	case 13: // Space
-		if (isEditor)
-			return true;
+		if (isEditor) return true;
 		
 		printOnLevel(level.map[cursor.x][cursor.y]->symbol, cursor.x, cursor.y, level.map[cursor.x][cursor.y]->color);
-		if (runLevel(level))
-			return true;
+
+		if (runLevel(level)) return true;
 		break;
 		
 
 
 	case 27: // ESC
+		if (isEditor) cancelEdit = true;
 		return true;
 		break;
 
@@ -253,7 +251,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 		break;
 	}
 	
-	if (isEditor)
+	if (isEditor && level.map[cursor.x][cursor.y]->deletable)
 	{
 		switch (key)
 		{
@@ -425,6 +423,16 @@ void Build::placeOnLevelAt(LevelElement*& element, int x, int y)
 		delete element;
 		element = nullptr;
 	}
+}
+
+Build::~Build()
+{
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+		delete elements[i];
+		elements[i] = nullptr;
+	}
+	
 }
 
 

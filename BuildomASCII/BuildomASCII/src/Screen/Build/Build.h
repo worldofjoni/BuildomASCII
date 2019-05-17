@@ -34,8 +34,6 @@ private:
 	Build* build = this;
 	int fallSpeed = 3;
 
-	char symbols[LevelElement::countOfElements] = { Empty::ownSym, Solid::ownSym, SlopeUp::ownSym, SlopeDown::ownSym, ChangeDir::ownSym , Spike::ownSym}; // has to be manualy updated ############################################################
-	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
 
 public:
 	Level level;
@@ -52,6 +50,8 @@ public:
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
 	void placeOnLevelAt(LevelElement*& element, int x, int y);
 
+	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(true), new Solid(true), new SlopeUp(true), new SlopeDown(true), new ChangeDir(true), new Spike(true) };// has to be manualy updated ############################################################
+	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
 
 	// For runLevel
 	Pos currentPos = { 0,0 };
@@ -60,11 +60,16 @@ public:
 
 	// for level Editor
 	void setValues(); // sets start, end, maxElements
+	bool cancelEdit = false;
 	
 
+	// destructor
+	~Build();
+	Build(const Build& other) = delete;
+	Build(Build&& other) = delete;
+	Build& operator=(const Build& other) = delete;
+	Build& operator=(Build&& other) = delete;
 	
-	
-
 
 
 };

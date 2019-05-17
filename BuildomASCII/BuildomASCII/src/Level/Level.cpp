@@ -67,17 +67,20 @@ void Level::setStartEnd(Pos start, Pos end)
 // destructor
 Level::~Level()
 {
-	for (int x = 0; x < WIDTH; x++)
+	if (map != nullptr)
 	{
-		for (int y = 0; y < HEIGHT; y++)
+		for (int x = 0; x < WIDTH; x++)
 		{
-			delete map[x][y];
-			map[x][y] = nullptr;
+			for (int y = 0; y < HEIGHT; y++)
+			{
+				delete map[x][y];
+				map[x][y] = nullptr;
+			}
+			delete[] map[x];
+			map[x] = nullptr;
 		}
-		delete[] map[x];
-		map[x] = nullptr;
+		delete[] map;
 	}
-	delete[] map;
 }
 
 
@@ -106,6 +109,19 @@ Level::Level(const Level& other)
 		this->setElements[i] = other.setElements[i];
 	}
 
+}
+
+Level::Level(Level && other)
+	:start(other.start), end(other.end)
+{
+	map = other.map;
+	other.map = nullptr;
+
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+		maxElements[i] = other.maxElements[i];
+		setElements[i] = other.setElements[i];
+	}
 }
 
 Level& Level::operator=(const Level& other)
