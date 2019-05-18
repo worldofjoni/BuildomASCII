@@ -4,29 +4,31 @@
 #include "LevelElement/LevelElement.h"
 #include "Screen/Screen.h"
 
+#define INVALID -1
+
 
 class Level
 {
 private:
 public:
-	const int WIDTH, HEIGHT;
+	const int WIDTH = Screen::WIDTH - 2, HEIGHT = Screen::HEIGHT - 10;
 	LevelElement ***map;
 	int maxElements[LevelElement::countOfElements] = {}; // index is id of element ; for unlimited use -1
 	int setElements[LevelElement::countOfElements] = {}; // index is id of element
 
-	Pos start;
-	Pos end;
+	Pos start = { INVALID, INVALID };
+	Pos end = { INVALID,  INVALID};
 
 
-	Level(int with, int height);
+	Level();
 	void placeAt(LevelElement *element, int x, int y);
 	void setMaxElements(int list[LevelElement::countOfElements]);
 	void setStartEnd(Pos start, Pos end);
 
 	~Level(); // Rule of five
 	Level(const Level& other); // Copy Constructor
-	Level(Level&& other) = delete; // Move Constructor
-	Level& operator=(const Level& other) = delete; // copy asignment
+	Level(Level&& other); // Move Constructor
+	Level& operator=(const Level& other); // copy asignment
 	Level& operator=(Level&& other) = delete; // move asignment
 
 

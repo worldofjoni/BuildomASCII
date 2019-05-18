@@ -16,11 +16,12 @@ private:
 
 public:
 	
-	PlayStoryButton* playButton = new PlayStoryButton();
-	ExitButton *exitButton = new ExitButton();
-	CreditsButton* creditsButton = new CreditsButton();
+	PlayStoryButton playButton = PlayStoryButton();
+	PlayCustomButton customButton =PlayCustomButton();
+	ExitButton exitButton = ExitButton();
+	CreditsButton creditsButton = CreditsButton();
 
-	static const int maxSel = 3;
+	static const int maxSel = 4;
 	
 
 	const int LOGO_WIDTH = 77, LOGO_HEIGHT = 6;

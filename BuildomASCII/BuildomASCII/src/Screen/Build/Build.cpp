@@ -18,9 +18,12 @@ void Build::printOnLevel(T content, int x, int y, fc::Color color, fc::Color bac
 
 
 // Constructor with content init
-Build::Build(Level level)
-	:level(level)
+Build::Build(Level level, bool asEditor)
+	:level(level), isEditor(asEditor)
 {
+
+	if (this->level.start.x == INVALID) this->level.setStartEnd({ 5,5 }, { level.WIDTH - 6, level.HEIGHT - 6 });
+
 	setBlank();
 	// init frame
 	for (int y = 0; y < HEIGHT; y++)
@@ -29,9 +32,9 @@ Build::Build(Level level)
 		content[0][y].textColor = frameTextColor;
 		content[0][y].backgroundColor = frameColor;
 
-		content[WIDTH-1][y].content = ' ';
-		content[WIDTH-1][y].textColor = frameTextColor;
-		content[WIDTH-1][y].backgroundColor = frameColor;
+		content[WIDTH - 1][y].content = ' ';
+		content[WIDTH - 1][y].textColor = frameTextColor;
+		content[WIDTH - 1][y].backgroundColor = frameColor;
 	}
 
 	for (int x = 0; x < WIDTH; x++)
@@ -49,22 +52,22 @@ Build::Build(Level level)
 	}
 
 	// initializes the content to the element of the level at each spot
-	for (int x = 0; x < this->level.WIDTH; x++) 
+	for (int x = 0; x < this->level.WIDTH; x++)
 	{
 		for (int y = 0; y < this->level.HEIGHT; y++)
 		{
-			content[x+1][y+1].content = this->level.map[x][y]->symbol;
-			content[x+1][y+1].textColor = this->level.map[x][y]->color;
-			content[x+1][y+1].backgroundColor = this->defaultBackgroundColor;
+			content[x + 1][y + 1].content = this->level.map[x][y]->symbol;
+			content[x + 1][y + 1].textColor = this->level.map[x][y]->color;
+			content[x + 1][y + 1].backgroundColor = this->defaultBackgroundColor;
 		}
 	}
 
-	
+
 	// init for menu bar
 	bool firstIsPlaced = false;
 	Pos menuPos = { 3, Screen::HEIGHT - 7 };
 
-	
+
 
 	for (int i = 1; i < LevelElement::countOfElements; i++) // 1 because empty field is NOT displayed
 	{
@@ -82,8 +85,9 @@ Build::Build(Level level)
 			menuPos = writeAt(menuPos, "  ");
 		}
 
-		content[menuPos.x][menuPos.y].textColor = menuBarSymColor;
-		menuPos = writeAt(menuPos, symbols[i]);
+		content[menuPos.x][menuPos.y].textColor = elements[i]->color;
+		content[menuPos.x][menuPos.y].backgroundColor = WHITE;
+		menuPos = writeAt(menuPos, elements[i]->symbol);
 		menuPos = writeAt(menuPos, " [");
 		menuPos = writeAt(menuPos, keybind[i]);
 		menuPos = writeAt(menuPos, "] : ");
@@ -100,19 +104,31 @@ Build::Build(Level level)
 	}
 
 	//Delete & Quit
-	menuPos = { Screen::WIDTH - 55, Screen::HEIGHT - 3 };
-	menuPos = writeAt(menuPos, "[BACK] : Delete  ");
-	content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
-	menuPos = writeAt(menuPos, 179);
-	menuPos = writeAt(menuPos, "  [ESC] : Quit ");
-	content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
-	menuPos = writeAt(menuPos, 179);
+	menuPos = { Screen::WIDTH - 65, Screen::HEIGHT - 3 };
 	menuPos = writeAt(menuPos, "  [");
 	menuPos = writeAt(menuPos, keybind[0]);
-	menuPos = writeAt(menuPos, "] : Start ");
+	menuPos = writeAt(menuPos, "] : L");
+	menuPos = writeAt(menuPos, 148);
+	menuPos = writeAt(menuPos, "schen ");
+	content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
+	menuPos = writeAt(menuPos, 179);
+	menuPos = writeAt(menuPos, "  [ESC] : Verlassen ");
+	content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
+	menuPos = writeAt(menuPos, 179);
+	menuPos = writeAt(menuPos, isEditor ? " [ENTER] : Speichern  " : " [ENTER] : Starten    ");
+
+	//display start and end key ( if editor)
+	if (isEditor)
+	{
+		menuPos = { 5, Screen::HEIGHT - 3 };
+		menuPos = writeAt(menuPos, "[,] : Start plazieren ");
+		content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
+		menuPos = writeAt(menuPos, 179);
+		menuPos = writeAt(menuPos, " [.] : Ziel plazieren ");
+	}
+
+
 }
-
-
 
 
 void Build::run()
@@ -132,18 +148,9 @@ void Build::run()
 	{
 		if (_kbhit())
 		{
-			if (keyHandeling(setElement, dir, enteredRun))
-				return;
+			if (keyHandeling(setElement, dir, cursor)) return;
 
-			if (enteredRun)
-			{
-				enteredRun = false;
-				printOnLevel(level.map[cursor.x][cursor.y]->symbol, cursor.x, cursor.y, level.map[cursor.x][cursor.y]->color);
-				if (runLevel(level))
-				{
-					return;
-				}
-			}
+
 
 
 			// if a new Element should be set...
@@ -191,8 +198,106 @@ void Build::run()
 	
 
 
+}
+
+bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor cursor)
+{
+
+	int key = _getch();
+	switch (key)
+	{
+	case 'w':
+		dir = UP;
+		break;
+	case 'a':
+		dir = LEFT;
+		break;
+	case 's':
+		dir = DOWN;
+		break;
+	case 'd':
+		dir = RIGHT;
+		break;
+	case Solid::ownKey:
+		setElement = new Solid(true);
+		break;
+	case Empty::ownKey://backspace
+		setElement = new Empty(true);
+		break;
+	case SlopeUp::ownKey:
+		setElement = new SlopeUp(true);
+		break;
+	case SlopeDown::ownKey:
+		setElement = new SlopeDown(true);
+		break;
+	case ChangeDir::ownKey:
+		setElement = new ChangeDir(true);
+		break;
+	case Spike::ownKey:
+		setElement = new Spike(true);
+		break;
+	case 13: // Space
+		if (isEditor) return true;
+		
+		printOnLevel(level.map[cursor.x][cursor.y]->symbol, cursor.x, cursor.y, level.map[cursor.x][cursor.y]->color);
+
+		if (runLevel(level)) return true;
+		break;
+		
 
 
+	case 27: // ESC
+		if (isEditor) cancelEdit = true;
+		return true;
+		break;
+
+	default:
+		dir = NONE;
+		break;
+	}
+	
+	if (isEditor && level.map[cursor.x][cursor.y]->deletable)
+	{
+		switch (key)
+		{
+		case ',': // set Start
+			//reset old Start
+			level.map[level.start.x][level.start.y]->deletable = true;
+			level.map[level.start.x][level.start.y]->symbol = Empty::ownSym;
+			level.map[level.start.x][level.start.y]->color = Screen::defaultTextColor;
+			printOnLevel(level.map[level.start.x][level.start.y]->symbol, level.start.x, level.start.y, Screen::defaultTextColor);
+			
+			// set new ones
+			setElement = new Empty(false);
+			setElement->symbol = Build::startChar;
+			setElement->color = Build::startColor;
+
+			// update start
+			level.start.x = cursor.x;
+			level.start.y = cursor.y;
+			break;
+		case '.': // set End
+			//reset old end
+			level.map[level.end.x][level.end.y]->deletable = true;
+			level.map[level.end.x][level.end.y]->symbol = Empty::ownSym;
+			level.map[level.end.x][level.end.y]->color = Screen::defaultTextColor;
+			printOnLevel(level.map[level.end.x][level.end.y]->symbol, level.end.x, level.end.y, Screen::defaultTextColor);
+			
+			// set new ones
+			setElement = new Empty(false);
+			setElement->symbol = Build::endChar;
+			setElement->color = Build::endColor;
+
+			// update end
+			level.end.x = cursor.x;
+			level.end.y = cursor.y;
+			break;
+		default:
+			break;
+		}
+	}
+
+	return false;
 }
 
 bool Build::runLevel(Level level)
@@ -283,60 +388,6 @@ bool Build::runLevel(Level level)
 	return false;
 }
 
-bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, bool &enteredRun)
-{
-
-	int key = _getch();
-	switch (key)
-	{
-	case 'w':
-		dir = UP;
-		break;
-	case 'a':
-		dir = LEFT;
-		break;
-	case 's':
-		dir = DOWN;
-		break;
-	case 'd':
-		dir = RIGHT;
-		break;
-	case Solid::ownKey:
-		setElement = new Solid(true);
-		break;
-	case Empty::ownKey://backspace
-		setElement = new Empty(true);
-		break;
-	case SlopeUp::ownKey:
-		setElement = new SlopeUp(true);
-		break;
-	case SlopeDown::ownKey:
-		setElement = new SlopeDown(true);
-		break;
-	case ChangeDir::ownKey:
-		setElement = new ChangeDir(true);
-		break;
-	case Spike::ownKey:
-		setElement = new Spike(true);
-		break;
-	case 13: // Space
-		enteredRun = true;
-		break;
-		
-
-
-	case 27: // ESC
-		return true;
-		break;
-
-	default:
-		dir = NONE;
-		break;
-	}
-
-	return false;
-}
-
 // checks wether a block could be placed and does so
 void Build::placeOnLevelAt(LevelElement*& element, int x, int y)
 {
@@ -378,6 +429,17 @@ void Build::placeOnLevelAt(LevelElement*& element, int x, int y)
 		element = nullptr;
 	}
 }
+
+Build::~Build()
+{
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+		delete elements[i];
+		elements[i] = nullptr;
+	}
+	
+}
+
 
 
 

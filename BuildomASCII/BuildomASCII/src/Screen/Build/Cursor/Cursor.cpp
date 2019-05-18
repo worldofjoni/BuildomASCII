@@ -5,6 +5,7 @@
 Cursor::Cursor(Level* level)
 	:level(level)
 {
+	
 }
 
 // Moves Cursor in direction
