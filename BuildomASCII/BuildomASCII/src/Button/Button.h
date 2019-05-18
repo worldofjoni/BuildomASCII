@@ -24,6 +24,7 @@ public:
 #include "Button/ExitButton/ExitButton.h"
 #include "Button/CreditsButton/CreditsButton.h"
 #include "Button/PlayCustomButton/PlayCustomButton.h"
+#include "Button/CreateNewCustomButton/CreateNewCustomButtom.h"
 
 
 

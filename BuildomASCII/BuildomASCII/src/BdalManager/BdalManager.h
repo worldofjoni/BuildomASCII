@@ -13,6 +13,9 @@ class BdalManager
 private:
 	const std::string basePath = "Level\\";
 	const std::string fileEnding = ".bdal";
+
+	std::string cNamePath = basePath + "CustomLevelNames.txt";
+
 	std::string fileName;
 	
 	std::string advPath;
@@ -21,12 +24,16 @@ private:
 	std::ofstream writeStream;
 	std::ifstream readStream;
 
+	
+
 	int countOfElements;
 	int currentElementChar;
 
-
+	int nameCount;
 
 public:
+	void addCustomName(std::string name);
+	int getCustomLvlNames(std::string nameList[100]);
 	BdalManager();
 	Level getLevel(std::string levelName, LevelType levelType);
 

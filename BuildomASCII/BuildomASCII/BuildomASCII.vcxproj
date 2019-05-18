@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BdalManager\BdalManager.cpp" />
+    <ClCompile Include="src\Button\CreateNewCustomButton\CreateNewCustomButton.cpp" />
     <ClCompile Include="src\Button\PlayCustomButton\PlayCustomButton.cpp" />
     <ClCompile Include="src\LevelElement\ChangeDir\ChangeDir.cpp" />
     <ClCompile Include="src\LevelElement\Spike\Spike.cpp" />
@@ -55,11 +56,13 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="src\Screen\LevelEditor\LevelEditor.cpp" />
+    <ClCompile Include="src\Screen\CustomLevelSelect\CustomLevelSelect.cpp" />
     <ClCompile Include="src\Screen\Screen.cpp" />
     <ClCompile Include="src\Screen\StartScreen\StartScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BdalManager\BdalManager.h" />
+    <ClInclude Include="src\Button\CreateNewCustomButton\CreateNewCustomButtom.h" />
     <ClInclude Include="src\Button\PlayCustomButton\PlayCustomButton.h" />
     <ClInclude Include="src\LevelElement\ChangeDir\ChangeDir.h" />
     <ClInclude Include="src\LevelElement\Spike\Spike.h" />
@@ -81,6 +84,7 @@
     <ClInclude Include="src\Level\Level.h" />
     <ClInclude Include="src\pch\pch.h" />
     <ClInclude Include="src\Screen\LevelEditor\LevelEditor.h" />
+    <ClInclude Include="src\Screen\CustomLevelSelect\CustomLevelSelect.h" />
     <ClInclude Include="src\Screen\Screen.h" />
     <ClInclude Include="src\Screen\StartScreen\StartScreen.h" />
   </ItemGroup>

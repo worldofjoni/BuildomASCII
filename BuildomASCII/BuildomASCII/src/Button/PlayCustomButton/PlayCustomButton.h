@@ -3,6 +3,7 @@
 #define PLAY_CUSTOM_BUTTON_H
 
 #include "Button/Button.h"
+#include "Screen/CustomLevelSelect/CustomLevelSelect.h"
 
 class PlayCustomButton : public Button
 {
