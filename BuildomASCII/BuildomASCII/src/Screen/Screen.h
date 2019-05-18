@@ -42,6 +42,7 @@ public:
 	Pos writeAt(int x, int y, int num);
 	Pos writeAt(int x, int y, int num, unsigned int digis);
 	Pos writeAt(Pos pos, int num, unsigned int digis);
+	void writeMultiline(Pos pos, std::string str, int width);
 
 protected:
 	Pixel content[WIDTH][HEIGHT];

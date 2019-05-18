@@ -4,8 +4,8 @@
 
 ExitButton::ExitButton()
 {
-	wordSize = 4;
-	word = "Exit";
+	word = "Verlassen";
+	wordSize = word.length();
 }
 
 int ExitButton::run()

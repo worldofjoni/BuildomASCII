@@ -42,8 +42,9 @@ void StartScreen::run()
 	// Create Buttons and change maxSel accordingly
 	writeAt(startPos.x, startPos.y, playButton.word.c_str());
 	writeAt(startPos.x, startPos.y + gap, customButton.word.c_str());
-	writeAt(startPos.x, startPos.y + gap * 2, creditsButton.word.c_str());
-	writeAt(startPos.x, startPos.y + gap * 3, exitButton.word.c_str());
+	writeAt(startPos.x, startPos.y + gap * 2, manualButton.word.c_str());
+	writeAt(startPos.x, startPos.y + gap * 3, creditsButton.word.c_str());
+	writeAt(startPos.x, startPos.y + gap * 4, exitButton.word.c_str());
 	//writeAt(startPos.x - 4, startPos.y - (gap + 2), title.c_str());
 	
 	
@@ -124,9 +125,12 @@ void StartScreen::run()
 				select = &customButton;
 				break;
 			case 2:
-				select = &creditsButton;
+				select = &manualButton;
 				break;
 			case 3:
+				select = &creditsButton;
+				break;
+			case 4:
 				select = &exitButton;
 				break;
 			default:

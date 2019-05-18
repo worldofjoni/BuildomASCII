@@ -8,9 +8,6 @@
 #include "Screen/Build/Build.h"
 
 
-// test
-#include "Screen/LevelEditor/LevelEditor.h"
-
 int main()
 {
 	

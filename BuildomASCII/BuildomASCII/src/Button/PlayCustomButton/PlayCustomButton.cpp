@@ -7,7 +7,7 @@
 
 PlayCustomButton::PlayCustomButton()
 {
-	word = "Custom Level";
+	word = "Eigene Level";
 	wordSize = word.length();
 }
 

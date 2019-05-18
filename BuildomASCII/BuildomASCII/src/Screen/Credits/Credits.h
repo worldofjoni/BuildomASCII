@@ -12,6 +12,7 @@ public:
 
 	Credits();
 	virtual ~Credits();
+	std::string content = std::string(1, 184) + std::string(" Samuel Pasieka & Jonatan Ziegler");
 
 	void run();
 };

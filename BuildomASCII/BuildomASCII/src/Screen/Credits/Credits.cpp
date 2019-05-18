@@ -19,7 +19,7 @@ void Credits::run()
 	exitBut.x = WIDTH / 2;
 	exitBut.y = HEIGHT - 2;
 
-	writeAt(WIDTH / 2.5, HEIGHT / 2, "Developers: Jonatan Ziegler & Samuel Pasieka");
+	writeAt(WIDTH / 2.5, HEIGHT / 2, content.c_str());
 	
 
 
@@ -33,7 +33,8 @@ void Credits::run()
 	{
 		if (_kbhit())
 		{
-			return;
+			char c = _getch();
+			if (c == 27 || c == 13 || c == ' ') return;
 		}
 	}
 }

@@ -4,8 +4,8 @@
 
 CreditsButton::CreditsButton()
 {
-	wordSize = 7;
-	word = "Credits";
+	word = "Abspann";
+	wordSize = word.length();
 }
 
 int CreditsButton::run()

@@ -9,8 +9,8 @@
 
 PlayStoryButton::PlayStoryButton()
 {
-	wordSize = 4;
-	word = "Play";
+	word = "Starten";
+	wordSize = word.length();
 }
 
 int PlayStoryButton::run()

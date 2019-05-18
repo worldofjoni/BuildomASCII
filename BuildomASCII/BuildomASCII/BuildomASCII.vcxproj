@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Button\ManualButton\ManualButton.cpp" />
     <ClCompile Include="src\BdalManager\BdalManager.cpp" />
     <ClCompile Include="src\Button\PlayCustomButton\PlayCustomButton.cpp" />
     <ClCompile Include="src\LevelElement\ChangeDir\ChangeDir.cpp" />
@@ -55,10 +56,12 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="src\Screen\LevelEditor\LevelEditor.cpp" />
+    <ClCompile Include="src\Screen\Manual\Manual.cpp" />
     <ClCompile Include="src\Screen\Screen.cpp" />
     <ClCompile Include="src\Screen\StartScreen\StartScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Button\ManualButton\ManualButton.h" />
     <ClInclude Include="src\BdalManager\BdalManager.h" />
     <ClInclude Include="src\Button\PlayCustomButton\PlayCustomButton.h" />
     <ClInclude Include="src\LevelElement\ChangeDir\ChangeDir.h" />
@@ -81,6 +84,7 @@
     <ClInclude Include="src\Level\Level.h" />
     <ClInclude Include="src\pch\pch.h" />
     <ClInclude Include="src\Screen\LevelEditor\LevelEditor.h" />
+    <ClInclude Include="src\Screen\Manual\Manual.h" />
     <ClInclude Include="src\Screen\Screen.h" />
     <ClInclude Include="src\Screen\StartScreen\StartScreen.h" />
   </ItemGroup>
