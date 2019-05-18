@@ -5,6 +5,8 @@
 #include "Screen/Screen.h"
 #include "Level/Level.h"
 #include "pch/pch.h"
+#include "BdalManager/BdalManager.h"
+
 class LevelEditor : public Screen
 {
 private:

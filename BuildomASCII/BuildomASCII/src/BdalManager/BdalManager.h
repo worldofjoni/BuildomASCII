@@ -3,6 +3,7 @@
 #define BDALMANAGER_H
 
 #include <fstream>
+#include "Position/Pos.h"
 
 enum LevelType {STORY = 0, CUSTOM = 1};
 
@@ -21,16 +22,16 @@ private:
 	std::ifstream readStream;
 
 	int countOfElements;
-
-	std::string elementInLine;
-	char currentElementChar;
+	int currentElementChar;
 
 
 
 public:
 	BdalManager();
-	void getLevel(int levelID, LevelType levelType);
-	void saveLevel(Level level);
+	Level getLevel(std::string levelName, LevelType levelType);
+
+	//return true if succeed
+	bool saveLevel(Level level, std::string cusLvlName);
 	
 };
 

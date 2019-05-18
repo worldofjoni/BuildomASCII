@@ -5,9 +5,12 @@ BdalManager::BdalManager()
 {
 }
 
-void BdalManager::getLevel(int levelID, LevelType levelType)
+Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 {
 	Level level;
+	Pos start;
+	Pos end;
+	int maxElements[LevelElement::countOfElements];
 
 
 	switch (levelType)
@@ -18,7 +21,7 @@ void BdalManager::getLevel(int levelID, LevelType levelType)
 		break;
 	case LevelType::CUSTOM:
 		midDir = "Custom Level\\";
-		fileName = "cLevel_";
+		fileName = "";
 		break;
 	default:
 		break;
@@ -26,26 +29,28 @@ void BdalManager::getLevel(int levelID, LevelType levelType)
 
 
 
-	advPath = basePath + midDir + fileName + std::to_string(levelID) + fileEnding;
+	advPath = basePath + midDir + fileName + levelName + fileEnding;
 
 	readStream.open(advPath);
 
 	if (!readStream.is_open())
 	{
 		std::cout << "ERROR";
-		return;
+		return level;
 	}
 
 	// Read-part
 
 	// Start Point
-	readStream >> level.start.x;
-	readStream >> level.start.y;
+	readStream >> start.x;
+	readStream >> start.y;
 	
 	
 	// End Point
-	readStream >> level.end.x;
-	readStream >> level.end.y;
+	readStream >> end.x;
+	readStream >> end.y;
+
+	level.setStartEnd(start, end);
 
 	// maxElements
 	readStream >> countOfElements;
@@ -53,48 +58,100 @@ void BdalManager::getLevel(int levelID, LevelType levelType)
 	for (int i = 0; i < countOfElements; i++)
 	{
 		
-		readStream >> level.maxElements[i];
+		readStream >> maxElements[i];
 		
 		
 	}
+	level.setMaxElements(maxElements);
 
 
 	// Level itself
-
 	for (int y = 0; y < level.HEIGHT; y++)
 	{
-		readStream >> elementInLine;
+		//elementInLine.resize(level.WIDTH);
 		for (int x = 0; x < level.WIDTH; x++)
 		{
-			currentElementChar = elementInLine[x];
+			readStream >> currentElementChar;
 
 			switch (currentElementChar)
 			{
-			case 219:
+			case 1:
 				level.placeAt(new Solid(false), x, y);
 				break;
-			case '\\':
-				level.placeAt(new SlopeDown(false), x, y);
-				break;
-			case '/':
+			case 2:
 				level.placeAt(new SlopeUp(false), x, y);
 				break;
-			case 30:
-				level.placeAt(new Spike(false), x, y);
+			case 3:
+				level.placeAt(new SlopeDown(false), x, y);
 				break;
-			case 29:
+			case 4:
 				level.placeAt(new ChangeDir(false), x, y);
+				break;
+			case 5:
+				level.placeAt(new Spike(false), x, y);
 				break;
 			default:
 				break;
 			}
 		}
 	}
+	return level;
 
 	readStream.close();
 
 }
 
-void BdalManager::saveLevel(Level level)
+bool BdalManager::saveLevel(Level level, std::string cusLvlName)
 {
+	midDir = "Custom Level\\";
+	advPath = basePath + midDir + cusLvlName + fileEnding;
+
+	readStream.open(advPath);
+
+	if (readStream.is_open())
+	{
+		readStream.close();
+		return false;
+	}
+
+	writeStream.open(advPath);
+
+
+	// Write-Part
+
+	// Start Point
+	writeStream << level.start.x << std::endl;
+	writeStream << level.start.y << std::endl;
+
+
+	// End Point
+	writeStream << level.end.x << std::endl;
+	writeStream << level.end.y << std::endl;
+
+	// maxElements
+	writeStream << LevelElement::countOfElements << std::endl;
+
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+
+		writeStream << level.maxElements[i] << std::endl;
+
+
+	}
+
+	// Level itself
+
+	for (int y = 0; y < level.HEIGHT; y++)
+	{
+		for (int x = 0; x < level.WIDTH; x++)
+		{
+
+			writeStream << level.map[x][y]->id << std::endl;
+		}
+		
+	}
+
+
+	writeStream.close();
+	return true;
 }

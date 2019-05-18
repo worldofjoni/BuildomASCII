@@ -52,6 +52,14 @@ void LevelEditor::run()
 	std::cin >> input;
 	fc::hideCursor();
 
+	
+	BdalManager fileManager;
+
+	if (fileManager.saveLevel(level, input))
+	{
+		std::cout << "YAS";
+	}
+
 	// todo save Level With Name
 
 
