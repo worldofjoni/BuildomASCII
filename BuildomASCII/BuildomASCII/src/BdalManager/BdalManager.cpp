@@ -12,7 +12,7 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 	Pos end;
 	int maxElements[LevelElement::countOfElements];
 
-
+	
 	switch (levelType)
 	{
 	case LevelType::STORY:

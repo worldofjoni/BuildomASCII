@@ -17,5 +17,6 @@ public:
 };
 
 bool isInt(std::string str);
+bool isFilename(std::string str);
 
 #endif // !LEVEL_EDITOR_H

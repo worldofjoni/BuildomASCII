@@ -45,18 +45,21 @@ void LevelEditor::run()
 		level.maxElements[i] = std::stoi(input, nullptr);
 	}
 
-	std::string input;
-	fc::setCursorPos(5, 5 + LevelElement::countOfElements);
-	std::cout << "Name der Datei (max 10 Zeichen): ";
-	fc::showCursor();
-	std::cin >> input;
-	fc::hideCursor();
-
+	std::string input = " ";
+	std::string msg = "Name der Datei (max 10 Zeichen): ";
+	do
+	{
+		fc::setCursorPos(5, 5 + LevelElement::countOfElements);
+		std::cout << msg << std::string(input.length(), ' ');
+		fc::setCursorPos(5 + msg.length(), 5 + LevelElement::countOfElements);
+		fc::showCursor();
+		std::cin >> input;
+		fc::hideCursor();
+	} while (!isFilename(input));
 	
+	// save Level With Name
 	BdalManager fileManager;
-
 	fileManager.saveLevel(level, input);
-	// todo save Level With Name
 
 
 	
@@ -71,6 +74,18 @@ bool isInt(std::string str)
 	for (int i = 1; i < str.length(); i++)
 	{
 		if (!isdigit(str[i])) return false;
+	}
+	return true;
+}
+
+bool isFilename(std::string str)
+{
+	if (str.length() >10) return false;
+
+	for (int i = 0; i<str.length(); i++)
+	{
+		if (isalnum(str[i]) == 0) 
+			return false;
 	}
 	return true;
 }
