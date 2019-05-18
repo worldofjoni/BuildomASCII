@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BdalManager\BdalManager.cpp" />
     <ClCompile Include="src\Button\PlayCustomButton\PlayCustomButton.cpp" />
     <ClCompile Include="src\LevelElement\ChangeDir\ChangeDir.cpp" />
     <ClCompile Include="src\LevelElement\Spike\Spike.cpp" />
@@ -58,6 +59,7 @@
     <ClCompile Include="src\Screen\StartScreen\StartScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\BdalManager\BdalManager.h" />
     <ClInclude Include="src\Button\PlayCustomButton\PlayCustomButton.h" />
     <ClInclude Include="src\LevelElement\ChangeDir\ChangeDir.h" />
     <ClInclude Include="src\LevelElement\Spike\Spike.h" />

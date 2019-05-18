@@ -241,7 +241,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 		
 		printOnLevel(level.map[cursor.x][cursor.y]->symbol, cursor.x, cursor.y, level.map[cursor.x][cursor.y]->color);
 
-		if (runLevel(level)) return true;
+		if (runLevel()) return true;
 		break;
 		
 

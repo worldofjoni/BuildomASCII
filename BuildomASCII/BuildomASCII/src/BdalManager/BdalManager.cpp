@@ -7,7 +7,7 @@ BdalManager::BdalManager()
 
 void BdalManager::getLevel(int levelID, LevelType levelType)
 {
-	Level level(Screen::WIDTH - 2, Screen::HEIGHT - 10);
+	Level level;
 
 
 	switch (levelType)

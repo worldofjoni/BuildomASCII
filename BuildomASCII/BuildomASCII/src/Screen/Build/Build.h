@@ -45,7 +45,7 @@ public:
 	bool keyHandeling(LevelElement *&setElement, Direction &dir, Cursor cursor);
 	
 
-	bool runLevel(Level level);
+	bool runLevel();
 	
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
 	void placeOnLevelAt(LevelElement*& element, int x, int y);

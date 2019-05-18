@@ -84,6 +84,9 @@
     <ClCompile Include="src\Button\PlayCustomButton\PlayCustomButton.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\BdalManager\BdalManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
@@ -153,6 +156,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Button\PlayCustomButton\PlayCustomButton.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BdalManager\BdalManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
