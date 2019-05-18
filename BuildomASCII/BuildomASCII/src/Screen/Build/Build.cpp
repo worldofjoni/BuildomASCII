@@ -121,10 +121,10 @@ Build::Build(Level level, bool asEditor)
 	if (isEditor)
 	{
 		menuPos = { 5, Screen::HEIGHT - 3 };
-		menuPos = writeAt(menuPos, "[,] : Start plazieren ");
+		menuPos = writeAt(menuPos, "[,] : Start ");
 		content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
 		menuPos = writeAt(menuPos, 179);
-		menuPos = writeAt(menuPos, " [.] : Ziel plazieren ");
+		menuPos = writeAt(menuPos, " [.] : Ziel ");
 	}
 
 
