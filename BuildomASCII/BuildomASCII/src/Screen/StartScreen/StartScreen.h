@@ -12,13 +12,25 @@ private:
 
 public:
 	
-	PlayStoryButton* playButton = new PlayStoryButton();
-	ExitButton *exitButton = new ExitButton();
-	CreditsButton* creditsButton = new CreditsButton();
+	PlayStoryButton playButton = PlayStoryButton();
+	PlayCustomButton customButton =PlayCustomButton();
+	ExitButton exitButton = ExitButton();
+	CreditsButton creditsButton = CreditsButton();
 
-	static const int maxSel = 3;
+	static const int maxSel = 4;
 	
-	
+
+	const int LOGO_WIDTH = 77, LOGO_HEIGHT = 6;
+	const char logo[6][77] =
+	{
+		R"( ____        _ _     _                             _____  _____ _____ _____ )",
+		R"(|  _ \      (_) |   | |                     /\    / ____|/ ____|_   _|_   _|)",
+		R"(| |_) |_   _ _| | __| | ___  _ __ ___      /  \  | (___ | |      | |   | |  )",
+		R"(|  _ <| | | | | |/ _` |/ _ \| '_ ` _ \    / /\ \  \___ \| |      | |   | |  )",
+		R"(| |_) | |_| | | | (_| | (_) | | | | | |  / ____ \ ____) | |____ _| |_ _| |_ )",
+		R"(|____/ \__,_|_|_|\__,_|\___/|_| |_| |_| /_/    \_\_____/ \_____|_____|_____|)"
+
+	};
 
 
 

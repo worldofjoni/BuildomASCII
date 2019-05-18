@@ -7,8 +7,9 @@
 class SlopeDown : public LevelElement
 {
 private:
-
 public:
+	static const char ownSym = '\\';
+	static const char ownKey = '2';
 	SlopeDown(bool deletable);
 	void steppedOn(Build* build) override;
 	void steppedIn(Build* build) override;

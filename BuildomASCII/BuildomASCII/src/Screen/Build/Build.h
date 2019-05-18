@@ -1,13 +1,21 @@
 #pragma once
 #ifndef BUILD_H
 #define BUILD_H
+
 #include "Screen/Screen.h"
 #include "Level/Level.h"
 #include "friendlyConsole/friendlyConsole.hpp"
-#include "Cursor/Cursor.h"
 
+class Cursor;
 
-enum Direction;
+enum Direction
+{
+	NONE = 0,
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+};
 
 class Build : public Screen
 {
@@ -17,22 +25,33 @@ private:
 	void printOnLevel(T content, int x, int y, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
 
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
-	char startChar = '#', endChar = 'P', playerChar = 2, playerDeadChar = 1;
+	const fc::Color menuBarSymColor = RED, menuBarLineColor = BLUE_LIGHT;
 
-	
+	//for levelEditor
+	bool isEditor = false;
+
+	// for runLevel
 	Build* build = this;
 	int fallSpeed = 3;
 
+
 public:
 	Level level;
-	Build(Level level);
-	void run();
+	const static char startChar = '#', endChar = 'P', playerChar = 2, playerDeadChar = 1;
+	const static fc::Color startColor = MAGENTA, endColor = GREEN_LIGHT;
 
-	bool runLevel( );
+	Build(Level level, bool asEditor = false);
+	void run();
+	bool keyHandeling(LevelElement *&setElement, Direction &dir, Cursor cursor);
+	
+
+	bool runLevel(Level level);
 	
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
 	void placeOnLevelAt(LevelElement*& element, int x, int y);
 
+	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(true), new Solid(true), new SlopeUp(true), new SlopeDown(true), new ChangeDir(true), new Spike(true) };// has to be manualy updated ############################################################
+	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
 
 	// For runLevel
 	Pos currentPos = { 0,0 };
@@ -42,9 +61,17 @@ public:
 	int previousElementID = -1;
 	Pos previousPos = currentPos;
 
-	
+	// for level Editor
+	bool cancelEdit = false;
 	
 
+	// destructor
+	~Build();
+	Build(const Build& other) = delete;
+	Build(Build&& other) = delete;
+	Build& operator=(const Build& other) = delete;
+	Build& operator=(Build&& other) = delete;
+	
 
 
 };

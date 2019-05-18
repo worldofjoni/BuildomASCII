@@ -4,9 +4,9 @@
 Spike::Spike(bool deletable)
 {
 	id = 5;
-	symbol = 30; 
+	symbol = ownSym; 
 	this->deletable = deletable;
-	color = BLACK;
+	color = RED;
 	fallable = false;
 }
 

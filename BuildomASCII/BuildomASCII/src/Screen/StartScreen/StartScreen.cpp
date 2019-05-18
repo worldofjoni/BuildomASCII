@@ -3,13 +3,29 @@
 
 #include "Button/Button.h"
 
-void StartScreen::run() 
+StartScreen::StartScreen()
 {
 	setBlank();
+	Pos logoStart = { (Screen::WIDTH - LOGO_WIDTH) / 2, 5 };
+	for (int y = 0; y < LOGO_HEIGHT; y++)
+	{
+		for (int x = 0; x < LOGO_WIDTH; x++)
+		{
+			writeAt({ x + logoStart.x, y + logoStart.y }, logo[y][x]);
+			content[x + logoStart.x][y + logoStart.y].textColor = YELLOW_LIGHT;
+		}
+	}
+	
+}
+
+
+void StartScreen::run() 
+{
+	
 
 	int gap = 3;
 
-	std::string title = "Buildom ASCII";
+	//std::string title = "Buildom ASCII";
 
 	// Create Coordinates
 	Pos startPos;
@@ -24,10 +40,11 @@ void StartScreen::run()
 
 
 	// Create Buttons and change maxSel accordingly
-	writeAt(startPos.x, startPos.y, playButton->word.c_str());
-	writeAt(startPos.x, startPos.y + gap, creditsButton->word.c_str());
-	writeAt(startPos.x, startPos.y + gap * 2, exitButton->word.c_str());
-	writeAt(startPos.x - 4, startPos.y - (gap + 2), title.c_str());
+	writeAt(startPos.x, startPos.y, playButton.word.c_str());
+	writeAt(startPos.x, startPos.y + gap, customButton.word.c_str());
+	writeAt(startPos.x, startPos.y + gap * 2, creditsButton.word.c_str());
+	writeAt(startPos.x, startPos.y + gap * 3, exitButton.word.c_str());
+	//writeAt(startPos.x - 4, startPos.y - (gap + 2), title.c_str());
 	
 	
 	
@@ -41,7 +58,7 @@ void StartScreen::run()
 
 
 	// Begin main loop
-	Button* select = playButton;
+	Button* select = &playButton;
 	int curSel = 0;
 	int input;
 
@@ -62,7 +79,7 @@ void StartScreen::run()
 				{
 					// reinit screen
 					printScreen();
-					select = playButton;
+					select = &playButton;
 					curSel = 0;
 					input = 0;
 				}
@@ -89,6 +106,10 @@ void StartScreen::run()
 			case 'd':
 
 				break;
+			case 27:
+				exitButton.run();
+				return;
+				break;
 			default:
 				break;
 			}
@@ -97,13 +118,16 @@ void StartScreen::run()
 			switch (curSel)	// Add options if added more buttons
 			{
 			case 0:
-				select = playButton;
+				select = &playButton;
 				break;
 			case 1:
-				select = creditsButton;
+				select = &customButton;
 				break;
 			case 2:
-				select = exitButton;
+				select = &creditsButton;
+				break;
+			case 3:
+				select = &exitButton;
 				break;
 			default:
 				break;
@@ -130,11 +154,5 @@ void StartScreen::run()
 
 StartScreen::~StartScreen()
 {
-	delete playButton;
-	delete exitButton;
-	delete creditsButton;
 }
 
-StartScreen::StartScreen()
-{
-}

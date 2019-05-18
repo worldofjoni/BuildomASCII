@@ -78,7 +78,10 @@
     <ClCompile Include="src\LevelElement\Spike\Spike.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="src\BdalManager\BdalManager.cpp">
+    <ClCompile Include="src\Screen\LevelEditor\LevelEditor.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Button\PlayCustomButton\PlayCustomButton.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,7 +149,10 @@
     <ClInclude Include="src\LevelElement\Spike\Spike.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\BdalManager\BdalManager.h">
+    <ClInclude Include="src\Screen\LevelEditor\LevelEditor.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Button\PlayCustomButton\PlayCustomButton.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
