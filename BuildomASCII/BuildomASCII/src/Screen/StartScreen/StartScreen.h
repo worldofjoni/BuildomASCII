@@ -20,8 +20,9 @@ public:
 	PlayCustomButton customButton =PlayCustomButton();
 	ExitButton exitButton = ExitButton();
 	CreditsButton creditsButton = CreditsButton();
+	ManualButton manualButton = ManualButton();
 
-	static const int maxSel = 4;
+	static const int maxSel = 5;
 	
 
 	const int LOGO_WIDTH = 77, LOGO_HEIGHT = 6;

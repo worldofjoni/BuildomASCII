@@ -84,6 +84,12 @@
     <ClCompile Include="src\Button\PlayCustomButton\PlayCustomButton.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\Button\ManualButton\ManualButton.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Screen\Manual\Manual.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
@@ -153,6 +159,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Button\PlayCustomButton\PlayCustomButton.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Button\ManualButton\ManualButton.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Screen\Manual\Manual.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

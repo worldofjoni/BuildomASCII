@@ -5,7 +5,8 @@
 Cursor::Cursor(Level* level)
 	:level(level)
 {
-	
+	x = level->start.x;
+	y = level->start.y;
 }
 
 // Moves Cursor in direction

@@ -147,4 +147,48 @@ Pos Screen::writeAt(Pos pos, int num, unsigned int digis)
 	return writeAt(pos.x, pos.y, num, digis);
 }
 
+void Screen::writeMultiline(Pos pos, std::string str, int width)
+{
+	str = str.substr(1, str.length()); // to deleate the first \n
+	int i = 0, x = pos.x, y = pos.y;
+	while (i < str.length())
+	{
+		while (str[i] != '\n' && (x+i) < Screen::WIDTH)
+		{
+			switch (str[i])
+			{
+			case 'ä':
+				content[x + i][y].content = 132;
+				break;
+			case 'ö':
+				content[x + i][y].content = 148;
+				break;
+			case 'ü':
+				content[x + i][y].content = 129;
+				break;
+			case 'Ä':
+				content[x + i][y].content = 142;
+				break;
+			case 'Ö':
+				content[x + i][y].content = 153;
+				break;
+			case 'Ü':
+				content[x + i][y].content = 154;
+				break;
+			case 'ß':
+				content[x + i][y].content = 225;
+				break;
+			default:
+				content[x + i][y].content = str[i];
+				break;
+			}
+			i++;
+		}
+		str = str.substr((str[i] == '\n') ? i + 1 : i, str.length());
+		i = 0;
+		y++;
+	}
+
+}
+
 
