@@ -55,11 +55,7 @@ void LevelEditor::run()
 	
 	BdalManager fileManager;
 
-	if (fileManager.saveLevel(level, input))
-	{
-		std::cout << "YAS";
-	}
-
+	fileManager.saveLevel(level, input);
 	// todo save Level With Name
 
 

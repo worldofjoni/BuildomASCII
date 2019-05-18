@@ -453,9 +453,11 @@ void Build::movePlayer(int xOffset, int yOffset)
 {
 	previousPos = currentPos;
 	previousElementID = level.map[currentPos.x][currentPos.y]->id;
+	previousLowerElementID = level.map[currentPos.x][currentPos.y + 1]->id;
 	currentPos.x += xOffset;
 	currentPos.y += yOffset;
-	while (level.map[currentPos.x][currentPos.y]->id != previousElementID)
+	if(currentPos.y + 1 < level.HEIGHT) level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
+	while (level.map[currentPos.x][currentPos.y]->id != previousElementID )
 	{
 		level.map[currentPos.x][currentPos.y]->steppedIn(build);
 		level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);

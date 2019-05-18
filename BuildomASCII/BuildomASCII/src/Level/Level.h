@@ -29,7 +29,7 @@ public:
 	Level(const Level& other); // Copy Constructor
 	Level(Level&& other); // Move Constructor
 	Level& operator=(const Level& other); // copy asignment
-	Level& operator=(Level&& other) = delete; // move asignment
+	Level& operator=(Level&& other); // move asignment
 
 
 };

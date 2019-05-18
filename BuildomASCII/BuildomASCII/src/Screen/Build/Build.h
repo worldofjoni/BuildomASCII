@@ -59,6 +59,8 @@ public:
 	Direction playerDirection;
 	void movePlayer(int xOffset, int yOffset);
 	int previousElementID = -1;
+	int previousLowerElementID = -1;
+
 	Pos previousPos = currentPos;
 
 	// for level Editor
