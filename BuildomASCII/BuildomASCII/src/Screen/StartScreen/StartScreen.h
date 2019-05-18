@@ -5,10 +5,6 @@
 #include "Screen/Screen.h"
 #include "Button/Button.h"
 
-struct Position
-{
-	int x = 0, y = 0;
-};
 
 class StartScreen : public Screen
 {

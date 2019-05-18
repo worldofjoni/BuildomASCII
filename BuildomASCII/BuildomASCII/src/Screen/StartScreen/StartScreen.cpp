@@ -12,12 +12,12 @@ void StartScreen::run()
 	std::string title = "Buildom ASCII";
 
 	// Create Coordinates
-	Position startPos;
+	Pos startPos;
 	startPos.x = WIDTH / 2;
 	startPos.y = HEIGHT / 2;
 
 
-	Position currentPos;
+	Pos currentPos;
 	currentPos.x = startPos.x - 1;
 	currentPos.y = startPos.y;
 

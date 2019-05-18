@@ -109,4 +109,17 @@ Level::Level(const Level& other)
 
 }
 
-
+//Level::Level(Level&& other)
+//	:start(other.start), end(other.end)
+//{
+//	map = other.map;
+//	other.map = nullptr;
+//
+//	for (int i = 0; i < LevelElement::countOfElements; i++)
+//	{
+//		maxElements[i] = other.maxElements[i];
+//		setElements[i] = other.setElements[i];
+//	}
+//}
+//
+//

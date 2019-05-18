@@ -31,6 +31,7 @@ public:
 #include "SlopeUp/SlopeUp.h"
 #include "SlopeDown/SlopeDown.h"
 #include "ChangeDir/ChangeDir.h"
+#include "Spike/Spike.h"
 
 
 
