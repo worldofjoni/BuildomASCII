@@ -104,25 +104,27 @@ Build::Build(Level level, bool asEditor)
 	}
 
 	//Delete & Quit
-	menuPos = { Screen::WIDTH - 55, Screen::HEIGHT - 3 };
+	menuPos = { Screen::WIDTH - 65, Screen::HEIGHT - 3 };
 	menuPos = writeAt(menuPos, "  [");
 	menuPos = writeAt(menuPos, keybind[0]);
-	menuPos = writeAt(menuPos, "] : Delete ");
+	menuPos = writeAt(menuPos, "] : L");
+	menuPos = writeAt(menuPos, 148);
+	menuPos = writeAt(menuPos, "schen ");
 	content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
 	menuPos = writeAt(menuPos, 179);
-	menuPos = writeAt(menuPos, "  [ESC] : Quit ");
+	menuPos = writeAt(menuPos, "  [ESC] : Verlassen ");
 	content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
 	menuPos = writeAt(menuPos, 179);
-	menuPos = writeAt(menuPos, " [ENTER] : Start  ");
+	menuPos = writeAt(menuPos, isEditor ? " [ENTER] : Speichern  " : " [ENTER] : Starten    ");
 
 	//display start and end key ( if editor)
 	if (isEditor)
 	{
 		menuPos = { 5, Screen::HEIGHT - 3 };
-		menuPos = writeAt(menuPos, "[,] : set Start ");
+		menuPos = writeAt(menuPos, "[,] : Start plazieren ");
 		content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
 		menuPos = writeAt(menuPos, 179);
-		menuPos = writeAt(menuPos, " [.] : set End ");
+		menuPos = writeAt(menuPos, " [.] : Ziel plazieren ");
 	}
 
 

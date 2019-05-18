@@ -19,7 +19,7 @@ void LevelEditor::run()
 	Build levelEditor(level, true);
 	levelEditor.run();
 
-	level = levelEditor.level;
+	level = levelEditor.level; //ToDO: convert deletable to notDeletable
 
 	if (levelEditor.cancelEdit) return; // Cancel
 		
