@@ -33,6 +33,7 @@ private:
 	// for runLevel
 	Build* build = this;
 	int fallSpeed = 3;
+	int movespeed = 100;
 
 
 public:

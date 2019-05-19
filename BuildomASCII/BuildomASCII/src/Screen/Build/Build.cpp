@@ -305,7 +305,10 @@ bool Build::runLevel()
 	currentPos = { level.start.x, level.start.y };
 	playerGameOver = false;
 	playerDirection = RIGHT;
-	
+	printOnLevel(playerChar, currentPos.x, currentPos.y, RED_LIGHT);
+	fc::waitMs(movespeed);
+	printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
+
 
 	int repeats;
 
@@ -356,7 +359,7 @@ bool Build::runLevel()
 		
 		printOnLevel(playerChar, currentPos.x, currentPos.y, RED_LIGHT);
 
-		fc::waitMs(100);
+		fc::waitMs(movespeed);
 
 
 		if (_kbhit())
@@ -380,7 +383,7 @@ bool Build::runLevel()
 		
 	}
 	printOnLevel(playerDeadChar, currentPos.x, currentPos.y, BLUE_LIGHT);
-	fc::waitMs(500);
+	fc::waitMs(movespeed * 5);
 	printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
 	return false;
 }
