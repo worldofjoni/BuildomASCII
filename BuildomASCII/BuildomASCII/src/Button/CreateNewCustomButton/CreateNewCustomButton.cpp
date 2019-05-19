@@ -7,7 +7,7 @@
 
 CreateNewCustomButton::CreateNewCustomButton()
 {
-	word = "NEW";
+	word = "Neues Level Erstellen";
 	wordSize = word.length();
 }
 
