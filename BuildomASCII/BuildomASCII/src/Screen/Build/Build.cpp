@@ -17,6 +17,7 @@ void Build::printOnLevel(T content, int x, int y, fc::Color color, fc::Color bac
 }
 
 
+
 // Constructor with content init
 Build::Build(Level level, bool asEditor)
 	:level(level), isEditor(asEditor)
@@ -300,15 +301,14 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 	return false;
 }
 
+
+// Runs the Level after build-mode
 bool Build::runLevel()
 {
 	currentPos = { level.start.x, level.start.y };
 	playerGameOver = false;
 	playerDirection = RIGHT;
-	printOnLevel(playerChar, currentPos.x, currentPos.y, RED_LIGHT);
-	fc::waitMs(movespeed);
-	printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
-
+	displayPlayer();
 
 	int repeats;
 
@@ -322,20 +322,22 @@ bool Build::runLevel()
 
 		do
 		{
-
-			if (currentPos.x + 1 >= level.WIDTH || currentPos.y + 1 >= level.HEIGHT || currentPos.x <= 0 || currentPos.y <= 0 || playerGameOver)
+			// Check if Player hits border or has already lost
+			if ((currentPos.x + 1 >= level.WIDTH) || (currentPos.y + 1 >= level.HEIGHT) || (currentPos.x <= 0) || (currentPos.y <= 0) || (playerGameOver))
 			{
 				playerGameOver = true;
 				repeats = fallSpeed;
 				continue;
 			}
 
-
+			// Win
 			if (currentPos.x == level.end.x && currentPos.y == level.end.y)
 			{
 
 				return true;
 			}
+
+			// Falling
 			if (level.map[currentPos.x][currentPos.y + 1]->fallable)
 			{
 				movePlayer(0, 1);
@@ -345,9 +347,9 @@ bool Build::runLevel()
 
 
 
-		} while (repeats < fallSpeed); 
+		} while (repeats < fallSpeed); // Check after every falling for fallSpeed-reapeats
 
-
+		// Check if Player hits border or has already lost
 		if ((currentPos.x + 1 >= level.WIDTH) || (currentPos.y + 1 >= level.HEIGHT) || (currentPos.x <= 0) || (currentPos.y <= 0))
 		{
 			playerGameOver = true;
@@ -357,19 +359,20 @@ bool Build::runLevel()
 
 		
 		
-		printOnLevel(playerChar, currentPos.x, currentPos.y, RED_LIGHT);
+		displayPlayer();
 
-		fc::waitMs(movespeed);
-
-
+		
 		if (_kbhit())
 		{
-			if (_getch() == 27)
+			// Getting out of Run-Mode
+			if (_getch() == 27) // Escape
 			{
 				playerGameOver = true;
 			}
 		}
 
+
+		// Win
 		if (currentPos.x == level.end.x && currentPos.y == level.end.y)
 		{
 			
@@ -377,11 +380,13 @@ bool Build::runLevel()
 		}
 		
 
-		printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
+		
 		
 
 		
 	}
+
+	// Display dead Player
 	printOnLevel(playerDeadChar, currentPos.x, currentPos.y, BLUE_LIGHT);
 	fc::waitMs(movespeed * 5);
 	printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
@@ -440,6 +445,8 @@ Build::~Build()
 	
 }
 
+
+// Moves the Player and triggers new Events
 void Build::movePlayer(int xOffset, int yOffset)
 {
 	previousPos = currentPos;
@@ -464,6 +471,10 @@ void Build::movePlayer(int xOffset, int yOffset)
 	}
 }
 
-
-
+void Build::displayPlayer()
+{
+	printOnLevel(playerChar, currentPos.x, currentPos.y, RED_LIGHT);
+	fc::waitMs(movespeed);
+	printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
+}
 

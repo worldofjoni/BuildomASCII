@@ -24,6 +24,7 @@ private:
 	template <typename T>
 	void printOnLevel(T content, int x, int y, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
 
+
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
 	const fc::Color menuBarSymColor = RED, menuBarLineColor = BLUE_LIGHT;
 
@@ -34,7 +35,7 @@ private:
 	Build* build = this;
 	int fallSpeed = 3;
 	int movespeed = 100;
-
+	void displayPlayer();
 
 public:
 	Level level;
