@@ -8,26 +8,29 @@ void CustomLevelSelect::run()
 	int nameCount = fileManager.getCustomLvlNames(names);
 	int gap = 2;
 
-	Pos start = { 1, 1 };
+	Pos start = { 4, 4 };
 	Pos current = { start.x - 1, start.y };
 
 	writeAt(start, createCustomButton.word.c_str());
 
 	for (int i = 1; i <= nameCount; i++)
 	{
-		writeAt({ start.x, start.y + gap * i }, names[i].c_str());
+		writeAt({ start.x, start.y + gap * i }, names[i - 1].c_str());
 	}
 
 
 
 
 	fc::hideCursor();
-	gotoxy(current.x, current.y);
-	std::cout << '>';
 
 	printScreen();
 
+	gotoxy(current.x, current.y);
+	std::cout << '>';
 
+
+
+	
 	while (true)
 	{
 		if (_kbhit())
@@ -46,10 +49,11 @@ void CustomLevelSelect::run()
 					build.run();
 				}
 
+				return;
 				// reinit screen
-				printScreen();
+				/*printScreen();
 				x = 0;
-				input = 0;
+				input = 0;*/
 
 			}
 
@@ -82,7 +86,7 @@ void CustomLevelSelect::run()
 			}
 
 
-
+			gotoxy(current.x, current.y);
 			std::cout << ' ';
 
 			current.y = start.y + (x * gap);
