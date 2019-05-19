@@ -11,10 +11,10 @@ class Cursor;
 enum Direction
 {
 	NONE = 0,
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
+	UP = 3,
+	DOWN = 2,
+	LEFT = -1,
+	RIGHT = 1,
 };
 
 class Build : public Screen
@@ -23,6 +23,7 @@ private:
 
 	template <typename T>
 	void printOnLevel(T content, int x, int y, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
+
 
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
 	const fc::Color menuBarSymColor = RED, menuBarLineColor = BLUE_LIGHT;
@@ -33,7 +34,8 @@ private:
 	// for runLevel
 	Build* build = this;
 	int fallSpeed = 3;
-
+	int movespeed = 100;
+	void displayPlayer();
 
 public:
 	Level level;
