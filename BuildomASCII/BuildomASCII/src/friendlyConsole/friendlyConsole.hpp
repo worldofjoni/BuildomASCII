@@ -76,10 +76,10 @@ namespace fc {
 	void clearScreen(Color color);
 	void setTitle(const char name[]);
 	void setCursorPos(int x, int y);
-	void setWindowSizePX(int with, int height); //size in Pixel (shouldn't use)
-	void setWindowSize(int with, int height);	//Size in characters (when Font=Rasterschrift; FontSize=8x8)
+	void setWindowSizePX(int width, int height); //size in Pixel (shouldn't use)
+	void setWindowSize(int width, int height, bool disableScrolling = true);	//Size in characters (when Font=Rasterschrift; FontSize=8x8)
 	void setWindowPos(int x, int y);
-	void setFontSize(int with, int height = 0); // experimental
+	void setFontSize(int width, int height = 0); // experimental
 	int getRandom(int min, int max);
 	void waitMs(int ms);
 	void waitMsWithInterupt(int ms, bool(*func)());

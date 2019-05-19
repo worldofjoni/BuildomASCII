@@ -98,19 +98,34 @@ namespace fc {
 	}
 
 	// sets the size of the window in pixel
-	void setWindowSizePX(int with, int height)
+	void setWindowSizePX(int width, int height)
 	{
 		RECT r;
 		GetWindowRect(hWindow, &r);
-		MoveWindow(hWindow, r.left, r.top, with, height, false);
+		MoveWindow(hWindow, r.left, r.top, width, height, false);
 	}
 
-	// sets the size of the window in chars
-	void setWindowSize(int with, int height)
+	// sets the size of the window in chars (and disables Scrolling)
+	void setWindowSize(int width, int height, bool disableScrolling)
 	{
-		with = (with * 40 + 184)/5;
-		height = (height * 40 + 212)/5;
-		setWindowSizePX(with, height);
+		if (disableScrolling)
+		{
+			int width_ = (width * 8 +16);
+			int height_ = (height * 40 + 212) / 5;
+			setWindowSizePX(width_, height_);
+
+			COORD coord;
+			coord.X = width;
+			coord.Y = height;
+			SetConsoleScreenBufferSize(hStdOut, coord);
+
+		}
+		else
+		{
+			width = (width * 40 + 184)/5;
+			height = (height * 40 + 212)/5;
+			setWindowSizePX(width, height);
+		}
 	}
 
 	// sets the pos of the window
@@ -122,13 +137,13 @@ namespace fc {
 	}
 
 	// sets te size of each character (in pixels)
-	void setFontSize(int with, int height)
+	void setFontSize(int width, int height)
 	{
 		CONSOLE_FONT_INFOEX info;
 		info.cbSize = sizeof(CONSOLE_FONT_INFOEX);
 		GetCurrentConsoleFontEx(hStdOut, true, &info);
 		info.dwFontSize.Y = height;
-		info.dwFontSize.X = with;
+		info.dwFontSize.X = width;
 		SetCurrentConsoleFontEx(hStdOut, false, &info);
 	}
 
@@ -162,7 +177,7 @@ namespace fc {
 		}
 	}
 
-	// overrides the given variables with the actual cursor Position
+	// overrides the given variables width the actual cursor Position
 	void getCursorPosition(int& x, int& y)
 	{
 		CONSOLE_SCREEN_BUFFER_INFO info;
@@ -191,7 +206,7 @@ namespace fc {
 		
 	}
 
-	// beeps with Note as freq, default duration 300
+	// beeps width Note as freq, default duration 300
 	void beep(int freq, int duration)
 	{
 		Beep(freq, duration);
