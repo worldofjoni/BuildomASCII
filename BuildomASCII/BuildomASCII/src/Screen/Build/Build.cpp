@@ -17,6 +17,7 @@ void Build::printOnLevel(T content, int x, int y, fc::Color color, fc::Color bac
 }
 
 
+
 // Constructor with content init
 Build::Build(Level level, bool asEditor)
 	:level(level), isEditor(asEditor)
@@ -300,12 +301,14 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 	return false;
 }
 
+
+// Runs the Level after build-mode
 bool Build::runLevel()
 {
 	currentPos = { level.start.x, level.start.y };
 	playerGameOver = false;
 	playerDirection = RIGHT;
-	
+	displayPlayer();
 
 	int repeats;
 
@@ -313,38 +316,28 @@ bool Build::runLevel()
 	{
 		repeats = 0;
 
-		/*while (level.map[currentPos.x][currentPos.y]->id != previousElementID)
-		{
-			level.map[currentPos.x][currentPos.y]->steppedIn(build);
-			previousElementID = level.map[currentPos.x][currentPos.y]->id;
-		}*/
-		
-
-		
-		if (playerDirection == RIGHT)
-			movePlayer(1, 0);
-
-		else if (playerDirection == LEFT)
-			movePlayer(-1, 0);
+		movePlayer(playerDirection, 0);
 
 		
 
 		do
 		{
-
-			if (currentPos.x + 1 >= level.WIDTH || currentPos.y + 1 >= level.HEIGHT || currentPos.x <= 0 || currentPos.y <= 0 || playerGameOver)
+			// Check if Player hits border or has already lost
+			if ((currentPos.x + 1 >= level.WIDTH) || (currentPos.y + 1 >= level.HEIGHT) || (currentPos.x <= 0) || (currentPos.y <= 0) || (playerGameOver))
 			{
 				playerGameOver = true;
 				repeats = fallSpeed;
 				continue;
 			}
 
-
+			// Win
 			if (currentPos.x == level.end.x && currentPos.y == level.end.y)
 			{
 
 				return true;
 			}
+
+			// Falling
 			if (level.map[currentPos.x][currentPos.y + 1]->fallable)
 			{
 				movePlayer(0, 1);
@@ -354,9 +347,9 @@ bool Build::runLevel()
 
 
 
-		} while (repeats < fallSpeed); 
+		} while (repeats < fallSpeed); // Check after every falling for fallSpeed-reapeats
 
-
+		// Check if Player hits border or has already lost
 		if ((currentPos.x + 1 >= level.WIDTH) || (currentPos.y + 1 >= level.HEIGHT) || (currentPos.x <= 0) || (currentPos.y <= 0))
 		{
 			playerGameOver = true;
@@ -366,19 +359,20 @@ bool Build::runLevel()
 
 		
 		
-		printOnLevel(playerChar, currentPos.x, currentPos.y, RED_LIGHT);
+		displayPlayer();
 
-		fc::waitMs(100);
-
-
+		
 		if (_kbhit())
 		{
-			if (_getch() == 27)
+			// Getting out of Run-Mode
+			if (_getch() == 27) // Escape
 			{
 				playerGameOver = true;
 			}
 		}
 
+
+		// Win
 		if (currentPos.x == level.end.x && currentPos.y == level.end.y)
 		{
 			
@@ -386,13 +380,15 @@ bool Build::runLevel()
 		}
 		
 
-		printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
+		
 		
 
 		
 	}
+
+	// Display dead Player
 	printOnLevel(playerDeadChar, currentPos.x, currentPos.y, BLUE_LIGHT);
-	fc::waitMs(500);
+	fc::waitMs(movespeed * 5);
 	printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
 	return false;
 }
@@ -449,6 +445,8 @@ Build::~Build()
 	
 }
 
+
+// Moves the Player and triggers new Events
 void Build::movePlayer(int xOffset, int yOffset)
 {
 	previousPos = currentPos;
@@ -456,7 +454,14 @@ void Build::movePlayer(int xOffset, int yOffset)
 	previousLowerElementID = level.map[currentPos.x][currentPos.y + 1]->id;
 	currentPos.x += xOffset;
 	currentPos.y += yOffset;
-	if(currentPos.y + 1 < level.HEIGHT) level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
+	if (currentPos.y + 1 < level.HEIGHT)
+	{
+		if (level.map[currentPos.x][currentPos.y ]->id == 2 || level.map[currentPos.x][currentPos.y]->id == 3)
+		{
+			level.map[currentPos.x][currentPos.y]->steppedIn(build);
+		}
+		level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
+	}
 	while (level.map[currentPos.x][currentPos.y]->id != previousElementID )
 	{
 		level.map[currentPos.x][currentPos.y]->steppedIn(build);
@@ -466,6 +471,10 @@ void Build::movePlayer(int xOffset, int yOffset)
 	}
 }
 
-
-
+void Build::displayPlayer()
+{
+	printOnLevel(playerChar, currentPos.x, currentPos.y, RED_LIGHT);
+	fc::waitMs(movespeed);
+	printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
+}
 
