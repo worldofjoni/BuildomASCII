@@ -5,8 +5,8 @@
 #include <fstream>
 #include "Position/Pos.h"
 
-enum LevelType {STORY = 0, CUSTOM = 1};
 
+enum LevelType {STORY = 0, CUSTOM = 1};
 
 class BdalManager
 {
@@ -30,9 +30,9 @@ private:
 	int currentElementChar;
 
 	int nameCount;
+	void addCustomName(std::string name);
 
 public:
-	void addCustomName(std::string name);
 	int getCustomLvlNames(std::string nameList[100]);
 	BdalManager();
 	Level getLevel(std::string levelName, LevelType levelType);

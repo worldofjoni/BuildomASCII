@@ -150,12 +150,6 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName)
 		return false;
 	}
 
-
-	
-	
-
-
-
 	writeStream.open(advPath);
 
 
