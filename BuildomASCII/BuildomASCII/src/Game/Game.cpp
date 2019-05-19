@@ -24,6 +24,7 @@ void Game::run()
 // Does setup stuff like screensize etc.
 void Game::setup()
 {
+	fc::setTitle("Buildom ASCII");
 	fc::setWindowSize(Screen::WIDTH, Screen::HEIGHT);
 	fc::clearScreen(Screen::defaultBackgroundColor);
 	fc::setTextColor(Screen::defaultTextColor);

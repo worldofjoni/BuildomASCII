@@ -15,6 +15,7 @@ void Screen::printScreen()
 		}
 		std::cout << std::endl;
 	}
+	fc::setCursorPos(0, 0);
 }
 
 void Screen::setBlank()

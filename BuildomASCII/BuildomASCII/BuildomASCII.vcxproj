@@ -88,6 +88,15 @@
     <ClInclude Include="src\Screen\Screen.h" />
     <ClInclude Include="src\Screen\StartScreen\StartScreen.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon\resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon\Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\resource.aps" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{183DDEDF-D0C4-4040-A031-F96622207B48}</ProjectGuid>

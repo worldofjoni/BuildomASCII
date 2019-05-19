@@ -28,7 +28,6 @@ void Credits::run()
 	writeAt(exitBut, exitButton.word.c_str());
 
 	printScreen();
-
 	while (true)
 	{
 		if (_kbhit())
