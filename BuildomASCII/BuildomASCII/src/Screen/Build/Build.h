@@ -11,10 +11,10 @@ class Cursor;
 enum Direction
 {
 	NONE = 0,
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
+	UP = 3,
+	DOWN = 2,
+	LEFT = -1,
+	RIGHT = 1,
 };
 
 class Build : public Screen

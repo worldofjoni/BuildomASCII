@@ -313,19 +313,7 @@ bool Build::runLevel()
 	{
 		repeats = 0;
 
-		/*while (level.map[currentPos.x][currentPos.y]->id != previousElementID)
-		{
-			level.map[currentPos.x][currentPos.y]->steppedIn(build);
-			previousElementID = level.map[currentPos.x][currentPos.y]->id;
-		}*/
-		
-
-		
-		if (playerDirection == RIGHT)
-			movePlayer(1, 0);
-
-		else if (playerDirection == LEFT)
-			movePlayer(-1, 0);
+		movePlayer(playerDirection, 0);
 
 		
 
@@ -456,7 +444,14 @@ void Build::movePlayer(int xOffset, int yOffset)
 	previousLowerElementID = level.map[currentPos.x][currentPos.y + 1]->id;
 	currentPos.x += xOffset;
 	currentPos.y += yOffset;
-	if(currentPos.y + 1 < level.HEIGHT) level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
+	if (currentPos.y + 1 < level.HEIGHT)
+	{
+		if (level.map[currentPos.x][currentPos.y ]->id == 2 || level.map[currentPos.x][currentPos.y]->id == 3)
+		{
+			level.map[currentPos.x][currentPos.y]->steppedIn(build);
+		}
+		level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
+	}
 	while (level.map[currentPos.x][currentPos.y]->id != previousElementID )
 	{
 		level.map[currentPos.x][currentPos.y]->steppedIn(build);
