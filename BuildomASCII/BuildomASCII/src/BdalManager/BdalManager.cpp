@@ -1,6 +1,42 @@
 #include "pch/pch.h"
 #include "BdalManager.h"
 
+void BdalManager::addCustomName(std::string name)
+{
+
+	std::string customNames[100];
+	nameCount = getCustomLvlNames(customNames);
+	customNames[nameCount] = name;
+	nameCount++;
+
+	writeStream.open(cNamePath);
+	writeStream << nameCount << std::endl;
+
+	for (int i = 0; i < nameCount; i++)
+	{
+		writeStream << customNames[i] << std::endl;
+	}
+	writeStream.close();
+
+}
+
+int BdalManager::getCustomLvlNames(std::string nameList[100])
+{
+	
+
+
+	readStream.open(cNamePath);
+	readStream >> nameCount;
+
+	for (int i = 0; i < nameCount; i++)
+	{
+		readStream >> nameList[i];
+	}
+
+	readStream.close();
+	return nameCount;
+}
+
 BdalManager::BdalManager()
 {
 }
@@ -153,5 +189,7 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName)
 
 
 	writeStream.close();
+
+	addCustomName(cusLvlName);
 	return true;
 }

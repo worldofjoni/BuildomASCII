@@ -1,8 +1,6 @@
 #include "pch/pch.h"
 #include "PlayCustomButton.h"
-
-// for LevelEditor
-#include "Screen/LevelEditor/LevelEditor.h"
+#include "Screen/CustomLevelSelect/CustomLevelSelect.h" // Hier hätte es doch gereicht
 
 
 PlayCustomButton::PlayCustomButton()
@@ -13,10 +11,8 @@ PlayCustomButton::PlayCustomButton()
 
 int PlayCustomButton::run()
 {
-	// Level Editor
-	
-	LevelEditor levelEditor;
-	levelEditor.run();
+	CustomLevelSelect levelSelect;
+	levelSelect.run();
 	
 
 	return 0;

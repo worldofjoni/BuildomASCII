@@ -93,6 +93,12 @@
     <ClCompile Include="src\BdalManager\BdalManager.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\Screen\CustomLevelSelect\CustomLevelSelect.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Button\CreateNewCustomButton\CreateNewCustomButton.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
@@ -171,6 +177,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\BdalManager\BdalManager.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Screen\CustomLevelSelect\CustomLevelSelect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Button\CreateNewCustomButton\CreateNewCustomButtom.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

@@ -29,7 +29,7 @@ int PlayStoryButton::run()
 
 
 
-	Build build(filemanager.getLevel("first", LevelType::CUSTOM));
+	Build build(filemanager.getLevel("1", LevelType::STORY));
 
 	build.run();
 
