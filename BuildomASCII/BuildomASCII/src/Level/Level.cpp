@@ -64,6 +64,11 @@ void Level::setStartEnd(Pos start, Pos end)
 
 }
 
+LevelElement* Level::at(Pos pos)
+{
+	return map[pos.x][pos.y];
+}
+
 
 // destructor
 Level::~Level()

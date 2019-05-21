@@ -22,7 +22,7 @@ class Build : public Screen
 private:
 
 	template <typename T>
-	void printOnLevel(T content, int x, int y, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
+	void printOnLevel(T content, Pos pos, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
 
 
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
@@ -50,7 +50,7 @@ public:
 	bool runLevel();
 	
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
-	void placeOnLevelAt(LevelElement*& element, int x, int y);
+	void placeOnLevelAt(LevelElement*& element, Pos pos);
 
 	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(true), new Solid(true), new SlopeUp(true), new SlopeDown(true), new ChangeDir(true), new Spike(true) };// has to be manualy updated ############################################################
 	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################

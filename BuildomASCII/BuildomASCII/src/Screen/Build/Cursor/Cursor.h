@@ -12,7 +12,7 @@ private:
 	Level * level;
 public:
 	Cursor(Level* level);
-	int x , y;
+	Pos pos;
 	void move(Direction dir);
 	bool isVisable = true; // if cursor is visible
 	char symbol = 'x';

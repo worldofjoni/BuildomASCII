@@ -5,8 +5,8 @@
 Cursor::Cursor(Level* level)
 	:level(level)
 {
-	x = level->start.x;
-	y = level->start.y;
+	pos.x = level->start.x;
+	pos.y = level->start.y;
 }
 
 // Moves Cursor in direction
@@ -17,20 +17,20 @@ void Cursor::move(Direction dir)
 	case NONE:
 		break;
 	case UP:
-		if (y > 0)
-			y--;
+		if (pos.y > 0)
+			pos.y--;
 		break;
 	case DOWN:
-		if (y < level->HEIGHT - 1)
-			y++;
+		if (pos.y < level->HEIGHT - 1)
+			pos.y++;
 		break;
 	case LEFT:
-		if (x > 0)
-			x--;
+		if (pos.x > 0)
+			pos.x--;
 		break;
 	case RIGHT:
-		if (x < level->WIDTH - 1)
-			x++;
+		if (pos.x < level->WIDTH - 1)
+			pos.x++;
 		break;
 	default:
 		break;

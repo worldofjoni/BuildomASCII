@@ -25,6 +25,7 @@
     <ClCompile Include="src\Button\PlayCustomButton\PlayCustomButton.cpp" />
     <ClCompile Include="src\LevelElement\ChangeDir\ChangeDir.cpp" />
     <ClCompile Include="src\LevelElement\Spike\Spike.cpp" />
+    <ClCompile Include="src\Position\Pos.cpp" />
     <ClCompile Include="src\Screen\Credits\Credits.cpp" />
     <ClCompile Include="src\Button\Button.cpp" />
     <ClCompile Include="src\Button\CreditsButton\CreditsButton.cpp" />

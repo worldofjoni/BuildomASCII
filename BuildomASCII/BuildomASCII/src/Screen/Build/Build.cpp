@@ -7,9 +7,9 @@
 
 // prints content at x|y whit color on Screen
 template <typename T>
-void Build::printOnLevel(T content, int x, int y, fc::Color color, fc::Color backgroundColor)
+void Build::printOnLevel(T content, Pos pos, fc::Color color, fc::Color backgroundColor)
 {
-	fc::setCursorPos(x + 1, y + 1); // +1 is offset for Frame
+	fc::setCursorPos(pos.x + 1, pos.y + 1); // +1 is offset for Frame
 	fc::setBackgroundColor(backgroundColor);
 	fc::setTextColor(color);
 	std::cout << content;
@@ -57,8 +57,8 @@ Build::Build(Level level, bool asEditor)
 	{
 		for (int y = 0; y < this->level.HEIGHT; y++)
 		{
-			content[x + 1][y + 1].content = this->level.map[x][y]->symbol;
-			content[x + 1][y + 1].textColor = this->level.map[x][y]->color;
+			content[x + 1][y + 1].content = this->level.at({ x, y })->symbol;
+			content[x + 1][y + 1].textColor = this->level.at({ x, y })->color;
 			content[x + 1][y + 1].backgroundColor = this->defaultBackgroundColor;
 		}
 	}
@@ -128,77 +128,56 @@ Build::Build(Level level, bool asEditor)
 		menuPos = writeAt(menuPos, " [.] : Ziel ");
 	}
 
+	printScreen();
 
 }
 
 
 void Build::run()
 {
-	
-
-	
 	LevelElement *setElement = nullptr; // Elemet player can set on screen
 	Direction dir = NONE;
 	Cursor cursor(&level);
 	bool enteredRun = false;
-	printScreen();
-
 
 	
-	while (true)
+	while (true) // Build loop
 	{
-		if (_kbhit())
+		if (_kbhit()) // when key gets pressed
 		{
-			if (keyHandeling(setElement, dir, cursor)) return;
+			if (keyHandeling(setElement, dir, cursor)) return; // leaves editor when e.g. ESC hit or run successfully
 
+			// if there is a new element...
+			if (setElement != nullptr) placeOnLevelAt(setElement, cursor.pos); // place element in level object
 
-
-
-			// if a new Element should be set...
-			if (setElement != nullptr)
-			{
-				placeOnLevelAt(setElement, cursor.x, cursor.y);
-			}
-			
-
-			// deleting old
-			printOnLevel(level.map[cursor.x][cursor.y]->symbol, cursor.x, cursor.y, level.map[cursor.x][cursor.y]->color);
+			// overprint old element
+			printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color);
 
 			cursor.move(dir);
 
-			// printing new
-			printOnLevel(cursor.symbol, cursor.x, cursor.y, cursor.color);
-			
-			
-
+			// print cursor 
+			printOnLevel(cursor.symbol, cursor.pos, cursor.color);
 		}
-		else
+		else // cursor blinks only when not moveing
 		{
-			// only blinking when not moving
+			if (cursor.isVisable)
+			{	// print cursor
+				printOnLevel(cursor.symbol, cursor.pos, cursor.color);
+			}
+			else
+			{	// print current element
+				printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color);
+			}
 
-
-			// Prints cursor or not for blinking
-			printOnLevel((cursor.isVisable ? cursor.symbol : level.map[cursor.x][cursor.y]->symbol), cursor.x, cursor.y, (cursor.isVisable ? cursor.color : level.map[cursor.x][cursor.y]->color));
-
-
+			
 		}
-
 		dir = NONE;
 
-		
 
-		
+		fc::waitMsWithInterupt(500, []() { return (bool)_kbhit(); }); // waits 500ms ore until key is pressed
 
-		fc::waitMsWithInterupt(500, []() { return (bool)_kbhit(); }); // waits 500ms
-
-		cursor.isVisable = !cursor.isVisable;
-
+		cursor.isVisable = !cursor.isVisable; // alternate cursor visibility
 	}
-
-
-	
-
-
 }
 
 bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor cursor)
@@ -240,7 +219,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 	case 13: // Space
 		if (isEditor) return true;
 		
-		printOnLevel(level.map[cursor.x][cursor.y]->symbol, cursor.x, cursor.y, level.map[cursor.x][cursor.y]->color);
+		printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color);
 
 		if (runLevel()) return true;
 		break;
@@ -257,16 +236,16 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 		break;
 	}
 	
-	if (isEditor && level.map[cursor.x][cursor.y]->deletable)
+	if (isEditor && level.at(cursor.pos)->deletable)
 	{
 		switch (key)
 		{
 		case ',': // set Start
 			//reset old Start
-			level.map[level.start.x][level.start.y]->deletable = true;
-			level.map[level.start.x][level.start.y]->symbol = Empty::ownSym;
-			level.map[level.start.x][level.start.y]->color = Screen::defaultTextColor;
-			printOnLevel(level.map[level.start.x][level.start.y]->symbol, level.start.x, level.start.y, Screen::defaultTextColor);
+			level.at(level.start)->deletable = true;
+			level.at(level.start)->symbol = Empty::ownSym;
+			level.at(level.start)->color = Screen::defaultTextColor;
+			printOnLevel(level.at(level.start)->symbol, level.start, Screen::defaultTextColor);
 			
 			// set new ones
 			setElement = new Empty(false);
@@ -274,15 +253,14 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 			setElement->color = Build::startColor;
 
 			// update start
-			level.start.x = cursor.x;
-			level.start.y = cursor.y;
+			level.start = cursor.pos;
 			break;
 		case '.': // set End
 			//reset old end
-			level.map[level.end.x][level.end.y]->deletable = true;
-			level.map[level.end.x][level.end.y]->symbol = Empty::ownSym;
-			level.map[level.end.x][level.end.y]->color = Screen::defaultTextColor;
-			printOnLevel(level.map[level.end.x][level.end.y]->symbol, level.end.x, level.end.y, Screen::defaultTextColor);
+			level.at(level.end)->deletable = true;
+			level.at(level.end)->symbol = Empty::ownSym;
+			level.at(level.end)->color = Screen::defaultTextColor;
+			printOnLevel(level.at(level.end)->symbol, level.end, Screen::defaultTextColor);
 			
 			// set new ones
 			setElement = new Empty(false);
@@ -290,8 +268,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 			setElement->color = Build::endColor;
 
 			// update end
-			level.end.x = cursor.x;
-			level.end.y = cursor.y;
+			level.end = cursor.pos;
 			break;
 		default:
 			break;
@@ -338,7 +315,7 @@ bool Build::runLevel()
 			}
 
 			// Falling
-			if (level.map[currentPos.x][currentPos.y + 1]->fallable)
+			if (level.at(currentPos.below())->fallable)
 			{
 				movePlayer(0, 1);
 			}
@@ -387,21 +364,23 @@ bool Build::runLevel()
 	}
 
 	// Display dead Player
-	printOnLevel(playerDeadChar, currentPos.x, currentPos.y, BLUE_LIGHT);
+	printOnLevel(playerDeadChar, currentPos, BLUE_LIGHT);
 	fc::waitMs(movespeed * 5);
-	printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
+	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->color);
 	return false;
 }
 
 // checks wether a block could be placed and does so
-void Build::placeOnLevelAt(LevelElement*& element, int x, int y)
+void Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 {
 	// Handeling limited Blocks
 	int id = element->id;
+	int x = pos.x;
+	int y = pos.y;
 
-	if ((level.setElements[id] < level.maxElements[id] || level.maxElements[id] == -1) && level.map[x][y]->deletable)
+	if ((level.setElements[id] < level.maxElements[id] || level.maxElements[id] == -1) && level.at({ x, y })->deletable) // when allowed to place
 	{
-		level.setElements[level.map[x][y]->id]--; // decrement deleted
+		level.setElements[level.at({ x, y })->id]--; // decrement deleted
 
 		level.setElements[id]++; // increment new
 
@@ -410,15 +389,15 @@ void Build::placeOnLevelAt(LevelElement*& element, int x, int y)
 		fc::setTextColor(frameTextColor);
 
 		//replace number in display : old Element (unless max is empty or inf. or 0)
-		if (level.map[x][y]->id != 0 && level.maxElements[level.map[x][y]->id] != -1 && level.maxElements[level.map[x][y]->id] != 0)
+		if (level.at({ x, y })->id != 0 && level.maxElements[level.at({ x, y })->id] != -1 && level.maxElements[level.at({ x, y })->id] != 0)
 		{
 			
-			fc::setCursorPos(countPos[level.map[x][y]->id].x, countPos[level.map[x][y]->id].y);
-			std::cout << std::setw(3) << (level.maxElements[level.map[x][y]->id] - level.setElements[level.map[x][y]->id]);
+			fc::setCursorPos(countPos[level.at({ x, y })->id].x, countPos[level.at({ x, y })->id].y);
+			std::cout << std::setw(3) << (level.maxElements[level.at({ x, y })->id] - level.setElements[level.at({ x, y })->id]);
 		}
 
 		// new Element display update (unless max is empty or inf. or 0)
-		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[level.map[x][y]->id] != 0)
+		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[level.at({ x, y })->id] != 0)
 		{
 			fc::setCursorPos(countPos[id].x, countPos[id].y);
 			std::cout << std::setw(3) << (level.maxElements[id] - level.setElements[id]);
@@ -450,31 +429,31 @@ Build::~Build()
 void Build::movePlayer(int xOffset, int yOffset)
 {
 	previousPos = currentPos;
-	previousElementID = level.map[currentPos.x][currentPos.y]->id;
-	previousLowerElementID = level.map[currentPos.x][currentPos.y + 1]->id;
+	previousElementID = level.at(currentPos)->id;
+	previousLowerElementID = level.at(currentPos.below())->id;
 	currentPos.x += xOffset;
 	currentPos.y += yOffset;
 	if (currentPos.y + 1 < level.HEIGHT)
 	{
-		if (level.map[currentPos.x][currentPos.y ]->id == 2 || level.map[currentPos.x][currentPos.y]->id == 3)
+		if (level.at(currentPos)->id == 2 || level.at(currentPos)->id == 3)
 		{
-			level.map[currentPos.x][currentPos.y]->steppedIn(build);
+			level.at(currentPos)->steppedIn(build);
 		}
-		level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
+		level.at(currentPos.below())->steppedOn(build);
 	}
-	while (level.map[currentPos.x][currentPos.y]->id != previousElementID )
+	while (level.at(currentPos)->id != previousElementID )
 	{
-		level.map[currentPos.x][currentPos.y]->steppedIn(build);
-		level.map[currentPos.x][currentPos.y + 1]->steppedOn(build);
-		previousElementID = level.map[currentPos.x][currentPos.y]->id;
+		level.at(currentPos)->steppedIn(build);
+		level.at(currentPos.below())->steppedOn(build);
+		previousElementID = level.at(currentPos)->id;
 		
 	}
 }
 
 void Build::displayPlayer()
 {
-	printOnLevel(playerChar, currentPos.x, currentPos.y, RED_LIGHT);
+	printOnLevel(playerChar, currentPos, RED_LIGHT);
 	fc::waitMs(movespeed);
-	printOnLevel(level.map[currentPos.x][currentPos.y]->symbol, currentPos.x, currentPos.y, level.map[currentPos.x][currentPos.y]->color);
+	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->color);
 }
 

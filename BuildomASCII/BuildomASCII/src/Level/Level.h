@@ -10,9 +10,9 @@
 class Level
 {
 private:
+	LevelElement ***map;
 public:
 	const int WIDTH = Screen::WIDTH - 2, HEIGHT = Screen::HEIGHT - 10;
-	LevelElement ***map;
 	int maxElements[LevelElement::countOfElements] = {}; // index is id of element ; for unlimited use -1
 	int setElements[LevelElement::countOfElements] = {}; // index is id of element
 
@@ -24,6 +24,8 @@ public:
 	void placeAt(LevelElement *element, int x, int y);
 	void setMaxElements(int list[LevelElement::countOfElements]);
 	void setStartEnd(Pos start, Pos end);
+
+	LevelElement* at(Pos pos);
 
 	~Level(); // Rule of five
 	Level(const Level& other); // Copy Constructor

@@ -182,7 +182,7 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName)
 		for (int x = 0; x < level.WIDTH; x++)
 		{
 
-			writeStream << level.map[x][y]->id << std::endl;
+			writeStream << level.at({ x, y })->id << std::endl;
 		}
 		
 	}

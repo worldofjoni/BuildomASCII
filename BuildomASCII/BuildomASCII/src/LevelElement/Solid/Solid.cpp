@@ -23,13 +23,12 @@ void Solid::steppedOn(Build* build)
 // gets Called when in Block
 void Solid::steppedIn(Build* build)
 {
-	if (!build->level.map[build->previousPos.x][build->previousPos.y + 1]->fallable)
+	if (!build->level.at(build->previousPos.below())->fallable)
 		build->playerGameOver = true;
 	else
 		build->currentPos = build->previousPos;
 	
 }
-
 
 // Copys element
 Solid* Solid::clone()
