@@ -315,11 +315,9 @@ bool Build::runLevel()
 	while (!playerGameOver)
 	{
 		repeats = 0;
-
 		movePlayer(playerDirection, 0);
 
-		
-
+		// Falling
 		do
 		{
 			// Check if Player hits border or has already lost
@@ -355,9 +353,6 @@ bool Build::runLevel()
 			playerGameOver = true;
 			continue;
 		}
-
-
-		
 		
 		displayPlayer();
 
@@ -371,19 +366,12 @@ bool Build::runLevel()
 			}
 		}
 
-
 		// Win
 		if (currentPos.x == level.end.x && currentPos.y == level.end.y)
 		{
 			
 			return true; 
 		}
-		
-
-		
-		
-
-		
 	}
 
 	// Display dead Player
