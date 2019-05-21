@@ -160,7 +160,7 @@ void Build::run()
 		}
 		else // cursor blinks only when not moveing
 		{
-			if (cursor.isVisable)
+			if (cursor.isVisible)
 			{	// print cursor
 				printOnLevel(cursor.symbol, cursor.pos, cursor.color);
 			}
@@ -176,7 +176,7 @@ void Build::run()
 
 		fc::waitMsWithInterupt(500, []() { return (bool)_kbhit(); }); // waits 500ms ore until key is pressed
 
-		cursor.isVisable = !cursor.isVisable; // alternate cursor visibility
+		cursor.isVisible = !cursor.isVisible; // alternate cursor visibility
 	}
 }
 
@@ -216,7 +216,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 	case Spike::ownKey:
 		setElement = new Spike(true);
 		break;
-	case 13: // Space
+	case 13: // Enter
 		if (isEditor) return true;
 		
 		printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color);
