@@ -3,7 +3,6 @@
 #define BDALMANAGER_H
 
 #include <fstream>
-#include "Position/Pos.h"
 
 
 enum LevelType {STORY = 0, CUSTOM = 1};

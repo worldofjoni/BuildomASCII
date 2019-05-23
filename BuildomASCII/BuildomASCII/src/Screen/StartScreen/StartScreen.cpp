@@ -70,7 +70,7 @@ void StartScreen::run()
 	{
 		if (_kbhit())
 		{
-			input = _getch();
+			input = uts::getCharLow();
 
 			if (input == 32 || input == 13) {
 				if (select->run() == 1) {
