@@ -2,9 +2,9 @@
 #ifndef CUSTOM_LEVELSELECT_H
 #define CUSTOM_LEVELSELECT_H
 
-#include "Button/CreateNewCustomButton/CreateNewCustomButtom.h"
 #include "Screen/Screen.h"
 #include "BdalManager/BdalManager.h"
+#include "Button/Button.h"
 
 class CustomLevelSelect : public Screen
 {
@@ -13,7 +13,7 @@ private:
 public:
 
 	BdalManager fileManager;
-	CreateNewCustomButton createCustomButton;
+	Button createCustomButton = Button("Neues Level erstellen", Button::runCreateCustomButton);
 
 	int x = 0;
 

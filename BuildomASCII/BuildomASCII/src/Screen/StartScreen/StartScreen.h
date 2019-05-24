@@ -9,14 +9,14 @@
 class StartScreen : public Screen
 {
 private:
-
+	
 public:
 	
-	PlayStoryButton playButton = PlayStoryButton();
-	PlayCustomButton customButton =PlayCustomButton();
-	ExitButton exitButton = ExitButton();
-	CreditsButton creditsButton = CreditsButton();
-	ManualButton manualButton = ManualButton();
+	Button playButton = Button("Starten", Button::runPlayButton);
+	Button customButton = Button("Eigene Level", Button::runCustomSelectButton);
+	Button exitButton = Button("Verlassen", Button::runExitButton);
+	Button creditsButton = Button("Abspann", Button::runCreditsButton);
+	Button manualButton = Button("Hilfe", Button::runManualButton);
 
 	static const int maxSel = 5;
 	

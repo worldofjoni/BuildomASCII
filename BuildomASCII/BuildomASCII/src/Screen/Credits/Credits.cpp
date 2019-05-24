@@ -25,7 +25,7 @@ void Credits::run()
 
 	
 	writeAt(exitBut.x - 1, exitBut.y, '>');
-	writeAt(exitBut, exitButton.word.c_str());
+	writeAt(exitBut, exitButton.name.c_str());
 
 	printScreen();
 	while (true)

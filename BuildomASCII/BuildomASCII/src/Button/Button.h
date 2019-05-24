@@ -9,23 +9,21 @@ class Button
 private:
 
 public:
-	Button();
-	virtual ~Button();
+	Button(const char str[], int (*run)());
+	std::string name;
 
-	int wordSize = 0;
+	int (*run)();
+	
 
-	std::string word = "Base";
-
-	virtual int run();
+	static int runPlayButton();
+	static int runCustomSelectButton();
+	static int runExitButton();
+	static int runCreditsButton();
+	static int runManualButton();
+	static int runCreateCustomButton();
 
 };
 
-#include "Button/PlayStoryButton/PlayStoryButton.h"
-#include "Button/ExitButton/ExitButton.h"
-#include "Button/CreditsButton/CreditsButton.h"
-#include "Button/PlayCustomButton/PlayCustomButton.h"
-#include "Button/CreateNewCustomButton/CreateNewCustomButtom.h"
-#include "Button/ManualButton/ManualButton.h"
 
 
 

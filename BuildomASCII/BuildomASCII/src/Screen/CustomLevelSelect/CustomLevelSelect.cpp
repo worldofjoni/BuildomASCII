@@ -11,7 +11,7 @@ void CustomLevelSelect::run()
 	Pos start = { 4, 4 };
 	Pos current = { start.x - 1, start.y };
 
-	writeAt(start, createCustomButton.word.c_str());
+	writeAt(start, createCustomButton.name.c_str());
 
 	for (int i = 1; i <= nameCount; i++)
 	{

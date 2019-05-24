@@ -60,15 +60,6 @@
     <ClCompile Include="src\Button\Button.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="src\Button\ExitButton\ExitButton.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Button\PlayStoryButton\PlayStoryButton.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Button\CreditsButton\CreditsButton.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="src\Screen\Credits\Credits.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -81,12 +72,6 @@
     <ClCompile Include="src\Screen\LevelEditor\LevelEditor.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="src\Button\PlayCustomButton\PlayCustomButton.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Button\ManualButton\ManualButton.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="src\Screen\Manual\Manual.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -94,9 +79,6 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\Screen\CustomLevelSelect\CustomLevelSelect.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Button\CreateNewCustomButton\CreateNewCustomButton.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\Position\Pos.cpp">
@@ -146,15 +128,6 @@
     <ClInclude Include="src\Button\Button.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\Button\ExitButton\ExitButton.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Button\PlayStoryButton\PlayStoryButton.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Button\CreditsButton\CreditsButton.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="src\Screen\Credits\Credits.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -170,12 +143,6 @@
     <ClInclude Include="src\Screen\LevelEditor\LevelEditor.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\Button\PlayCustomButton\PlayCustomButton.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Button\ManualButton\ManualButton.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="src\Screen\Manual\Manual.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -183,9 +150,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Screen\CustomLevelSelect\CustomLevelSelect.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Button\CreateNewCustomButton\CreateNewCustomButtom.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

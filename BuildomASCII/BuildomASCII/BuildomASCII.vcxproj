@@ -19,18 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Button\ManualButton\ManualButton.cpp" />
     <ClCompile Include="src\BdalManager\BdalManager.cpp" />
-    <ClCompile Include="src\Button\CreateNewCustomButton\CreateNewCustomButton.cpp" />
-    <ClCompile Include="src\Button\PlayCustomButton\PlayCustomButton.cpp" />
     <ClCompile Include="src\LevelElement\ChangeDir\ChangeDir.cpp" />
     <ClCompile Include="src\LevelElement\Spike\Spike.cpp" />
     <ClCompile Include="src\Position\Pos.cpp" />
     <ClCompile Include="src\Screen\Credits\Credits.cpp" />
     <ClCompile Include="src\Button\Button.cpp" />
-    <ClCompile Include="src\Button\CreditsButton\CreditsButton.cpp" />
-    <ClCompile Include="src\Button\ExitButton\ExitButton.cpp" />
-    <ClCompile Include="src\Button\PlayStoryButton\PlayStoryButton.cpp" />
     <ClCompile Include="src\Screen\Build\Build.cpp" />
     <ClCompile Include="src\Screen\Build\Cursor\Cursor.cpp" />
     <ClCompile Include="src\friendlyConsole\friendlyConsole.cpp">
@@ -64,18 +58,12 @@
     <ClCompile Include="src\Screen\StartScreen\StartScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Button\ManualButton\ManualButton.h" />
     <ClInclude Include="src\BdalManager\BdalManager.h" />
-    <ClInclude Include="src\Button\CreateNewCustomButton\CreateNewCustomButtom.h" />
-    <ClInclude Include="src\Button\PlayCustomButton\PlayCustomButton.h" />
     <ClInclude Include="src\LevelElement\ChangeDir\ChangeDir.h" />
     <ClInclude Include="src\LevelElement\Spike\Spike.h" />
     <ClInclude Include="src\Position\Pos.h" />
     <ClInclude Include="src\Screen\Credits\Credits.h" />
     <ClInclude Include="src\Button\Button.h" />
-    <ClInclude Include="src\Button\CreditsButton\CreditsButton.h" />
-    <ClInclude Include="src\Button\ExitButton\ExitButton.h" />
-    <ClInclude Include="src\Button\PlayStoryButton\PlayStoryButton.h" />
     <ClInclude Include="src\Screen\Build\Build.h" />
     <ClInclude Include="src\Screen\Build\Cursor\Cursor.h" />
     <ClInclude Include="src\friendlyConsole\friendlyConsole.hpp" />
@@ -107,7 +95,7 @@
     <ProjectGuid>{183DDEDF-D0C4-4040-A031-F96622207B48}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>BuildomASCII</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
