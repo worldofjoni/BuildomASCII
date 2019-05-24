@@ -26,7 +26,7 @@ private:
 
 
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
-	const fc::Color menuBarSymColor = RED, menuBarLineColor = BLUE_LIGHT;
+	const fc::Color menuBarSymColor = RED, menuBarLineColor = BLUE_LIGHT, menuBarSymbolBackgroundColor = LIGHT_GRAY;
 
 	//for levelEditor
 	bool isEditor = false;
@@ -40,7 +40,7 @@ private:
 public:
 	Level level;
 	const static char startChar = '#', endChar = 'P', playerChar = 2, playerDeadChar = 1;
-	const static fc::Color startColor = MAGENTA, endColor = GREEN_LIGHT;
+	const static fc::Color startColor = MAGENTA, endColor = GREEN;
 
 	Build(Level level, bool asEditor = false);
 	void run();
@@ -52,7 +52,7 @@ public:
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
 	void placeOnLevelAt(LevelElement*& element, Pos pos);
 
-	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(true), new Solid(true), new SlopeUp(true), new SlopeDown(true), new ChangeDir(true), new Spike(true) };// has to be manualy updated ############################################################
+	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(false), new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false) };// has to be manualy updated ############################################################
 	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
 
 	// For runLevel

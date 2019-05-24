@@ -122,6 +122,9 @@ void CustomLevelSelect::run()
 CustomLevelSelect::CustomLevelSelect()
 {
 	setBlank();
+
+	Pos start = { 5, HEIGHT - 3 };
+	start = writeAt(start, "[F6] : Level bearbeiten");
 }
 
 CustomLevelSelect::~CustomLevelSelect()

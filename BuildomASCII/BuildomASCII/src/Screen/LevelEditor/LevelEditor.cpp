@@ -51,7 +51,7 @@ void LevelEditor::run()
 	for (int i = 1; i < LevelElement::countOfElements; i++) // do not ask for empty
 	{
 		fc::setCursorPos(5, 5+i);
-		std::cout << "Maximalanzahl f\x81r \"" << fc::color(levelEditor.elements[i]->color) << levelEditor.elements[i]->symbol << fc::color(levelEditor.defaultTextColor)<< "\"[" << oldMaxElements[i] <<"]: ";
+		std::cout << "Maximalanzahl f\x81r \"" << fc::color(levelEditor.elements[i]->getColor()) << levelEditor.elements[i]->symbol << fc::color(levelEditor.defaultTextColor)<< "\"[" << oldMaxElements[i] <<"]: ";
 		std::string input;
 		fc::showCursor();
 		std::getline(std::cin, input);

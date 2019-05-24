@@ -16,19 +16,6 @@ Button::Button(const char str[], int(*run)())
 int Button::runPlayButton()
 {
 	BdalManager filemanager;
-	// Test
-
-
-	/*
-	Level level;
-	level.setStartEnd({ 50, 5 }, { 90, 30 });
-	// max count of elements
-	int maxElements[LevelElement::countOfElements] = { -1, -1, -1, -1, -1 , -1};
-	level.setMaxElements(maxElements);
-	*/
-
-
-
 	Build build(filemanager.getLevel("1", LevelType::STORY));
 
 	build.run();
