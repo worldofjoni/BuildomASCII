@@ -23,15 +23,31 @@ Level::Level()
 		maxElements[i] = -1;
 	}
 
+	// init border to red bäckground
+
+	for (int x = 0; x < WIDTH; x++)
+	{
+		at({ x, 0 })->backgroundColor = Build::alarmFrameColor;
+		at({ x, HEIGHT -1 })->backgroundColor = Build::alarmFrameColor;
+	}
 	
+	for (int y = 0; y < HEIGHT; y++)
+	{
+		at({ 0, y })->backgroundColor = Build::alarmFrameColor;
+		at({ WIDTH -1,y })->backgroundColor = Build::alarmFrameColor;
+	}
 
 }
 
 
 // replaces Element at position (with deleation)
-void Level::placeAt(LevelElement *element, int x, int y)
+void Level::placeAt(LevelElement* element, int x, int y)
 {
-	
+	// check for Border and set alarmColor
+	Pos pos = { x,y };
+	if (pos.isOnLevelBorder()) element->backgroundColor = Build::alarmFrameColor;
+
+
 	delete map[x][y];
 	map[x][y] = element;
 	element = nullptr;

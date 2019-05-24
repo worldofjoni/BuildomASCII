@@ -6,6 +6,7 @@ struct Pos
 {
 	int x, y;
 	Pos below();
+	bool isOnLevelBorder();
 };
 
 

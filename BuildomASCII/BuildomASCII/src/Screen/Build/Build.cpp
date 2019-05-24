@@ -59,7 +59,7 @@ Build::Build(Level level, bool asEditor)
 		{
 			content[x + 1][y + 1].content = this->level.at({ x, y })->symbol;
 			content[x + 1][y + 1].textColor = this->level.at({ x, y })->color;
-			content[x + 1][y + 1].backgroundColor = this->defaultBackgroundColor;
+			content[x + 1][y + 1].backgroundColor = this->level.at({ x,y })->backgroundColor;
 		}
 	}
 
@@ -151,7 +151,7 @@ void Build::run()
 			if (setElement != nullptr) placeOnLevelAt(setElement, cursor.pos); // place element in level object
 
 			// overprint old element
-			printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color);
+			printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color, level.at(cursor.pos)->backgroundColor);
 
 			cursor.move(dir);
 
@@ -166,7 +166,7 @@ void Build::run()
 			}
 			else
 			{	// print current element
-				printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color);
+				printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color, level.at(cursor.pos)->backgroundColor);
 			}
 
 			
@@ -224,7 +224,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 	case 13: // Enter
 		if (isEditor) return true;
 		
-		printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color);
+		printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color, level.at(cursor.pos)->backgroundColor);
 
 		if (runLevel()) return true;
 		break;
@@ -241,7 +241,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 		break;
 	}
 	
-	if (isEditor && level.at(cursor.pos)->deletable)
+	if (isEditor && level.at(cursor.pos)->deletable && !cursor.pos.isOnLevelBorder())
 	{
 		switch (key)
 		{
@@ -357,9 +357,9 @@ bool Build::runLevel()
 	}
 
 	// Display dead Player
-	printOnLevel(playerDeadChar, currentPos, BLUE_LIGHT);
+	printOnLevel(playerDeadChar, currentPos, BLUE_LIGHT, level.at(currentPos)->backgroundColor);
 	fc::waitMs(movespeed * 5);
-	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->color);
+	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->color, level.at(currentPos)->backgroundColor);
 	return false;
 }
 

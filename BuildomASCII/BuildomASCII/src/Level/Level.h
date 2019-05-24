@@ -12,7 +12,7 @@ class Level
 private:
 	LevelElement ***map;
 public:
-	const int WIDTH = Screen::WIDTH - 2, HEIGHT = Screen::HEIGHT - 10;
+	static const int WIDTH = Screen::WIDTH - 2, HEIGHT = Screen::HEIGHT - 10;
 	int maxElements[LevelElement::countOfElements] = {}; // index is id of element ; for unlimited use -1
 	int setElements[LevelElement::countOfElements] = {}; // index is id of element
 

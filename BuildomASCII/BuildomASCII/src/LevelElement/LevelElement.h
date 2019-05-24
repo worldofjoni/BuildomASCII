@@ -20,6 +20,7 @@ public:
 
 	virtual LevelElement* clone() = 0; // copy function
 	fc::Color color;
+	fc::Color backgroundColor = Screen::defaultBackgroundColor;
 	static const int countOfElements = 6; // num of different element, hs to be manualy updated ###############################
 
 };
