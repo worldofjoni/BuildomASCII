@@ -71,7 +71,7 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 
 	if (!readStream.is_open())
 	{
-		std::cout << "ERROR";
+		std::cerr << "ERROR";
 		return level;
 	}
 
