@@ -3,7 +3,6 @@
 #define LEVEL_ELEMENT_H
 
 #include "pch/pch.h"
-#include "Position/Pos.h"
 #include "Screen/Build/Build.h"
 
 class Build;

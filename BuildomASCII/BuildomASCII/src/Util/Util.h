@@ -1,6 +1,6 @@
 #pragma once
-#ifndef POS_H
-#define POS_H
+#ifndef Util_h
+#define Util_h
 
 struct Pos
 {
