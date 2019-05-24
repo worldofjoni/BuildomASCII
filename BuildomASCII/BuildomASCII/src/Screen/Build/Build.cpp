@@ -184,18 +184,23 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 {
 
 	int key = _getch();
+	if (key == -32) key = _getch();
 	switch (key)
 	{
 	case 'w':
+	case 72:
 		dir = UP;
 		break;
 	case 'a':
+	case 75:
 		dir = LEFT;
 		break;
 	case 's':
+	case 80:
 		dir = DOWN;
 		break;
 	case 'd':
+	case 77:
 		dir = RIGHT;
 		break;
 	case Solid::ownKey:

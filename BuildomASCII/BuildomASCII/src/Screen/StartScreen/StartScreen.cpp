@@ -74,6 +74,7 @@ void StartScreen::run()
 		if (_kbhit())
 		{
 			input = _getch();
+			if (input == -32) input = _getch();
 
 			if (input == 32 || input == 13) {
 				if (select->run() == 1) {
@@ -92,6 +93,7 @@ void StartScreen::run()
 			switch (input)
 			{
 			case 'w':
+			case 72:
 				if (curSel > 0)
 				{
 					curSel--;
@@ -99,15 +101,18 @@ void StartScreen::run()
 			
 				break;
 			case 'a':
+			case 75:
 
 				break;
 			case 's':
+			case 80:
 				if (curSel < maxSel -1)
 				{
 					curSel++;
 				}
 				break;
 			case 'd':
+			case 77:
 
 				break;
 			case 27:

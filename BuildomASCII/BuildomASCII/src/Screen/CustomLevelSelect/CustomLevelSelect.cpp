@@ -36,6 +36,7 @@ void CustomLevelSelect::run()
 		if (_kbhit())
 		{
 			input = _getch();
+			if (input == -32) input = _getch();
 
 			if (input == 32 || input == 13)
 			{
@@ -60,6 +61,7 @@ void CustomLevelSelect::run()
 			switch (input)
 			{
 			case 'w':
+			case 72:
 				if (x > 0)
 				{
 					x--;
@@ -67,15 +69,18 @@ void CustomLevelSelect::run()
 
 				break;
 			case 'a':
+			case 75:
 
 				break;
 			case 's':
+			case 80:
 				if (x < nameCount)
 				{
 					x++;
 				}
 				break;
 			case 'd':
+			case 77:
 
 				break;
 			case 27:

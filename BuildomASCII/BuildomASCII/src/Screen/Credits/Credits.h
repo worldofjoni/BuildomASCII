@@ -8,7 +8,7 @@
 class Credits : public Screen
 {
 public:
-	Button exitButton = Button("hello", Button::runExitButton);
+	Button exitButton = Button("Verlassen", Button::runExitButton);
 
 	Credits();
 	virtual ~Credits();
