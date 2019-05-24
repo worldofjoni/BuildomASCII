@@ -73,7 +73,7 @@ void StartScreen::run()
 	{
 		if (_kbhit())
 		{
-			input = _getch();
+			input = getCharLow();
 
 			if (input == 32 || input == 13) {
 				if (select->run() == 1) {

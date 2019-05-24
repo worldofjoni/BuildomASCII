@@ -5,3 +5,17 @@ Pos Pos::below()
 {
 	return { x, y + 1 };
 }
+
+char getCharLow()
+{
+	char input = 0;
+	input = _getch();
+	if (input >= 0)
+	{
+		if (isupper(input) && isalpha(input))
+		{
+			input = _tolower(input);
+		}
+	}
+	return input;
+}

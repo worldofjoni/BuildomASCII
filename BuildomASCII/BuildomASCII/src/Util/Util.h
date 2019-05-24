@@ -8,4 +8,7 @@ struct Pos
 	Pos below();
 };
 
+
+char getCharLow();
+
 #endif // !POS_H

@@ -183,7 +183,7 @@ void Build::run()
 bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor cursor)
 {
 
-	int key = _getch();
+	int key = getCharLow();
 	switch (key)
 	{
 	case 'w':
@@ -337,7 +337,7 @@ bool Build::runLevel()
 		if (_kbhit())
 		{
 			// Getting out of Run-Mode
-			if (_getch() == 27) // Escape
+			if (getCharLow() == 27) // Escape
 			{
 				playerGameOver = true;
 			}
