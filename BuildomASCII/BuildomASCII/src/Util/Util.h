@@ -1,11 +1,14 @@
 #pragma once
-#ifndef POS_H
-#define POS_H
+#ifndef Util_h
+#define Util_h
 
 struct Pos
 {
 	int x, y;
 	Pos below();
 };
+
+
+char getCharLow();
 
 #endif // !POS_H

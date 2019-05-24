@@ -81,7 +81,7 @@
     <ClCompile Include="src\Screen\CustomLevelSelect\CustomLevelSelect.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="src\Position\Pos.cpp">
+    <ClCompile Include="src\Util\Util.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -131,9 +131,6 @@
     <ClInclude Include="src\Screen\Credits\Credits.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\Position\Pos.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="src\LevelElement\ChangeDir\ChangeDir.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -150,6 +147,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Screen\CustomLevelSelect\CustomLevelSelect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Util\Util.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

@@ -32,7 +32,7 @@ void Credits::run()
 	{
 		if (_kbhit())
 		{
-			char c = _getch();
+			char c = getCharLow();
 			if (c == 27 || c == 13 || c == ' ') return;
 		}
 	}

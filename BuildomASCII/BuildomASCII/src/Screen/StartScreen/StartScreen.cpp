@@ -68,12 +68,11 @@ void StartScreen::run()
 
 	gotoxy(currentPos.x, currentPos.y);
 	std::cout << '>';
-	gotoxy(0, 0);
 	while (true)
 	{
 		if (_kbhit())
 		{
-			input = _getch();
+			input = getCharLow();
 			if (input == -32) input = _getch();
 
 			if (input == 32 || input == 13) {
@@ -84,9 +83,9 @@ void StartScreen::run()
 				{
 					// reinit screen
 					printScreen();
-					select = &playButton;
-					curSel = 0;
 					input = 0;
+					gotoxy(currentPos.x, currentPos.y);
+					std::cout << '>';
 				}
 			}
 
@@ -151,7 +150,6 @@ void StartScreen::run()
 			currentPos.y = startPos.y + (curSel * gap);
 			gotoxy(currentPos.x, currentPos.y);
 			std::cout << '>';
-			gotoxy(0, 0);
 			
 		}
 

@@ -35,7 +35,7 @@ void CustomLevelSelect::run()
 	{
 		if (_kbhit())
 		{
-			input = _getch();
+			input = getCharLow();
 			if (input == -32) input = _getch();
 
 			if (input == 32 || input == 13)
