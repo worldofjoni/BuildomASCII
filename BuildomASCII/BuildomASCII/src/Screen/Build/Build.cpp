@@ -139,6 +139,7 @@ void Build::run()
 	Direction dir = NONE;
 	Cursor cursor(&level);
 	bool enteredRun = false;
+	bool elementPlaced = false;
 
 	
 	while (true) // Build loop
@@ -148,7 +149,11 @@ void Build::run()
 			if (keyHandeling(setElement, dir, cursor)) return; // leaves editor when e.g. ESC hit or run successfully
 
 			// if there is a new element...
-			if (setElement != nullptr) placeOnLevelAt(setElement, cursor.pos); // place element in level object
+			if (setElement != nullptr)
+			{
+				elementPlaced = placeOnLevelAt(setElement, cursor.pos); // place element in level object
+				cursor.isVisible = !elementPlaced;
+			}
 
 			// overprint old element
 			printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
@@ -156,7 +161,8 @@ void Build::run()
 			cursor.move(dir);
 
 			// print cursor 
-			printOnLevel(cursor.symbol, cursor.pos, cursor.color);
+			if (elementPlaced) printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
+			else printOnLevel(cursor.symbol, cursor.pos, cursor.color);
 		}
 		else // cursor blinks only when not moveing
 		{
@@ -172,7 +178,7 @@ void Build::run()
 			
 		}
 		dir = NONE;
-
+		elementPlaced = false;
 
 		fc::waitMsWithInterupt(500, []() { return (bool)_kbhit(); }); // waits 500ms ore until key is pressed
 
@@ -364,7 +370,7 @@ bool Build::runLevel()
 }
 
 // checks wether a block could be placed and does so
-void Build::placeOnLevelAt(LevelElement*& element, Pos pos)
+bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 {
 	// Handeling limited Blocks
 	int id = element->id;
@@ -398,12 +404,14 @@ void Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 
 		level.placeAt(element, x, y);
 		element = nullptr;
+		return true;
 
 	}
 	else
 	{
 		delete element;
 		element = nullptr;
+		return false;
 	}
 }
 
