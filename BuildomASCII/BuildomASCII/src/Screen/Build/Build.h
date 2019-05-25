@@ -34,7 +34,7 @@ private:
 
 	// for runLevel
 	Build* build = this;
-	int fallSpeed = 2;
+	int fallSpeed = 3;
 	int movespeed = 100;
 	void displayPlayer();
 	//for stars

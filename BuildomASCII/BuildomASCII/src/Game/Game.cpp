@@ -30,4 +30,5 @@ void Game::setup()
 	fc::setTextColor(Screen::defaultTextColor);
 	fc::hideCursor();
 	fc::setCursorPos(0, 0);
+	fc::playSoundRepeat("music\\music.wav");
 }
