@@ -131,9 +131,9 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 			}
 		}
 	}
+	readStream.close();
 	return level;
 
-	readStream.close();
 
 }
 
