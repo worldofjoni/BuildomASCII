@@ -26,7 +26,7 @@ public:
 	fc::Color getColor();
 	void setColor(fc::Color col);
 	virtual LevelElement* clone() = 0; // copy function
-	static const int countOfElements = 6; // num of different element, hs to be manualy updated ###############################
+	static const int countOfElements = 7; // num of different element, hs to be manualy updated ###############################
 
 };
 
@@ -37,6 +37,7 @@ public:
 #include "SlopeDown/SlopeDown.h"
 #include "ChangeDir/ChangeDir.h"
 #include "Spike/Spike.h"
+#include "Star/Star.h"
 
 
 

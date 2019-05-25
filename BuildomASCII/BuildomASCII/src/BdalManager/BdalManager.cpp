@@ -47,6 +47,10 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 	Pos end;
 	int maxElements[LevelElement::countOfElements];
 
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+		maxElements[i] = 0;
+	}
 	
 	switch (levelType)
 	{
@@ -103,7 +107,6 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 	// Level itself
 	for (int y = 0; y < level.HEIGHT; y++)
 	{
-		//elementInLine.resize(level.WIDTH);
 		for (int x = 0; x < level.WIDTH; x++)
 		{
 			readStream >> currentElementChar;
@@ -125,6 +128,8 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 			case 5:
 				level.placeAt(new Spike(false), x, y);
 				break;
+			case 6:
+				level.placeAt(new Star(false), x, y);
 			default:
 				break;
 			}
