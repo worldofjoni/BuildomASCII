@@ -112,7 +112,7 @@ void CustomLevelSelect::initScreen()
 	setBlank();
 
 	Pos start_ = { 5, HEIGHT - 3 };
-	start_ = writeAt(start_, "[F5] : Bildschirm aktualisieren \xb3 [F6] : Level bearbeiten \xb3 [TAB] : Open File Browse");
+	start_ = writeAt(start_, "[F5] : Bildschirm aktualisieren \xb3 [F6] : Level bearbeiten \xb3 [TAB] : Dateiexplorer \x94 \bffnen");
 
 	current = { start.x - 1, start.y };
 
