@@ -2,6 +2,8 @@
 #ifndef Util_h
 #define Util_h
 
+
+
 struct Pos
 {
 	int x, y;

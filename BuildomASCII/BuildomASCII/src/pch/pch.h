@@ -8,6 +8,7 @@
 #include <chrono>
 #include <cmath>
 #include <string>
+#include <Windows.h>
 
 #include "Util/Util.h"
 #include "Screen/Build/Cursor/Cursor.h"

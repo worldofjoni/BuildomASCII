@@ -5,6 +5,7 @@ SlopeUp::SlopeUp(bool deletable)
 {
 	id = 2;
 	symbol = ownSym;
+	key = ownKey;
 	this->deletable = deletable;
 	color = BLACK;
 	fallable = false;

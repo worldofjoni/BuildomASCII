@@ -13,7 +13,7 @@ protected:
 	fc::Color color;
 
 public:
-	char symbol;
+	char symbol, key;
 	int id;
 	bool deletable = true; // If an Element can be removed by player
 	bool fallable = false; // If an Element can be fallen through
