@@ -5,6 +5,7 @@ Star::Star(bool deletable)
 {
 	id = 6;
 	symbol = ownSym;
+	key = ownKey;
 	this->deletable = deletable;
 	color = YELLOW_LIGHT;
 	fallable = true;
