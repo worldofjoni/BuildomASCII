@@ -72,8 +72,9 @@ void CustomLevelSelect::run()
 					initScreen();
 				}
 				break;
-
-				
+			case 65:
+				fc::openBrowser(fileManager.cNamePath);
+				break;
 			default:
 				break;
 			}
@@ -111,7 +112,7 @@ void CustomLevelSelect::initScreen()
 	setBlank();
 
 	Pos start_ = { 5, HEIGHT - 3 };
-	start_ = writeAt(start_, "[F5] : Bildschirm aktualisieren | [F6] : Level bearbeiten");
+	start_ = writeAt(start_, "[F5] : Bildschirm aktualisieren | [F6] : Level bearbeiten | [F7] : Open File Browser");
 
 	current = { start.x - 1, start.y };
 
