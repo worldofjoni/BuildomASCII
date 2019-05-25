@@ -50,11 +50,11 @@ void CustomLevelSelect::run()
 					build.run();
 				}
 
-				return;
-				// reinit screen
-				/*printScreen();
-				x = 0;
-				input = 0;*/
+				//reinit screen
+				printScreen();
+				gotoxy(current.x, current.y);
+				std::cout << '>';
+				
 
 			}
 
