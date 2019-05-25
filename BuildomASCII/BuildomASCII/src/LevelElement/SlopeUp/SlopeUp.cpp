@@ -3,7 +3,7 @@
 
 SlopeUp::SlopeUp(bool deletable)
 {
-	id = 2;
+	id = ownId;
 	symbol = ownSym;
 	key = ownKey;
 	this->deletable = deletable;

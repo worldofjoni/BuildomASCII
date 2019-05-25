@@ -4,7 +4,7 @@
 // Constructor
 Solid::Solid(bool deletable)
 {
-	id = 1;
+	id = ownId;
 	symbol = ownSym;
 	key = ownKey;
 	this->deletable = deletable;

@@ -3,7 +3,7 @@
 
 Star::Star(bool deletable)
 {
-	id = 6;
+	id = ownId;
 	symbol = ownSym;
 	key = ownKey;
 	this->deletable = deletable;

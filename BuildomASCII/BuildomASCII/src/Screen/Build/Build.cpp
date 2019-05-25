@@ -63,7 +63,7 @@ Build::Build(Level level, bool asEditor)
 
 			//serach for Stars
 
-			if (level.at({ x,y })->id == 6)
+			if (this->level.at({ x,y })->id == Star::ownId)
 			{
 				starsPos[starsPlaced] = { x,y };
 				starsPlaced++;
@@ -72,6 +72,12 @@ Build::Build(Level level, bool asEditor)
 		}
 	}
 
+	// star handeling
+
+	if (isEditor)
+	{
+		this->level.maxElements[Star::ownId] = maxStars - starsPlaced;
+	}
 
 	// init for menu bar
 	bool firstIsPlaced = false;
@@ -107,7 +113,7 @@ Build::Build(Level level, bool asEditor)
 		if (level.maxElements[i] == -1)
 			menuPos = writeAt(menuPos, " - ");
 		else
-			menuPos = writeAt(menuPos, level.maxElements[i], 3);
+			menuPos = writeAt(menuPos, this->level.maxElements[i], 3);
 
 		firstIsPlaced = true;
 
@@ -427,7 +433,7 @@ bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 	{
 
 		// take care of stars
-		if (id == 6) starsPos[starsPlaced] = pos;
+		if (id == Star::ownId) starsPos[starsPlaced] = pos;
 		
 		level.setElements[oldId]--; // decrement deleted
 

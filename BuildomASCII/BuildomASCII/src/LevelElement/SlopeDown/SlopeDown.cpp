@@ -3,7 +3,7 @@
 
 SlopeDown::SlopeDown(bool deletable)
 {
-	id = 3;
+	id = ownId;
 	symbol = ownSym;
 	key = ownKey;
 	this->deletable = deletable;

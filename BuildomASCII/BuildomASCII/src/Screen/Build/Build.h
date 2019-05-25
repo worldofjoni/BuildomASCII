@@ -19,6 +19,9 @@ enum Direction
 
 class Build : public Screen
 {
+public:
+	static const int maxStars = 3;
+
 private:
 
 
@@ -35,7 +38,6 @@ private:
 	int movespeed = 100;
 	void displayPlayer();
 	//for stars
-	static const int maxStars = 3;
 	int starsPlaced = 0;
 	Pos starsPos[maxStars] = { INVALID_POS, INVALID_POS, INVALID_POS };
 

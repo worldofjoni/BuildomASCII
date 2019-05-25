@@ -12,6 +12,8 @@ LevelEditor::LevelEditor()
 		level.maxElements[i] = -1;
 		oldMaxElements[i] = -1;
 	}
+	//only 3 for Star
+	level.maxElements[Star::ownId] = Build::maxStars;
 }
 
 LevelEditor::LevelEditor(Level level, std::string name)
@@ -24,6 +26,8 @@ LevelEditor::LevelEditor(Level level, std::string name)
 		oldMaxElements[i] = this->level.maxElements[i];
 		this->level.maxElements[i] = -1;
 	}
+	// but only 3 for star
+	this->level.maxElements[Star::ownId] = Build::maxStars;
 
 	for (int x = 0; x < level.WIDTH; x++)
 	{
@@ -43,7 +47,7 @@ void LevelEditor::run()
 
 	BdalManager fileManager;
 
-	level = levelEditor.level; //ToDO: convert deletable to notDeletable
+	level = levelEditor.level;
 
 	if (levelEditor.cancelEdit) return; // Cancel
 		
@@ -53,6 +57,11 @@ void LevelEditor::run()
 
 	for (int i = 1; i < LevelElement::countOfElements; i++) // do not ask for empty
 	{
+		if (i == Star::ownId) // do not ask for stars
+		{
+			level.maxElements[Star::ownId] = 0;
+			continue;
+		}
 		fc::setCursorPos(5, 5+i);
 		std::cout << "Maximalanzahl f\x81r \"" << fc::color(levelEditor.elements[i]->getColor()) << levelEditor.elements[i]->symbol << fc::color(levelEditor.defaultTextColor)<< "\"[" << oldMaxElements[i] <<"]: ";
 		std::string input;

@@ -3,7 +3,7 @@
 
 ChangeDir::ChangeDir(bool deletable)
 {
-	id = 4;
+	id = ownId;
 	symbol = ownSym;
 	key = ownKey;
 	this->deletable = deletable;

@@ -23,6 +23,7 @@ Level::Level()
 		maxElements[i] = -1;
 	}
 
+
 	// init border to red bäckground
 
 	for (int x = 0; x < WIDTH; x++)

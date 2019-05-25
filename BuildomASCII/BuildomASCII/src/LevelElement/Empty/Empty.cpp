@@ -5,7 +5,7 @@
 // Constructor
 Empty::Empty(bool deletable)
 {
-	id = 0;
+	id = ownId;
 	symbol = ownSym;
 	key = ownKey;
 	this->deletable = deletable;

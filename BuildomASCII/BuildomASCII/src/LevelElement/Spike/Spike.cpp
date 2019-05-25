@@ -3,7 +3,7 @@
 
 Spike::Spike(bool deletable)
 {
-	id = 5;
+	id = ownId;
 	symbol = ownSym;
 	key = ownKey;
 	this->deletable = deletable;
