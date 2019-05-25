@@ -21,8 +21,6 @@ class Build : public Screen
 {
 private:
 
-	template <typename T>
-	void printOnLevel(T content, Pos pos, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
 
 
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
@@ -37,7 +35,12 @@ private:
 	int movespeed = 100;
 	void displayPlayer();
 
+	template <typename T>
+	void printOnLevel(T content, Pos pos, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
+
 public:
+
+	int stars = 0;
 	Level level;
 	const static char startChar = '#', endChar = 'P', playerChar = 2, playerDeadChar = 1;
 	const static fc::Color startColor = MAGENTA, endColor = GREEN, alarmFrameColor = RED;
@@ -52,8 +55,8 @@ public:
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
 	bool placeOnLevelAt(LevelElement*& element, Pos pos);
 
-	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(false), new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false) };// has to be manualy updated ############################################################
-	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
+	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(false), new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false), new Star(false) };// has to be manualy updated ############################################################
+	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey}, {Star::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
 
 	// For runLevel
 	Pos currentPos = { 0,0 };

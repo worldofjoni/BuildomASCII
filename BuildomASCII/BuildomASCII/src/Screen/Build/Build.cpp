@@ -231,6 +231,9 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 	case Spike::ownKey:
 		setElement = new Spike(true);
 		break;
+	case Star::ownKey:
+		setElement = new Star(true);
+		break;
 	case 13: // Enter
 		if (isEditor) return true;
 		

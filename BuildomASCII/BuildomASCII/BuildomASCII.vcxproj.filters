@@ -84,6 +84,9 @@
     <ClCompile Include="src\Util\Util.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\LevelElement\Star\Star.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
@@ -150,6 +153,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Util\Util.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LevelElement\Star\Star.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
