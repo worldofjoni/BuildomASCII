@@ -5,32 +5,7 @@
 
 void CustomLevelSelect::run()
 {
-	std::string names[100];
-	int nameCount = fileManager.getCustomLvlNames(names);
-	int gap = 2;
-
-	Pos start = { 4, 4 };
-	Pos current = { start.x - 1, start.y };
-
-	writeAt(start, createCustomButton.name.c_str());
-
-	for (int i = 1; i <= nameCount; i++)
-	{
-		writeAt({ start.x, start.y + gap * i }, names[i - 1].c_str());
-	}
-
-
-
-
-	fc::hideCursor();
-
-	printScreen();
-
-	gotoxy(current.x, current.y);
-	std::cout << '>';
-
-
-
+	initScreen();
 	
 	while (true)
 	{
@@ -88,6 +63,9 @@ void CustomLevelSelect::run()
 			case 27:
 				return;
 				break;
+			case 63:
+				initScreen();
+				break;
 			case 64: // F6
 				if (x > 0)
 				{
@@ -121,13 +99,40 @@ void CustomLevelSelect::run()
 
 CustomLevelSelect::CustomLevelSelect()
 {
-	setBlank();
-
-	Pos start = { 5, HEIGHT - 3 };
-	start = writeAt(start, "[F6] : Level bearbeiten");
+	
 }
 
 CustomLevelSelect::~CustomLevelSelect()
 {
 	
+}
+
+void CustomLevelSelect::initScreen()
+{
+	x = 0;
+	setBlank();
+
+	Pos start_ = { 5, HEIGHT - 3 };
+	start_ = writeAt(start_, "[F6] : Level bearbeiten");
+
+	current = { start.x - 1, start.y };
+
+	nameCount = fileManager.getCustomLvlNames(names);
+
+
+	writeAt(start, createCustomButton.name.c_str());
+
+	for (int i = 1; i <= nameCount; i++)
+	{
+		writeAt({ start.x, start.y + gap * i }, names[i - 1].c_str());
+	}
+
+
+
+
+
+	printScreen();
+
+	gotoxy(current.x, current.y);
+	std::cout << '>';
 }
