@@ -29,7 +29,8 @@ LevelEditor::LevelEditor(Level level, std::string name)
 	{
 		for (int y = 0; y < level.HEIGHT; y++)
 		{
-			level.at({ x,y })->deletable = true;
+			Pos pos = { x,y };
+			if (pos != this->level.start && pos != this->level.end ) this->level.at({ x,y })->deletable = true;
 		}
 	}
 
