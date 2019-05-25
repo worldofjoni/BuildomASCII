@@ -5,6 +5,7 @@ SlopeDown::SlopeDown(bool deletable)
 {
 	id = 3;
 	symbol = ownSym;
+	key = ownKey;
 	this->deletable = deletable;
 	color = BLACK;
 	fallable = false;

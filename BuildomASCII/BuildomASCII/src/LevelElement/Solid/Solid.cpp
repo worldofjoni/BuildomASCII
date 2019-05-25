@@ -6,6 +6,7 @@ Solid::Solid(bool deletable)
 {
 	id = 1;
 	symbol = ownSym;
+	key = ownKey;
 	this->deletable = deletable;
 	color = BLACK;
 	fallable = false;

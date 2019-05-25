@@ -111,7 +111,7 @@ void CustomLevelSelect::initScreen()
 	setBlank();
 
 	Pos start_ = { 5, HEIGHT - 3 };
-	start_ = writeAt(start_, "[F5] : Bildschirm aktualisieren | [F6] : Level bearbeiten");
+	start_ = writeAt(start_, "[F5] : Bildschirm aktualisieren \xb3 [F6] : Level bearbeiten");
 
 	current = { start.x - 1, start.y };
 

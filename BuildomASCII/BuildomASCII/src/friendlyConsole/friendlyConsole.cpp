@@ -269,6 +269,28 @@ namespace fc {
 		openBrowser(url.c_str());
 	}
 
+	bool isKeyPressed(int key)
+	{
+		short s = GetKeyState(key);
+		return (s & (1 << sizeof(short) * 8));
+	}
+
+	bool isKeyPressed(char vKey)
+	{
+		int _key = VkKeyScanExA(vKey, LoadKeyboardLayoutA("0000080", NULL));
+		_key &= 0x00FF;
+
+		// if is Key is Number (0-9) also convert to NumpadKey
+		int key_alt = _key;
+		if (key_alt >> 4 == 0x3)
+		{
+			key_alt &= 0x0F;
+			key_alt |= 0x60;
+			if (isKeyPressed(key_alt)) return true;
+		}
+
+		return isKeyPressed(_key);
+	}
 
 
 

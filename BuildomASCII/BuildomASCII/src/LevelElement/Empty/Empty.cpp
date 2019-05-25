@@ -6,7 +6,8 @@
 Empty::Empty(bool deletable)
 {
 	id = 0;
-	symbol = ' ';
+	symbol = ownSym;
+	key = ownKey;
 	this->deletable = deletable;
 	color = Screen::defaultTextColor;
 	fallable = true;

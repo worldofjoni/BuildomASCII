@@ -45,7 +45,7 @@ public:
 	Build(Level level, bool asEditor = false);
 	void run();
 	bool keyHandeling(LevelElement *&setElement, Direction &dir, Cursor cursor);
-	
+	void keyPressedHandeling(LevelElement*& setelement);
 
 	bool runLevel();
 	

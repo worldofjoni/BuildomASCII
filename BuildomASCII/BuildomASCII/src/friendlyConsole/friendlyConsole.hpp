@@ -96,6 +96,8 @@ namespace fc {
 	void openExplorer(std::string path);
 	void openBrowser(const char url[]);
 	void openBrowser(std::string url);
+	bool isKeyPressed(int vKey);
+	bool isKeyPressed(char key);
 
 }
 

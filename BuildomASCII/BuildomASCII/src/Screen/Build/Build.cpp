@@ -196,18 +196,22 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 	case 'w':
 	case 72:
 		dir = UP;
+		keyPressedHandeling(setElement);
 		break;
 	case 'a':
 	case 75:
 		dir = LEFT;
+		keyPressedHandeling(setElement);
 		break;
 	case 's':
 	case 80:
 		dir = DOWN;
+		keyPressedHandeling(setElement);
 		break;
 	case 'd':
 	case 77:
 		dir = RIGHT;
+		keyPressedHandeling(setElement);
 		break;
 	case Solid::ownKey:
 		setElement = new Solid(true);
@@ -288,6 +292,23 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 
 	return false;
 }
+
+void Build::keyPressedHandeling(LevelElement*& setelement)
+{
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+		if (fc::isKeyPressed(elements[i]->key))
+		{
+			setelement = elements[i]->clone();
+			setelement->deletable = true;
+			return;
+		}
+	}
+	
+}
+
+
+
 
 
 // Runs the Level after build-mode
