@@ -26,7 +26,7 @@ public:
 	fc::Color getColor();
 	void setColor(fc::Color col);
 	virtual LevelElement* clone() = 0; // copy function
-	static const int countOfElements = 7; // num of different element, hs to be manualy updated, also update the list in Build!! ###############################
+	static const int countOfElements = 8; // num of different element, hs to be manualy updated, also update the list in Build!! && in BdalManager###############################
 
 };
 
@@ -38,6 +38,7 @@ public:
 #include "ChangeDir/ChangeDir.h"
 #include "Spike/Spike.h"
 #include "Star/Star.h"
+#include "NonDelEmpty/NonDelEmpty.h"
 
 
 

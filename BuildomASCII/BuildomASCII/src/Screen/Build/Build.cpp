@@ -102,7 +102,7 @@ Build::Build(Level level, bool asEditor)
 		}
 
 		content[menuPos.x][menuPos.y].textColor = elements[i]->getColor();
-		content[menuPos.x][menuPos.y].backgroundColor = menuBarSymbolBackgroundColor;
+		content[menuPos.x][menuPos.y].backgroundColor = elements[i]->backgroundColor;
 		menuPos = writeAt(menuPos, elements[i]->symbol);
 		menuPos = writeAt(menuPos, " [");
 		menuPos = writeAt(menuPos, keybind[i]);
@@ -116,6 +116,14 @@ Build::Build(Level level, bool asEditor)
 			menuPos = writeAt(menuPos, this->level.maxElements[i], 3);
 
 		firstIsPlaced = true;
+
+		// new Line when to far right
+		if (menuPos.x > WIDTH - 17)
+		{
+			menuPos.x = 3;
+			menuPos.y += 2;
+			firstIsPlaced = false;
+		}
 
 	}
 
@@ -206,7 +214,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 
 	int key = getCharLow();
 	if (key == -32) key = _getch();
-	switch (key)
+	switch (key) // new element keybind here ###################################################################################################################################################
 	{
 	case 'w':
 	case 72:
@@ -248,6 +256,9 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 		break;
 	case Star::ownKey:
 		setElement = new Star(true);
+		break;
+	case NonDelEmpty::ownKey:
+		setElement = new NonDelEmpty(true);
 		break;
 	case 13: // Enter
 		if (isEditor) return true;

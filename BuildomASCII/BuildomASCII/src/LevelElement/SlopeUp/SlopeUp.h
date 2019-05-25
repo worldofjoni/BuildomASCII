@@ -11,7 +11,7 @@ private:
 public:
 	static const char ownSym = '/';
 	static const char ownKey = '1';
-	static const char ownId = 2;
+	static const int ownId = 2;
 	SlopeUp(bool deletable);
 	void steppedOn(Build* build) override;
 	void steppedIn(Build* build) override;

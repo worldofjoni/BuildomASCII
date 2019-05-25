@@ -61,8 +61,8 @@ public:
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
 	bool placeOnLevelAt(LevelElement*& element, Pos pos);
 
-	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(false), new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false), new Star(false) };// has to be manualy updated ############################################################
-	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey}, {Star::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
+	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(false), new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false), new Star(false), new NonDelEmpty(false) };// has to be manualy updated ############################################################
+	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey}, {Star::ownKey}, {NonDelEmpty::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
 
 	// For runLevel
 	Pos currentPos = { 0,0 };

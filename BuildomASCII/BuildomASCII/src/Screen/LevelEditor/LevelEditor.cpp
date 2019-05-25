@@ -54,15 +54,16 @@ void LevelEditor::run()
 
 	fc::setTextColor(BLUE_LIGHT);
 	printScreen();
-
-	for (int i = 1; i < LevelElement::countOfElements; i++) // do not ask for empty
+	int y = 1; // y-Offset
+	for (int i = 1; i < LevelElement::countOfElements; i++, y++) // do not ask for empty
 	{
-		if (i == Star::ownId) // do not ask for stars
+		if (i == Star::ownId || i == NonDelEmpty::ownId) // do not ask for stars or NodElEmpty
 		{
-			level.maxElements[Star::ownId] = 0;
+			level.maxElements[i] = 0;
+			y--;
 			continue;
 		}
-		fc::setCursorPos(5, 5+i);
+		fc::setCursorPos(5, 5+y);
 		std::cout << "Maximalanzahl f\x81r \"" << fc::color(levelEditor.elements[i]->getColor()) << levelEditor.elements[i]->symbol << fc::color(levelEditor.defaultTextColor)<< "\"[" << oldMaxElements[i] <<"]: ";
 		std::string input;
 		fc::showCursor();
@@ -71,9 +72,9 @@ void LevelEditor::run()
 		if (input.length() == 0) input = std::to_string(oldMaxElements[i]);
 		if (!isInt(input))
 		{
-			fc::setCursorPos(5 + 23, 5 + i);
+			fc::setCursorPos(5 + 23, 5 + y);
 			for (int i = 0; i <= input.length(); i++) std::cout << " ";
-			i--;
+			i--, y--;
 			continue;
 		}
 		level.maxElements[i] = std::stoi(input, nullptr);
@@ -85,9 +86,9 @@ void LevelEditor::run()
 	{
 		do
 		{
-			fc::setCursorPos(5, 5 + LevelElement::countOfElements);
+			fc::setCursorPos(5, 5 + y);
 			std::cout << msg << std::string(input.length(), ' ');
-			fc::setCursorPos(5 + msg.length(), 5 + LevelElement::countOfElements);
+			fc::setCursorPos(5 + msg.length(), 5 + y);
 			fc::showCursor();
 			std::getline(std::cin, input);
 			if (input.length() == 0) input = name;

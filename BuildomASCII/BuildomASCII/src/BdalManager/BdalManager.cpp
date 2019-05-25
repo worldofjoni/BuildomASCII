@@ -111,25 +111,29 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 		{
 			readStream >> currentElementChar;
 
-			switch (currentElementChar)
+			switch (currentElementChar) // manualy update ###################################################################################
 			{
-			case 1:
+			case Solid::ownId:
 				level.placeAt(new Solid(false), x, y);
 				break;
-			case 2:
+			case SlopeUp::ownId:
 				level.placeAt(new SlopeUp(false), x, y);
 				break;
-			case 3:
+			case SlopeDown::ownId:
 				level.placeAt(new SlopeDown(false), x, y);
 				break;
-			case 4:
+			case ChangeDir::ownId:
 				level.placeAt(new ChangeDir(false), x, y);
 				break;
-			case 5:
+			case Spike::ownId:
 				level.placeAt(new Spike(false), x, y);
 				break;
-			case 6:
+			case Star::ownId:
 				level.placeAt(new Star(false), x, y);
+				break;
+			case NonDelEmpty::ownId:
+				level.placeAt(new NonDelEmpty(false), x, y);
+				break;
 			default:
 				break;
 			}

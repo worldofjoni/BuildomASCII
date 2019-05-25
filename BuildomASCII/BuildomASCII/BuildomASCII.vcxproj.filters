@@ -87,6 +87,9 @@
     <ClCompile Include="src\LevelElement\Star\Star.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\LevelElement\NonDelEmpty\NonDelEmpty.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
@@ -156,6 +159,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\LevelElement\Star\Star.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LevelElement\NonDelEmpty\NonDelEmpty.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

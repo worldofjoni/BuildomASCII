@@ -10,7 +10,7 @@ private:
 public:
 	static const char ownSym = 15;
 	static const char ownKey = '5';
-	static const char ownId = 6;
+	static const int ownId = 6;
 	Star(bool deletable);
 	void steppedOn(Build* build) override;
 	void steppedIn(Build* build) override;
