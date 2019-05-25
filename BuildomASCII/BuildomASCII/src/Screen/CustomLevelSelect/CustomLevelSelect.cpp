@@ -28,9 +28,7 @@ void CustomLevelSelect::run()
 				}
 
 				//reinit screen
-				printScreen();
-				gotoxy(current.x, current.y);
-				std::cout << '>';
+				initScreen();
 				
 
 			}
@@ -71,7 +69,7 @@ void CustomLevelSelect::run()
 				{
 					LevelEditor editor(fileManager.getLevel(names[x - 1], LevelType::CUSTOM), names[x-1]);
 					editor.run();
-					printScreen();
+					initScreen();
 				}
 				break;
 
