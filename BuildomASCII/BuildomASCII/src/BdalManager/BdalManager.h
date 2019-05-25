@@ -14,7 +14,6 @@ private:
 	const std::string basePath = "Level\\";
 	const std::string fileEnding = ".bdal";
 
-	std::string cNamePath = basePath + "Custom Level\\";
 
 	std::string fileName;
 	
@@ -33,6 +32,8 @@ private:
 	void addCustomName(std::string name);
 
 public:
+	const std::string cNamePath = basePath + "Custom Level\\";
+
 	int getCustomLvlNames(std::string nameList[100]);
 	BdalManager();
 	Level getLevel(std::string levelName, LevelType levelType);
