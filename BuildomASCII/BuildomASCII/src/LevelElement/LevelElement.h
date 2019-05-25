@@ -20,6 +20,9 @@ public:
 	
 	virtual void steppedOn(Build *build) = 0;
 	virtual void steppedIn(Build *build) = 0;
+
+	fc::Color backgroundColor = Screen::defaultBackgroundColor;
+
 	fc::Color getColor();
 	void setColor(fc::Color col);
 	virtual LevelElement* clone() = 0; // copy function

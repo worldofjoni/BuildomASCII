@@ -58,7 +58,7 @@ Build::Build(Level level, bool asEditor)
 		for (int y = 0; y < this->level.HEIGHT; y++)
 		{
 			content[x + 1][y + 1].content = this->level.at({ x, y })->symbol;
-			content[x + 1][y + 1].textColor = this->level.at({ x, y })->color;
+			content[x + 1][y + 1].textColor = this->level.at({ x, y })->getColor();
 			content[x + 1][y + 1].backgroundColor = this->level.at({ x,y })->backgroundColor;
 		}
 	}
@@ -151,7 +151,7 @@ void Build::run()
 			if (setElement != nullptr) placeOnLevelAt(setElement, cursor.pos); // place element in level object
 
 			// overprint old element
-			printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(curser.pos)->backgroundColor);
+			printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
 
 			cursor.move(dir);
 

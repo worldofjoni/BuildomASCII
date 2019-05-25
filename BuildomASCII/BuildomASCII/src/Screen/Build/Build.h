@@ -40,7 +40,7 @@ private:
 public:
 	Level level;
 	const static char startChar = '#', endChar = 'P', playerChar = 2, playerDeadChar = 1;
-	const static fc::Color startColor = MAGENTA, endColor = GREEN;
+	const static fc::Color startColor = MAGENTA, endColor = GREEN, alarmFrameColor = RED;
 
 	Build(Level level, bool asEditor = false);
 	void run();
