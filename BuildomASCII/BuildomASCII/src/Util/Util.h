@@ -7,6 +7,8 @@ struct Pos
 	int x, y;
 	Pos below();
 	bool isOnLevelBorder();
+	bool operator== (Pos other);
+	bool operator!= (Pos other);
 };
 
 

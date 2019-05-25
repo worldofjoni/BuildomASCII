@@ -50,7 +50,7 @@ public:
 	bool runLevel();
 	
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
-	void placeOnLevelAt(LevelElement*& element, Pos pos);
+	bool placeOnLevelAt(LevelElement*& element, Pos pos);
 
 	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(false), new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false) };// has to be manualy updated ############################################################
 	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################

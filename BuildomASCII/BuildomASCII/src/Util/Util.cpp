@@ -12,6 +12,16 @@ bool Pos::isOnLevelBorder()
 	return false;
 }
 
+bool Pos::operator==(Pos other)
+{
+	return (x == other.x && y == other.y);
+}
+
+bool Pos::operator!=(Pos other)
+{
+	return !((*this) == other);
+}
+
 char getCharLow()
 {
 	char input = 0;
