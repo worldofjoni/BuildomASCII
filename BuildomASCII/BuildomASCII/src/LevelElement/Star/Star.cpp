@@ -21,6 +21,7 @@ void Star::steppedOn(Build* build)
 void Star::steppedIn(Build* build)
 {
 	build->stars++;
+	this->symbol = Empty::ownSym;
 	
 }
 

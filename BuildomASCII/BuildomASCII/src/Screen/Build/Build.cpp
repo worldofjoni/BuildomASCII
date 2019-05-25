@@ -23,7 +23,7 @@ Build::Build(Level level, bool asEditor)
 	:level(level), isEditor(asEditor)
 {
 
-	if (this->level.start.x == INVALID) this->level.setStartEnd({ 5,5 }, { level.WIDTH - 6, level.HEIGHT - 6 });
+	if (this->level.start == INVALID_POS) this->level.setStartEnd({ 5,5 }, { level.WIDTH - 6, level.HEIGHT - 6 });
 
 	setBlank();
 	// init frame
@@ -60,6 +60,15 @@ Build::Build(Level level, bool asEditor)
 			content[x + 1][y + 1].content = this->level.at({ x, y })->symbol;
 			content[x + 1][y + 1].textColor = this->level.at({ x, y })->getColor();
 			content[x + 1][y + 1].backgroundColor = this->level.at({ x,y })->backgroundColor;
+
+			//serach for Stars
+
+			if (level.at({ x,y })->id == 6)
+			{
+				starsPos[starsPlaced] = { x,y };
+				starsPlaced++;
+			}
+
 		}
 	}
 
@@ -240,6 +249,18 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 		printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
 
 		if (runLevel()) return true;
+		else
+		{
+			//set stars to stars again
+			for (int i = 0; i < maxStars; i++)
+			{
+				if (starsPos[i] != INVALID_POS)
+				{
+					level.at(starsPos[i])->symbol = Star::ownSym;
+					printOnLevel(level.at(starsPos[i])->symbol, starsPos[i], level.at(starsPos[i])->getColor(), level.at(starsPos[i])->backgroundColor);
+				}
+			}
+		}
 		break;
 		
 
@@ -379,7 +400,7 @@ bool Build::runLevel()
 		}
 
 		// Win
-		if (currentPos.x == level.end.x && currentPos.y == level.end.y)
+		if (currentPos == level.end)
 		{
 			
 			return true; 
@@ -397,13 +418,18 @@ bool Build::runLevel()
 bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 {
 	// Handeling limited Blocks
-	int id = element->id;
-	int x = pos.x;
-	int y = pos.y;
+	int &id = element->id;
+	int& oldId = level.at(pos)->id;
+	int &x = pos.x;
+	int &y = pos.y;
 
 	if ((level.setElements[id] < level.maxElements[id] || level.maxElements[id] == -1) && level.at({ x, y })->deletable) // when allowed to place
 	{
-		level.setElements[level.at({ x, y })->id]--; // decrement deleted
+
+		// take care of stars
+		if (id == 6) starsPos[starsPlaced] = pos;
+		
+		level.setElements[oldId]--; // decrement deleted
 
 		level.setElements[id]++; // increment new
 
@@ -412,15 +438,15 @@ bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 		fc::setTextColor(frameTextColor);
 
 		//replace number in display : old Element (unless max is empty or inf. or 0)
-		if (level.at({ x, y })->id != 0 && level.maxElements[level.at({ x, y })->id] != -1 && level.maxElements[level.at({ x, y })->id] != 0)
+		if (oldId != 0 && level.maxElements[oldId] != -1 && level.maxElements[oldId] != 0)
 		{
 			
-			fc::setCursorPos(countPos[level.at({ x, y })->id].x, countPos[level.at({ x, y })->id].y);
-			std::cout << std::setw(3) << (level.maxElements[level.at({ x, y })->id] - level.setElements[level.at({ x, y })->id]);
+			fc::setCursorPos(countPos[oldId].x, countPos[oldId].y);
+			std::cout << std::setw(3) << (level.maxElements[oldId] - level.setElements[oldId]);
 		}
 
 		// new Element display update (unless max is empty or inf. or 0)
-		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[level.at({ x, y })->id] != 0)
+		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[oldId] != 0)
 		{
 			fc::setCursorPos(countPos[id].x, countPos[id].y);
 			std::cout << std::setw(3) << (level.maxElements[id] - level.setElements[id]);
@@ -438,6 +464,8 @@ bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 		return false;
 	}
 }
+
+
 
 Build::~Build()
 {
@@ -479,6 +507,6 @@ void Build::displayPlayer()
 {
 	printOnLevel(playerChar, currentPos, RED_LIGHT);
 	fc::waitMs(movespeed);
-	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor());
+	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor(), level.at(currentPos)->backgroundColor);
 }
 

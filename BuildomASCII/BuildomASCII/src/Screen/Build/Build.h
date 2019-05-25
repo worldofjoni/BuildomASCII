@@ -34,6 +34,10 @@ private:
 	int fallSpeed = 3;
 	int movespeed = 100;
 	void displayPlayer();
+	//for stars
+	static const int maxStars = 3;
+	int starsPlaced = 0;
+	Pos starsPos[maxStars] = { INVALID_POS, INVALID_POS, INVALID_POS };
 
 	template <typename T>
 	void printOnLevel(T content, Pos pos, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
@@ -71,7 +75,7 @@ public:
 	// for level Editor
 	bool cancelEdit = false;
 	
-
+	
 	// destructor
 	~Build();
 	Build(const Build& other) = delete;

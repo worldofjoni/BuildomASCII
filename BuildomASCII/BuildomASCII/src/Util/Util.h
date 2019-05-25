@@ -11,7 +11,7 @@ struct Pos
 	bool isOnLevelBorder();
 	bool operator== (Pos other);
 	bool operator!= (Pos other);
-};
+} const INVALID_POS{ -1,-1 };
 
 
 char getCharLow();

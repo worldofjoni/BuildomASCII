@@ -4,7 +4,7 @@
 #include "LevelElement/LevelElement.h"
 #include "Screen/Screen.h"
 
-#define INVALID -1
+
 
 
 class Level
@@ -16,8 +16,8 @@ public:
 	int maxElements[LevelElement::countOfElements] = {}; // index is id of element ; for unlimited use -1
 	int setElements[LevelElement::countOfElements] = {}; // index is id of element
 
-	Pos start = { INVALID, INVALID };
-	Pos end = { INVALID,  INVALID};
+	Pos start = INVALID_POS;
+	Pos end = INVALID_POS;
 
 
 	Level();
