@@ -3,6 +3,7 @@
 #define BDALMANAGER_H
 
 #include <fstream>
+#include <filesystem>
 
 
 enum LevelType {STORY = 0, CUSTOM = 1};
@@ -13,7 +14,7 @@ private:
 	const std::string basePath = "Level\\";
 	const std::string fileEnding = ".bdal";
 
-	std::string cNamePath = basePath + "CustomLevelNames.txt";
+	std::string cNamePath = basePath + "Custom Level\\";
 
 	std::string fileName;
 	

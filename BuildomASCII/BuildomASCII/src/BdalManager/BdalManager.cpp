@@ -22,18 +22,17 @@ void BdalManager::addCustomName(std::string name)
 
 int BdalManager::getCustomLvlNames(std::string nameList[100])
 {
-	
+	nameCount = 0;
 
-
-	readStream.open(cNamePath);
-	readStream >> nameCount;
-
-	for (int i = 0; i < nameCount; i++)
+	for (const auto& entry : std::experimental::filesystem::directory_iterator(cNamePath))
 	{
-		readStream >> nameList[i];
-	}
+		nameList[nameCount] = entry.path().string();
+		nameList[nameCount] = nameList[nameCount].substr(nameList[nameCount].find_last_of('\\') +1, nameList[nameCount].length());
+		nameList[nameCount] = nameList[nameCount].substr(0, nameList[nameCount].find('.'));
+		nameCount++;
+		
 
-	readStream.close();
+	}
 	return nameCount;
 }
 
