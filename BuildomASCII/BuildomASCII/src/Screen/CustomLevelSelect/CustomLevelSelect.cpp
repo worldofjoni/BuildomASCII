@@ -1,5 +1,6 @@
 #include "pch/pch.h"
 #include "CustomLevelSelect.h"
+#include "Screen/LevelEditor/LevelEditor.h"
 
 
 void CustomLevelSelect::run()
@@ -36,7 +37,8 @@ void CustomLevelSelect::run()
 		if (_kbhit())
 		{
 			input = getCharLow();
-			if (input == -32) input = _getch();
+			if (input == -32) input = _getch(); // for arrow key
+			if (input == 0) input = _getch(); // for F..
 
 			if (input == 32 || input == 13)
 			{
@@ -86,6 +88,16 @@ void CustomLevelSelect::run()
 			case 27:
 				return;
 				break;
+			case 64: // F6
+				if (x > 0)
+				{
+					LevelEditor editor(fileManager.getLevel(names[x - 1], LevelType::CUSTOM), names[x-1]);
+					editor.run();
+					printScreen();
+				}
+				break;
+
+				
 			default:
 				break;
 			}
@@ -110,6 +122,9 @@ void CustomLevelSelect::run()
 CustomLevelSelect::CustomLevelSelect()
 {
 	setBlank();
+
+	Pos start = { 5, HEIGHT - 3 };
+	start = writeAt(start, "[F6] : Level bearbeiten");
 }
 
 CustomLevelSelect::~CustomLevelSelect()

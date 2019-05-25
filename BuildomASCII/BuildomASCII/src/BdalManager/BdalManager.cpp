@@ -71,7 +71,7 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 
 	if (!readStream.is_open())
 	{
-		std::cout << "ERROR";
+		std::cerr << "ERROR";
 		return level;
 	}
 
@@ -131,20 +131,20 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 			}
 		}
 	}
+	readStream.close();
 	return level;
 
-	readStream.close();
 
 }
 
-bool BdalManager::saveLevel(Level level, std::string cusLvlName)
+bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 {
 	midDir = "Custom Level\\";
 	advPath = basePath + midDir + cusLvlName + fileEnding;
 
 	readStream.open(advPath);
 
-	if (readStream.is_open())
+	if (readStream.is_open() && !overwrite)
 	{
 		readStream.close();
 		return false;
