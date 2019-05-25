@@ -137,7 +137,7 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 
 }
 
-bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite = false)
+bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 {
 	midDir = "Custom Level\\";
 	advPath = basePath + midDir + cusLvlName + fileEnding;

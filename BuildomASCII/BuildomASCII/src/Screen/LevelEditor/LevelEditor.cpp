@@ -40,6 +40,8 @@ void LevelEditor::run()
 	Build levelEditor(level, true);
 	levelEditor.run();
 
+	BdalManager fileManager;
+
 	level = levelEditor.level; //ToDO: convert deletable to notDeletable
 
 	if (levelEditor.cancelEdit) return; // Cancel
@@ -71,19 +73,19 @@ void LevelEditor::run()
 	std::string msg = std::string("Name der Datei (max 10 Zeichen) [") + name + std::string("]: ");
 	do
 	{
-		fc::setCursorPos(5, 5 + LevelElement::countOfElements);
-		std::cout << msg << std::string(input.length(), ' ');
-		fc::setCursorPos(5 + msg.length(), 5 + LevelElement::countOfElements);
-		fc::showCursor();
-		std::getline(std::cin, input);
-		if (input.length() == 0) input = name;
-		fc::hideCursor();
-	} while (!isFilename(input));
-	
-	// save Level With Name
-	BdalManager fileManager;
-	fileManager.saveLevel(level, input);
+		do
+		{
+			fc::setCursorPos(5, 5 + LevelElement::countOfElements);
+			std::cout << msg << std::string(input.length(), ' ');
+			fc::setCursorPos(5 + msg.length(), 5 + LevelElement::countOfElements);
+			fc::showCursor();
+			std::getline(std::cin, input);
+			if (input.length() == 0) input = name;
+			fc::hideCursor();
+		} while (!isFilename(input));
 
+	} while (!fileManager.saveLevel(level, input, isEditing));
+	
 
 	
 }
