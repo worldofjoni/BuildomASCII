@@ -58,7 +58,7 @@ Build::Build(Level level, bool asEditor)
 		for (int y = 0; y < this->level.HEIGHT; y++)
 		{
 			content[x + 1][y + 1].content = this->level.at({ x, y })->symbol;
-			content[x + 1][y + 1].textColor = this->level.at({ x, y })->color;
+			content[x + 1][y + 1].textColor = this->level.at({ x, y })->getColor();
 			content[x + 1][y + 1].backgroundColor = this->level.at({ x,y })->backgroundColor;
 		}
 	}
@@ -86,8 +86,8 @@ Build::Build(Level level, bool asEditor)
 			menuPos = writeAt(menuPos, "  ");
 		}
 
-		content[menuPos.x][menuPos.y].textColor = elements[i]->color;
-		content[menuPos.x][menuPos.y].backgroundColor = WHITE;
+		content[menuPos.x][menuPos.y].textColor = elements[i]->getColor();
+		content[menuPos.x][menuPos.y].backgroundColor = menuBarSymbolBackgroundColor;
 		menuPos = writeAt(menuPos, elements[i]->symbol);
 		menuPos = writeAt(menuPos, " [");
 		menuPos = writeAt(menuPos, keybind[i]);
@@ -151,7 +151,7 @@ void Build::run()
 			if (setElement != nullptr) placeOnLevelAt(setElement, cursor.pos); // place element in level object
 
 			// overprint old element
-			printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color, level.at(cursor.pos)->backgroundColor);
+			printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
 
 			cursor.move(dir);
 
@@ -166,7 +166,7 @@ void Build::run()
 			}
 			else
 			{	// print current element
-				printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color, level.at(cursor.pos)->backgroundColor);
+				printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
 			}
 
 			
@@ -224,7 +224,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 	case 13: // Enter
 		if (isEditor) return true;
 		
-		printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->color, level.at(cursor.pos)->backgroundColor);
+		printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
 
 		if (runLevel()) return true;
 		break;
@@ -249,13 +249,13 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 			//reset old Start
 			level.at(level.start)->deletable = true;
 			level.at(level.start)->symbol = Empty::ownSym;
-			level.at(level.start)->color = Screen::defaultTextColor;
+			level.at(level.start)->setColor(Screen::defaultTextColor);
 			printOnLevel(level.at(level.start)->symbol, level.start, Screen::defaultTextColor);
 			
 			// set new ones
 			setElement = new Empty(false);
 			setElement->symbol = Build::startChar;
-			setElement->color = Build::startColor;
+			setElement->setColor(Build::startColor);
 
 			// update start
 			level.start = cursor.pos;
@@ -264,13 +264,13 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 			//reset old end
 			level.at(level.end)->deletable = true;
 			level.at(level.end)->symbol = Empty::ownSym;
-			level.at(level.end)->color = Screen::defaultTextColor;
+			level.at(level.end)->setColor(Screen::defaultTextColor);
 			printOnLevel(level.at(level.end)->symbol, level.end, Screen::defaultTextColor);
 			
 			// set new ones
 			setElement = new Empty(false);
 			setElement->symbol = Build::endChar;
-			setElement->color = Build::endColor;
+			setElement->setColor(Build::endColor);
 
 			// update end
 			level.end = cursor.pos;
@@ -359,7 +359,7 @@ bool Build::runLevel()
 	// Display dead Player
 	printOnLevel(playerDeadChar, currentPos, BLUE_LIGHT, level.at(currentPos)->backgroundColor);
 	fc::waitMs(movespeed * 5);
-	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->color, level.at(currentPos)->backgroundColor);
+	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor(), level.at(currentPos)->backgroundColor);
 	return false;
 }
 
@@ -447,6 +447,6 @@ void Build::displayPlayer()
 {
 	printOnLevel(playerChar, currentPos, RED_LIGHT);
 	fc::waitMs(movespeed);
-	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->color);
+	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor());
 }
 

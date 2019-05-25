@@ -9,6 +9,9 @@ class Build;
 
 class LevelElement
 {
+protected:
+	fc::Color color;
+
 public:
 	char symbol;
 	int id;
@@ -18,9 +21,11 @@ public:
 	virtual void steppedOn(Build *build) = 0;
 	virtual void steppedIn(Build *build) = 0;
 
-	virtual LevelElement* clone() = 0; // copy function
-	fc::Color color;
 	fc::Color backgroundColor = Screen::defaultBackgroundColor;
+
+	fc::Color getColor();
+	void setColor(fc::Color col);
+	virtual LevelElement* clone() = 0; // copy function
 	static const int countOfElements = 6; // num of different element, hs to be manualy updated ###############################
 
 };

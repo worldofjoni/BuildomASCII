@@ -10,14 +10,37 @@ LevelEditor::LevelEditor()
 	for (int i = 0; i < LevelElement::countOfElements; i++)
 	{
 		level.maxElements[i] = -1;
-
+		oldMaxElements[i] = -1;
 	}
+}
+
+LevelEditor::LevelEditor(Level level, std::string name)
+	:level(level), name(name), isEditing(true)
+{
+	setBlank();
+	
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+		oldMaxElements[i] = this->level.maxElements[i];
+		this->level.maxElements[i] = -1;
+	}
+
+	for (int x = 0; x < level.WIDTH; x++)
+	{
+		for (int y = 0; y < level.HEIGHT; y++)
+		{
+			level.at({ x,y })->deletable = true;
+		}
+	}
+
 }
 
 void LevelEditor::run()
 {
 	Build levelEditor(level, true);
 	levelEditor.run();
+
+	BdalManager fileManager;
 
 	level = levelEditor.level; //ToDO: convert deletable to notDeletable
 
@@ -27,14 +50,15 @@ void LevelEditor::run()
 	fc::setTextColor(BLUE_LIGHT);
 	printScreen();
 
-	for (int i = 0; i < LevelElement::countOfElements; i++)
+	for (int i = 1; i < LevelElement::countOfElements; i++) // do not ask for empty
 	{
 		fc::setCursorPos(5, 5+i);
-		std::cout << "Maximalanzahl f" <<(char)129 << "r \"" << fc::color(levelEditor.elements[i]->color) << levelEditor.elements[i]->symbol << fc::color(levelEditor.defaultTextColor)<< "\" : ";
+		std::cout << "Maximalanzahl f\x81r \"" << fc::color(levelEditor.elements[i]->getColor()) << levelEditor.elements[i]->symbol << fc::color(levelEditor.defaultTextColor)<< "\"[" << oldMaxElements[i] <<"]: ";
 		std::string input;
 		fc::showCursor();
-		std::cin >> input;
+		std::getline(std::cin, input);
 		fc::hideCursor();
+		if (input.length() == 0) input = std::to_string(oldMaxElements[i]);
 		if (!isInt(input))
 		{
 			fc::setCursorPos(5 + 23, 5 + i);
@@ -46,21 +70,22 @@ void LevelEditor::run()
 	}
 
 	std::string input = " ";
-	std::string msg = "Name der Datei (max 10 Zeichen): ";
+	std::string msg = std::string("Name der Datei (max 10 Zeichen) [") + name + std::string("]: ");
 	do
 	{
-		fc::setCursorPos(5, 5 + LevelElement::countOfElements);
-		std::cout << msg << std::string(input.length(), ' ');
-		fc::setCursorPos(5 + msg.length(), 5 + LevelElement::countOfElements);
-		fc::showCursor();
-		std::cin >> input;
-		fc::hideCursor();
-	} while (!isFilename(input));
-	
-	// save Level With Name
-	BdalManager fileManager;
-	fileManager.saveLevel(level, input);
+		do
+		{
+			fc::setCursorPos(5, 5 + LevelElement::countOfElements);
+			std::cout << msg << std::string(input.length(), ' ');
+			fc::setCursorPos(5 + msg.length(), 5 + LevelElement::countOfElements);
+			fc::showCursor();
+			std::getline(std::cin, input);
+			if (input.length() == 0) input = name;
+			fc::hideCursor();
+		} while (!isFilename(input));
 
+	} while (!fileManager.saveLevel(level, input, isEditing));
+	
 
 	
 }

@@ -38,7 +38,7 @@ public:
 	Level getLevel(std::string levelName, LevelType levelType);
 
 	//return true if succeed
-	bool saveLevel(Level level, std::string cusLvlName);
+	bool saveLevel(Level level, std::string cusLvlName, bool overwrite = false);
 	
 };
 
