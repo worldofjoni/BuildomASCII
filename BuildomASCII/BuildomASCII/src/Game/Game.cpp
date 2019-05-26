@@ -2,12 +2,14 @@
 #include "Game.h"
 #include "Screen/Screen.h"
 #include "Screen/StartScreen/StartScreen.h"
-
+#include "BdalManager/BdalManager.h"
 
 
 
 void Game::run()
 {
+	checkForFiles();
+
 	// Screen Setup
 	setup();
 
@@ -31,4 +33,29 @@ void Game::setup()
 	fc::hideCursor();
 	fc::setCursorPos(0, 0);
 	fc::playSoundRepeat("music\\music.wav");
+}
+
+
+void Game::checkForFiles()
+{
+	BdalManager fileManager;
+	std::cout << "Checking for missing Files: ";
+	fc::waitMs(200);
+	char errorCode = fileManager.fileCheck();
+
+	switch (errorCode)
+	{
+	case 's':
+		std::cout << "MISSING STORY LEVEL";
+		fc::waitMs(1500);
+		break;
+	case 'm':
+		std::cout << "MISSING MUSIC";
+		fc::waitMs(1500);
+		break;
+	default:
+		std::cout << "OK";
+		break;
+	}
+	fc::waitMs(200);
 }

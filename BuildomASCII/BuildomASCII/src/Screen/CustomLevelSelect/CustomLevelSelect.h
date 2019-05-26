@@ -9,9 +9,6 @@
 class CustomLevelSelect : public Screen
 {
 private:
-
-public:
-
 	BdalManager fileManager;
 	Button createCustomButton = Button("Neues Level erstellen", Button::runCreateCustomButton);
 
@@ -23,12 +20,15 @@ public:
 
 	Pos start = { 4, 4 };
 	Pos current = { start.x - 1, start.y };
-	void run();
 
-	CustomLevelSelect();
-	~CustomLevelSelect();
 
 	void initScreen(int prevX = 0);
+
+public:
+
+	void run();
+	CustomLevelSelect();
+	~CustomLevelSelect();
 	CustomLevelSelect(const CustomLevelSelect& other) = delete;
 	CustomLevelSelect(CustomLevelSelect&& other) = delete;
 	CustomLevelSelect& operator=(const CustomLevelSelect& other) = delete;

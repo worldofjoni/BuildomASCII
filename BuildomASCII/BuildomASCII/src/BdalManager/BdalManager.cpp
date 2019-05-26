@@ -36,6 +36,19 @@ int BdalManager::getCustomLvlNames(std::string nameList[100])
 	return nameCount;
 }
 
+int BdalManager::getStoryCount()
+{
+	nameCount = 0;
+
+	for (const auto& entry : std::experimental::filesystem::directory_iterator(sNamePath))
+	{
+		nameCount++;
+
+
+	}
+	return nameCount;
+}
+
 BdalManager::BdalManager()
 {
 }
@@ -74,7 +87,7 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 
 	if (!readStream.is_open())
 	{
-		std::cerr << "ERROR";
+		std::cout << "ERROR";
 		return level;
 	}
 
@@ -202,6 +215,28 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 	return true;
 }
 
+
+char BdalManager::fileCheck()
+{
+	int count = 0;
+
+	for (const auto& entry : std::experimental::filesystem::directory_iterator(sNamePath))
+	{
+		count++;
+	}
+	if (count == 0)
+		return 's';
+	
+
+	count = 0;
+	for (const auto& entry : std::experimental::filesystem::directory_iterator(musicPath))
+	{
+		count++;
+	}
+	if (count == 0)
+		return 'm';
+	return 'n';
+}
 bool BdalManager::deleteCusLevel(std::string delLvlName)
 {
 	std::string deleteLevelPath = cNamePath + delLvlName + fileEnding;

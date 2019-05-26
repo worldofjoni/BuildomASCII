@@ -9,6 +9,7 @@ class Game
 {
 private:
 	void setup();
+	void checkForFiles();
 public:
 	void run();
 };

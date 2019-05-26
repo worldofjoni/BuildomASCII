@@ -12,6 +12,7 @@ class BdalManager
 {
 private:
 	const std::string basePath = "Level\\";
+	const std::string musicPath = "music\\";
 	const std::string fileEnding = ".bdal";
 
 
@@ -32,15 +33,18 @@ private:
 	void addCustomName(std::string name);
 
 public:
+	const std::string sNamePath = basePath + "Story Level\\";
 	const std::string cNamePath = basePath + "Custom Level\\";
 
 	int getCustomLvlNames(std::string nameList[100]);
+	int getStoryCount();
 	BdalManager();
 	Level getLevel(std::string levelName, LevelType levelType);
 
 	//return true if succeed
 	bool saveLevel(Level level, std::string cusLvlName, bool overwrite = false);
 	bool deleteCusLevel(std::string delLvlName);
+	char fileCheck();
 };
 
 #endif // !BDALMANAGER_H

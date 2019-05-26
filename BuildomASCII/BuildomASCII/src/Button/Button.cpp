@@ -6,6 +6,7 @@
 #include "Screen/Credits/Credits.h"
 #include "Screen/Manual/Manual.h"
 #include "Screen/LevelEditor/LevelEditor.h"
+#include "Screen/StorySelect/StorySelect.h"
 
 Button::Button(const char str[], int(*run)())
 	:run(run), name(str)
@@ -16,10 +17,15 @@ Button::Button(const char str[], int(*run)())
 int Button::runPlayButton()
 {
 	openSound();
-	BdalManager filemanager;		
-	Build build(filemanager.getLevel("1", LevelType::STORY));
+	StorySelect storySelectScreen;
+	storySelectScreen.run();
+	return 0;
 
-	build.run();
+
+	/*BdalManager filemanager;
+	Build build(filemanager.getLevel("1", LevelType::STORY));*/
+
+	//build.run();
 
 	return 0;
 }
