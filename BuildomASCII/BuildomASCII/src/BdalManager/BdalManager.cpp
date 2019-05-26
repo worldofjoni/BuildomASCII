@@ -214,7 +214,28 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 	addCustomName(cusLvlName);
 	return true;
 }
+
+char BdalManager::fileCheck()
+{
+	int count = 0;
 
+	for (const auto& entry : std::experimental::filesystem::directory_iterator(sNamePath))
+	{
+		count++;
+	}
+	if (count == 0)
+		return 's';
+	
+
+	count = 0;
+	for (const auto& entry : std::experimental::filesystem::directory_iterator(musicPath))
+	{
+		count++;
+	}
+	if (count == 0)
+		return 'm';
+	return 'n';
+}
 bool BdalManager::deleteCusLevel(std::string delLvlName)
 {
 	std::string deleteLevelPath = cNamePath + delLvlName + fileEnding;

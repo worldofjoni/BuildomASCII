@@ -12,6 +12,7 @@ class BdalManager
 {
 private:
 	const std::string basePath = "Level\\";
+	const std::string musicPath = "music\\";
 	const std::string fileEnding = ".bdal";
 
 
@@ -43,6 +44,7 @@ public:
 	//return true if succeed
 	bool saveLevel(Level level, std::string cusLvlName, bool overwrite = false);
 	bool deleteCusLevel(std::string delLvlName);
+	char fileCheck();
 };
 
 #endif // !BDALMANAGER_H
