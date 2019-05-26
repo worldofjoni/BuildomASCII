@@ -32,9 +32,11 @@ private:
 	void addCustomName(std::string name);
 
 public:
+	const std::string sNamePath = basePath + "Story Level\\";
 	const std::string cNamePath = basePath + "Custom Level\\";
 
 	int getCustomLvlNames(std::string nameList[100]);
+	int getStoryCount();
 	BdalManager();
 	Level getLevel(std::string levelName, LevelType levelType);
 
