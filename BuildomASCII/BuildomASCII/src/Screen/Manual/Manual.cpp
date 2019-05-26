@@ -8,7 +8,7 @@ Manual::Manual()
 {
 	setBlank();
 
-	writeAt({ 5, 4 }, (calls == 6) ? "NIEMAND" : "ANLEITUNG");
+	writeAt({ 46, 3 }, (calls == 6) ? "NIEMAND" : "ANLEITUNG");
 	writeMultiline({ 5,7 }, (calls == 6) ? content_ : content, WIDTH - 10);
 
 

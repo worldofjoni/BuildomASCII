@@ -18,7 +18,7 @@ private:
 	int nameCount = 0;
 	std::string names[100];
 
-	Pos start = { 4, 4 };
+	Pos start = { 4, 8 };
 	Pos current = { start.x - 1, start.y };
 
 	bool confirm();

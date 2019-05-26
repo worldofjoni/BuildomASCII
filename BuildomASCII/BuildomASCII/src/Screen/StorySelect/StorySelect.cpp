@@ -54,9 +54,6 @@ void StorySelect::run()
 				closeSound();
 				return;
 				break;
-			case 63:
-				initScreen();
-				break;
 			default:
 				break;
 			}
@@ -80,7 +77,7 @@ void StorySelect::run()
 
 StorySelect::StorySelect()
 {
-
+	
 }
 
 StorySelect::~StorySelect()
@@ -91,10 +88,15 @@ StorySelect::~StorySelect()
 void StorySelect::initScreen(int prevX)
 {
 	x = prevX;
+	
 	setBlank();
+	std::string title = "LEVELAUSWAHL";
+	Pos titlePos = { (WIDTH - title.length()) / 2, 3 };
+	writeAt(titlePos, title.c_str());
 
-	Pos start_ = { 5, HEIGHT - 3 };
-	start_ = writeAt(start_, "[ENTER] Level starten  \xb3 [ESC] : Verlassen \xb3 [F5] : Liste aktualisieren");
+
+	Pos start_ = { 30, HEIGHT - 3 };
+	start_ = writeAt(start_, "[ENTER] Level starten \xb3 [ESC] : Verlassen");
 
 	current.y = start.y + (x * gap);
 

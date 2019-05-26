@@ -125,8 +125,12 @@ void CustomLevelSelect::initScreen(int prevX)
 	setBlank();
 	x = prevX;
 
-	Pos start_ = { 5, HEIGHT - 5 };
-	writeAt(start_, "[ENTER] Level starten  \xb3 [F6] : Level bearbeiten      \xb3 [ESC] : Verlassen");
+	std::string title = "EIGENE LEVEL";
+	Pos titlePos = { (WIDTH - title.length()) / 2, 3 };
+	writeAt(titlePos, title.c_str());
+
+	Pos start_ = { 10, HEIGHT - 5 };
+	writeAt(start_, " [ENTER] Level starten \xb3    [F6] : Level bearbeiten   \xb3 [ESC] : Verlassen");
 	start_.y += 2;
 	writeAt(start_, "[BACK] : Level l\x94 \bschen \xb3 [TAB] : Dateiexplorer \x94 \bffnen \xb3 [F5] : Liste aktualisieren");
 

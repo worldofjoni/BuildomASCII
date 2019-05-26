@@ -15,7 +15,7 @@ private:
 	int input = 0;
 	int nameCount = 0;
 
-	Pos start = { 4, 4 };
+	Pos start = { 4, 8 };
 	Pos current = { start.x - 1, start.y };
 
 
