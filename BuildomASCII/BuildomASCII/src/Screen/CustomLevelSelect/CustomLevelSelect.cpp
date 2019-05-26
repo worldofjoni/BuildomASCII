@@ -28,7 +28,7 @@ void CustomLevelSelect::run()
 				}
 
 				//reinit screen
-				initScreen();
+				initScreen(x);
 				
 
 			}
@@ -62,14 +62,14 @@ void CustomLevelSelect::run()
 				return;
 				break;
 			case 63:
-				initScreen();
+				initScreen(x);
 				break;
 			case 64: // F6
 				if (x > 0)
 				{
 					LevelEditor editor(fileManager.getLevel(names[x - 1], LevelType::CUSTOM), names[x-1]);
 					editor.run();
-					initScreen();
+					initScreen(x);
 				}
 				break;
 			case 9:
@@ -106,15 +106,15 @@ CustomLevelSelect::~CustomLevelSelect()
 	
 }
 
-void CustomLevelSelect::initScreen()
+void CustomLevelSelect::initScreen(int prevX)
 {
-	x = 0;
+	x = prevX;
 	setBlank();
 
 	Pos start_ = { 5, HEIGHT - 3 };
 	start_ = writeAt(start_, "[F5] : Bildschirm aktualisieren \xb3 [F6] : Level bearbeiten \xb3 [TAB] : Dateiexplorer \x94 \bffnen");
 
-	current = { start.x - 1, start.y };
+	current.y = start.y + (x * gap);
 
 	nameCount = fileManager.getCustomLvlNames(names);
 
@@ -125,10 +125,6 @@ void CustomLevelSelect::initScreen()
 	{
 		writeAt({ start.x, start.y + gap * i }, names[i - 1].c_str());
 	}
-
-
-
-
 
 	printScreen();
 
