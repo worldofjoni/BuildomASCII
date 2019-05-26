@@ -214,7 +214,8 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 	addCustomName(cusLvlName);
 	return true;
 }
-
+
+
 char BdalManager::fileCheck()
 {
 	int count = 0;

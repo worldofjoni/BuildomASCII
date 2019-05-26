@@ -40,18 +40,18 @@ void Game::checkForFiles()
 {
 	BdalManager fileManager;
 	std::cout << "Checking for missing Files: ";
-	fc::waitMs(600);
+	fc::waitMs(200);
 	char errorCode = fileManager.fileCheck();
 
 	switch (errorCode)
 	{
 	case 's':
 		std::cout << "MISSING STORY LEVEL";
-		fc::waitMs(1000);
+		fc::waitMs(1500);
 		break;
 	case 'm':
 		std::cout << "MISSING MUSIC";
-		fc::waitMs(1000);
+		fc::waitMs(1500);
 		break;
 	default:
 		std::cout << "OK";
