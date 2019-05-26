@@ -1,3 +1,8 @@
+// ***********************************************************
+// *                      Buildom ASCII                      *
+// *    Copyright ©2019: Samuel Pasieka & Jonatan Ziegler    *
+// ***********************************************************
+
 #pragma once
 #ifndef BUILD_H
 #define BUILD_H

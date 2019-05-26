@@ -1,3 +1,8 @@
+// ***********************************************************
+// *                      Buildom ASCII                      *
+// *    Copyright ©2019: Samuel Pasieka & Jonatan Ziegler    *
+// ***********************************************************
+
 #pragma once
 #ifndef CURSER_H
 #define CURSER_H

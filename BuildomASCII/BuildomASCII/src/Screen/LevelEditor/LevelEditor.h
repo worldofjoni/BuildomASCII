@@ -1,3 +1,8 @@
+// ***********************************************************
+// *                      Buildom ASCII                      *
+// *    Copyright ©2019: Samuel Pasieka & Jonatan Ziegler    *
+// ***********************************************************
+
 #pragma once
 #ifndef LEVEL_EDITOR_H
 #define LEVEL_EDITOR_H

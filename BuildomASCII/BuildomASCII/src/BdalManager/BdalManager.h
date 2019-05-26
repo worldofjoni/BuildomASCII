@@ -1,3 +1,8 @@
+// ***********************************************************
+// *                      Buildom ASCII                      *
+// *    Copyright ©2019: Samuel Pasieka & Jonatan Ziegler    *
+// ***********************************************************
+
 #pragma once
 #ifndef BDALMANAGER_H
 #define BDALMANAGER_H

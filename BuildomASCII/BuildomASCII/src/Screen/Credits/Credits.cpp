@@ -1,3 +1,8 @@
+// ***********************************************************
+// *                      Buildom ASCII                      *
+// *    Copyright ©2019: Samuel Pasieka & Jonatan Ziegler    *
+// ***********************************************************
+
 #include "pch/pch.h"
 #include "Credits.h"
 
@@ -6,12 +11,17 @@ Credits::Credits()
 {
 	setBlank();
 
-	Pos exitBut;
-	exitBut.x = WIDTH / 2;
-	exitBut.y = HEIGHT - 2;
-	Pos creditPos = { (WIDTH - content.length()) / 2, HEIGHT / 4 };
+	//gamename
+	Pos gameNamePos = { (WIDTH - gameName.length()) / 2, HEIGHT / 4 };
+
+	writeAt(gameNamePos, gameName.c_str());
+
+	//names
+	Pos creditPos = { (WIDTH - content.length()) / 2, HEIGHT / 2 };
 
 	writeAt(creditPos, content.c_str());
+	
+	//music
 	writeMultiline({ (WIDTH - 60) / 2, HEIGHT * 3 / 4 }, music, 60);
 
 	std::string keys = "[ESC], [LEER], [ENTER] : Verlassen";
