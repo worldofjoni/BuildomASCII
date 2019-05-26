@@ -201,3 +201,17 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 	addCustomName(cusLvlName);
 	return true;
 }
+
+bool BdalManager::deleteCusLevel(std::string delLvlName)
+{
+	std::string deleteLevelPath = cNamePath + delLvlName + fileEnding;
+	readStream.open(deleteLevelPath);
+	if (!readStream.is_open())
+	{
+		return false;
+	}
+	readStream.close();
+	remove(deleteLevelPath.c_str());
+	return true;
+	
+}

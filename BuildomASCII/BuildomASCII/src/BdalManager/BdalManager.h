@@ -40,7 +40,7 @@ public:
 
 	//return true if succeed
 	bool saveLevel(Level level, std::string cusLvlName, bool overwrite = false);
-	
+	bool deleteCusLevel(std::string delLvlName);
 };
 
 #endif // !BDALMANAGER_H

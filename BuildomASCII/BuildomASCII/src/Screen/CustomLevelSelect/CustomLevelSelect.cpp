@@ -61,8 +61,11 @@ void CustomLevelSelect::run()
 			case 27:
 				return;
 				break;
+			case 8:
+				if (x > 0)
+					fileManager.deleteCusLevel(names[x - 1]);
 			case 63:
-				initScreen(x);
+				initScreen();
 				break;
 			case 64: // F6
 				if (x > 0)
