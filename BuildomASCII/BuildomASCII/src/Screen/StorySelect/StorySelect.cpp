@@ -15,6 +15,7 @@ void StorySelect::run()
 
 			if (input == 32 || input == 13)
 			{
+				openSound();
 				Build build(fileManager.getLevel(std::to_string(x + 1), LevelType::STORY));
 				build.run();
 
@@ -49,7 +50,8 @@ void StorySelect::run()
 			case 77:
 
 				break;
-			case 27:
+			case 27: // ESC
+				closeSound();
 				return;
 				break;
 			case 63:
