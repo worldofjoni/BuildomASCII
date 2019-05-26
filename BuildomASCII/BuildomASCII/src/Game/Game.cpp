@@ -46,12 +46,12 @@ void Game::checkForFiles()
 	switch (errorCode)
 	{
 	case 's':
-		std::cout << "MISSING STORY LEVEL";
-		fc::waitMs(1500);
+		std::cout << "MISSING STORY LEVEL" << std::endl << "Press ENTER";
+		std::cin.ignore();
 		break;
 	case 'm':
-		std::cout << "MISSING MUSIC";
-		fc::waitMs(1500);
+		std::cout << "MISSING MUSIC" << std::endl << "Press ENTER";
+		std::cin.ignore();
 		break;
 	default:
 		std::cout << "OK";
