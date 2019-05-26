@@ -8,11 +8,16 @@
 class Credits : public Screen
 {
 public:
-	Button exitButton = Button("Verlassen", Button::runExitButton);
+	
 
 	Credits();
 	virtual ~Credits();
-	std::string content = std::string(1, 184) + std::string(" Samuel Pasieka & Jonatan Ziegler");
+	std::string content =  std::string("Copyright \xb8 2019: Samuel Pasieka & Jonatan Ziegler");
+	std::string music = R"(
+Music from https://filmmusic.io:
+"Garden Music" by Kevin MacLeod (https://incompetech.com)
+Licence: CC BY (http://creativecommons.org/licenses/by/4.0/)
+)";
 
 	void run();
 };

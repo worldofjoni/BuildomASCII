@@ -4,6 +4,21 @@
 
 Credits::Credits()
 {
+	setBlank();
+
+	Pos exitBut;
+	exitBut.x = WIDTH / 2;
+	exitBut.y = HEIGHT - 2;
+	Pos creditPos = { (WIDTH - content.length()) / 2, HEIGHT / 4 };
+
+	writeAt(creditPos, content.c_str());
+	writeMultiline({ (WIDTH - 60) / 2, HEIGHT * 3 / 4 }, music, 60);
+
+	std::string keys = "[ESC], [LEER], [ENTER] : Verlassen";
+	writeAt({ (WIDTH - (int)keys.length()) / 2, HEIGHT - 3 }, keys.c_str());
+
+
+	printScreen();
 }
 
 
@@ -13,21 +28,7 @@ Credits::~Credits()
 
 void Credits::run()
 {
-	setBlank();
-
-	Pos exitBut;
-	exitBut.x = WIDTH / 2;
-	exitBut.y = HEIGHT - 2;
-
-	writeAt(WIDTH / 2.5, HEIGHT / 2, content.c_str());
 	
-
-
-	
-	writeAt(exitBut.x - 1, exitBut.y, '>');
-	writeAt(exitBut, exitButton.name.c_str());
-
-	printScreen();
 	while (true)
 	{
 		if (_kbhit())
