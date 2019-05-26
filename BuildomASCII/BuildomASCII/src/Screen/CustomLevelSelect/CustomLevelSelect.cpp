@@ -111,11 +111,13 @@ CustomLevelSelect::~CustomLevelSelect()
 
 void CustomLevelSelect::initScreen(int prevX)
 {
-	x = prevX;
 	setBlank();
+	x = prevX;
 
-	Pos start_ = { 5, HEIGHT - 3 };
-	start_ = writeAt(start_, "[F5] : Bildschirm aktualisieren \xb3 [F6] : Level bearbeiten \xb3 [TAB] : Dateiexplorer \x94 \bffnen");
+	Pos start_ = { 5, HEIGHT - 5 };
+	writeAt(start_, "[ENTER] Level starten  \xb3 [F6] : Level bearbeiten      \xb3 [ESC] : Verlassen");
+	start_.y += 2;
+	writeAt(start_, "[BACK] : Level l\x94 \bschen \xb3 [TAB] : Dateiexplorer \x94 \bffnen \xb3 [F5] : Liste aktualisieren");
 
 	current.y = start.y + (x * gap);
 
