@@ -8,7 +8,7 @@
 
 void Game::run()
 {
-	checkForFiles();
+	
 
 	// Screen Setup
 	setup();
@@ -32,30 +32,33 @@ void Game::setup()
 	fc::setTextColor(Screen::defaultTextColor);
 	fc::hideCursor();
 	fc::setCursorPos(0, 0);
-	fc::playSoundRepeat("music\\music.wav");
+	checkForFiles();
+	playMusic("music\\music.wav");
 }
 
 
 void Game::checkForFiles()
 {
 	BdalManager fileManager;
-	std::cout << "Checking for missing Files: ";
+	
 	fc::waitMs(200);
 	char errorCode = fileManager.fileCheck();
-
-	switch (errorCode)
+	if (errorCode == 0)
 	{
-	case 's':
-		std::cout << "MISSING STORY LEVEL" << std::endl << "Press ENTER";
+	}
+	else
+	{
+		fc::playSound("asdasdasdasdasfdsgilkhjagopiudjgfölasdjfkadsa"); // for windows error sound
+		std::cout << std::endl << "     FOLGENDE DATEIEN FEHLEN: " << std::endl;
+		if (errorCode & 0b00000001) std::cout << "     STORY LEVEL" << std::endl;
+		if (errorCode & 0b00000010)
+		{
+			std::cout << "     MUSIC" << std::endl;
+			musicAllowed() = false;
+		}
+		std::cout << std::endl << "     DRUEKEN SIE ENTER";
 		std::cin.ignore();
-		break;
-	case 'm':
-		std::cout << "MISSING MUSIC" << std::endl << "Press ENTER";
-		std::cin.ignore();
-		break;
-	default:
-		std::cout << "OK";
-		break;
+
 	}
 	fc::waitMs(200);
 }

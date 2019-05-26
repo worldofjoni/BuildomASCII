@@ -4,6 +4,7 @@
 
 
 
+
 struct Pos
 {
 	int x, y;
@@ -17,5 +18,8 @@ struct Pos
 char getCharLow();
 void openSound();
 void closeSound();
+void playMusic(const char str[]);
+bool& musicAllowed();
+
 
 #endif // !POS_H

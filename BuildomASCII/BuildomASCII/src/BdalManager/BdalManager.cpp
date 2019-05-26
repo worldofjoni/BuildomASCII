@@ -219,13 +219,13 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 char BdalManager::fileCheck()
 {
 	int count = 0;
+	char error = 0;
 
 	for (const auto& entry : std::experimental::filesystem::directory_iterator(sNamePath))
 	{
 		count++;
 	}
-	if (count == 0)
-		return 's';
+	if (count == 0) error |=0b00000001;
 	
 
 	count = 0;
@@ -233,10 +233,11 @@ char BdalManager::fileCheck()
 	{
 		count++;
 	}
-	if (count == 0)
-		return 'm';
-	return 'n';
+	if (count == 0)error |= 0b00000010;
+	
+	return error;
 }
+
 bool BdalManager::deleteCusLevel(std::string delLvlName)
 {
 	std::string deleteLevelPath = cNamePath + delLvlName + fileEnding;
