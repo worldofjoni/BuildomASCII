@@ -92,7 +92,7 @@ void StorySelect::initScreen(int prevX)
 	setBlank();
 
 	Pos start_ = { 5, HEIGHT - 3 };
-	start_ = writeAt(start_, "[F5] : Bildschirm aktualisieren");
+	start_ = writeAt(start_, "[ENTER] Level starten  \xb3 [ESC] : Verlassen \xb3 [F5] : Liste aktualisieren");
 
 	current.y = start.y + (x * gap);
 
