@@ -16,13 +16,20 @@ private:
 	int gap = 2;
 	int input = 0;
 	int nameCount = 0;
+
+	int maxPage = 0;
+	int currentPage = 0;
+	int maxX = 0;
+	const int MAX_NAMES_ON_LIST = 14;
+
 	std::string names[100];
+	
 
 	Pos start = { 4, 8 };
 	Pos current = { start.x - 1, start.y };
 
 	bool confirm();
-	void initScreen(int prevX = 0);
+	void initScreen(int prevX = 0, int prevPage = 1);
 
 public:
 

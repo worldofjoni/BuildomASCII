@@ -24,7 +24,7 @@ void CustomLevelSelect::run()
 				else
 				{
 					openSound();
-					Build build(fileManager.getLevel(names[x - 1], LevelType::CUSTOM));
+					Build build(fileManager.getLevel(names[(x - 1) + ((currentPage - 1) * MAX_NAMES_ON_LIST)], LevelType::CUSTOM));
 					build.run();
 				}
 
@@ -46,18 +46,26 @@ void CustomLevelSelect::run()
 				break;
 			case 'a':
 			case 75:
-
+				if (currentPage > 1)
+				{
+					currentPage--;
+					initScreen(0, currentPage);
+				}
 				break;
 			case 's':
 			case 80:
-				if (x < nameCount)
+				if (x < maxX)
 				{
 					x++;
 				}
 				break;
 			case 'd':
 			case 77:
-
+				if (currentPage < maxPage)
+				{
+					currentPage++;
+					initScreen(0, currentPage);
+				}
 				break;
 			case 27: //ESC
 				closeSound();
@@ -68,11 +76,13 @@ void CustomLevelSelect::run()
 				{
 					if (confirm())
 					{
-					 fileManager.deleteCusLevel(names[x - 1]);
-					 initScreen();
+						 fileManager.deleteCusLevel(names[(x - 1) + ((currentPage - 1) * MAX_NAMES_ON_LIST)]);
+						 initScreen();
+						 gotoxy(12, 5);
+						 std::cout << "Gel\x94\scht!";
 					}
 					else
-						initScreen(x);
+						initScreen(x, currentPage);
 				}
 				break;
 			case 63:
@@ -81,7 +91,7 @@ void CustomLevelSelect::run()
 			case 64: // F6
 				if (x > 0)
 				{
-					LevelEditor editor(fileManager.getLevel(names[x - 1], LevelType::CUSTOM), names[x-1]);
+					LevelEditor editor(fileManager.getLevel(names[(x - 1) + ((currentPage - 1) * MAX_NAMES_ON_LIST)], LevelType::CUSTOM), names[(x - 1) + ((currentPage - 1) * MAX_NAMES_ON_LIST)]);
 					editor.run();
 					initScreen(x);
 				}
@@ -104,7 +114,6 @@ void CustomLevelSelect::run()
 
 		}
 	}
-	//writeAt(startPos.x, startPos.y, playButton.word.c_str());
 }
 
 
@@ -120,31 +129,48 @@ CustomLevelSelect::~CustomLevelSelect()
 	
 }
 
-void CustomLevelSelect::initScreen(int prevX)
+void CustomLevelSelect::initScreen(int prevX, int prevPage)
 {
-	setBlank();
+	nameCount = fileManager.getCustomLvlNames(names);
+
+	maxPage = nameCount / MAX_NAMES_ON_LIST + 1;
+	currentPage = prevPage;
 	x = prevX;
+
+	int startNum = 1 + MAX_NAMES_ON_LIST * (currentPage - 1);
+	int endNum = MAX_NAMES_ON_LIST * currentPage;
+
+	if (currentPage == maxPage)
+		endNum = (MAX_NAMES_ON_LIST * (currentPage - 1)) + nameCount % MAX_NAMES_ON_LIST;
+
+	maxX = endNum - startNum + 1;
+	setBlank();
 
 	std::string title = "EIGENE LEVEL";
 	Pos titlePos = { (WIDTH - title.length()) / 2, 3 };
 	writeAt(titlePos, title.c_str());
 
-	Pos start_ = { 10, HEIGHT - 5 };
+	writeAt({ 4, 5 },( "["+ std::to_string(currentPage) + "/" + std::to_string(maxPage) + "]").c_str());
+	Pos start_ = { 10, HEIGHT - 7 };
+	start_.y += 2;
 	writeAt(start_, " [ENTER] Level starten \xb3    [F6] : Level bearbeiten   \xb3 [ESC] : Verlassen");
 	start_.y += 2;
 	writeAt(start_, "[BACK] : Level l\x94 \bschen \xb3 [TAB] : Dateiexplorer \x94 \bffnen \xb3 [F5] : Liste aktualisieren");
 
 	current.y = start.y + (x * gap);
 
-	nameCount = fileManager.getCustomLvlNames(names);
 
 
 	writeAt(start, createCustomButton.name.c_str());
 
-	for (int i = 1; i <= nameCount; i++)
+	
+	for (int i = 1;startNum <= endNum; i++)
 	{
-		writeAt({ start.x, start.y + gap * i }, names[i - 1].c_str());
+		writeAt({ start.x, start.y + gap * i }, names[startNum - 1].c_str());
+		startNum++;
 	}
+
+
 
 	printScreen();
 
@@ -154,7 +180,7 @@ void CustomLevelSelect::initScreen(int prevX)
 
 bool CustomLevelSelect::confirm()
 {
-	gotoxy(Screen::WIDTH - 30, 4);
+	gotoxy(12, 5);
 	std::cout << "Wirklich l\x94 \bschen? [ENTER]";
 	if (_getch() == 13)
 		return true;

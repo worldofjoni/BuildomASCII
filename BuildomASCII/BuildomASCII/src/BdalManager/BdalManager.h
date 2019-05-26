@@ -11,9 +11,9 @@ enum LevelType {STORY = 0, CUSTOM = 1};
 class BdalManager
 {
 private:
-	const std::string basePath = "Level\\";
-	const std::string musicPath = "music\\";
-	const std::string fileEnding = ".bdal";
+	const std::string BASE_PATH = "Level\\";
+	const std::string MUSIC_PATH = "music\\";
+	const std::string FILE_ENDING = ".bdal";
 
 
 	std::string fileName;
@@ -33,8 +33,8 @@ private:
 	void addCustomName(std::string name);
 
 public:
-	const std::string sNamePath = basePath + "Story Level\\";
-	const std::string cNamePath = basePath + "Custom Level\\";
+	const std::string sNamePath = BASE_PATH + "Story Level\\";
+	const std::string cNamePath = BASE_PATH + "Custom Level\\";
 
 	int getCustomLvlNames(std::string nameList[100]);
 	int getStoryCount();

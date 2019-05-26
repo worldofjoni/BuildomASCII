@@ -81,7 +81,7 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 
 
 
-	advPath = basePath + midDir + fileName + levelName + fileEnding;
+	advPath = BASE_PATH + midDir + fileName + levelName + FILE_ENDING;
 
 	readStream.open(advPath);
 
@@ -161,7 +161,7 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 {
 	midDir = "Custom Level\\";
-	advPath = basePath + midDir + cusLvlName + fileEnding;
+	advPath = BASE_PATH + midDir + cusLvlName + FILE_ENDING;
 
 	readStream.open(advPath);
 
@@ -229,7 +229,7 @@ char BdalManager::fileCheck()
 	
 
 	count = 0;
-	for (const auto& entry : std::experimental::filesystem::directory_iterator(musicPath))
+	for (const auto& entry : std::experimental::filesystem::directory_iterator(MUSIC_PATH))
 	{
 		count++;
 	}
@@ -240,7 +240,7 @@ char BdalManager::fileCheck()
 
 bool BdalManager::deleteCusLevel(std::string delLvlName)
 {
-	std::string deleteLevelPath = cNamePath + delLvlName + fileEnding;
+	std::string deleteLevelPath = cNamePath + delLvlName + FILE_ENDING;
 	readStream.open(deleteLevelPath);
 	if (!readStream.is_open())
 	{
