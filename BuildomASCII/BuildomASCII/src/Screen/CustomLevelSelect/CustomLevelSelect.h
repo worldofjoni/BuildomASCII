@@ -28,7 +28,7 @@ public:
 	CustomLevelSelect();
 	~CustomLevelSelect();
 
-	void initScreen();
+	void initScreen(int prevX = 0);
 	CustomLevelSelect(const CustomLevelSelect& other) = delete;
 	CustomLevelSelect(CustomLevelSelect&& other) = delete;
 	CustomLevelSelect& operator=(const CustomLevelSelect& other) = delete;
