@@ -23,6 +23,7 @@ void CustomLevelSelect::run()
 				}
 				else
 				{
+					openSound();
 					Build build(fileManager.getLevel(names[x - 1], LevelType::CUSTOM));
 					build.run();
 				}
@@ -58,7 +59,8 @@ void CustomLevelSelect::run()
 			case 77:
 
 				break;
-			case 27:
+			case 27: //ESC
+				closeSound();
 				return;
 				break;
 			case 8:

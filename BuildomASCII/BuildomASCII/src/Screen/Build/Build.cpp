@@ -284,6 +284,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 
 	case 27: // ESC
 		if (isEditor) cancelEdit = true;
+		closeSound();
 		return true;
 		break;
 

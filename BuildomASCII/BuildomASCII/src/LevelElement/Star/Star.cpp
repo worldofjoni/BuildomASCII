@@ -7,7 +7,7 @@ Star::Star(bool deletable)
 	symbol = ownSym;
 	key = ownKey;
 	this->deletable = deletable;
-	color = YELLOW_LIGHT;
+	color = YELLOW;
 	fallable = true;
 }
 

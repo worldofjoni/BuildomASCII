@@ -15,7 +15,8 @@ Button::Button(const char str[], int(*run)())
 
 int Button::runPlayButton()
 {
-	BdalManager filemanager;
+	openSound();
+	BdalManager filemanager;		
 	Build build(filemanager.getLevel("1", LevelType::STORY));
 
 	build.run();
@@ -25,6 +26,7 @@ int Button::runPlayButton()
 
 int Button::runCustomSelectButton()
 {
+	openSound();
 	CustomLevelSelect levelSelect;
 	levelSelect.run();
 
@@ -34,12 +36,14 @@ int Button::runCustomSelectButton()
 
 int Button::runExitButton()
 {
+	closeSound();
 	fc::clearScreen(BLACK);
 	return 1;
 }
 
 int Button::runCreditsButton()
 {
+	openSound();
 	Credits credits;
 	credits.run();
 
@@ -48,6 +52,7 @@ int Button::runCreditsButton()
 
 int Button::runManualButton()
 {
+	openSound();
 	Manual manual;
 	manual.run();
 	return 0;
@@ -55,6 +60,7 @@ int Button::runManualButton()
 
 int Button::runCreateCustomButton()
 {
+	openSound();
 	// Level Editor
 
 	LevelEditor levelEditor;

@@ -15,5 +15,7 @@ struct Pos
 
 
 char getCharLow();
+void openSound();
+void closeSound();
 
 #endif // !POS_H

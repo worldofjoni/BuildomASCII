@@ -114,7 +114,7 @@ void StartScreen::run()
 			case 77:
 
 				break;
-			case 27:
+			case 27: // ESC
 				exitButton.run();
 				return;
 				break;

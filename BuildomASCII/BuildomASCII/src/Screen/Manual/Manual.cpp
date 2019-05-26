@@ -27,7 +27,12 @@ void Manual::run()
 		if (_kbhit())
 		{
 			char c = getCharLow();
-			if (c == 27 || c == 13 || c == ' ') return;
+			if (c == 27 || c == 13 || c == ' ')
+			{
+				closeSound();
+				return;
+			}
+
 		}
 	}
 }

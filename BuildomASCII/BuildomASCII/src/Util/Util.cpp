@@ -36,3 +36,17 @@ char getCharLow()
 	return input;
 }
 
+void openSound()
+{
+	fc::beep(NOTE_C, 50);
+	fc::beep(NOTE_F, 50);
+	fc::beep(NOTE_H, 50);
+}
+
+void closeSound()
+{
+	fc::beep(NOTE_H, 50);
+	fc::beep(NOTE_F, 50);
+	fc::beep(NOTE_C, 50);
+}
+
