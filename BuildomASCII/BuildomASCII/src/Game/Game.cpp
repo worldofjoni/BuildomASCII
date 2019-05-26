@@ -39,10 +39,7 @@ void Game::setup()
 void Game::checkForFiles()
 {
 	BdalManager fileManager;
-	std::cout << "Checking for missing Files: ";
-	fc::waitMs(200);
 	char errorCode = fileManager.fileCheck();
-
 	switch (errorCode)
 	{
 	case 's':
@@ -54,8 +51,6 @@ void Game::checkForFiles()
 		std::cin.ignore();
 		break;
 	default:
-		std::cout << "OK";
 		break;
 	}
-	fc::waitMs(200);
 }
