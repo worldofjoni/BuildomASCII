@@ -2,6 +2,7 @@
 #include "Build.h"
 
 #include "LevelElement/LevelElement.h"
+#include "Screen/WinScreen/WinScreen.h"
 
 
 
@@ -269,6 +270,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 		else
 		{
 			//set stars to stars again
+			stars = 0;
 			for (int i = 0; i < maxStars; i++)
 			{
 				if (starsPos[i] != INVALID_POS)
@@ -363,6 +365,8 @@ bool Build::runLevel()
 
 	int repeats;
 
+	t1 = std::chrono::system_clock::now();
+
 	while (!playerGameOver)
 	{
 		repeats = 0;
@@ -382,7 +386,11 @@ bool Build::runLevel()
 			// Win
 			if (currentPos.x == level.end.x && currentPos.y == level.end.y)
 			{
-
+				t2 = std::chrono::system_clock::now();
+				fc::beep(NOTE_E, 50);
+				fc::beep(NOTE_H, 500);
+				WinScreen winScreen(this);
+				winScreen.run();
 				return true;
 			}
 

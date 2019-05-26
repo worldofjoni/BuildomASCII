@@ -192,4 +192,15 @@ void Screen::writeMultiline(Pos pos, std::string str, int width)
 
 }
 
+void Screen::copyContent(Pixel old[WIDTH][HEIGHT])
+{
+	for(int x = 0; x < WIDTH; x++)
+	{
+		for (int y = 0; y < HEIGHT; y++)
+		{
+			content[x][y] = old[x][y];
+		}
+	}
+}
+
 

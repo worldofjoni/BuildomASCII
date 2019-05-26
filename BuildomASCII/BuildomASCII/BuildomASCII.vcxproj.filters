@@ -93,6 +93,9 @@
     <ClCompile Include="src\Screen\StorySelect\StorySelect.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\Screen\WinScreen\WinScreen.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch\pch.h">
@@ -168,6 +171,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\Screen\StorySelect\StorySelect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Screen\WinScreen\WinScreen.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

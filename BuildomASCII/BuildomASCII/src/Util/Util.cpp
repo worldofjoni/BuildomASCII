@@ -63,3 +63,50 @@ bool& musicAllowed()
 	return musicAllowedVar;
 }
 
+void printMultiline(Pos pos, std::string str, int width, fc::Color textColor, fc::Color backColor)
+{
+	fc::setTextColor(textColor);
+	fc::setBackgroundColor(backColor);
+	str = str.substr(1, str.length()); // to deleate the first \n
+	int i = 0, x = pos.x, y = pos.y;
+	while (i < str.length())
+	{
+		while (str[i] != '\n' && (x + i) < Screen::WIDTH)
+		{
+			fc::setCursorPos(x + i, y);
+			switch (str[i])
+			{
+			case 'ä':
+				std::cout << (char)132;
+				break;
+			case 'ö':
+				std::cout << (char)148;
+				break;
+			case 'ü':
+				std::cout << (char)129;
+				break;
+			case 'Ä':
+				std::cout << (char)142;
+				break;
+			case 'Ö':
+				std::cout << (char)153;
+				break;
+			case 'Ü':
+				std::cout << (char)154;
+				break;
+			case 'ß':
+				std::cout << (char)225;
+				break;
+			default:
+				std::cout << str[i];
+				break;
+			}
+			i++;
+		}
+		str = str.substr((str[i] == '\n') ? i + 1 : i, str.length());
+		i = 0;
+		y++;
+	}
+
+}
+

@@ -25,6 +25,7 @@
     <ClCompile Include="src\LevelElement\Spike\Spike.cpp" />
     <ClCompile Include="src\LevelElement\Star\Star.cpp" />
     <ClCompile Include="src\Screen\StorySelect\StorySelect.cpp" />
+    <ClCompile Include="src\Screen\WinScreen\WinScreen.cpp" />
     <ClCompile Include="src\Util\Util.cpp" />
     <ClCompile Include="src\Screen\Credits\Credits.cpp" />
     <ClCompile Include="src\Button\Button.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="src\LevelElement\Spike\Spike.h" />
     <ClInclude Include="src\LevelElement\Star\Star.h" />
     <ClInclude Include="src\Screen\StorySelect\StorySelect.h" />
+    <ClInclude Include="src\Screen\WinScreen\WinScreen.h" />
     <ClInclude Include="src\Util\Util.h" />
     <ClInclude Include="src\Screen\Credits\Credits.h" />
     <ClInclude Include="src\Button\Button.h" />

@@ -74,6 +74,8 @@ public:
 
 	Pos previousPos = currentPos;
 
+	std::chrono::system_clock::time_point t1, t2;
+
 	// for level Editor
 	bool cancelEdit = false;
 	

@@ -20,8 +20,13 @@ void Star::steppedOn(Build* build)
 
 void Star::steppedIn(Build* build)
 {
-	build->stars++;
-	this->symbol = Empty::ownSym;
+	if (this->symbol == ownSym)
+	{
+		build->stars++;
+		this->symbol = Empty::ownSym;
+		fc::beep(NOTE_H, 50);
+
+	}
 	
 }
 

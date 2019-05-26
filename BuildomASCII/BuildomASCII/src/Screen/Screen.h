@@ -30,6 +30,9 @@ public:
 	virtual ~Screen() {};
 
 
+	Pixel content[WIDTH][HEIGHT];
+
+protected:
 	// Functions to write on content
 	Pos writeAt(int x, int y, char c);
 	Pos writeAt(Pos pos, char c);
@@ -41,9 +44,7 @@ public:
 	Pos writeAt(int x, int y, int num, unsigned int digis);
 	Pos writeAt(Pos pos, int num, unsigned int digis);
 	void writeMultiline(Pos pos, std::string str, int width);
-
-protected:
-	Pixel content[WIDTH][HEIGHT];
+	void copyContent(Pixel old[WIDTH][HEIGHT]);
 
 };
 
