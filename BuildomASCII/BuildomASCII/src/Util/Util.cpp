@@ -1,6 +1,7 @@
 #include "pch/pch.h"
 #include "Util.h"
 
+
 Pos Pos::below()
 {
 	return { x, y + 1 };
@@ -48,5 +49,17 @@ void closeSound()
 	fc::beep(NOTE_H, 50);
 	fc::beep(NOTE_F, 50);
 	fc::beep(NOTE_C, 50);
+}
+
+static bool musicAllowedVar = true;
+
+void playMusic(const char str[])
+{
+	if (musicAllowedVar) fc::playSoundRepeat(str);
+}
+
+bool& musicAllowed()
+{
+	return musicAllowedVar;
 }
 
