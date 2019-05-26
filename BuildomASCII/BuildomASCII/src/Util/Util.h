@@ -15,5 +15,4 @@ struct Pos
 
 
 char getCharLow();
-
 #endif // !POS_H

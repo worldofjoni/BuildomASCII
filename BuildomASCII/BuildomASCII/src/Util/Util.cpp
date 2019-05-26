@@ -35,4 +35,3 @@ char getCharLow()
 	}
 	return input;
 }
-
