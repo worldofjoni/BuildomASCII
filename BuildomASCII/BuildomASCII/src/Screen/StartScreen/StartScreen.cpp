@@ -32,8 +32,8 @@ void StartScreen::run()
 
 	// Create Coordinates
 	Pos startPos;
-	startPos.x = WIDTH / 2;
-	startPos.y = HEIGHT / 2;
+	startPos.x = (Screen::WIDTH - LOGO_WIDTH) / 2 + 1;
+	startPos.y = HEIGHT / 2 - 3;
 
 
 	Pos currentPos;
@@ -43,11 +43,11 @@ void StartScreen::run()
 
 
 	// Create Buttons and change maxSel accordingly
-	writeAt(startPos.x, startPos.y, playButton.name.c_str());
-	writeAt(startPos.x, startPos.y + gap, customButton.name.c_str());
-	writeAt(startPos.x, startPos.y + gap * 2, manualButton.name.c_str());
-	writeAt(startPos.x, startPos.y + gap * 3, creditsButton.name.c_str());
-	writeAt(startPos.x, startPos.y + gap * 4, exitButton.name.c_str());
+	writeAt((WIDTH - playButton.name.length()) / 2, startPos.y, playButton.name.c_str());
+	writeAt((WIDTH - customButton.name.length()) / 2, startPos.y + gap, customButton.name.c_str());
+	writeAt((WIDTH - manualButton.name.length()) / 2, startPos.y + gap * 2, manualButton.name.c_str());
+	writeAt((WIDTH - creditsButton.name.length()) / 2, startPos.y + gap * 3, creditsButton.name.c_str());
+	writeAt((WIDTH - exitButton.name.length()) / 2, startPos.y + gap * 4, exitButton.name.c_str());
 	//writeAt(startPos.x - 4, startPos.y - (gap + 2), title.c_str());
 	
 	
@@ -65,6 +65,8 @@ void StartScreen::run()
 	Button* select = &playButton;
 	int curSel = 0;
 	int input;
+
+	currentPos.x = (WIDTH - select->name.length()) / 2 - 1;
 
 	gotoxy(currentPos.x, currentPos.y);
 	std::cout << '>';
@@ -147,6 +149,7 @@ void StartScreen::run()
 			gotoxy(currentPos.x, currentPos.y);
 			std::cout << ' ';
 
+			currentPos.x = (WIDTH - select->name.length()) / 2 - 1;
 			currentPos.y = startPos.y + (curSel * gap);
 			gotoxy(currentPos.x, currentPos.y);
 			std::cout << '>';
