@@ -21,7 +21,7 @@ private:
 	Pos start = { 4, 4 };
 	Pos current = { start.x - 1, start.y };
 
-
+	bool confirm();
 	void initScreen(int prevX = 0);
 
 public:

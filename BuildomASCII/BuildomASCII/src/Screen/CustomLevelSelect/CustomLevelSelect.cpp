@@ -65,7 +65,16 @@ void CustomLevelSelect::run()
 				break;
 			case 8:
 				if (x > 0)
-					fileManager.deleteCusLevel(names[x - 1]);
+				{
+					if (confirm())
+					{
+					 fileManager.deleteCusLevel(names[x - 1]);
+					 initScreen();
+					}
+					else
+						initScreen(x);
+				}
+				break;
 			case 63:
 				initScreen();
 				break;
@@ -137,4 +146,13 @@ void CustomLevelSelect::initScreen(int prevX)
 
 	gotoxy(current.x, current.y);
 	std::cout << '>';
+}
+
+bool CustomLevelSelect::confirm()
+{
+	gotoxy(Screen::WIDTH - 30, 4);
+	std::cout << "Wirklich l\x94 \bschen? [ENTER]";
+	if (_getch() == 13)
+		return true;
+	return false;
 }
