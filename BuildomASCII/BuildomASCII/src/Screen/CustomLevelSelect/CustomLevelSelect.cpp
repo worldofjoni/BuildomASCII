@@ -139,16 +139,25 @@ void CustomLevelSelect::initScreen(int prevX, int prevPage)
 	nameCount = fileManager.getCustomLvlNames(names);
 
 	maxPage = nameCount / MAX_NAMES_ON_LIST + 1;
+
+	if(nameCount % MAX_NAMES_ON_LIST == 0)
+		maxPage = nameCount / MAX_NAMES_ON_LIST;
 	currentPage = prevPage;
 	x = prevX;
 
 	int startNum = 1 + MAX_NAMES_ON_LIST * (currentPage - 1);
 	int endNum = MAX_NAMES_ON_LIST * currentPage;
 
-	if (currentPage == maxPage)
+	if (currentPage == maxPage && nameCount % MAX_NAMES_ON_LIST != 0)
 		endNum = (MAX_NAMES_ON_LIST * (currentPage - 1)) + nameCount % MAX_NAMES_ON_LIST;
 
 	maxX = endNum - startNum + 1;
+	if (nameCount == 0)
+	{
+		maxPage = 1;
+		maxX = 0;
+
+	}
 	setBlank();
 
 	std::string title = "EIGENE LEVEL";

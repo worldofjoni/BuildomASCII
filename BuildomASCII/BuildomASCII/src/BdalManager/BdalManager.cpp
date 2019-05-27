@@ -29,6 +29,11 @@ int BdalManager::getCustomLvlNames(std::string nameList[100])
 {
 	nameCount = 0;
 
+	for (int i = 0; i < 100; i++)
+	{
+		nameList[i] = "";
+	}
+
 	for (const auto& entry : std::experimental::filesystem::directory_iterator(cNamePath))
 	{
 		nameList[nameCount] = entry.path().string();
