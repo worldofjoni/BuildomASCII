@@ -375,7 +375,8 @@ bool Build::runLevel()
 	while (!playerGameOver)
 	{
 		repeats = 0;
-		movePlayer(playerDirection, 0);
+		if(!fc::isKeyPressed(32))	//Space
+			movePlayer(playerDirection, 0);
 
 		// Falling
 		do
