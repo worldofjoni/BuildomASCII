@@ -23,8 +23,11 @@ private:
 	Pos start = { 4, 8 };
 	Pos current = { start.x - 1, start.y };
 
-
-	void initScreen(int prevX = 0);
+	int maxPage = 0;
+	int currentPage = 0;
+	int maxX = 0;
+	const int MAX_NAMES_ON_LIST = 14;
+	void initScreen(int prevX = 0, int prevPage = 1);
 
 public:
 
