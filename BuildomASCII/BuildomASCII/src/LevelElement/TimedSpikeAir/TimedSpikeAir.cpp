@@ -13,7 +13,7 @@ TimedSpikeAir::TimedSpikeAir(bool deletable)
 	key = ownKey;
 	this->deletable = deletable;
 	color = RED;
-	fallable = true;
+	fallable = false;
 	canBePlacedByUser = false;
 	
 

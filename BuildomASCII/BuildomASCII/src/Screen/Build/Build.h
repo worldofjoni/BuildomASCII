@@ -42,16 +42,14 @@ private:
 	int fallSpeed = 3;
 	int movespeed = 100;
 	void displayPlayer();
-	//for stars
-	int starsPlaced = 0;
-	Pos starsPos[maxStars] = { INVALID_POS, INVALID_POS, INVALID_POS };
 
 	template <typename T>
 	void printOnLevel(T content, Pos pos, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
 
+
 public:
 
-	int stars = 0;
+	
 	Level level;
 	const static char startChar = '#', endChar = 'P', playerChar = 2, playerDeadChar = 1;
 	const static fc::Color startColor = MAGENTA, endColor = GREEN, alarmFrameColor = RED_LIGHT;
@@ -77,11 +75,16 @@ public:
 	int previousElementID = -1;
 	int previousLowerElementID = -1;
 
-	int cycleCount = 0;
+	int cycleCount = 1;
 
 	Pos previousPos = currentPos;
 
 	std::chrono::system_clock::time_point t1, t2;
+
+	//for star
+	std::vector<Pos> starPos;
+	int starsCollected = 0;
+	
 
 	// For timed spike
 	std::vector<Pos> spikePos;

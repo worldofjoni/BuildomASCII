@@ -48,7 +48,7 @@ WinScreen::WinScreen(Build* old)
 	Pos starPos = { (WIDTH - size.x) / 2 + 9, (HEIGHT - size.y) / 2 + 10 };
 	for (int i = 0; i < Build::maxStars; i++)
 	{
-		printMultiline(starPos, star, 20, (i < old->stars) ? YELLOW_LIGHT : backgroundColor, backgroundColor);
+		printMultiline(starPos, star, 20, (i < old->starsCollected) ? YELLOW_LIGHT : backgroundColor, backgroundColor);
 		starPos.x += 15;
 
 	}

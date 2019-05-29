@@ -29,7 +29,7 @@ void Star::steppedIn(Build* build)
 {
 	if (this->symbol == ownSym)
 	{
-		build->stars++;
+		build->starsCollected++;
 		this->symbol = Empty::ownSym;
 		fc::beep(NOTE_H, 50);
 
