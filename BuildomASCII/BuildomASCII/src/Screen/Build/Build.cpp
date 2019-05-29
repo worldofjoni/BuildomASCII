@@ -436,8 +436,7 @@ bool Build::runLevel()
 			if (currentPos.x == level.end.x && currentPos.y == level.end.y)
 			{
 				t2 = std::chrono::system_clock::now();
-				fc::beep(NOTE_E, 50);
-				fc::beep(NOTE_H, 500);
+				winSound();
 				WinScreen winScreen(this);
 				winScreen.run();
 				return true;
@@ -510,7 +509,7 @@ bool Build::runLevel()
 
 	// Display dead Player
 	printOnLevel(playerDeadChar, currentPos, BLUE_LIGHT, level.at(currentPos)->backgroundColor);
-	fc::waitMs(movespeed * 5);
+	deathSound(); // also waits
 	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor(), level.at(currentPos)->backgroundColor);
 	return false;
 }

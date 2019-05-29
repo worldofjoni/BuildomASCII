@@ -56,6 +56,21 @@ void closeSound()
 	fc::beep(NOTE_C, 50);
 }
 
+void winSound()
+{
+	fc::beep(NOTE_E, 50);
+	fc::beep(NOTE_H, 500);
+}
+
+void deathSound()
+{
+	fc::beep(NOTE_G, 50);
+	fc::beep(NOTE_D, 100);
+	fc::beep(NOTE_C, 500);
+}
+
+
+
 static bool musicAllowedVar = true;
 
 void playMusic(const char str[])

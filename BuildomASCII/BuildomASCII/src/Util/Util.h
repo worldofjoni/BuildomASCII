@@ -23,6 +23,8 @@ struct Pos
 char getCharLow();
 void openSound();
 void closeSound();
+void winSound();
+void deathSound();
 void playMusic(const char str[]);
 bool& musicAllowed();
 void printMultiline(Pos pos, std::string str, int width, fc::Color textColor, fc::Color backColor);
