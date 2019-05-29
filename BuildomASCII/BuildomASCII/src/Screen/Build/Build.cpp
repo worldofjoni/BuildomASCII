@@ -93,7 +93,8 @@ Build::Build(Level level, bool asEditor)
 
 	if (isEditor)
 	{
-		this->level.maxElements[Star::ownId] = maxStars - starPos.size();
+		this->level.maxElements[Star::ownId] = maxStars;
+		this->level.setElements[Star::ownId] = starPos.size();
 	}
 
 	// init for menu bar
@@ -130,7 +131,7 @@ Build::Build(Level level, bool asEditor)
 		if (level.maxElements[i] == -1)
 			menuPos = writeAt(menuPos, " - ");
 		else
-			menuPos = writeAt(menuPos, this->level.maxElements[i], 3);
+			menuPos = writeAt(menuPos, this->level.maxElements[i] - this->level.setElements[i], 3);
 
 		firstIsPlaced = true;
 
@@ -295,7 +296,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 
 		if (runLevel()) return true;
 		else
-		{
+		{ // reste after failed runs:
 			//set stars to stars again
 			starsCollected = 0;
 			for (auto & v :starPos)
@@ -546,7 +547,7 @@ bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 		}
 
 		// new Element display update (unless max is empty or inf. or 0)
-		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[oldId] != 0)
+		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[id] != 0)
 		{
 			fc::setCursorPos(countPos[id].x, countPos[id].y);
 			std::cout << std::setw(3) << (level.maxElements[id] - level.setElements[id]);
