@@ -28,7 +28,7 @@ void Build::printOnLevel(T content, Pos pos, fc::Color color, fc::Color backgrou
 Build::Build(Level level, bool asEditor)
 	:level(level), isEditor(asEditor)
 {
-
+	fc::clearScreen(defaultBackgroundColor);
 	if (this->level.start == INVALID_POS) this->level.setStartEnd({ 5,5 }, { level.WIDTH - 6, level.HEIGHT - 6 });
 
 	setBlank();
@@ -67,12 +67,24 @@ Build::Build(Level level, bool asEditor)
 			content[x + 1][y + 1].textColor = this->level.at({ x, y })->getColor();
 			content[x + 1][y + 1].backgroundColor = this->level.at({ x,y })->backgroundColor;
 
-			//serach for Stars
+			// serach for Stars
 
 			if (this->level.at({ x,y })->id == Star::ownId)
 			{
 				starsPos[starsPlaced] = { x,y };
 				starsPlaced++;
+			}
+
+			// serch for timedSpikes
+			if (this->level.at({ x,y })->id == 8)
+			{
+				spikePos.push_back({ x,y });
+			}
+
+			// serch for timedSpikesAir
+			if (this->level.at({ x,y })->id == 9)
+			{
+				spikePos2.push_back({ x,y });
 			}
 
 		}
@@ -175,7 +187,12 @@ void Build::run()
 	{
 		if (_kbhit()) // when key gets pressed
 		{
-			if (keyHandeling(setElement, dir, cursor)) return; // leaves editor when e.g. ESC hit or run successfully
+			if (keyHandeling(setElement, dir, cursor)) 
+			{
+				fc::clearScreen(defaultBackgroundColor);
+				return; // leaves editor when e.g. ESC hit or run successfully
+			}
+
 
 			// if there is a new element...
 			if (setElement != nullptr)
@@ -363,7 +380,9 @@ void Build::keyPressedHandeling(LevelElement*& setelement)
 // Runs the Level after build-mode
 bool Build::runLevel()
 {
+
 	currentPos = { level.start.x, level.start.y };
+	cycleCount = 0;
 	playerGameOver = false;
 	playerDirection = RIGHT;
 	displayPlayer();
@@ -375,7 +394,8 @@ bool Build::runLevel()
 	while (!playerGameOver)
 	{
 		repeats = 0;
-		movePlayer(playerDirection, 0);
+		if(!fc::isKeyPressed(32))	//Space
+			movePlayer(playerDirection, 0);
 
 		// Falling
 		do
@@ -436,6 +456,32 @@ bool Build::runLevel()
 			
 			return true; 
 		}
+
+		// timed exents
+		if (cycleCount > 1024) cycleCount = 0;
+
+		if ((cycleCount % spikeCycle) == 0)
+		{
+			for (auto &v : spikePos)
+			{
+				level.at(v)->symbol = spikey ? ' ': Spike::ownSym;
+				printOnLevel(level.at(v)->symbol, v,level.at(v)->getColor(), level.at(v)->backgroundColor);
+			}
+			spikey = !spikey;
+		}
+
+		if ((cycleCount % spikeCycle2) == 0)
+		{
+			for (auto &v : spikePos2)
+			{
+				level.at(v)->symbol = spikey2 ? ' ' : TimedSpikeAir::ownSym;
+				level.at(v)->fallable = !spikey;
+				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
+			}
+			spikey2 = !spikey2;
+		}
+
+		cycleCount++;
 	}
 
 	// Display dead Player

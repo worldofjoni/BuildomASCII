@@ -17,6 +17,7 @@ NonDelEmpty::NonDelEmpty(bool deletable)
 	color = Screen::defaultTextColor;
 	backgroundColor = WHITE;
 	fallable = true;
+	canBePlacedByUser = false;
 }
 
 // gets called when on block

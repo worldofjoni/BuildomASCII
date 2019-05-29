@@ -4,40 +4,38 @@
 // ***********************************************************
 
 #include "pch/pch.h"
-#include "Star.h"
+#include "TimedSpike.h"
 
-Star::Star(bool deletable)
+TimedSpike::TimedSpike(bool deletable)
 {
 	id = ownId;
 	symbol = ownSym;
 	key = ownKey;
 	this->deletable = deletable;
-	color = YELLOW;
-	fallable = true;
+	color = RED;
+	fallable = false;
 	canBePlacedByUser = false;
+	backgroundColor = Solid::ownColor;
 
 }
 
 
 
-void Star::steppedOn(Build* build)
+void TimedSpike::steppedOn(Build* build)
 {
-	
-}
-
-void Star::steppedIn(Build* build)
-{
-	if (this->symbol == ownSym)
+	if (build->spikey)
 	{
-		build->stars++;
-		this->symbol = Empty::ownSym;
-		fc::beep(NOTE_H, 50);
-
+		build->playerGameOver = true;
 	}
+}
+
+void TimedSpike::steppedIn(Build* build)
+{
+	build->playerGameOver = true;
 	
 }
 
-Star* Star::clone()
+TimedSpike* TimedSpike::clone()
 {
-	return (new Star(*this));
+	return (new TimedSpike(*this));
 }

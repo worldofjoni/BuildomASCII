@@ -29,6 +29,11 @@ int BdalManager::getCustomLvlNames(std::string nameList[100])
 {
 	nameCount = 0;
 
+	for (int i = 0; i < 100; i++)
+	{
+		nameList[i] = "";
+	}
+
 	for (const auto& entry : std::experimental::filesystem::directory_iterator(cNamePath))
 	{
 		nameList[nameCount] = entry.path().string();
@@ -129,7 +134,7 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 		{
 			readStream >> currentElementChar;
 
-			switch (currentElementChar) // manualy update ###################################################################################
+			switch (currentElementChar) // manually update ###################################################################################
 			{
 			case Solid::ownId:
 				level.placeAt(new Solid(false), x, y);
@@ -151,6 +156,12 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 				break;
 			case NonDelEmpty::ownId:
 				level.placeAt(new NonDelEmpty(false), x, y);
+				break;
+			case TimedSpike::ownId:
+				level.placeAt(new TimedSpike(false), x, y);
+				break;
+			case TimedSpikeAir::ownId:
+				level.placeAt(new TimedSpikeAir(false), x, y);
 				break;
 			default:
 				break;
@@ -177,7 +188,6 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 	}
 
 	writeStream.open(advPath);
-
 
 	// Write-Part
 

@@ -14,6 +14,7 @@ Spike::Spike(bool deletable)
 	this->deletable = deletable;
 	color = RED;
 	fallable = false;
+	canBePlacedByUser = false;
 }
 
 

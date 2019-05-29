@@ -4,30 +4,23 @@
 // ***********************************************************
 
 #pragma once
-#ifndef SOLID_H
-#define SOLID_H
+#ifndef TIMED_SPIKE_H
+#define TIMED_SPIKE_H
 
 #include "LevelElement/LevelElement.h"
 
-class Solid : public LevelElement
+class TimedSpike : public LevelElement
 {
 private:
 public:
-	static const char ownSym = 219;
-	static const char ownKey = ' ';
-	static const int ownId = 1;
-	static const fc::Color ownColor = BLACK;
-	Solid(bool deletable);
+	static const char ownSym = 30;
+	static const char ownKey = '7';
+	static const int ownId = 8;
+	TimedSpike(bool deletable);
 	void steppedOn(Build* build) override;
 	void steppedIn(Build* build) override;
-	Solid* clone() override;
-	
+	TimedSpike* clone() override;
 };
 
 
-
-
-
-
-
-#endif // !SOLID_H
+#endif // ! TIMED_SPIKE_H

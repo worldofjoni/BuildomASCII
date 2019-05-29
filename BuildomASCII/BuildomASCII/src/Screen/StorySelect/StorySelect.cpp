@@ -42,18 +42,26 @@ void StorySelect::run()
 				break;
 			case 'a':
 			case 75:
-
+				if (currentPage > 1)
+				{
+					currentPage--;
+					initScreen(0, currentPage);
+				}
 				break;
 			case 's':
 			case 80:
-				if (x < nameCount - 1)
+				if (x < maxX - 1)
 				{
 					x++;
 				}
 				break;
 			case 'd':
 			case 77:
-
+				if (currentPage < maxPage)
+				{
+					currentPage++;
+					initScreen(0, currentPage);
+				}
 				break;
 			case 27: // ESC
 				closeSound();
@@ -90,11 +98,11 @@ StorySelect::~StorySelect()
 
 }
 
-void StorySelect::initScreen(int prevX)
+void StorySelect::initScreen(int prevX, int prevPage)
 {
-	x = prevX;
-	
 	setBlank();
+
+	
 	std::string title = "LEVELAUSWAHL";
 	Pos titlePos = { (WIDTH - title.length()) / 2, 3 };
 	writeAt(titlePos, title.c_str());
@@ -106,12 +114,34 @@ void StorySelect::initScreen(int prevX)
 	current.y = start.y + (x * gap);
 
 	nameCount = fileManager.getStoryCount();
-;
 
-	for (int i = 1; i <= nameCount; i++)
+	maxPage = nameCount / MAX_NAMES_ON_LIST + 1;
+
+	if (nameCount % MAX_NAMES_ON_LIST == 0)
+		maxPage = nameCount / MAX_NAMES_ON_LIST;
+	currentPage = prevPage;
+	x = prevX;
+
+	int startNum = 1 + MAX_NAMES_ON_LIST * (currentPage - 1);
+	int endNum = MAX_NAMES_ON_LIST * currentPage;
+
+	if (currentPage == maxPage && nameCount % MAX_NAMES_ON_LIST != 0)
+		endNum = (MAX_NAMES_ON_LIST * (currentPage - 1)) + nameCount % MAX_NAMES_ON_LIST;
+
+	maxX = endNum - startNum + 1;
+	if (nameCount == 0)
+	{
+		maxPage = 1;
+		maxX = 0;
+
+	}
+
+	for (int i = 1; startNum <= endNum; i++)
 	{
 		writeAt({ start.x, start.y + gap * (i - 1)}, ("Level " + std::to_string(i)).c_str());
+		startNum++;
 	}
+	writeAt({ 4, 5 }, ("[" + std::to_string(currentPage) + "/" + std::to_string(maxPage) + "]").c_str());
 
 	printScreen();
 

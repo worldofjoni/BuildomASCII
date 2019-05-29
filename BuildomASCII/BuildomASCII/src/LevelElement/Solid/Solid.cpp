@@ -13,7 +13,7 @@ Solid::Solid(bool deletable)
 	symbol = ownSym;
 	key = ownKey;
 	this->deletable = deletable;
-	color = BLACK;
+	color = ownColor;
 	fallable = false;
 }
 

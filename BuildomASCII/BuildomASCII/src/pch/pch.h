@@ -13,6 +13,7 @@
 #include <chrono>
 #include <cmath>
 #include <string>
+#include <vector>
 #include <Windows.h>
 
 #include "Util/Util.h"

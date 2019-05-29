@@ -110,7 +110,7 @@ namespace fc {
 	{
 		if (disableScrolling)
 		{
-			int width_ = (width * 8 + 20);
+			int width_ = (width * 8 + 40);
 			int height_ = (height * 8 + 40);
 			setWindowSizePX(width_, height_);
 
