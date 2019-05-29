@@ -28,7 +28,7 @@ void Build::printOnLevel(T content, Pos pos, fc::Color color, fc::Color backgrou
 Build::Build(Level level, bool asEditor)
 	:level(level), isEditor(asEditor)
 {
-
+	fc::clearScreen(defaultBackgroundColor);
 	if (this->level.start == INVALID_POS) this->level.setStartEnd({ 5,5 }, { level.WIDTH - 6, level.HEIGHT - 6 });
 
 	setBlank();
@@ -67,12 +67,23 @@ Build::Build(Level level, bool asEditor)
 			content[x + 1][y + 1].textColor = this->level.at({ x, y })->getColor();
 			content[x + 1][y + 1].backgroundColor = this->level.at({ x,y })->backgroundColor;
 
-			//serach for Stars
+			// serach for Stars
 
 			if (this->level.at({ x,y })->id == Star::ownId)
 			{
-				starsPos[starsPlaced] = { x,y };
-				starsPlaced++;
+				starPos.push_back({ x,y });
+			}
+
+			// serch for timedSpikes
+			if (this->level.at({ x,y })->id == TimedSpike::ownId)
+			{
+				spikePos.push_back({ x,y });
+			}
+
+			// serch for timedSpikesAir
+			if (this->level.at({ x,y })->id == TimedSpikeAir::ownId)
+			{
+				spikePos2.push_back({ x,y });
 			}
 
 		}
@@ -82,7 +93,8 @@ Build::Build(Level level, bool asEditor)
 
 	if (isEditor)
 	{
-		this->level.maxElements[Star::ownId] = maxStars - starsPlaced;
+		this->level.maxElements[Star::ownId] = maxStars;
+		this->level.setElements[Star::ownId] = starPos.size();
 	}
 
 	// init for menu bar
@@ -119,7 +131,7 @@ Build::Build(Level level, bool asEditor)
 		if (level.maxElements[i] == -1)
 			menuPos = writeAt(menuPos, " - ");
 		else
-			menuPos = writeAt(menuPos, this->level.maxElements[i], 3);
+			menuPos = writeAt(menuPos, this->level.maxElements[i] - this->level.setElements[i], 3);
 
 		firstIsPlaced = true;
 
@@ -175,7 +187,12 @@ void Build::run()
 	{
 		if (_kbhit()) // when key gets pressed
 		{
-			if (keyHandeling(setElement, dir, cursor)) return; // leaves editor when e.g. ESC hit or run successfully
+			if (keyHandeling(setElement, dir, cursor)) 
+			{
+				fc::clearScreen(defaultBackgroundColor);
+				return; // leaves editor when e.g. ESC hit or run successfully
+			}
+
 
 			// if there is a new element...
 			if (setElement != nullptr)
@@ -266,6 +283,12 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 	case NonDelEmpty::ownKey:
 		setElement = new NonDelEmpty(true);
 		break;
+	case TimedSpike::ownKey:
+		setElement = new TimedSpike(true);
+		break;
+	case TimedSpikeAir::ownKey:
+		setElement = new TimedSpikeAir(true);
+		break;
 	case 13: // Enter
 		if (isEditor) return true;
 		
@@ -273,17 +296,31 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 
 		if (runLevel()) return true;
 		else
-		{
+		{ // reste after failed runs:
 			//set stars to stars again
-			stars = 0;
-			for (int i = 0; i < maxStars; i++)
+			starsCollected = 0;
+			for (auto & v :starPos)
 			{
-				if (starsPos[i] != INVALID_POS)
-				{
-					level.at(starsPos[i])->symbol = Star::ownSym;
-					printOnLevel(level.at(starsPos[i])->symbol, starsPos[i], level.at(starsPos[i])->getColor(), level.at(starsPos[i])->backgroundColor);
-				}
+				level.at(v)->symbol = Star::ownSym;
+				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
+				
 			}
+
+			//reset timed modes
+			
+			for (auto& v : spikePos)
+			{
+				level.at(v)->symbol = Spike::ownSym;
+				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
+			}
+			
+			for (auto& v : spikePos2)
+			{
+				level.at(v)->symbol = TimedSpikeAir::ownSym;
+				level.at(v)->fallable = false;
+				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
+			}
+			
 		}
 		break;
 		
@@ -363,7 +400,13 @@ void Build::keyPressedHandeling(LevelElement*& setelement)
 // Runs the Level after build-mode
 bool Build::runLevel()
 {
+
 	currentPos = { level.start.x, level.start.y };
+	// reset values
+	cycleCount = 1;
+	spikey = true;
+	spikey2 = true;
+
 	playerGameOver = false;
 	playerDirection = RIGHT;
 	displayPlayer();
@@ -437,6 +480,32 @@ bool Build::runLevel()
 			
 			return true; 
 		}
+
+		// timed exents
+		if (cycleCount > 1024) cycleCount = 0;
+
+		if ((cycleCount % spikeCycle) == 0)
+		{
+			for (auto &v : spikePos)
+			{
+				level.at(v)->symbol = spikey ? ' ': Spike::ownSym;
+				printOnLevel(level.at(v)->symbol, v,level.at(v)->getColor(), level.at(v)->backgroundColor);
+			}
+			spikey = !spikey;
+		}
+
+		if ((cycleCount % spikeCycle2) == 0)
+		{
+			for (auto &v : spikePos2)
+			{
+				level.at(v)->symbol = spikey2 ? ' ' : TimedSpikeAir::ownSym;
+				level.at(v)->fallable = !spikey;
+				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
+			}
+			spikey2 = !spikey2;
+		}
+
+		cycleCount++;
 	}
 
 	// Display dead Player
@@ -459,7 +528,7 @@ bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 	{
 
 		// take care of stars
-		if (id == Star::ownId) starsPos[starsPlaced] = pos;
+		//if (id == Star::ownId) starPos.push_back(pos);
 		
 		level.setElements[oldId]--; // decrement deleted
 
@@ -478,7 +547,7 @@ bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 		}
 
 		// new Element display update (unless max is empty or inf. or 0)
-		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[oldId] != 0)
+		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[id] != 0)
 		{
 			fc::setCursorPos(countPos[id].x, countPos[id].y);
 			std::cout << std::setw(3) << (level.maxElements[id] - level.setElements[id]);

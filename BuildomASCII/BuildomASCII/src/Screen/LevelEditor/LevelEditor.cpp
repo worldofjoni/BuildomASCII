@@ -60,9 +60,9 @@ void LevelEditor::run()
 	fc::setTextColor(BLUE_LIGHT);
 	printScreen();
 	int y = 1; // y-Offset
-	for (int i = 1; i < LevelElement::countOfElements; i++, y++) // do not ask for empty
+	for (int i = 0; i < LevelElement::countOfElements; i++, y++) // do not ask for empty
 	{
-		if (i == Star::ownId || i == NonDelEmpty::ownId) // do not ask for stars or NodElEmpty
+		if (!levelEditor.elements[i]->canBePlacedByUser) // do not ask for stars or NodElEmpty
 		{
 			level.maxElements[i] = 0;
 			y--;

@@ -16,6 +16,7 @@ Empty::Empty(bool deletable)
 	this->deletable = deletable;
 	color = Screen::defaultTextColor;
 	fallable = true;
+	canBePlacedByUser = false;
 }
 
 // gets called when on block

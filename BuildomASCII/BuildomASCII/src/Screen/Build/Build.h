@@ -9,7 +9,7 @@
 
 #include "Screen/Screen.h"
 #include "Level/Level.h"
-#include "friendlyConsole/friendlyConsole.hpp"
+#include "pch/pch.h"
 
 class Cursor;
 
@@ -42,19 +42,17 @@ private:
 	int fallSpeed = 3;
 	int movespeed = 100;
 	void displayPlayer();
-	//for stars
-	int starsPlaced = 0;
-	Pos starsPos[maxStars] = { INVALID_POS, INVALID_POS, INVALID_POS };
 
 	template <typename T>
 	void printOnLevel(T content, Pos pos, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
 
+
 public:
 
-	int stars = 0;
+	
 	Level level;
 	const static char startChar = '#', endChar = 'P', playerChar = 2, playerDeadChar = 1;
-	const static fc::Color startColor = MAGENTA, endColor = GREEN, alarmFrameColor = RED;
+	const static fc::Color startColor = MAGENTA, endColor = GREEN, alarmFrameColor = RED_LIGHT;
 
 	Build(Level level, bool asEditor = false);
 	void run();
@@ -66,8 +64,8 @@ public:
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
 	bool placeOnLevelAt(LevelElement*& element, Pos pos);
 
-	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(false), new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false), new Star(false), new NonDelEmpty(false) };// has to be manualy updated ############################################################
-	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey}, {Star::ownKey}, {NonDelEmpty::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
+	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(false), new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false), new Star(false), new NonDelEmpty(false), new TimedSpike(false), new TimedSpikeAir(false) };// has to be manualy updated ############################################################
+	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey}, {Star::ownKey}, {NonDelEmpty::ownKey}, {TimedSpike::ownKey} , {TimedSpikeAir::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
 
 	// For runLevel
 	Pos currentPos = { 0,0 };
@@ -77,9 +75,26 @@ public:
 	int previousElementID = -1;
 	int previousLowerElementID = -1;
 
+	int cycleCount = 1;
+
 	Pos previousPos = currentPos;
 
 	std::chrono::system_clock::time_point t1, t2;
+
+	//for star
+	std::vector<Pos> starPos;
+	int starsCollected = 0;
+	
+
+	// For timed spike
+	std::vector<Pos> spikePos;
+	const int spikeCycle = 10;
+	bool spikey = true;
+
+	//for 2. Timed Spike
+	std::vector<Pos> spikePos2;
+	const int spikeCycle2 = 10;
+	bool spikey2 = true;
 
 	// for level Editor
 	bool cancelEdit = false;

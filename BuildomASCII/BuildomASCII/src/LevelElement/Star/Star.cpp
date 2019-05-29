@@ -14,6 +14,8 @@ Star::Star(bool deletable)
 	this->deletable = deletable;
 	color = YELLOW;
 	fallable = true;
+	canBePlacedByUser = false;
+
 }
 
 
@@ -27,7 +29,7 @@ void Star::steppedIn(Build* build)
 {
 	if (this->symbol == ownSym)
 	{
-		build->stars++;
+		build->starsCollected++;
 		this->symbol = Empty::ownSym;
 		fc::beep(NOTE_H, 50);
 

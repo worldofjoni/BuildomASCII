@@ -134,7 +134,7 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 		{
 			readStream >> currentElementChar;
 
-			switch (currentElementChar) // manualy update ###################################################################################
+			switch (currentElementChar) // manually update ###################################################################################
 			{
 			case Solid::ownId:
 				level.placeAt(new Solid(false), x, y);
@@ -156,6 +156,12 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 				break;
 			case NonDelEmpty::ownId:
 				level.placeAt(new NonDelEmpty(false), x, y);
+				break;
+			case TimedSpike::ownId:
+				level.placeAt(new TimedSpike(false), x, y);
+				break;
+			case TimedSpikeAir::ownId:
+				level.placeAt(new TimedSpikeAir(false), x, y);
 				break;
 			default:
 				break;
@@ -182,7 +188,6 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 	}
 
 	writeStream.open(advPath);
-
 
 	// Write-Part
 

@@ -4,9 +4,9 @@
 // ***********************************************************
 
 #include "pch/pch.h"
-#include "Spike.h"
+#include "TimedSpike.h"
 
-Spike::Spike(bool deletable)
+TimedSpike::TimedSpike(bool deletable)
 {
 	id = ownId;
 	symbol = ownSym;
@@ -15,22 +15,27 @@ Spike::Spike(bool deletable)
 	color = RED;
 	fallable = false;
 	canBePlacedByUser = false;
+	backgroundColor = Solid::ownColor;
+
 }
 
 
 
-void Spike::steppedOn(Build* build)
+void TimedSpike::steppedOn(Build* build)
+{
+	if (build->spikey)
+	{
+		build->playerGameOver = true;
+	}
+}
+
+void TimedSpike::steppedIn(Build* build)
 {
 	build->playerGameOver = true;
+	
 }
 
-void Spike::steppedIn(Build* build)
+TimedSpike* TimedSpike::clone()
 {
-	build->playerGameOver = true;
-
-}
-
-Spike* Spike::clone()
-{
-	return (new Spike(*this));
+	return (new TimedSpike(*this));
 }
