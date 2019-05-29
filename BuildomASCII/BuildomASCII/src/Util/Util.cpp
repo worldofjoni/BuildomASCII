@@ -65,7 +65,6 @@ void winSound()
 void deathSound()
 {
 	fc::beep(NOTE_G, 50);
-	fc::beep(NOTE_D, 100);
 	fc::beep(NOTE_C, 500);
 }
 

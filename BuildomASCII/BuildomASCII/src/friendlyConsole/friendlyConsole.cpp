@@ -136,17 +136,6 @@ namespace fc {
 		MoveWindow(hWindow, x, y, r.right - r.left, r.bottom - r.top, false);
 	}
 
-	// sets te size of each character (in pixels)
-	void setFontSize(int width, int height)
-	{
-		CONSOLE_FONT_INFOEX info;
-		info.cbSize = sizeof(CONSOLE_FONT_INFOEX);
-		GetCurrentConsoleFontEx(hStdOut, true, &info);
-		info.dwFontSize.Y = height;
-		info.dwFontSize.X = width;
-		SetCurrentConsoleFontEx(hStdOut, false, &info);
-	}
-
 	// returns a random Value
 	int getRandom(int min, int max)
 	{
@@ -290,6 +279,66 @@ namespace fc {
 		}
 
 		return isKeyPressed(_key);
+	}
+
+	void getFontSize(int& x, int& y)
+	{
+		CONSOLE_FONT_INFO info;
+		bool b = GetCurrentConsoleFont(hStdOut, false, &info);
+		COORD c = GetConsoleFontSize(hStdOut, info.nFont);
+		x = c.X;
+		y = c.Y;
+	}
+
+	bool setFont(const wchar_t font[32])
+	{
+
+		CONSOLE_FONT_INFOEX info;
+		info.cbSize = sizeof(info);
+		if (!GetCurrentConsoleFontEx(hStdOut, false, &info)) return false;
+
+		info.FontFamily = wcscmp(font, L"Terminal") == 0 ? 48 : 54;
+
+		for (int i = 0; i < 32; i++) info.FaceName[i] = font[i];
+	
+		if (!SetCurrentConsoleFontEx(hStdOut, false, &info)) return false;
+
+		return true;
+	}
+
+	bool setFontSize(int width, int height)
+	{
+
+		CONSOLE_FONT_INFOEX info;
+		info.cbSize = sizeof(info);
+		if (!GetCurrentConsoleFontEx(hStdOut, false, &info)) return false;
+
+		if (height == 0) // for only a size
+		{
+			info.dwFontSize.Y = width;
+		}
+		else // for width and height
+		{
+			info.dwFontSize.X = width;
+			info.dwFontSize.Y = height;
+		}
+
+		if (!SetCurrentConsoleFontEx(hStdOut, false, &info)) return false;
+
+		return true;
+	}
+
+	bool setBold(bool bold)
+	{
+		CONSOLE_FONT_INFOEX info;
+		info.cbSize = sizeof(info);
+		if (!GetCurrentConsoleFontEx(hStdOut, false, &info)) return false;
+
+		info.FontWeight = bold ? 700 : 400;
+
+		if (!SetCurrentConsoleFontEx(hStdOut, false, &info)) return false;
+
+		return true;
 	}
 
 
