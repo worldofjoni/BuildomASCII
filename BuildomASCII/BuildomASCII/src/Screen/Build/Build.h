@@ -41,13 +41,13 @@ private:
 	Build* build = this;
 	int fallSpeed = 3;
 	int movespeed = 100;
-	void displayPlayer();
 
 	template <typename T>
 	void printOnLevel(T content, Pos pos, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
 
 
 public:
+	void displayPlayer();
 
 	
 	Level level;
