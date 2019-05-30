@@ -41,7 +41,7 @@ Zombie* Zombie::clone()
 void Zombie::move(Build* build)
 {
 	int fall = build->fallSpeed;
-	if ((build->level.at({ pos.x + dir, pos.y })->id != 0) || (build->level.end.x == pos.x + dir && build->level.end.y == pos.y) || build->level.start.x == pos.x + dir && build->level.start.y == pos.y)
+	if ((build->level.at({ pos.x + dir, pos.y })->id != 0) || (build->level.end.x == pos.x + dir && build->level.end.y == pos.y) || build->level.start.x == pos.x + dir && build->level.start.y == pos.y )
 	{
 		dir = (dir == RIGHT) ? LEFT : RIGHT;
 	}
