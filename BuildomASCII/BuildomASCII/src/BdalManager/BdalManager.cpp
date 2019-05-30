@@ -163,6 +163,8 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 			case TimedSpikeAir::ownId:
 				level.placeAt(new TimedSpikeAir(false), x, y);
 				break;
+			case Zombie::ownId:
+				level.placeAt(new Zombie(false), x, y);
 			default:
 				break;
 			}

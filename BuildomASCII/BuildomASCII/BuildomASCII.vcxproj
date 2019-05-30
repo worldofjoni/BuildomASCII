@@ -26,6 +26,7 @@
     <ClCompile Include="src\LevelElement\Star\Star.cpp" />
     <ClCompile Include="src\LevelElement\TimedSpikeAir\TimedSpikeAir.cpp" />
     <ClCompile Include="src\LevelElement\TimedSpike\TimedSpike.cpp" />
+    <ClCompile Include="src\LevelElement\Zombie\Zombie.cpp" />
     <ClCompile Include="src\Screen\StorySelect\StorySelect.cpp" />
     <ClCompile Include="src\Screen\WinScreen\WinScreen.cpp" />
     <ClCompile Include="src\Util\Util.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="src\LevelElement\Star\Star.h" />
     <ClInclude Include="src\LevelElement\TimedSpikeAir\TimedSpikeAir.h" />
     <ClInclude Include="src\LevelElement\TimedSpike\TimedSpike.h" />
+    <ClInclude Include="src\LevelElement\Zombie\Zombie.h" />
     <ClInclude Include="src\Screen\StorySelect\StorySelect.h" />
     <ClInclude Include="src\Screen\WinScreen\WinScreen.h" />
     <ClInclude Include="src\Util\Util.h" />

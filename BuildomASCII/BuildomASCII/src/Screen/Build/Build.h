@@ -29,6 +29,9 @@ public:
 
 private:
 
+	Pos zombiePos = { 0, 0 };
+	Pos formZombiePos = { 0, 0 };
+	Direction zombieDir = RIGHT;
 
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
 	const fc::Color menuBarSymColor = RED, menuBarLineColor = BLUE_LIGHT, menuBarSymbolBackgroundColor = LIGHT_GRAY;
@@ -64,8 +67,8 @@ public:
 	Pos countPos[LevelElement::countOfElements]; // index is id of element
 	bool placeOnLevelAt(LevelElement*& element, Pos pos);
 
-	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(false), new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false), new Star(false), new NonDelEmpty(false), new TimedSpike(false), new TimedSpikeAir(false) };// has to be manualy updated ############################################################
-	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey}, {Star::ownKey}, {NonDelEmpty::ownKey}, {TimedSpike::ownKey} , {TimedSpikeAir::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
+	LevelElement* elements[LevelElement::countOfElements] = {  new Empty(false), new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false), new Star(false), new NonDelEmpty(false), new TimedSpike(false), new TimedSpikeAir(false) , new Zombie(false)};// has to be manualy updated ############################################################
+	char keybind[LevelElement::countOfElements][10] = { "BACK", "SPACE", {SlopeUp::ownKey}, {SlopeDown::ownKey}, {ChangeDir::ownKey} , {Spike::ownKey}, {Star::ownKey}, {NonDelEmpty::ownKey}, {TimedSpike::ownKey} , {TimedSpikeAir::ownKey}, {Zombie::ownKey} }; // same; !! for surround single chars with curly bracets !! ##########################################
 
 	// For runLevel
 	Pos currentPos = { 0,0 };

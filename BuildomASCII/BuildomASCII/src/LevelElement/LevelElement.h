@@ -31,7 +31,7 @@ public:
 	fc::Color getColor();
 	void setColor(fc::Color col);
 	virtual LevelElement* clone() = 0; // copy function
-	static const int countOfElements = 10; // num of different element, hs to be manualy updated, also update the list in Build!! && in BdalManager###############################
+	static const int countOfElements = 11; // num of different element, hs to be manualy updated, also update the list in Build!! && in BdalManager###############################
 
 	// for not allowed to be placed by user
 	bool canBePlacedByUser = true;
@@ -48,7 +48,7 @@ public:
 #include "NonDelEmpty/NonDelEmpty.h"
 #include "TimedSpike/TimedSpike.h"
 #include "TimedSpikeAir/TimedSpikeAir.h"
-
+#include "Zombie/Zombie.h"
 
 
 #endif // !LEVEL_ELEMENT_H
