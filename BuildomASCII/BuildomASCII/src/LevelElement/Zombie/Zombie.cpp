@@ -53,6 +53,10 @@ void Zombie::move(Build* build)
 			pos.x += dir;
 			build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
 
+			if ((build->level.at({ pos.x + dir, pos.y })->id == 10))
+			{
+				dir = (dir == RIGHT) ? LEFT : RIGHT;
+			}
 
 		
 	}

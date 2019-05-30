@@ -541,13 +541,13 @@ bool Build::runLevel()
 		cycleCount++;
 	}
 
+	// Display dead Player
+	printOnLevel(playerDeadChar, currentPos, BLUE_LIGHT, level.at(currentPos)->backgroundColor);
+	deathSound(); // also waits
 	for (int i = 0; i < zombieList.size(); i++)
 	{
 		zombieList[i].reset(build);
 	}
-	// Display dead Player
-	printOnLevel(playerDeadChar, currentPos, BLUE_LIGHT, level.at(currentPos)->backgroundColor);
-	deathSound(); // also waits
 	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor(), level.at(currentPos)->backgroundColor);
 	return false;
 }
