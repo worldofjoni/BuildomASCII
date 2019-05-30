@@ -8,6 +8,13 @@
 #include "LevelElement/Empty/Empty.h"
 
 
+void Level::swap(Pos pos1, Pos pos2)
+{
+	LevelElement* el = map[pos1.x][pos1.y];
+	map[pos1.x][pos1.y] = map[pos2.x][pos2.y];
+	map[pos2.x][pos2.y] = el;
+}
+
 // constructor
 Level::Level()
 {

@@ -7,7 +7,14 @@
 #ifndef Util_h
 #define Util_h
 
-
+enum Direction
+{
+	NONE = 0,
+	UP = 3,
+	DOWN = 2,
+	LEFT = -1,
+	RIGHT = 1,
+};
 
 
 struct Pos

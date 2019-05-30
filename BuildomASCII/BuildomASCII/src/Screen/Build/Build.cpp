@@ -8,7 +8,7 @@
 
 #include "LevelElement/LevelElement.h"
 #include "Screen/WinScreen/WinScreen.h"
-
+#include <vector>
 
 
 // prints content at x|y whit color on Screen
@@ -65,8 +65,9 @@ Build::Build(Level level, bool asEditor)
 		{
 			if (this->level.at({ x, y })->symbol == Zombie::ownSym)
 			{
-				zombiePos = { x, y };
-				formZombiePos = zombiePos;
+				zombieList.push_back(level.at({ x, y }));
+				zombieList[zombieList.size() - 1].formPos = { x, y };
+				zombieList[zombieList.size() - 1].pos = { x, y };
 			}
 			content[x + 1][y + 1].content = this->level.at({ x, y })->symbol;
 			content[x + 1][y + 1].textColor = this->level.at({ x, y })->getColor();
@@ -415,12 +416,12 @@ bool Build::runLevel()
 {
 	LevelElement* emptying;
 	LevelElement* zombie = nullptr;
-	if (formZombiePos.x != 0 && formZombiePos.y != 0)
+	/*if (formZombiePos.x != 0 && formZombiePos.y != 0)
 	{
 		zombieDir = RIGHT;
 		zombiePos = formZombiePos;
 		zombie = level.at(zombiePos);
-	}
+	}*/
 
 	currentPos = { level.start.x, level.start.y };
 	// reset values
@@ -438,22 +439,27 @@ bool Build::runLevel()
 
 	while (!playerGameOver)
 	{
-		if (zombie != nullptr)
+
+		for (int i = 0; i < zombieList.size(); i++)
 		{
-			if (level.at({ zombiePos.x + zombieDir, zombiePos.y })->id != 0)
-			{
-				zombieDir = (zombieDir == RIGHT) ? LEFT : RIGHT;
-			}
-			zombie = new Zombie(true);
-			emptying = new Empty(true);
-			level.placeAt(emptying, zombiePos.x, zombiePos.y);
-			//placeOnLevelAt(emptying, zombiePos);
-			printOnLevel(level.at(zombiePos)->symbol, zombiePos, level.at(zombiePos)->getColor(), level.at(zombiePos)->backgroundColor);
-			zombiePos.x += zombieDir;
-			//placeOnLevelAt(zombie, zombiePos);
-			level.placeAt(zombie, zombiePos.x, zombiePos.y);
-			printOnLevel(level.at(zombiePos)->symbol, zombiePos, level.at(zombiePos)->getColor(), level.at(zombiePos)->backgroundColor);
+			zombieList[i].move(build);
 		}
+		//if (zombie != nullptr)
+		//{
+		//	if (level.at({ zombiePos.x + zombieDir, zombiePos.y })->id != 0)
+		//	{
+		//		zombieDir = (zombieDir == RIGHT) ? LEFT : RIGHT;
+		//	}
+		//	zombie = new Zombie(true);
+		//	emptying = new Empty(true);
+		//	level.placeAt(emptying, zombiePos.x, zombiePos.y);
+		//	//placeOnLevelAt(emptying, zombiePos);
+		//	printOnLevel(level.at(zombiePos)->symbol, zombiePos, level.at(zombiePos)->getColor(), level.at(zombiePos)->backgroundColor);
+		//	zombiePos.x += zombieDir;
+		//	//placeOnLevelAt(zombie, zombiePos);
+		//	level.placeAt(zombie, zombiePos.x, zombiePos.y);
+		//	printOnLevel(level.at(zombiePos)->symbol, zombiePos, level.at(zombiePos)->getColor(), level.at(zombiePos)->backgroundColor);
+		//}
 
 
 		repeats = 0;
@@ -545,7 +551,7 @@ bool Build::runLevel()
 
 		cycleCount++;
 	}
-	if (formZombiePos.x != 0 && formZombiePos.y != 0 )
+	/*if (formZombiePos.x != 0 && formZombiePos.y != 0 )
 	{
 		zombie = new Zombie(true);
 		emptying = new Empty(true);
@@ -554,6 +560,11 @@ bool Build::runLevel()
 		zombiePos = formZombiePos;
 		level.placeAt(zombie, zombiePos.x, zombiePos.y);
 		printOnLevel(level.at(formZombiePos)->symbol, formZombiePos, level.at(formZombiePos)->getColor(), level.at(formZombiePos)->backgroundColor);
+	}*/
+
+	for (int i = 0; i < zombieList.size(); i++)
+	{
+		zombieList[i].reset(build);
 	}
 	// Display dead Player
 	printOnLevel(playerDeadChar, currentPos, BLUE_LIGHT, level.at(currentPos)->backgroundColor);

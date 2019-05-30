@@ -23,7 +23,7 @@ public:
 
 	Pos start = INVALID_POS;
 	Pos end = INVALID_POS;
-
+	void swap(Pos pos1, Pos pos2);
 
 	Level();
 	void placeAt(LevelElement *element, int x, int y);

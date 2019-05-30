@@ -13,14 +13,7 @@
 
 class Cursor;
 
-enum Direction
-{
-	NONE = 0,
-	UP = 3,
-	DOWN = 2,
-	LEFT = -1,
-	RIGHT = 1,
-};
+
 
 class Build : public Screen
 {
@@ -28,7 +21,7 @@ public:
 	static const int maxStars = 3;
 
 private:
-
+	std::vector<Zombie> zombieList;
 	Pos zombiePos = { 0, 0 };
 	Pos formZombiePos = { 0, 0 };
 	Direction zombieDir = RIGHT;
@@ -44,12 +37,12 @@ private:
 	int fallSpeed = 3;
 	int movespeed = 100;
 
-	template <typename T>
-	void printOnLevel(T content, Pos pos, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
 	bool leaveConfirm();
 
 
 public:
+	template <typename T>
+	void printOnLevel(T content, Pos pos, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
 	void displayPlayer();
 
 	

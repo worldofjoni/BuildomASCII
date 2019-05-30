@@ -13,6 +13,9 @@ class Zombie : public LevelElement
 {
 private:
 public:
+	Pos pos;
+	Pos formPos;
+	Direction dir = Direction::RIGHT;
 	static const char ownSym = 2;
 	static const char ownKey = '9';
 	static const int ownId = 10;
@@ -20,6 +23,8 @@ public:
 	void steppedOn(Build* build) override;
 	void steppedIn(Build* build) override;
 	Zombie* clone() override;
+	void move(Build* build);
+	void reset(Build* build);
 };
 
 
