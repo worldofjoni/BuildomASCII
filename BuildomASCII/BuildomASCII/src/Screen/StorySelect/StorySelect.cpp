@@ -129,13 +129,14 @@ void StorySelect::initScreen(int prevX, int prevPage)
 		endNum = (MAX_NAMES_ON_LIST * (currentPage - 1)) + nameCount % MAX_NAMES_ON_LIST;
 
 	maxX = endNum - startNum + 1;
+
 	if (nameCount == 0)
 	{
+		endNum = 0;
 		maxPage = 1;
 		maxX = 0;
 
 	}
-
 	for (int i = 1; startNum <= endNum; i++)
 	{
 		writeAt({ start.x, start.y + gap * (i - 1)}, ("Level " + std::to_string(i)).c_str());
