@@ -327,9 +327,14 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 
 
 	case 27: // ESC
-		if (isEditor) cancelEdit = true;
-		closeSound();
-		return true;
+		if (leaveConfirm())
+		{
+			if (isEditor) cancelEdit = true;
+			closeSound();
+
+			return true;
+
+		}
 		break;
 
 	default:
@@ -615,3 +620,22 @@ void Build::displayPlayer()
 	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor(), level.at(currentPos)->backgroundColor);
 }
 
+bool Build::leaveConfirm()
+{
+	fc::setBackgroundColor(frameColor);
+	fc::setTextColor(BLACK);
+	Pos textPos = { 3, Screen::HEIGHT - 3 };
+
+	if (isEditor) textPos.y = 0;
+	std::string text = "Wirklich verlassen? [ENTER]";
+	gotoxy(textPos.x, textPos.y);
+	std::cout << text;
+	if (_getch() == 13)
+		return true;
+	gotoxy(textPos.x, textPos.y);
+	for (int i = 0; i < text.length(); i++)
+	{
+		std::cout << " ";
+	}
+	return false;
+}

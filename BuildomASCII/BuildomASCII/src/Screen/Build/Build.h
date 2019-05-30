@@ -30,7 +30,6 @@ public:
 private:
 
 
-
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
 	const fc::Color menuBarSymColor = RED, menuBarLineColor = BLUE_LIGHT, menuBarSymbolBackgroundColor = LIGHT_GRAY;
 
@@ -44,6 +43,7 @@ private:
 
 	template <typename T>
 	void printOnLevel(T content, Pos pos, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
+	bool leaveConfirm();
 
 
 public:
