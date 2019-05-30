@@ -43,7 +43,7 @@ public:
 	int fallSpeed = 3;
 	template <typename T>
 	void printOnLevel(T content, Pos pos, fc::Color color = defaultTextColor, fc::Color backgroundColor = defaultBackgroundColor);
-	void displayPlayer();
+	void displayPlayer(int timer = 0);
 
 	
 	Level level;

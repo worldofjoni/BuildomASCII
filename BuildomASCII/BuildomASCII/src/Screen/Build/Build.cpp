@@ -414,6 +414,7 @@ void Build::keyPressedHandeling(LevelElement*& setelement)
 // Runs the Level after build-mode
 bool Build::runLevel()
 {
+	int timer = 0;
 	LevelElement* emptying;
 	LevelElement* zombie = nullptr;
 	/*if (formZombiePos.x != 0 && formZombiePos.y != 0)
@@ -444,7 +445,7 @@ bool Build::runLevel()
 
 	while (!playerGameOver)
 	{
-
+		timer = clock();
 		for (int i = 0; i < zombieList.size(); i++)
 		{
 			zombieList[i].move(build);
@@ -495,7 +496,7 @@ bool Build::runLevel()
 			continue;
 		}
 		
-		displayPlayer();
+		displayPlayer(timer);
 
 		
 		if (_kbhit())
@@ -641,15 +642,17 @@ void Build::movePlayer(int xOffset, int yOffset)
 	}
 }
 
-void Build::displayPlayer()
+void Build::displayPlayer(int timer)
 {
+	timer = clock() - timer;
+	int delay = movespeed - timer;
 	printOnLevel(playerChar, currentPos, RED_LIGHT);
 
 	if(fc::isKeyPressed('w') || fc::isKeyPressed(72))
-		fc::waitMs(movespeed / 5);
+		fc::waitMs(delay / 5);
 	else if (fc::isKeyPressed('s'))
-		fc::waitMs(movespeed * 3);
-	else fc::waitMs(movespeed);
+		fc::waitMs(delay * 3);
+	else fc::waitMs(delay);
 	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor(), level.at(currentPos)->backgroundColor);
 }
 
