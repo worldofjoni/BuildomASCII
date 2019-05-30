@@ -606,7 +606,12 @@ void Build::movePlayer(int xOffset, int yOffset)
 void Build::displayPlayer()
 {
 	printOnLevel(playerChar, currentPos, RED_LIGHT);
-	fc::waitMs(movespeed);
+
+	if(fc::isKeyPressed('w') || fc::isKeyPressed(72))
+		fc::waitMs(movespeed / 5);
+	else if (fc::isKeyPressed('s'))
+		fc::waitMs(movespeed * 3);
+	else fc::waitMs(movespeed);
 	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor(), level.at(currentPos)->backgroundColor);
 }
 
