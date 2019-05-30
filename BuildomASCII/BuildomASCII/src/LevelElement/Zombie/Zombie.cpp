@@ -40,17 +40,20 @@ Zombie* Zombie::clone()
 
 void Zombie::move(Build* build)
 {
-	if (build->level.at({ pos.x + dir, pos.y })->id != 0)
+	if ((build->level.at({ pos.x + dir, pos.y })->id != 0) || (build->level.end.x == pos.x + dir && build->level.end.y == pos.y) || build->level.start.x == pos.x + dir && build->level.start.y == pos.y)
 	{
 		dir = (dir == RIGHT) ? LEFT : RIGHT;
 	}
 	if (build->level.at({ pos.x + dir, pos.y })->id == 0)
 	{
-		build->level.swap(pos, { pos.x + dir, pos.y });
-		build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
-		pos.x += dir;
-		build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
+		
+			build->level.swap(pos, { pos.x + dir, pos.y });
+			build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
+			pos.x += dir;
+			build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
 
+
+		
 	}
 	if (build->currentPos == pos)
 		build->playerGameOver = true;

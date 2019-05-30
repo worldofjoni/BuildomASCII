@@ -435,6 +435,11 @@ bool Build::runLevel()
 
 	int repeats;
 
+	for (int i = 0; i < zombieList.size(); i++)
+	{
+		zombieList[i].dir = RIGHT;
+	}
+
 	t1 = std::chrono::system_clock::now();
 
 	while (!playerGameOver)
@@ -443,24 +448,8 @@ bool Build::runLevel()
 		for (int i = 0; i < zombieList.size(); i++)
 		{
 			zombieList[i].move(build);
+			if (playerGameOver) continue;
 		}
-		//if (zombie != nullptr)
-		//{
-		//	if (level.at({ zombiePos.x + zombieDir, zombiePos.y })->id != 0)
-		//	{
-		//		zombieDir = (zombieDir == RIGHT) ? LEFT : RIGHT;
-		//	}
-		//	zombie = new Zombie(true);
-		//	emptying = new Empty(true);
-		//	level.placeAt(emptying, zombiePos.x, zombiePos.y);
-		//	//placeOnLevelAt(emptying, zombiePos);
-		//	printOnLevel(level.at(zombiePos)->symbol, zombiePos, level.at(zombiePos)->getColor(), level.at(zombiePos)->backgroundColor);
-		//	zombiePos.x += zombieDir;
-		//	//placeOnLevelAt(zombie, zombiePos);
-		//	level.placeAt(zombie, zombiePos.x, zombiePos.y);
-		//	printOnLevel(level.at(zombiePos)->symbol, zombiePos, level.at(zombiePos)->getColor(), level.at(zombiePos)->backgroundColor);
-		//}
-
 
 		repeats = 0;
 		if (!fc::isKeyPressed(32))	//Space
@@ -551,16 +540,6 @@ bool Build::runLevel()
 
 		cycleCount++;
 	}
-	/*if (formZombiePos.x != 0 && formZombiePos.y != 0 )
-	{
-		zombie = new Zombie(true);
-		emptying = new Empty(true);
-		level.placeAt(emptying, zombiePos.x, zombiePos.y);
-		printOnLevel(level.at(zombiePos)->symbol, zombiePos, level.at(zombiePos)->getColor(), level.at(zombiePos)->backgroundColor);
-		zombiePos = formZombiePos;
-		level.placeAt(zombie, zombiePos.x, zombiePos.y);
-		printOnLevel(level.at(formZombiePos)->symbol, formZombiePos, level.at(formZombiePos)->getColor(), level.at(formZombiePos)->backgroundColor);
-	}*/
 
 	for (int i = 0; i < zombieList.size(); i++)
 	{
