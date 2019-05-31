@@ -660,10 +660,8 @@ void Build::displayPlayer(int timer)
 	int delay = movespeed - timer;
 	printOnLevel(playerChar, currentPos, RED_LIGHT);
 
-	if(fc::isKeyPressed('w') || fc::isKeyPressed(72))
+	if(fc::isKeyPressed(VK_SHIFT))
 		fc::waitMs(delay / 5);
-	else if (fc::isKeyPressed('s'))
-		fc::waitMs(delay * 3);
 	else fc::waitMs(delay);
 	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor(), level.at(currentPos)->backgroundColor);
 }
