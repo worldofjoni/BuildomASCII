@@ -28,6 +28,10 @@ void Build::printOnLevel(T content, Pos pos, fc::Color color, fc::Color backgrou
 Build::Build(Level level, bool asEditor)
 	:level(level), isEditor(asEditor)
 {
+	//new Music
+	fc::stopSound();
+	fc::playSoundRepeat("music/music2.wav");
+
 	fc::clearScreen(frameColor);
 	if (this->level.start == INVALID_POS) this->level.setStartEnd({ 5,5 }, { level.WIDTH - 6, level.HEIGHT - 6 });
 

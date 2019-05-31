@@ -18,7 +18,7 @@ public:
 	Credits();
 	virtual ~Credits();
 	int contentWidth = 80;
-	int contentHeight = 29;
+	int contentHeight = 30;
 	std::string content =
 R"(
 +------------------------------------------------------------------------------+
@@ -44,10 +44,11 @@ R"(
 |                                                                              |
 |                                                                              |
 |                                                                              |
+|                   Musik während der Level von Mark Zeller                    |
 |                                                                              |
-|                        Music from https://filmmusic.io:                      |
-|            "Garden Music" by Kevin MacLeod (https://incompetech.com)         |
-|           Licence: CC BY (http://creativecommons.org/licenses/by/4.0/)       |
+|                   Sonstige Musik von https://filmmusic.io:                   |
+|          "Garden Music" by Kevin MacLeod (https://incompetech.com)           |
+|         Licence: CC BY (http://creativecommons.org/licenses/by/4.0/)         |
 |                                                                              |
 +------------------------------------------------------------------------------+
 )";																	 

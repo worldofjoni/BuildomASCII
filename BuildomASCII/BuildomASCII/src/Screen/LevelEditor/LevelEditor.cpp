@@ -102,8 +102,6 @@ void LevelEditor::run()
 
 	} while (!fileManager.saveLevel(level, input, isEditing));
 	
-
-	
 }
 
 bool isInt(std::string str)
