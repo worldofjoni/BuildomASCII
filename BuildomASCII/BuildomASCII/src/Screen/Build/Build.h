@@ -31,6 +31,7 @@ private:
 	// for runLevel
 	Build* build = this;
 	int movespeed = 100;
+	std::string runCommands = "[LEER] : Figur anhalten";
 
 	bool leaveConfirm();
 

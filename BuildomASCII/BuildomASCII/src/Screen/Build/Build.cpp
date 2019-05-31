@@ -424,6 +424,13 @@ bool Build::runLevel()
 		zombie = level.at(zombiePos);
 	}*/
 
+	// print runCommands
+	Pos runCommandPos = { WIDTH - runCommands.length() - 6, HEIGHT - 5 };
+	fc::setCursorPos(runCommandPos.x, runCommandPos.y);
+	fc::setTextColor(frameTextColor);
+	fc::setBackgroundColor(frameColor);
+	std::cout << runCommands;
+
 	currentPos = { level.start.x, level.start.y };
 	// reset values
 	cycleCount = 1;
@@ -550,6 +557,11 @@ bool Build::runLevel()
 		zombieList[i].reset(build);
 	}
 	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor(), level.at(currentPos)->backgroundColor);
+
+	//delete RunCommands
+	fc::setCursorPos(runCommandPos.x, runCommandPos.y);
+	fc::setBackgroundColor(frameColor);
+	for (int i = 0; i < runCommands.length(); i++) std::cout << " ";
 	return false;
 }
 
