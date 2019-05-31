@@ -129,7 +129,7 @@ bool isFilename(std::string str)
 
 	for (int i = 0; i<str.length(); i++)
 	{
-		if (isalnum(str[i]) == 0) 
+		if (isalnum(str[i]) == 0 && str[i] != '_')
 			return false;
 	}
 	return true;

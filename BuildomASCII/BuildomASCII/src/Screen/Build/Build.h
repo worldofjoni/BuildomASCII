@@ -21,10 +21,6 @@ public:
 	static const int maxStars = 3;
 
 private:
-	std::vector<Zombie> zombieList;
-	Pos zombiePos = { 0, 0 };
-	Pos formZombiePos = { 0, 0 };
-	Direction zombieDir = RIGHT;
 
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
 	const fc::Color menuBarSymColor = RED, menuBarLineColor = BLUE_LIGHT, menuBarSymbolBackgroundColor = LIGHT_GRAY;
@@ -38,6 +34,22 @@ private:
 
 	bool leaveConfirm();
 
+	//for star
+	std::vector<Pos> starPos;
+
+	// For timed spike
+	std::vector<Pos> spikePos;
+	const int spikeCycle = 10;
+
+	//for 2. Timed Spike
+	std::vector<Pos> spikePos2;
+	const int spikeCycle2 = 10;
+
+	//Zombie
+	std::vector<Zombie> zombieList;
+	Pos zombiePos = { 0, 0 };
+	Pos formZombiePos = { 0, 0 };
+	Direction zombieDir = RIGHT;
 
 public:
 	int fallSpeed = 3;
@@ -77,23 +89,15 @@ public:
 
 	std::chrono::system_clock::time_point t1, t2;
 
-	//for star
-	std::vector<Pos> starPos;
-	int starsCollected = 0;
 	
-
-	// For timed spike
-	std::vector<Pos> spikePos;
-	const int spikeCycle = 10;
-	bool spikey = true;
-
-	//for 2. Timed Spike
-	std::vector<Pos> spikePos2;
-	const int spikeCycle2 = 10;
-	bool spikey2 = true;
-
 	// for level Editor
 	bool cancelEdit = false;
+
+	//for blocks
+
+	int starsCollected = 0;
+	bool spikey = true;
+	bool spikey2 = true;
 	
 	
 	// destructor
