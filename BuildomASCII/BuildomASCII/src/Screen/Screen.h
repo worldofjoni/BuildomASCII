@@ -18,6 +18,7 @@ struct Pixel // Struct containig all the information for each pixel
 
 };
 
+class LevelElement;
 
 
 class Screen
@@ -49,6 +50,7 @@ protected:
 	Pos writeAt(int x, int y, int num, unsigned int digis);
 	Pos writeAt(Pos pos, int num, unsigned int digis);
 	void writeMultiline(Pos pos, std::string str, int width, char sym[] = nullptr, fc::Color col[] = nullptr, fc::Color backCol[] = nullptr);
+	void writeMultilineSyms(Pos pos, std::string str, int width, LevelElement* elements[]);
 	void copyContent(Pixel old[WIDTH][HEIGHT]);
 
 };
