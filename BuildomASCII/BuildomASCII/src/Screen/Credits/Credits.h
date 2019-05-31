@@ -17,13 +17,41 @@ public:
 
 	Credits();
 	virtual ~Credits();
-	std::string gameName = "Buildom ASCII";
-	std::string content =  std::string("Copyright \xb8 \b2019: Samuel Pasieka & Jonatan Ziegler");
-	std::string music = R"(
-Music from https://filmmusic.io:
-"Garden Music" by Kevin MacLeod (https://incompetech.com)
-Licence: CC BY (http://creativecommons.org/licenses/by/4.0/)
-)";
+	int contentWidth = 80;
+	int contentHeight = 29;
+	std::string content =
+R"(
++------------------------------------------------------------------------------+
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                 Buildom ASCII                                |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|           Github: https://github.com/worldofjoni/BuildomASCII                |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|    Copyright # 2019: Samuel Pasieka & Jonatan Ziegler, All Rights Reserved   |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                        Music from https://filmmusic.io:                      |
+|            "Garden Music" by Kevin MacLeod (https://incompetech.com)         |
+|           Licence: CC BY (http://creativecommons.org/licenses/by/4.0/)       |
+|                                                                              |
++------------------------------------------------------------------------------+
+)";																	 
+
 
 	void run();
 };

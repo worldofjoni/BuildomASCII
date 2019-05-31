@@ -11,18 +11,9 @@ Credits::Credits()
 {
 	setBlank();
 
-	//gamename
-	Pos gameNamePos = { (WIDTH - gameName.length()) / 2, HEIGHT / 4 };
-
-	writeAt(gameNamePos, gameName.c_str());
-
-	//names
-	Pos creditPos = { (WIDTH - content.length()) / 2, HEIGHT / 2 };
-
-	writeAt(creditPos, content.c_str());
-	
-	//music
-	writeMultiline({ (WIDTH - 60) / 2, HEIGHT * 3 / 4 }, music, 60);
+	//credits:
+	char symbols[] = {184};
+	writeMultiline({ (WIDTH - contentWidth) / 2, (HEIGHT - contentHeight) / 2 - 4 }, content, contentWidth + 1, symbols);
 
 	std::string keys = "[ESC], [LEER], [ENTER] : Verlassen";
 	writeAt({ (WIDTH - (int)keys.length()) / 2, HEIGHT - 3 }, keys.c_str());

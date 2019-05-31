@@ -153,10 +153,11 @@ Pos Screen::writeAt(Pos pos, int num, unsigned int digis)
 	return writeAt(pos.x, pos.y, num, digis);
 }
 
-void Screen::writeMultiline(Pos pos, std::string str, int width)
+void Screen::writeMultiline(Pos pos, std::string str, int width, char sym[], fc::Color col[], fc::Color backCol[])
 {
 	str = str.substr(1, str.length()); // to deleate the first \n
 	int i = 0, x = pos.x, y = pos.y;
+	int index = 0;
 	while (i < str.length())
 	{
 		while (str[i] != '\n' && (x+i) < Screen::WIDTH)
@@ -183,6 +184,13 @@ void Screen::writeMultiline(Pos pos, std::string str, int width)
 				break;
 			case 'ß':
 				content[x + i][y].content = 225;
+				break;
+			case '#':
+				if (sym != nullptr) content[x + i][y].content = sym[index];
+				else content[x + i][y].content = '#';
+				if (col != nullptr) content[x + i][y].textColor = col[index];
+				if (backCol != nullptr) content[x + i][y].backgroundColor = backCol[index];
+				index++;
 				break;
 			default:
 				content[x + i][y].content = str[i];

@@ -48,7 +48,7 @@ protected:
 	Pos writeAt(int x, int y, int num);
 	Pos writeAt(int x, int y, int num, unsigned int digis);
 	Pos writeAt(Pos pos, int num, unsigned int digis);
-	void writeMultiline(Pos pos, std::string str, int width);
+	void writeMultiline(Pos pos, std::string str, int width, char sym[] = nullptr, fc::Color col[] = nullptr, fc::Color backCol[] = nullptr);
 	void copyContent(Pixel old[WIDTH][HEIGHT]);
 
 };
