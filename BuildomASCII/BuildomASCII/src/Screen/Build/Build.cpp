@@ -168,7 +168,7 @@ Build::Build(Level level, bool asEditor)
 	//display start and end key ( if editor)
 	if (isEditor)
 	{
-		menuPos = { 5, Screen::HEIGHT - 3 };
+		menuPos = { WIDTH - 26, HEIGHT - 5 };
 		menuPos = writeAt(menuPos, "[,] : Start ");
 		content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
 		menuPos = writeAt(menuPos, 179);
@@ -662,7 +662,6 @@ bool Build::leaveConfirm()
 	fc::setTextColor(BLACK);
 	Pos textPos = { 3, Screen::HEIGHT - 3 };
 
-	if (isEditor) textPos.y = 0;
 	std::string text = "Wirklich verlassen? [ENTER]";
 	gotoxy(textPos.x, textPos.y);
 	std::cout << text;
