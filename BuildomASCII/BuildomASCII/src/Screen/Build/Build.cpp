@@ -131,7 +131,7 @@ Build::Build(Level level, bool asEditor)
 		menuPos = writeAt(menuPos, " [");
 		menuPos = writeAt(menuPos, keybind[i]);
 		menuPos = writeAt(menuPos, "] : ");
-		countPos[i] = menuPos; // save position of number for later updates
+		remainingCountPos[i] = menuPos; // save position of number for later updates
 
 		// checks for infinite blocks
 		if (level.maxElements[i] == -1)
@@ -457,7 +457,7 @@ bool Build::runLevel()
 		timer = clock();
 		for (int i = 0; i < zombieList.size(); i++)
 		{
-			zombieList[i].move(build);
+			zombieList[i].move(this);
 			if (playerGameOver) continue;
 		}
 
@@ -556,7 +556,7 @@ bool Build::runLevel()
 	deathSound(); // also waits
 	for (int i = 0; i < zombieList.size(); i++)
 	{
-		zombieList[i].reset(build);
+		zombieList[i].reset(this);
 	}
 	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor(), level.at(currentPos)->backgroundColor);
 
@@ -594,14 +594,14 @@ bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 		if (oldId != 0 && level.maxElements[oldId] != -1 && level.maxElements[oldId] != 0)
 		{
 			
-			fc::setCursorPos(countPos[oldId].x, countPos[oldId].y);
+			fc::setCursorPos(remainingCountPos[oldId].x, remainingCountPos[oldId].y);
 			std::cout << std::setw(3) << (level.maxElements[oldId] - level.setElements[oldId]);
 		}
 
 		// new Element display update (unless max is empty or inf. or 0)
 		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[id] != 0)
 		{
-			fc::setCursorPos(countPos[id].x, countPos[id].y);
+			fc::setCursorPos(remainingCountPos[id].x, remainingCountPos[id].y);
 			std::cout << std::setw(3) << (level.maxElements[id] - level.setElements[id]);
 		}
 
@@ -643,14 +643,14 @@ void Build::movePlayer(int xOffset, int yOffset)
 	{
 		if ((level.at(currentPos)->id == 2 && level.at(currentPos)->id != previousElementID )|| (level.at(currentPos)->id == 3 && level.at(currentPos)->id != previousElementID))
 		{
-			level.at(currentPos)->steppedIn(build);
+			level.at(currentPos)->steppedIn(this);
 		}
-		level.at(currentPos.below())->steppedOn(build);
+		level.at(currentPos.below())->steppedOn(this);
 	}
 	while (level.at(currentPos)->id != previousElementID )
 	{
-		level.at(currentPos)->steppedIn(build);
-		level.at(currentPos.below())->steppedOn(build);
+		level.at(currentPos)->steppedIn(this);
+		level.at(currentPos.below())->steppedOn(this);
 		previousElementID = level.at(currentPos)->id;
 		
 	}
