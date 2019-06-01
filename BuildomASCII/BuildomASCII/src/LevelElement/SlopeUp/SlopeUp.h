@@ -12,7 +12,6 @@
 
 class SlopeUp : public LevelElement
 {
-private:
 public:
 	static const char ownSym = '/';
 	static const char ownKey = '1';
@@ -21,10 +20,6 @@ public:
 	void steppedOn(Build* build) override;
 	void steppedIn(Build* build) override;
 	SlopeUp* clone() override;
-
 };
-
-
-
 
 #endif // !SLOPE_UP_H

@@ -7,6 +7,7 @@
 #include "Solid.h"
 #include "Screen/Build/Build.h"
 
+
 // Constructor
 Solid::Solid(bool deletable)
 {
@@ -18,22 +19,16 @@ Solid::Solid(bool deletable)
 	fallable = false;
 }
 
-// gets called when on block
+// gets called when on Block
 void Solid::steppedOn(Build* build)
 {
-	
-
 }
-
-
 
 // gets Called when in Block
 void Solid::steppedIn(Build* build)
 {
-	if (!build->level.at(build->previousPos.below())->fallable)
-		build->playerGameOver = true;
-	else
-		build->currentPos = build->previousPos;
+	if (!build->level.at(build->previousPos.below())->fallable) build->playerGameOver = true;
+	else build->currentPos = build->previousPos;
 	
 }
 
@@ -42,4 +37,3 @@ Solid* Solid::clone()
 {
 	return (new Solid(*this));
 }
-
