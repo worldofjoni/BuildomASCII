@@ -8,20 +8,6 @@
 
 #include "LevelElement/LevelElement.h"
 #include "Screen/WinScreen/WinScreen.h"
-#include <vector>
-
-
-// prints content at x|y whit color on Screen
-template <typename T>
-void Build::printOnLevel(T content, Pos pos, fc::Color color, fc::Color backgroundColor)
-{
-	fc::setCursorPos(pos.x + 1, pos.y + 1); // +1 is offset for Frame
-	fc::setBackgroundColor(backgroundColor);
-	fc::setTextColor(color);
-	std::cout << content;
-	fc::setCursorPos(0, 0);
-}
-
 
 
 // Constructor with content init
@@ -29,9 +15,11 @@ Build::Build(Level level, bool asEditor)
 	:level(level), isEditor(asEditor)
 {
 	fc::clearScreen(frameColor);
+
 	if (this->level.start == INVALID_POS) this->level.setStartEnd({ 5,5 }, { level.WIDTH - 6, level.HEIGHT - 6 });
 
 	setBlank();
+
 	// init frame
 	for (int y = 0; y < HEIGHT; y++)
 	{
@@ -43,7 +31,6 @@ Build::Build(Level level, bool asEditor)
 		content[WIDTH - 1][y].textColor = frameTextColor;
 		content[WIDTH - 1][y].backgroundColor = frameColor;
 	}
-
 	for (int x = 0; x < WIDTH; x++)
 	{
 		content[x][0].content = ' ';
@@ -63,61 +50,61 @@ Build::Build(Level level, bool asEditor)
 	{
 		for (int y = 0; y < this->level.HEIGHT; y++)
 		{
-			if (this->level.at({ x, y })->symbol == Zombie::ownSym)
-			{
-				zombieList.push_back(level.at({ x, y }));
-				zombieList[zombieList.size() - 1].formPos = { x, y };
-				zombieList[zombieList.size() - 1].pos = { x, y };
-			}
+			// init Content
 			content[x + 1][y + 1].content = this->level.at({ x, y })->symbol;
 			content[x + 1][y + 1].textColor = this->level.at({ x, y })->getColor();
 			content[x + 1][y + 1].backgroundColor = this->level.at({ x,y })->backgroundColor;
 
-			// serach for Stars
-
+			// ++ Serch for Special Blocks ++
+			// Stars
 			if (this->level.at({ x,y })->id == Star::ownId)
 			{
 				starPos.push_back({ x,y });
 			}
 
-			// serch for timedSpikes
+			// TimedSpikes
 			if (this->level.at({ x,y })->id == TimedSpike::ownId)
 			{
 				spikePos.push_back({ x,y });
 			}
 
-			// serch for timedSpikesAir
+			// TimedSpikesAir
 			if (this->level.at({ x,y })->id == TimedSpikeAir::ownId)
 			{
 				spikePos2.push_back({ x,y });
 			}
 
+			// Zombies
+			if (this->level.at({ x, y })->id == Zombie::ownId)
+			{
+				zombieList.push_back(this->level.at({ x, y }));
+				zombieList[zombieList.size() - 1].formPos = { x, y };
+				zombieList[zombieList.size() - 1].pos = { x, y };
+			}
 		}
 	}
 
-	// star handeling
 
+	// Limited stars handeling
 	if (isEditor)
 	{
 		this->level.maxElements[Star::ownId] = maxStars;
 		this->level.setElements[Star::ownId] = starPos.size();
 	}
 
+
 	// init for menu bar
-	bool firstIsPlaced = false;
+	bool firstIsPrinted = false;
 	Pos menuPos = { 3, Screen::HEIGHT - 7 };
-
-
 
 	for (int i = 1; i < LevelElement::countOfElements; i++) // 1 because empty field is NOT displayed
 	{
 
 		// when no blocks of this kind are allowed
-		if (level.maxElements[i] == 0)
-			continue;
+		if (level.maxElements[i] == 0) continue;
 
 		// if this is not the first block: Prevent '|' on border
-		if (firstIsPlaced)
+		if (firstIsPrinted)
 		{
 			menuPos = writeAt(menuPos, "  ");
 			content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
@@ -125,6 +112,7 @@ Build::Build(Level level, bool asEditor)
 			menuPos = writeAt(menuPos, "  ");
 		}
 
+		// print Keybinding
 		content[menuPos.x][menuPos.y].textColor = elements[i]->getColor();
 		content[menuPos.x][menuPos.y].backgroundColor = elements[i]->backgroundColor;
 		menuPos = writeAt(menuPos, elements[i]->symbol);
@@ -134,19 +122,17 @@ Build::Build(Level level, bool asEditor)
 		remainingCountPos[i] = menuPos; // save position of number for later updates
 
 		// checks for infinite blocks
-		if (level.maxElements[i] == -1)
-			menuPos = writeAt(menuPos, " - ");
-		else
-			menuPos = writeAt(menuPos, this->level.maxElements[i] - this->level.setElements[i], 3);
+		if (level.maxElements[i] == -1) menuPos = writeAt(menuPos, " - ");
+		else menuPos = writeAt(menuPos, this->level.maxElements[i] - this->level.setElements[i], 3);
 
-		firstIsPlaced = true;
+		firstIsPrinted = true;
 
 		// new Line when to far right
 		if (menuPos.x > WIDTH - 17)
 		{
 			menuPos.x = 3;
 			menuPos.y += 2;
-			firstIsPlaced = false;
+			firstIsPrinted = false;
 		}
 
 	}
@@ -165,7 +151,7 @@ Build::Build(Level level, bool asEditor)
 	menuPos = writeAt(menuPos, 179);
 	menuPos = writeAt(menuPos, isEditor ? " [ENTER] : Speichern  " : " [ENTER] : Starten    ");
 
-	//display start and end key ( if editor)
+	//display start and end placement key (if editor)
 	if (isEditor)
 	{
 		menuPos = { WIDTH - 26, HEIGHT - 5 };
@@ -183,7 +169,6 @@ Build::Build(Level level, bool asEditor)
 void Build::run()
 {
 	LevelElement *setElement = nullptr; // Elemet player can set on screen
-	Direction dir = NONE;
 	Cursor cursor(&level);
 	bool enteredRun = false;
 	bool elementPlaced = false;
@@ -193,7 +178,7 @@ void Build::run()
 	{
 		if (_kbhit()) // when key gets pressed
 		{
-			if (keyHandeling(setElement, dir, cursor)) 
+			if (keyHandeling(setElement, cursor)) 
 			{
 				fc::clearScreen(defaultBackgroundColor);
 				return; // leaves editor when e.g. ESC hit or run successfully
@@ -210,10 +195,10 @@ void Build::run()
 			// overprint old element
 			printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
 
-			cursor.move(dir);
+			cursor.move();
 
 			// print cursor 
-			if (elementPlaced) printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
+			if (elementPlaced) printOnLevel( level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor );
 			else printOnLevel(cursor.symbol, cursor.pos, cursor.color);
 		}
 		else // cursor blinks only when not moveing
@@ -229,7 +214,7 @@ void Build::run()
 
 			
 		}
-		dir = NONE;
+		cursor.dir = NONE;
 		elementPlaced = false;
 
 		fc::waitMsWithInterupt(500, []() { return (bool)_kbhit(); }); // waits 500ms ore until key is pressed
@@ -238,33 +223,35 @@ void Build::run()
 	}
 }
 
-bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor cursor)
+bool Build::keyHandeling(LevelElement*& setElement, Cursor& cursor)
 {
-
 	int key = getCharLow();
-	if (key == -32) key = _getch();
-	switch (key) // new element keybind here ###################################################################################################################################################
+	if (key == -32) key = _getch(); // for Arrow Keys
+	switch (key) // new element keybind here ##########################################
 	{
+	// Cursor navigation
 	case 'w':
-	case 72:
-		dir = UP;
+	case 72: // Arrow Up
+		cursor.dir = UP;
 		keyPressedHandeling(setElement);
 		break;
 	case 'a':
-	case 75:
-		dir = LEFT;
+	case 75: // Arrow Left
+		cursor.dir = LEFT;
 		keyPressedHandeling(setElement);
 		break;
 	case 's':
-	case 80:
-		dir = DOWN;
+	case 80: // Arrow Down
+		cursor.dir = DOWN;
 		keyPressedHandeling(setElement);
 		break;
 	case 'd':
-	case 77:
-		dir = RIGHT;
+	case 77: // Arrow Right
+		cursor.dir = RIGHT;
 		keyPressedHandeling(setElement);
 		break;
+
+	// Element placement
 	case Solid::ownKey:
 		setElement = new Solid(true);
 		break;
@@ -298,6 +285,8 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 	case Zombie::ownKey:
 		setElement = new Zombie(true);
 		break;
+
+	// Other controlls
 	case 13: // Enter
 		if (isEditor) return true;
 		
@@ -305,7 +294,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 
 		if (runLevel()) return true;
 		else
-		{ // reste after failed runs:
+		{ // reset after failed runs:
 			//set stars to stars again
 			starsCollected = 0;
 			for (auto & v :starPos)
@@ -315,42 +304,36 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 				
 			}
 
-			//reset timed modes
-			
+			// reset timed modes
 			for (auto& v : spikePos)
 			{
 				level.at(v)->symbol = Spike::ownSym;
 				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
 			}
-			
 			for (auto& v : spikePos2)
 			{
 				level.at(v)->symbol = TimedSpikeAir::ownSym;
 				level.at(v)->fallable = false;
 				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
 			}
-			
 		}
 		break;
-		
-
-
+	
 	case 27: // ESC
 		if (leaveConfirm())
 		{
-			if (isEditor) cancelEdit = true;
+			cancelEdit = true;
 			closeSound();
-
 			return true;
-
 		}
 		break;
 
 	default:
-		dir = NONE;
+		cursor.dir = NONE;
 		break;
 	}
 	
+	// LevelEditor Controlls
 	if (isEditor && level.at(cursor.pos)->deletable && !cursor.pos.isOnLevelBorder())
 	{
 		switch (key)
@@ -362,7 +345,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 			level.at(level.start)->setColor(Screen::defaultTextColor);
 			printOnLevel(level.at(level.start)->symbol, level.start, Screen::defaultTextColor);
 			
-			// set new ones
+			// set new one
 			setElement = new Empty(false);
 			setElement->symbol = Build::startChar;
 			setElement->setColor(Build::startColor);
@@ -370,14 +353,15 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 			// update start
 			level.start = cursor.pos;
 			break;
+
 		case '.': // set End
-			//reset old end
+			// reset old end
 			level.at(level.end)->deletable = true;
 			level.at(level.end)->symbol = Empty::ownSym;
 			level.at(level.end)->setColor(Screen::defaultTextColor);
 			printOnLevel(level.at(level.end)->symbol, level.end, Screen::defaultTextColor);
 			
-			// set new ones
+			// set new one
 			setElement = new Empty(false);
 			setElement->symbol = Build::endChar;
 			setElement->setColor(Build::endColor);
@@ -385,6 +369,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 			// update end
 			level.end = cursor.pos;
 			break;
+
 		default:
 			break;
 		}
@@ -393,7 +378,7 @@ bool Build::keyHandeling(LevelElement*& setElement, Direction& dir, Cursor curso
 	return false;
 }
 
-void Build::keyPressedHandeling(LevelElement*& setelement)
+void Build::keyPressedHandeling(LevelElement*& setelement) // For feature to build blocks while moveing
 {
 	for (int i = 0; i < LevelElement::countOfElements; i++)
 	{
@@ -406,10 +391,6 @@ void Build::keyPressedHandeling(LevelElement*& setelement)
 	}
 	
 }
-
-
-
-
 
 // Runs the Level after build-mode
 bool Build::runLevel()
@@ -567,68 +548,6 @@ bool Build::runLevel()
 	return false;
 }
 
-// checks wether a block could be placed and does so
-bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
-{
-	// Handeling limited Blocks
-	int &id = element->id;
-	int& oldId = level.at(pos)->id;
-	int &x = pos.x;
-	int &y = pos.y;
-
-	if ((level.setElements[id] < level.maxElements[id] || level.maxElements[id] == -1) && level.at({ x, y })->deletable) // when allowed to place
-	{
-
-		// take care of stars
-		//if (id == Star::ownId) starPos.push_back(pos);
-		
-		level.setElements[oldId]--; // decrement deleted
-
-		level.setElements[id]++; // increment new
-
-		// colors for number replacement
-		fc::setBackgroundColor(frameColor);
-		fc::setTextColor(frameTextColor);
-
-		//replace number in display : old Element (unless max is empty or inf. or 0)
-		if (oldId != 0 && level.maxElements[oldId] != -1 && level.maxElements[oldId] != 0)
-		{
-			
-			fc::setCursorPos(remainingCountPos[oldId].x, remainingCountPos[oldId].y);
-			std::cout << std::setw(3) << (level.maxElements[oldId] - level.setElements[oldId]);
-		}
-
-		// new Element display update (unless max is empty or inf. or 0)
-		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[id] != 0)
-		{
-			fc::setCursorPos(remainingCountPos[id].x, remainingCountPos[id].y);
-			std::cout << std::setw(3) << (level.maxElements[id] - level.setElements[id]);
-		}
-
-		level.placeAt(element, x, y);
-		element = nullptr;
-		return true;
-
-	}
-	else
-	{
-		delete element;
-		element = nullptr;
-		return false;
-	}
-}
-
-
-
-Build::~Build()
-{
-	for (int i = 0; i < LevelElement::countOfElements; i++)
-	{
-		delete elements[i];
-		elements[i] = nullptr;
-	}
-	
-}
 
 
 // Moves the Player and triggers new Events
@@ -685,4 +604,76 @@ bool Build::leaveConfirm()
 		std::cout << " ";
 	}
 	return false;
+}
+
+// prints content at x|y whit color on Screen
+template <typename T>
+void Build::printOnLevel(T content, Pos pos, fc::Color color, fc::Color backgroundColor)
+{
+	fc::setCursorPos(pos.x + 1, pos.y + 1); // +1 is offset for Frame
+	fc::setBackgroundColor(backgroundColor);
+	fc::setTextColor(color);
+	std::cout << content;
+	fc::setCursorPos(0, 0);
+}
+
+// checks wether a block could be placed and does so
+bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
+{
+	// Handeling limited Blocks
+	int &id = element->id;
+	int &oldId = level.at(pos)->id;
+	int &x = pos.x;
+	int &y = pos.y;
+
+	if ((level.setElements[id] < level.maxElements[id] || level.maxElements[id] == -1) && level.at(pos)->deletable) // when allowed to place
+	{
+		// take care of stars
+		
+		level.setElements[oldId]--; // decrement deleted
+
+		level.setElements[id]++; // increment new
+
+		// ++ Replace remainingCount ++
+		fc::setBackgroundColor(frameColor);
+		fc::setTextColor(frameTextColor);
+
+		// old Element
+		if (oldId != 0 && level.maxElements[oldId] != -1 && level.maxElements[oldId] != 0)
+		{
+			
+			fc::setCursorPos(remainingCountPos[oldId].x, remainingCountPos[oldId].y);
+			std::cout << std::setw(3) << (level.maxElements[oldId] - level.setElements[oldId]);
+		}
+
+		// new Element
+		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[id] != 0)
+		{
+			fc::setCursorPos(remainingCountPos[id].x, remainingCountPos[id].y);
+			std::cout << std::setw(3) << (level.maxElements[id] - level.setElements[id]);
+		}
+
+
+		level.placeAt(element, x, y);
+		element = nullptr;
+		return true;
+
+	}
+	else
+	{
+		delete element;
+		element = nullptr;
+		return false;
+	}
+}
+
+
+
+Build::~Build()
+{
+	for (int i = 0; i < LevelElement::countOfElements; i++)
+	{
+		delete elements[i];
+		elements[i] = nullptr;
+	}
 }

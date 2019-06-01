@@ -74,7 +74,7 @@ public:
 	bool placeOnLevelAt(LevelElement*& element, Pos pos);
 
 	void run();
-	bool keyHandeling(LevelElement *&setElement, Direction &dir, Cursor cursor);
+	bool keyHandeling(LevelElement *&setElement, Cursor& cursor);
 	void keyPressedHandeling(LevelElement*& setelement);
 
 	bool runLevel();

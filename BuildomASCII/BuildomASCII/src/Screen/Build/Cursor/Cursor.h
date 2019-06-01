@@ -18,7 +18,8 @@ private:
 public:
 	Cursor(Level* level);
 	Pos pos;
-	void move(Direction dir);
+	Direction dir = NONE;
+	void move();
 	bool isVisible = true; // if cursor is visible
 	char symbol = 'x';
 	fc::Color color = RED_LIGHT;
