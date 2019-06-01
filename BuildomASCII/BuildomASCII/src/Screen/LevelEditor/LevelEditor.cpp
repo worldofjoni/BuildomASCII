@@ -9,18 +9,22 @@
 #include "LevelElement/LevelElement.h"
 #include "Screen/Build/Build.h"
 
+// constructor for new level
 LevelEditor::LevelEditor()
 {
 	setBlank();
+
 	for (int i = 0; i < LevelElement::countOfElements; i++)
 	{
 		level.maxElements[i] = -1;
 		oldMaxElements[i] = -1;
 	}
+
 	//only 3 for Star
 	level.maxElements[Star::ownId] = Build::maxStars;
 }
 
+// constructor for editing of existing level
 LevelEditor::LevelEditor(Level level, std::string name)
 	:level(level), name(name), isEditing(true)
 {
@@ -39,7 +43,7 @@ LevelEditor::LevelEditor(Level level, std::string name)
 		for (int y = 0; y < level.HEIGHT; y++)
 		{
 			Pos pos = { x,y };
-			if (pos != this->level.start && pos != this->level.end ) this->level.at({ x,y })->deletable = true;
+			if (pos != this->level.start && pos != this->level.end) this->level.at({ x,y })->deletable = true; // allow to delete (all) elements
 		}
 	}
 
@@ -48,45 +52,51 @@ LevelEditor::LevelEditor(Level level, std::string name)
 void LevelEditor::run()
 {
 	Build levelEditor(level, true);
-	levelEditor.run();
+	levelEditor.run(); // user builds level
 
 	BdalManager fileManager;
 
 	level = levelEditor.level;
 
-	if (levelEditor.cancelEdit) return; // Cancel
+	if (levelEditor.cancelEdit) return; // cancel
 		
-
-	fc::setTextColor(BLUE_LIGHT);
 	printScreen();
+
+	// ++ ask for maxElements ++
+	Pos start = { 5, 5 };
 	int y = 1; // y-Offset
+	std::string input = "";
 	for (int i = 0; i < LevelElement::countOfElements; i++, y++) // do not ask for empty
 	{
-		if (!levelEditor.elements[i]->canBePlacedByUser) // do not ask for stars or NodElEmpty
+		if (!levelEditor.elements[i]->canBePlacedByUser) // do not ask if !canBePlacedByUser
 		{
 			level.maxElements[i] = 0;
 			y--;
 			continue;
 		}
+
 		fc::setCursorPos(5, 5+y);
 		std::cout << "Maximalanzahl f\x81r \"" << fc::color(levelEditor.elements[i]->getColor()) << levelEditor.elements[i]->symbol << fc::color(levelEditor.defaultTextColor)<< "\"[" << oldMaxElements[i] <<"]: ";
-		std::string input;
+		Pos userWritePos = {0, start.y+y};
+		fc::getCursorPosition(userWritePos.x, userWritePos.y);
 		fc::showCursor();
 		std::getline(std::cin, input);
 		fc::hideCursor();
-		if (input.length() == 0) input = std::to_string(oldMaxElements[i]);
+		if (input.length() == 0) input = std::to_string(oldMaxElements[i]); // if nothing is written keep old value
+		// input validation
 		if (!isInt(input))
 		{
-			fc::setCursorPos(5 + 23, 5 + y);
-			for (int i = 0; i <= input.length(); i++) std::cout << " ";
+			fc::setCursorPos(userWritePos.x, userWritePos.y);
+			for (int i = 0; i <= input.length(); i++) std::cout << " "; // clear old user input
 			i--, y--;
 			continue;
 		}
-		level.maxElements[i] = std::stoi(input, nullptr);
+		level.maxElements[i] = std::stoi(input, nullptr); // store user input
 	}
 
-	std::string input = " ";
-	std::string msg = std::string("Name der Datei (max 10 Zeichen) [") + name + std::string("]: ");
+	// ++ ask for filename ++
+	input = " ";
+	std::string msg = std::string("Name der Datei (max 20 Zeichen) [") + name + std::string("]: ");
 	do
 	{
 		do
@@ -96,41 +106,9 @@ void LevelEditor::run()
 			fc::setCursorPos(5 + msg.length(), 5 + y);
 			fc::showCursor();
 			std::getline(std::cin, input);
-			if (input.length() == 0) input = name;
+			if (input.length() == 0) input = name; // if nothing is written keep old name
 			fc::hideCursor();
 		} while (!isFilename(input));
 
-	} while (!fileManager.saveLevel(level, input, isEditing));
-	
-
-	
-}
-
-bool isInt(std::string str)
-{
-	if (str.length() >= 9) return false;
-
-	for (int i = 0; i < str.length(); i++) if (str[i] < 0) return false;
-
-	if (!(str[0] == '-' || isdigit(str[0]))) return false;
-	
-	for (int i = 1; i < str.length(); i++)
-	{
-		if (!isdigit(str[i])) return false;
-	}
-	return true;
-}
-
-bool isFilename(std::string str)
-{
-	if (str.length() >10) return false;
-
-	for (int i = 0; i < str.length(); i++) if (str[i] < 0) return false;
-
-	for (int i = 0; i<str.length(); i++)
-	{
-		if (isalnum(str[i]) == 0 && str[i] != '_')
-			return false;
-	}
-	return true;
+	} while (!fileManager.saveLevel(level, input, isEditing)); // as long as saveLevel is not successfull: name is already taken (only when creating new)
 }
