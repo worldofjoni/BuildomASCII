@@ -140,7 +140,9 @@ void StorySelect::initScreen(int prevX, int prevPage)
 		writeAt({ start.x, start.y + gap * (i - 1)}, ("Level " + std::to_string(i)).c_str());
 		startNum++;
 	}
-	writeAt({ 4, 5 }, ("[" + std::to_string(currentPage) + "/" + std::to_string(maxPage) + "]").c_str());
+
+	if(nameCount > MAX_NAMES_ON_LIST)
+		writeAt({ 4, 5 }, ("[" + std::to_string(currentPage) + "/" + std::to_string(maxPage) + "]").c_str());
 
 	printScreen();
 
