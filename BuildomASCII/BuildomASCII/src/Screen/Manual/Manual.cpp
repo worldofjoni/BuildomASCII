@@ -7,13 +7,13 @@
 #include "Manual.h"
 
 
-
+int Manual::calls = 0;
 
 Manual::Manual()
 {
 	setBlank();
 
-	if ((calls % 6 == 5))
+	if ((calls % 6 == 5)) // easter egg
 	{
 		writeAt({ 46, 3 }, "NIEMAND");
 		writeMultiline({ 5,7 },  content_, WIDTH - 10);
@@ -24,10 +24,9 @@ Manual::Manual()
 		writeMultilineSyms({ 5,7 }, content, WIDTH - 10, elements);
 	}
 	
-
-
 	writeAt((Screen::WIDTH - 35) / 2, Screen::HEIGHT - 3, "[ESC], [LEER], [ENTER] : Verlassen");
 	calls++;
+	printScreen();
 }
 
 Manual::~Manual()
@@ -41,23 +40,15 @@ Manual::~Manual()
 
 void Manual::run()
 {
-
-
-	printScreen();
-	fc::setCursorPos(0, 0);
-	while (true)
+	while (true) if (_kbhit())
 	{
-		if (_kbhit())
+		char c = getCharLow();
+		if (c == 27 || c == 13 || c == ' ') // Exit
 		{
-			char c = getCharLow();
-			if (c == 27 || c == 13 || c == ' ')
-			{
-				closeSound();
-				return;
-			}
-
+			closeSound();
+			return;
 		}
-	}
-}
 
-int Manual::calls = 0;
+	}
+	
+}
