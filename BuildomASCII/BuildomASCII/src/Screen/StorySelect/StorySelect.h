@@ -14,9 +14,10 @@ class StorySelect : public Screen
 {
 private:
 	BdalManager fileManager;
+	int gap = 2;
+	const int MAX_NAMES_ON_LIST = 14;
 
 	int x = 0;
-	int gap = 2;
 	int input = 0;
 	int nameCount = 0;
 
@@ -26,7 +27,6 @@ private:
 	int maxPage = 0;
 	int currentPage = 0;
 	int maxX = 0;
-	const int MAX_NAMES_ON_LIST = 14;
 	void initScreen(int prevX = 0, int prevPage = 1);
 
 public:

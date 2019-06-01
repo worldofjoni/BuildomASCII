@@ -18,14 +18,14 @@ void StorySelect::run()
 			if (input == -32) input = _getch(); // for arrow key
 			if (input == 0) input = _getch(); // for F..
 
-			if (input == 32 || input == 13)
+			if (input == 32 || input == 13) // Enter or Space
 			{
 				openSound();
 				Build build(fileManager.getLevel(std::to_string(x + 1), LevelType::STORY));
 				build.run();
 
 				//reinit screen
-				initScreen(x);
+				initScreen(x, currentPage);
 
 
 			}
@@ -71,7 +71,6 @@ void StorySelect::run()
 				break;
 			}
 
-
 			gotoxy(current.x, current.y);
 			std::cout << ' ';
 
@@ -79,10 +78,8 @@ void StorySelect::run()
 			gotoxy(current.x, current.y);
 			std::cout << '>';
 
-
 		}
 	}
-	//writeAt(startPos.x, startPos.y, playButton.word.c_str());
 }
 
 
@@ -100,21 +97,7 @@ StorySelect::~StorySelect()
 
 void StorySelect::initScreen(int prevX, int prevPage)
 {
-	setBlank();
-
-	
-	std::string title = "LEVELAUSWAHL";
-	Pos titlePos = { (WIDTH - title.length()) / 2, 3 };
-	writeAt(titlePos, title.c_str());
-
-
-	Pos start_ = { 30, HEIGHT - 3 };
-	start_ = writeAt(start_, "[ENTER] Level starten \xb3 [ESC] : Verlassen");
-
-	current.y = start.y + (x * gap);
-
 	nameCount = fileManager.getStoryCount();
-
 	maxPage = nameCount / MAX_NAMES_ON_LIST + 1;
 
 	if (nameCount % MAX_NAMES_ON_LIST == 0)
@@ -137,6 +120,21 @@ void StorySelect::initScreen(int prevX, int prevPage)
 		maxX = 0;
 
 	}
+
+	// Define screen content
+
+	setBlank();
+	std::string title = "LEVELAUSWAHL";
+	Pos titlePos = { (WIDTH - title.length()) / 2, 3 };
+	writeAt(titlePos, title.c_str());
+
+
+	Pos start_ = { 30, HEIGHT - 3 };
+	start_ = writeAt(start_, "[ENTER] Level starten \xb3 [ESC] : Verlassen");
+
+	current.y = start.y + (x * gap);
+
+	// Write entries to screen
 	for (int i = 1; startNum <= endNum; i++)
 	{
 		writeAt({ start.x, start.y + gap * (i - 1)}, ("Level " + std::to_string(i)).c_str());
