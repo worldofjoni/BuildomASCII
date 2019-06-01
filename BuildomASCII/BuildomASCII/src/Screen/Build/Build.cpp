@@ -415,15 +415,7 @@ void Build::keyPressedHandeling(LevelElement*& setelement)
 bool Build::runLevel()
 {
 	int timer = 0;
-	LevelElement* emptying;
-	LevelElement* zombie = nullptr;
-	/*if (formZombiePos.x != 0 && formZombiePos.y != 0)
-	{
-		zombieDir = RIGHT;
-		zombiePos = formZombiePos;
-		zombie = level.at(zombiePos);
-	}*/
-
+	
 	// print runCommands
 	Pos runCommandPos = { WIDTH - runCommands.length() - 6, HEIGHT - 5 };
 	fc::setCursorPos(runCommandPos.x, runCommandPos.y);
@@ -443,6 +435,7 @@ bool Build::runLevel()
 
 	int repeats;
 
+	// Group existing zombies
 	for (int i = 0; i < zombieList.size(); i++)
 	{
 		zombieList[i].dir = RIGHT;
@@ -460,9 +453,11 @@ bool Build::runLevel()
 		}
 
 		repeats = 0;
+
 		if (!fc::isKeyPressed(32))	//Space
 			movePlayer(playerDirection, 0);
 		else movePlayer(0, 0);
+
 		// Falling
 		do
 		{
@@ -489,10 +484,8 @@ bool Build::runLevel()
 			{
 				movePlayer(0, 1);
 			}
-			
+
 			repeats++;
-
-
 
 		} while (repeats < fallSpeed); // Check after every falling for fallSpeed-reapeats
 
@@ -502,42 +495,38 @@ bool Build::runLevel()
 			playerGameOver = true;
 			continue;
 		}
-		
+
 		displayPlayer(timer);
 
-		
+
 		if (_kbhit())
 		{
 			// Getting out of Run-Mode
 			if (getCharLow() == 27) // Escape
-			{
 				playerGameOver = true;
-			}
 		}
 
 		// Win
 		if (currentPos == level.end)
-		{
-			
-			return true; 
-		}
+			return true;
+
 
 		// timed exents
 		if (cycleCount > 1024) cycleCount = 0;
 
 		if ((cycleCount % spikeCycle) == 0)
 		{
-			for (auto &v : spikePos)
+			for (auto& v : spikePos)
 			{
-				level.at(v)->symbol = spikey ? ' ': Spike::ownSym;
-				printOnLevel(level.at(v)->symbol, v,level.at(v)->getColor(), level.at(v)->backgroundColor);
+				level.at(v)->symbol = spikey ? ' ' : Spike::ownSym;
+				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
 			}
 			spikey = !spikey;
 		}
 
 		if ((cycleCount % spikeCycle2) == 0)
 		{
-			for (auto &v : spikePos2)
+			for (auto& v : spikePos2)
 			{
 				level.at(v)->symbol = spikey2 ? ' ' : TimedSpikeAir::ownSym;
 				level.at(v)->fallable = !spikey;
@@ -660,7 +649,7 @@ void Build::displayPlayer(int timer)
 	int delay = movespeed - timer;
 	printOnLevel(playerChar, currentPos, RED_LIGHT);
 
-	if(fc::isKeyPressed(VK_SHIFT))
+	if(fc::isKeyPressed(VK_SHIFT))	// Speed up if Shift is pressed
 		fc::waitMs(delay / 5);
 	else fc::waitMs(delay);
 	printOnLevel(level.at(currentPos)->symbol, currentPos, level.at(currentPos)->getColor(), level.at(currentPos)->backgroundColor);
@@ -675,8 +664,10 @@ bool Build::leaveConfirm()
 	std::string text = "Wirklich verlassen? [ENTER]";
 	gotoxy(textPos.x, textPos.y);
 	std::cout << text;
+
 	if (_getch() == 13)
 		return true;
+
 	gotoxy(textPos.x, textPos.y);
 	for (int i = 0; i < text.length(); i++)
 	{
