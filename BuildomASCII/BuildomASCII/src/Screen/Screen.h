@@ -15,30 +15,29 @@ struct Pixel // Struct containig all the information for each pixel
 	char content = ' ';
 	fc::Color textColor = _defaultTextColor;
 	fc::Color backgroundColor = _defaultBackgroundColor;
-
 };
 
 class LevelElement;
 
-
 class Screen
 {
 public:
-	
 	static const int 
 		WIDTH = 100, 
 		HEIGHT = 50;
+
 	static const fc::Color
 		defaultBackgroundColor = _defaultBackgroundColor,
 		defaultTextColor = _defaultTextColor;
-	void printScreen();
-	void setBlank();
+
 	virtual ~Screen() {};
 
-
+protected:
 	Pixel content[WIDTH][HEIGHT];
 
-protected:
+	void printScreen();
+	void setBlank();
+
 	// Functions to write on content
 	Pos writeAt(int x, int y, char c);
 	Pos writeAt(Pos pos, char c);
@@ -54,7 +53,5 @@ protected:
 	void copyContent(Pixel old[WIDTH][HEIGHT]);
 
 };
-
-
 
 #endif

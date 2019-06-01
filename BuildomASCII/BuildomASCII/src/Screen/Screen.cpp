@@ -7,6 +7,7 @@
 #include "Screen/Screen.h"
 #include "LevelElement/LevelElement.h"
 
+
 void Screen::printScreen()
 {
 	fc::setCursorPos(0, 0);
@@ -25,7 +26,6 @@ void Screen::printScreen()
 
 void Screen::setBlank()
 {
-	
 	for (int x = 0; x < WIDTH; x++)
 	{
 		for (int y = 0; y < HEIGHT; y++)
@@ -33,15 +33,9 @@ void Screen::setBlank()
 			content[x][y].content = ' ';
 			content[x][y].backgroundColor = defaultBackgroundColor;
 			content[x][y].textColor = defaultTextColor;
-		}
-		
+		}	
 	}
 }
-
-
-
-
-
 
 Pos Screen::writeAt(int x, int y, char c)
 {
@@ -88,18 +82,16 @@ Pos Screen::writeAt(int x, int y, int num)
 
 		// seperates each digit and places it in content
 		for (int i = 0; i < dig; i++)
-		{ //48
-			content[x + i][y].content = (num / (int)pow(10, dig - i - 1)) + 48;
+		{
+			content[x + i][y].content = '0' + (num / (int)pow(10, dig - i - 1));
 			num %= (int)pow(10, dig - i - 1);
 		}
 		pos = { x + dig, y };
-
 	}
 	else
 	{
 		pos = { x, y };
 	}
-
 
 	return pos;
 }
@@ -109,9 +101,6 @@ Pos Screen::writeAt(int x, int y, int num, unsigned int digis)
 	Pos pos;
 	if (num >= 0)
 	{
-
-
-
 		int dig = 0, num_ = num;
 
 		// determines count of digets
@@ -132,18 +121,16 @@ Pos Screen::writeAt(int x, int y, int num, unsigned int digis)
 
 		// seperates each digit and places it in content
 		for (int i = 0; i < dig; i++)
-		{ //48
-			content[x + i][y].content = (num / (int)pow(10, dig - i - 1)) + 48;
+		{
+			content[x + i][y].content = '0' + (num / (int)pow(10, dig - i - 1));
 			num %= (int)pow(10, dig - i - 1);
 		}
 		pos = { x + dig, y };
-
 	}
 	else
 	{
 		pos = { x, y };
 	}
-
 
 	return pos;
 }
@@ -265,5 +252,3 @@ void Screen::copyContent(Pixel old[WIDTH][HEIGHT])
 		}
 	}
 }
-
-
