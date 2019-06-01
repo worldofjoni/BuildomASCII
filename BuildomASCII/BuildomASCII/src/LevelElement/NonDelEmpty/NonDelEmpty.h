@@ -9,9 +9,9 @@
 
 #include "LevelElement/LevelElement.h"
 
+
 class NonDelEmpty : public LevelElement
 {
-private:
 public:
 	static const char ownSym = ' ';
 	static const char ownKey = '6';
@@ -22,11 +22,5 @@ public:
 	NonDelEmpty* clone() override;
 	
 };
-
-
-
-
-
-
 
 #endif // !NON_DEL_EMPTY_H
