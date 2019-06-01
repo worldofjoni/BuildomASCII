@@ -14,13 +14,13 @@
 class Cursor
 {
 private:
-	Level * level;
+	Level* level;
 public:
 	Cursor(Level* level);
+	void move();
 	Pos pos;
 	Direction dir = NONE;
-	void move();
-	bool isVisible = true; // if cursor is visible
+	bool isVisible = true;
 	char symbol = 'x';
 	fc::Color color = RED_LIGHT;
 };
