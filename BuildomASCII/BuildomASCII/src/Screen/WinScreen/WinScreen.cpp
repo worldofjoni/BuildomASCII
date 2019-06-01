@@ -7,6 +7,7 @@
 #include "WinScreen.h"
 #include "Screen/Build/Build.h"
 
+
 WinScreen::WinScreen(Build* old)
 {
 	Pos size = {WIDTH /2, HEIGHT / 2 + 10}; // size of screen;
@@ -21,6 +22,7 @@ WinScreen::WinScreen(Build* old)
 			
 		}
 	}
+
 	// frame
 	for (int x = (WIDTH - size.x) / 2; x < (WIDTH + size.x) / 2; x++)
 	{
@@ -50,11 +52,9 @@ WinScreen::WinScreen(Build* old)
 	{
 		printMultiline(starPos, star, 20, (i < old->starsCollected) ? YELLOW_LIGHT : backgroundColor, backgroundColor);
 		starPos.x += 15;
-
 	}
 
 	// time took
-
 	Pos timePos = { (WIDTH - size.x) / 2 + 12, (HEIGHT - size.y) / 2 + 15 };
 	fc::setBackgroundColor(backgroundColor);
 	fc::setTextColor(textColor);
@@ -77,32 +77,20 @@ WinScreen::WinScreen(Build* old)
 	}
 	
 	// button press hint
-
 	Pos hintPos = { (WIDTH - size.x) / 2 + 7, (HEIGHT + size.y) / 2 - 3 };
 	fc::setCursorPos(hintPos.x, hintPos.y);
 	std::cout << "[ESC], [LEER], [ENTER] : Verlassen";
-
-}
-
-
-WinScreen::~WinScreen()
-{
 }
 
 void WinScreen::run()
 {
-	while (1)
+	while (true) if (_kbhit())
 	{
-		if (_kbhit())
+		int c = _getch();
+		if (c == 27 || c == 13 || c == ' ') // Exit
 		{
-			int c = _getch();
-			if (c == 27 || c == 13 || c == ' ')
-			{
-				closeSound();
-				return;
-			}
+			closeSound();
+			return;
 		}
 	}
 }
-
-
