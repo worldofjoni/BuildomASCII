@@ -395,7 +395,7 @@ void Build::keyPressedHandeling(LevelElement*& setelement) // For feature to bui
 // Runs the Level after build-mode
 bool Build::runLevel()
 {
-	int timer = 0;
+	std::chrono::system_clock::time_point roundStartTime;
 	
 	// print runCommands
 	int runCommandWidth = 49;
@@ -428,7 +428,7 @@ bool Build::runLevel()
 
 	while (!playerGameOver)
 	{
-		timer = clock();
+		roundStartTime = std::chrono::system_clock::now();
 		for (int i = 0; i < zombieList.size(); i++)
 		{
 			zombieList[i].move(this);
@@ -479,8 +479,8 @@ bool Build::runLevel()
 			continue;
 		}
 
+		int timer = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - roundStartTime).count();
 		displayPlayer(timer);
-
 
 		if (_kbhit())
 		{
@@ -566,7 +566,6 @@ void Build::movePlayer(int xOffset, int yOffset)
 
 void Build::displayPlayer(int timer)
 {
-	timer = clock() - timer;
 	int delay = movespeed - timer;
 	printOnLevel(playerChar, currentPos, RED_LIGHT);
 
