@@ -8,6 +8,7 @@
 #define WIN_SCREEN_H
 
 #include "Screen/Screen.h"
+#include "Screen/Build/Build.h"
 
 class WinScreen : public Screen
 {

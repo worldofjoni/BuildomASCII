@@ -5,7 +5,7 @@
 
 #include "pch/pch.h"
 #include "Screen/Screen.h"
-
+#include "LevelElement/LevelElement.h"
 
 void Screen::printScreen()
 {

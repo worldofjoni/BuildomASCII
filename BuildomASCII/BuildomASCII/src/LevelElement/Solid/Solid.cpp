@@ -5,6 +5,7 @@
 
 #include "pch/pch.h"
 #include "Solid.h"
+#include "Screen/Build/Build.h"
 
 // Constructor
 Solid::Solid(bool deletable)

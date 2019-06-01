@@ -6,6 +6,7 @@
 #include "pch/pch.h"
 #include "Level.h"
 #include "LevelElement/Empty/Empty.h"
+#include "Screen/Build/Build.h"
 
 
 void Level::swap(Pos pos1, Pos pos2)

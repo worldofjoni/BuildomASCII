@@ -8,7 +8,7 @@
 
 #include "LevelElement/LevelElement.h"
 #include "Screen/WinScreen/WinScreen.h"
-
+#include "Cursor/Cursor.h"
 
 // Constructor with content init
 Build::Build(Level level, bool asEditor)

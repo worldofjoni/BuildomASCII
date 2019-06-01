@@ -5,6 +5,7 @@
 
 #include "pch/pch.h"
 #include "SlopeUp.h"
+#include "Screen/Build/Build.h"
 
 SlopeUp::SlopeUp(bool deletable)
 {

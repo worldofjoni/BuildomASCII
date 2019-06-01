@@ -5,6 +5,8 @@
 
 #include "pch/pch.h"
 #include "Spike.h"
+#include "Screen/Build/Build.h"
+
 
 Spike::Spike(bool deletable)
 {

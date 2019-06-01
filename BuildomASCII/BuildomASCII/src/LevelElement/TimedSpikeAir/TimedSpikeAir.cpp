@@ -5,6 +5,7 @@
 
 #include "pch/pch.h"
 #include "TimedSpikeAir.h"
+#include "Screen/Build/Build.h"
 
 TimedSpikeAir::TimedSpikeAir(bool deletable)
 {

@@ -5,6 +5,7 @@
 
 #include "pch/pch.h"
 #include "Zombie.h"
+#include "Screen/Build/Build.h"
 
 Zombie::Zombie(bool deletable)
 {

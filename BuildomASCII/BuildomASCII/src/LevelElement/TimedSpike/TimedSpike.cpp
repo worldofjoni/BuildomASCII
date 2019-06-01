@@ -5,6 +5,7 @@
 
 #include "pch/pch.h"
 #include "TimedSpike.h"
+#include "Screen/Build/Build.h"
 
 TimedSpike::TimedSpike(bool deletable)
 {

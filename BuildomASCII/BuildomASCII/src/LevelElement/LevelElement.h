@@ -8,7 +8,7 @@
 #define LEVEL_ELEMENT_H
 
 #include "pch/pch.h"
-
+#include "Screen/Screen.h"
 
 class Build;
 

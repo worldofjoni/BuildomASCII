@@ -5,7 +5,7 @@
 
 #include "pch/pch.h"
 #include "WinScreen.h"
-
+#include "Screen/Build/Build.h"
 
 WinScreen::WinScreen(Build* old)
 {
