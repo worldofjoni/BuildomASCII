@@ -425,11 +425,13 @@ bool Build::runLevel()
 	}*/
 
 	// print runCommands
-	Pos runCommandPos = { WIDTH - runCommands.length() - 6, HEIGHT - 5 };
+	int runCommandWidth = 49;
+	Pos runCommandPos = { WIDTH - runCommandWidth - 6, HEIGHT - 5 };
 	fc::setCursorPos(runCommandPos.x, runCommandPos.y);
 	fc::setTextColor(frameTextColor);
 	fc::setBackgroundColor(frameColor);
-	std::cout << runCommands;
+	std::cout << "[SHIFT] : Beschleunigen " << fc::color(menuBarLineColor) << (char)179 << fc::color(frameTextColor) << " [LEER] : Figur anhalten";
+
 
 	currentPos = { level.start.x, level.start.y };
 	// reset values
@@ -561,7 +563,7 @@ bool Build::runLevel()
 	//delete RunCommands
 	fc::setCursorPos(runCommandPos.x, runCommandPos.y);
 	fc::setBackgroundColor(frameColor);
-	for (int i = 0; i < runCommands.length(); i++) std::cout << " ";
+	for (int i = 0; i < runCommandWidth; i++) std::cout << " ";
 	return false;
 }
 

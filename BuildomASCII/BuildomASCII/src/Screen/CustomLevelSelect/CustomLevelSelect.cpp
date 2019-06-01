@@ -167,11 +167,12 @@ void CustomLevelSelect::initScreen(int prevX, int prevPage)
 	writeAt({ 4, 5 },( "["+ std::to_string(currentPage) + "/" + std::to_string(maxPage) + "]").c_str());
 	Pos start_ = { 10, HEIGHT - 7 };
 	Pos page_ = { 11, HEIGHT - 7 };
-	writeAt(page_, " [A/Pfeil-L] Seite vorblaettern \xb3 [D/Pfeil-R] Seite zurueckblaettern");
-	start_.y += 2;
 	writeAt(start_, " [ENTER] Level starten \xb3    [F6] : Level bearbeiten   \xb3 [ESC] : Verlassen");
 	start_.y += 2;
 	writeAt(start_, "[BACK] : Level l\x94 \bschen \xb3 [TAB] : Dateiexplorer \x94 \bffnen \xb3 [F5] : Liste aktualisieren");
+	start_.y += 2;
+	start_.x = (WIDTH - 39) / 2;
+	writeAt(start_, "[A] Vorherige Seite \xb3 [D] N\x84\chste Seite");
 
 	current.y = start.y + (x * gap);
 
