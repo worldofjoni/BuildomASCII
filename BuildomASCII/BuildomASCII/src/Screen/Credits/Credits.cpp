@@ -11,38 +11,29 @@ Credits::Credits()
 {
 	setBlank();
 
-	//credits:
-	char symbols[] = {184};
+	// print Credits
+	char symbols[] = {184}; // (c)
 	writeMultiline({ (WIDTH - contentWidth) / 2, (HEIGHT - contentHeight) / 2 - 4 }, content, contentWidth + 1, symbols);
 
+	// Available commands
 	std::string keys = "[ESC], [LEER], [ENTER] : Verlassen";
 	writeAt({ (WIDTH - (int)keys.length()) / 2, HEIGHT - 3 }, keys.c_str());
-
 
 	printScreen();
 }
 
-
-Credits::~Credits()
-{
-}
-
 void Credits::run()
 {
-	
-	while (true)
+	while (true) if (_kbhit())
 	{
-		if (_kbhit())
+		char c = getCharLow();
+		if (c == 27 || c == 13 || c == ' ') // Exit
 		{
-			char c = getCharLow();
-			if (c == 27 || c == 13 || c == ' ')
-			{
-				closeSound();
-				return;
-			}
-
+			closeSound();
+			return;
 		}
 	}
+	
 }
 
 

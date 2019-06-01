@@ -8,7 +8,7 @@
 #define LEVEL_ELEMENT_H
 
 #include "pch/pch.h"
-#include "Screen/Build/Build.h"
+#include "Screen/Screen.h"
 
 class Build;
 
@@ -18,23 +18,23 @@ protected:
 	fc::Color color;
 
 public:
+	// Variables
 	char symbol, key;
 	int id;
 	bool deletable = true; // If an Element can be removed by player
 	bool fallable = false; // If an Element can be fallen through
-	
-	virtual void steppedOn(Build *build) = 0;
-	virtual void steppedIn(Build *build) = 0;
-
+	bool canBePlacedByUser = true;
 	fc::Color backgroundColor = Screen::defaultBackgroundColor;
-
+	
+	// Functions
 	fc::Color getColor();
 	void setColor(fc::Color col);
+	virtual void steppedOn(Build *build) = 0;
+	virtual void steppedIn(Build *build) = 0;
 	virtual LevelElement* clone() = 0; // copy function
-	static const int countOfElements = 11; // num of different element, hs to be manualy updated, also update the list in Build!! && in BdalManager###############################
 
-	// for not allowed to be placed by user
-	bool canBePlacedByUser = true;
+	
+	static const int countOfElements = 11; // num of different element, hs to be manualy updated, also update the list in Build!! && in BdalManager###############################
 };
 
 
@@ -49,6 +49,5 @@ public:
 #include "TimedSpike/TimedSpike.h"
 #include "TimedSpikeAir/TimedSpikeAir.h"
 #include "Zombie/Zombie.h"
-
 
 #endif // !LEVEL_ELEMENT_H

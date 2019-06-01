@@ -5,6 +5,7 @@
 
 #include "pch/pch.h"
 #include "SlopeUp.h"
+#include "Screen/Build/Build.h"
 
 SlopeUp::SlopeUp(bool deletable)
 {
@@ -16,18 +17,13 @@ SlopeUp::SlopeUp(bool deletable)
 	fallable = false;
 }
 
-
-
 void SlopeUp::steppedOn(Build* build)
 {
-	
 }
 
 void SlopeUp::steppedIn(Build* build)
 {
-	if (build->playerDirection == RIGHT)
-		build->movePlayer(0, -1);
-	//else { build->playerGameOver = true; }
+	if (build->playerDirection == RIGHT) build->movePlayer(0, -1);
 	
 }
 

@@ -5,6 +5,7 @@
 
 #include "pch/pch.h"
 #include "SlopeDown.h"
+#include "Screen/Build/Build.h"
 
 SlopeDown::SlopeDown(bool deletable)
 {
@@ -16,18 +17,13 @@ SlopeDown::SlopeDown(bool deletable)
 	fallable = false;
 }
 
-
 void SlopeDown::steppedOn(Build *build)
 {
-	
 }
 
 void SlopeDown::steppedIn(Build* build)
 {
-	if (build->playerDirection == LEFT)
-		build->movePlayer(0, -1);
-		
-	//else { build->playerGameOver = true; }
+	if (build->playerDirection == LEFT) build->movePlayer(0, -1);
 }
 
 SlopeDown* SlopeDown::clone()

@@ -15,7 +15,7 @@ Cursor::Cursor(Level* level)
 }
 
 // Moves Cursor in direction
-void Cursor::move(Direction dir)
+void Cursor::move()
 {
 	switch (dir)
 	{

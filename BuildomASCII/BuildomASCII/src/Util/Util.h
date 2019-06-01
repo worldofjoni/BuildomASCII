@@ -37,4 +37,7 @@ void playMusic(const char str[]);
 bool& musicAllowed();
 void printMultiline(Pos pos, std::string str, int width, fc::Color textColor, fc::Color backColor);
 
+bool isInt(std::string str);
+bool isFilename(std::string str);
+
 #endif // !POS_H

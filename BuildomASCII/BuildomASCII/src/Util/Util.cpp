@@ -4,8 +4,7 @@
 // ***********************************************************
 
 #include "pch/pch.h"
-#include "Util.h"
-
+#include "Level/Level.h"
 
 Pos Pos::below()
 {
@@ -129,3 +128,31 @@ void printMultiline(Pos pos, std::string str, int width, fc::Color textColor, fc
 
 }
 
+bool isInt(std::string str)
+{
+	if (str.length() >= 9) return false;
+
+	for (int i = 0; i < str.length(); i++) if (str[i] < 0) return false;
+
+	if (!(str[0] == '-' || isdigit(str[0]))) return false;
+
+	for (int i = 1; i < str.length(); i++)
+	{
+		if (!isdigit(str[i])) return false;
+	}
+	return true;
+}
+
+bool isFilename(std::string str)
+{
+	if (str.length() > 20) return false;
+
+	for (int i = 0; i < str.length(); i++) if (str[i] < 0) return false;
+
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (isalnum(str[i]) == 0 && str[i] != '_')
+			return false;
+	}
+	return true;
+}

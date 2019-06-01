@@ -5,6 +5,7 @@
 
 #include "pch/pch.h"
 #include "StorySelect.h"
+#include "Screen/Build/Build.h"
 
 void StorySelect::run()
 {

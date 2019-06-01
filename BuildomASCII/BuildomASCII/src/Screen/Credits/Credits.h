@@ -13,10 +13,10 @@
 class Credits : public Screen
 {
 public:
-	
-
 	Credits();
-	virtual ~Credits();
+	void run();
+
+private:
 	int contentWidth = 80;
 	int contentHeight = 29;
 	std::string content =
@@ -52,8 +52,6 @@ R"(
 +------------------------------------------------------------------------------+
 )";																	 
 
-
-	void run();
 };
 
 #endif

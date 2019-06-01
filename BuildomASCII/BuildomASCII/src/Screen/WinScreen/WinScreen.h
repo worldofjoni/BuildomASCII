@@ -8,10 +8,12 @@
 #define WIN_SCREEN_H
 
 #include "Screen/Screen.h"
+#include "Screen/Build/Build.h"
+
 
 class WinScreen : public Screen
 {
-public:
+private:
 
 	std::string logo = R"(
   _____ _____ ______ _____ 
@@ -28,12 +30,13 @@ public:
 /|\
 )";
 
-	WinScreen(Build* old);
-	virtual ~WinScreen();
 	fc::Color frameColor = RED_LIGHT;
 	fc::Color backgroundColor = WHITE;
 	fc::Color textColor = RED_LIGHT;
 	fc::Color logoColor = RED;
+
+public:
+	WinScreen(Build* old);
 
 	void run();
 };

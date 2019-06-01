@@ -1,9 +1,7 @@
 // #################################################################
 // #    Library to easily change console colours and much more     #
-// #                      © Jonatan Ziegler                        #
+// #                     by Jonatan Ziegler                        #
 // #################################################################
-
-
 
 #pragma once
 #ifndef _FRIENDLY_CONSOLE_
@@ -11,8 +9,9 @@
 
 #pragma comment(lib, "Winmm.lib")
 #include <ostream>
-typedef wchar_t WCHAR;
 
+
+// compatibility defines
 #define gotoxy fc::setCursorPos
 #define getrandom_int fc::getRandom
 #define wait fc::waitMs
@@ -65,7 +64,6 @@ typedef wchar_t WCHAR;
 
 
 namespace fc {
-
 
 	// abbr. for unsigned short
 	typedef unsigned short Color;

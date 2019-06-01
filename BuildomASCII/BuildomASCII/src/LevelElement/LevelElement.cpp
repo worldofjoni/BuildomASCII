@@ -8,7 +8,7 @@
 
 fc::Color LevelElement::getColor()
 {
-	return deletable ? color^0x0008 : color;
+	return deletable ? color^0x0008 : color; // darker color if placed by user
 }
 
 void LevelElement::setColor(fc::Color col)

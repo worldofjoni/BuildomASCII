@@ -20,7 +20,7 @@ NonDelEmpty::NonDelEmpty(bool deletable)
 	canBePlacedByUser = false;
 }
 
-// gets called when on block
+// gets called when on Block
 void NonDelEmpty::steppedOn(Build *build)
 {
 

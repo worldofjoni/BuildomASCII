@@ -5,6 +5,7 @@
 
 #include "pch/pch.h"
 #include "Star.h"
+#include "Screen/Build/Build.h"
 
 Star::Star(bool deletable)
 {

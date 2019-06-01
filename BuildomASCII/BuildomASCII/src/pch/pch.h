@@ -6,18 +6,20 @@
 #pragma once
 #ifndef PCH_H
 
+// standard librarys
 #include <iostream>
 #include <iomanip>
-#include "friendlyConsole/friendlyConsole.hpp"
 #include <conio.h>
 #include <chrono>
 #include <cmath>
 #include <string>
 #include <vector>
+
+// system library
 #include <Windows.h>
 
+// own headers
+#include "friendlyConsole/friendlyConsole.hpp"
 #include "Util/Util.h"
-#include "Screen/Build/Cursor/Cursor.h"
-#include "Level/Level.h"
 
 #endif // !PCH_H

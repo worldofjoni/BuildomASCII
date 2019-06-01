@@ -11,6 +11,7 @@
 #include "Button/Button.h"
 #include "LevelElement/LevelElement.h"
 
+
 class Manual : public Screen
 {
 private:
@@ -69,14 +70,16 @@ Blöcke
 
 # : wandert hin und her, bei Berührung stirbt die Figur
 )";
+
+	// LevelElements to be displayed in Manual (instead of #)
 	static const int elLen = 15;
 	LevelElement* elements[elLen] = {new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false), new Star(false), new NonDelEmpty(false), new TimedSpike(false), new Spike(false), new Solid(false), new TimedSpikeAir(false), new Spike(false), new Zombie(false)};
 
 
 
 public:
+	// Constructor / Destructor
 	Manual();
-	// destructor
 	~Manual();
 	Manual(const Manual& other) = delete;
 	Manual(Manual&& other) = delete;
@@ -85,7 +88,5 @@ public:
 
 	void run();
 };
-
-
 
 #endif
