@@ -19,7 +19,7 @@ private:
 	const std::string BASE_PATH = "Level\\";
 	const std::string MUSIC_PATH = "music\\";
 	const std::string FILE_ENDING = ".bdal";
-
+	const std::string sNamePath = BASE_PATH + "Story Level\\";
 
 	std::string fileName;
 	
@@ -29,24 +29,15 @@ private:
 	std::ofstream writeStream;
 	std::ifstream readStream;
 
-	
-
-	int countOfElements;
-	int currentElementChar;
-
-	int nameCount;
-	void addCustomName(std::string name);
-
 public:
-	const std::string sNamePath = BASE_PATH + "Story Level\\";
+	BdalManager();
+
 	const std::string cNamePath = BASE_PATH + "Custom Level\\";
+
 
 	int getCustomLvlNames(std::string nameList[100]);
 	int getStoryCount();
-	BdalManager();
 	Level getLevel(std::string levelName, LevelType levelType);
-
-	//return true if succeed
 	bool saveLevel(Level level, std::string cusLvlName, bool overwrite = false);
 	bool deleteCusLevel(std::string delLvlName);
 	char fileCheck();
