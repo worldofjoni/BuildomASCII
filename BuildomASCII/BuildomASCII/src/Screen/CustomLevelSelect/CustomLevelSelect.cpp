@@ -20,7 +20,7 @@ void CustomLevelSelect::run()
 			if (input == -32) input = _getch(); // for arrow key
 			if (input == 0) input = _getch(); // for F..
 
-			if (input == 32 || input == 13)
+			if (input == 32 || input == 13)	// Enter or Space
 			{
 				if (x == 0)
 				{
@@ -76,10 +76,10 @@ void CustomLevelSelect::run()
 				closeSound();
 				return;
 				break;
-			case 8:
+			case 8:	// Backspace
 				if (x > 0)
 				{
-					if (confirm())
+					if (confirmDelete())
 					{
 						 fileManager.deleteCusLevel(names[(x - 1) + ((currentPage - 1) * MAX_NAMES_ON_LIST)]);
 						 initScreen();
@@ -90,7 +90,7 @@ void CustomLevelSelect::run()
 						initScreen(x, currentPage);
 				}
 				break;
-			case 63:
+			case 63: // F5
 				initScreen();
 				break;
 			case 64: // F6
@@ -101,13 +101,12 @@ void CustomLevelSelect::run()
 					initScreen(x, currentPage);
 				}
 				break;
-			case 9:
+			case 9: // TAB
 				fc::openBrowser(fileManager.cNamePath);
 				break;
 			default:
 				break;
 			}
-
 
 			gotoxy(current.x, current.y);
 			std::cout << ' ';
@@ -115,7 +114,6 @@ void CustomLevelSelect::run()
 			current.y = start.y + (x * gap);
 			gotoxy(current.x, current.y);
 			std::cout << '>';
-
 
 		}
 	}
@@ -136,14 +134,16 @@ CustomLevelSelect::~CustomLevelSelect()
 
 void CustomLevelSelect::initScreen(int prevX, int prevPage)
 {
+	currentPage = prevPage;
+	x = prevX;
+
 	nameCount = fileManager.getCustomLvlNames(names);
 
 	maxPage = nameCount / MAX_NAMES_ON_LIST + 1;
 
 	if(nameCount % MAX_NAMES_ON_LIST == 0)
 		maxPage = nameCount / MAX_NAMES_ON_LIST;
-	currentPage = prevPage;
-	x = prevX;
+
 
 	int startNum = 1 + MAX_NAMES_ON_LIST * (currentPage - 1);
 	int endNum = MAX_NAMES_ON_LIST * currentPage;
@@ -152,21 +152,24 @@ void CustomLevelSelect::initScreen(int prevX, int prevPage)
 		endNum = (MAX_NAMES_ON_LIST * (currentPage - 1)) + nameCount % MAX_NAMES_ON_LIST;
 
 	maxX = endNum - startNum + 1;
+
 	if (nameCount == 0)
 	{
 		maxPage = 1;
 		maxX = 0;
-
 	}
-	setBlank();
 
+	// Define screen content
+
+	setBlank();
 	std::string title = "EIGENE LEVEL";
 	Pos titlePos = { (WIDTH - title.length()) / 2, 3 };
 	writeAt(titlePos, title.c_str());
-
 	writeAt({ 4, 5 },( "["+ std::to_string(currentPage) + "/" + std::to_string(maxPage) + "]").c_str());
+
+
 	Pos start_ = { 10, HEIGHT - 7 };
-	Pos page_ = { 11, HEIGHT - 7 };
+	start_.y += 2;
 	writeAt(start_, " [ENTER] Level starten \xb3    [F6] : Level bearbeiten   \xb3 [ESC] : Verlassen");
 	start_.y += 2;
 	writeAt(start_, "[BACK] : Level l\x94 \bschen \xb3 [TAB] : Dateiexplorer \x94 \bffnen \xb3 [F5] : Liste aktualisieren");
@@ -180,14 +183,12 @@ void CustomLevelSelect::initScreen(int prevX, int prevPage)
 
 	writeAt(start, createCustomButton.name.c_str());
 
-	
+	// Write entries to screen
 	for (int i = 1;startNum <= endNum; i++)
 	{
 		writeAt({ start.x, start.y + gap * i }, names[startNum - 1].c_str());
 		startNum++;
 	}
-
-
 
 	printScreen();
 
@@ -195,7 +196,7 @@ void CustomLevelSelect::initScreen(int prevX, int prevPage)
 	std::cout << '>';
 }
 
-bool CustomLevelSelect::confirm()
+bool CustomLevelSelect::confirmDelete()
 {
 	gotoxy(12, 5);
 	std::cout << "Wirklich l\x94 \bschen? [ENTER]";

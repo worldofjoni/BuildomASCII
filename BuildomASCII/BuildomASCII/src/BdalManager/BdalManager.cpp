@@ -6,28 +6,10 @@
 #include "pch/pch.h"
 #include "BdalManager.h"
 
-void BdalManager::addCustomName(std::string name)
-{
-
-	std::string customNames[100];
-	nameCount = getCustomLvlNames(customNames);
-	customNames[nameCount] = name;
-	nameCount++;
-
-	writeStream.open(cNamePath);
-	writeStream << nameCount << std::endl;
-
-	for (int i = 0; i < nameCount; i++)
-	{
-		writeStream << customNames[i] << std::endl;
-	}
-	writeStream.close();
-
-}
 
 int BdalManager::getCustomLvlNames(std::string nameList[100])
 {
-	nameCount = 0;
+	int nameCount = 0;
 
 	for (int i = 0; i < 100; i++)
 	{
@@ -40,21 +22,17 @@ int BdalManager::getCustomLvlNames(std::string nameList[100])
 		nameList[nameCount] = nameList[nameCount].substr(nameList[nameCount].find_last_of('\\') +1, nameList[nameCount].length());
 		nameList[nameCount] = nameList[nameCount].substr(0, nameList[nameCount].find('.'));
 		nameCount++;
-		
-
 	}
 	return nameCount;
 }
 
 int BdalManager::getStoryCount()
 {
-	nameCount = 0;
+	int nameCount = 0;
 
 	for (const auto& entry : std::experimental::filesystem::directory_iterator(sNamePath))
 	{
 		nameCount++;
-
-
 	}
 	return nameCount;
 }
@@ -69,6 +47,8 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 	Pos start;
 	Pos end;
 	int maxElements[LevelElement::countOfElements];
+	int countOfElements = 0;
+	int currentElementChar = 0;
 
 	for (int i = 0; i < LevelElement::countOfElements; i++)
 	{
@@ -88,18 +68,12 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 	default:
 		break;
 	}
-
-
-
 	advPath = BASE_PATH + midDir + fileName + levelName + FILE_ENDING;
 
 	readStream.open(advPath);
 
 	if (!readStream.is_open())
-	{
-		std::cout << "ERROR";
 		return level;
-	}
 
 	// Read-part
 
@@ -119,10 +93,7 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 
 	for (int i = 0; i < countOfElements; i++)
 	{
-		
 		readStream >> maxElements[i];
-		
-		
 	}
 	level.setMaxElements(maxElements);
 
@@ -219,7 +190,6 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 	{
 		for (int x = 0; x < level.WIDTH; x++)
 		{
-
 			writeStream << level.at({ x, y })->id << std::endl;
 		}
 		
@@ -228,12 +198,11 @@ bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)
 
 	writeStream.close();
 
-	addCustomName(cusLvlName);
 	return true;
 }
 
 
-char BdalManager::fileCheck()
+char BdalManager::fileCheck()	// Checks if music and story-Level files exist
 {
 	int count = 0;
 	char error = 0;
@@ -259,10 +228,10 @@ bool BdalManager::deleteCusLevel(std::string delLvlName)
 {
 	std::string deleteLevelPath = cNamePath + delLvlName + FILE_ENDING;
 	readStream.open(deleteLevelPath);
+
 	if (!readStream.is_open())
-	{
 		return false;
-	}
+
 	readStream.close();
 	remove(deleteLevelPath.c_str());
 	return true;

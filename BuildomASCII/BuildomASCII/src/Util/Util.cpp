@@ -28,7 +28,7 @@ bool Pos::operator!=(Pos other)
 	return !((*this) == other);
 }
 
-char getCharLow()
+char getCharLow() // Returns pressed keyboard value in lower-case
 {
 	char input = 0;
 	input = _getch();
@@ -82,11 +82,11 @@ bool& musicAllowed()
 	return musicAllowedVar;
 }
 
-void printMultiline(Pos pos, std::string str, int width, fc::Color textColor, fc::Color backColor)
+void printMultiline(Pos pos, std::string str, int width, fc::Color textColor, fc::Color backColor)	// Prints Outlines of strings
 {
 	fc::setTextColor(textColor);
 	fc::setBackgroundColor(backColor);
-	str = str.substr(1, str.length()); // to deleate the first \n
+	str = str.substr(1, str.length()); // to delete the first \n
 	int i = 0, x = pos.x, y = pos.y;
 	while (i < str.length())
 	{

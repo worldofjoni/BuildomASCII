@@ -25,10 +25,7 @@ void ChangeDir::steppedOn(Build* build)
 
 void ChangeDir::steppedIn(Build* build)
 {
-	if (build->playerDirection == RIGHT)  
-		build->playerDirection = LEFT; 
-	else { build->playerDirection = RIGHT; }
-
+	build->playerDirection = (build->playerDirection == RIGHT) ? LEFT : RIGHT;
 }
 
 ChangeDir* ChangeDir::clone()

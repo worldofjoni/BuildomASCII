@@ -6,6 +6,7 @@
 #include "pch/pch.h"
 #include "Zombie.h"
 
+
 Zombie::Zombie(bool deletable)
 {
 	id = ownId;
@@ -40,17 +41,11 @@ Zombie* Zombie::clone()
 
 void Zombie::move(Build* build)
 {
-	int fall = build->fallSpeed;
-	if (pos.x + dir == build->level.WIDTH - 1 || pos.x + dir == 0)
+	if ((build->level.at({ pos.x + dir, pos.y })->id != 0) || (build->level.end.x == pos.x + dir && build->level.end.y == pos.y) || (build->level.start.x == pos.x + dir && build->level.start.y == pos.y) || (pos.x + dir == build->level.WIDTH - 1 || pos.x + dir == 0))
 	{
 		dir = (dir == RIGHT) ? LEFT : RIGHT;
-		
 	}
 
-	if ((build->level.at({ pos.x + dir, pos.y })->id != 0) || (build->level.end.x == pos.x + dir && build->level.end.y == pos.y) || build->level.start.x == pos.x + dir && build->level.start.y == pos.y )
-	{
-		dir = (dir == RIGHT) ? LEFT : RIGHT;
-	}
 	if (pos.x + dir != build->level.WIDTH - 1 && pos.x + dir != 0)
 	{
 		if (build->level.at({ pos.x + dir, pos.y })->id == 0)
@@ -62,41 +57,46 @@ void Zombie::move(Build* build)
 			build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
 
 			if ((build->level.at({ pos.x + dir, pos.y })->id == 10))
-			{
 				dir = (dir == RIGHT) ? LEFT : RIGHT;
-			}
-
-
 		}
 	}
-	if (build->currentPos == pos)
-		build->playerGameOver = true;
+
+	checkPlayerCollision(build);
 
 	if (pos.y + 1 == build->level.HEIGHT - 1)
 		return;
+
+	falling(build);
+}
+
+void Zombie::reset(Build* build)
+{
+	build->level.swap(pos, formPos);
+	build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
+	pos = formPos;
+	build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
+}
+
+void Zombie::checkPlayerCollision(Build* build)
+{
+	if (build->currentPos == pos)
+		build->playerGameOver = true;
+}
+
+void Zombie::falling(Build* build)
+{
+	int fall = build->fallSpeed;
 	while (build->level.at(pos.below())->id == 0 && fall != 0)
 	{
 		build->level.swap(pos, pos.below());
 		build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
 		pos = pos.below();
 		build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
-		if (build->currentPos == pos)
-			build->playerGameOver = true;
+
+		checkPlayerCollision(build);
 		fall--;
 
 		if (pos.y + 1 == build->level.HEIGHT - 1)
 			return;
 	}
-
-	
-
-}
-
-void Zombie::reset(Build* build)
-{
-	dead = false;
-	build->level.swap(pos, formPos);
-	build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
-	pos = formPos;
-	build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
 }

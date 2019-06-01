@@ -14,9 +14,6 @@
 class StartScreen : public Screen
 {
 private:
-	
-public:
-	
 	Button playButton = Button("Starten", Button::runPlayButton);
 	Button customButton = Button("Eigene Level", Button::runCustomSelectButton);
 	Button exitButton = Button("Verlassen", Button::runExitButton);
@@ -38,8 +35,7 @@ public:
 
 	};
 
-
-
+public:
 	
 	void run();
 
