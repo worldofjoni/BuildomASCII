@@ -1,25 +1,22 @@
 // #################################################################
 // #    Library to easily change console colours and much more     #
-// #                      © Jonatan Ziegler                        #
+// #                     by Jonatan Ziegler                        #
 // #################################################################
 
-
 #pragma once
-#include <Windows.h>
 #include "friendlyConsole.hpp"
+#include <Windows.h>
 #include <random>
 #include <chrono>
 
 
-
 namespace fc {
-
 
 	// declares used variables
 	static HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	static HWND hWindow = GetConsoleWindow();
 
-
+	
 	//functions and structs for cout integration
 	// use in ostream to set color
 	Cmd color(Color color)
@@ -47,7 +44,6 @@ namespace fc {
 		}
 		return os;
 	}
-
 
 	// function to set text color
 	void setTextColor(Color color)
@@ -118,7 +114,6 @@ namespace fc {
 			coord.X = width;
 			coord.Y = height;
 			SetConsoleScreenBufferSize(hStdOut, coord);
-
 		}
 		else
 		{
@@ -139,15 +134,20 @@ namespace fc {
 	// returns a random Value
 	int getRandom(int min, int max)
 	{
+		if (min > max)
+		{
+			int i = min;
+			min = max;
+			max = i;
+		}
+		int diff = max - min;
 		
 		std::random_device dev;
 		std::mt19937 rng(dev());
-		std::uniform_int_distribution<std::mt19937::result_type> dist6(min, max);
-		dist6(rng); dist6(rng); dist6(rng); dist6(rng); dist6(rng); dist6(rng); dist6(rng); dist6(rng);
-		return dist6(rng);
-		
+		std::uniform_int_distribution<std::mt19937::result_type> dist(0, diff);
+		dist(rng); dist(rng); dist(rng); dist(rng); dist(rng); dist(rng); dist(rng); dist(rng);
+		return dist(rng) + min;
 	}
-
 
 	// waits a specific amount of time
 	void waitMs(int ms)
@@ -182,7 +182,6 @@ namespace fc {
 		GetConsoleCursorInfo(hStdOut, &info);
 		info.bVisible = false;
 		SetConsoleCursorInfo(hStdOut, &info);
-		
 	}
 
 	// Shows Cursor
@@ -192,7 +191,6 @@ namespace fc {
 		GetConsoleCursorInfo(hStdOut, &info);
 		info.bVisible = true;
 		SetConsoleCursorInfo(hStdOut, &info);
-		
 	}
 
 	// beeps width Note as freq, default duration 300
@@ -200,7 +198,6 @@ namespace fc {
 	{
 		Beep(freq, duration);
 	}
-
 
 	// plays file at relative path
 	void playSound(const char file[])
@@ -234,7 +231,6 @@ namespace fc {
 		GetFullPathNameA(".", 200, path, &pszFileName);
 		return std::string(path);
 	}
-
 
 	// opens file explorer at path
 	void openExplorer(const char path[])
@@ -292,7 +288,6 @@ namespace fc {
 
 	bool setFont(const wchar_t font[32])
 	{
-
 		CONSOLE_FONT_INFOEX info;
 		info.cbSize = sizeof(info);
 		if (!GetCurrentConsoleFontEx(hStdOut, false, &info)) return false;
@@ -308,7 +303,6 @@ namespace fc {
 
 	bool setFontSize(int width, int height)
 	{
-
 		CONSOLE_FONT_INFOEX info;
 		info.cbSize = sizeof(info);
 		if (!GetCurrentConsoleFontEx(hStdOut, false, &info)) return false;
@@ -340,8 +334,5 @@ namespace fc {
 
 		return true;
 	}
-
-
-
 
 }
