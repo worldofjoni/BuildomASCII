@@ -25,15 +25,12 @@ StartScreen::StartScreen()
 }
 
 
-
-
 void StartScreen::run()
 {
 	
 
 	int gap = 3;
 
-	//std::string title = "Buildom ASCII";
 
 	// Create Coordinates
 	Pos startPos;
@@ -47,26 +44,16 @@ void StartScreen::run()
 
 
 
-	// Create Buttons and change maxSel accordingly
+	// Create Buttons
 	writeAt((WIDTH - playButton.name.length()) / 2, startPos.y, playButton.name.c_str());
 	writeAt((WIDTH - customButton.name.length()) / 2, startPos.y + gap, customButton.name.c_str());
 	writeAt((WIDTH - manualButton.name.length()) / 2, startPos.y + gap * 2, manualButton.name.c_str());
 	writeAt((WIDTH - creditsButton.name.length()) / 2, startPos.y + gap * 3, creditsButton.name.c_str());
 	writeAt((WIDTH - exitButton.name.length()) / 2, startPos.y + gap * 4, exitButton.name.c_str());
-	//writeAt(startPos.x - 4, startPos.y - (gap + 2), title.c_str());
-	
-	
-	
-
-	
-	
-	
-	
 
 	printScreen();
 
 
-	// Begin main loop
 	Button* select = &playButton;
 	int curSel = 0;
 	int input;
@@ -75,6 +62,7 @@ void StartScreen::run()
 
 	gotoxy(currentPos.x, currentPos.y);
 	std::cout << '>';
+
 	while (true)
 	{
 		if (_kbhit())
@@ -82,7 +70,7 @@ void StartScreen::run()
 			input = getCharLow();
 			if (input == -32) input = _getch();
 
-			if (input == 32 || input == 13) {
+			if (input == 32 || input == 13) {	// Enter or Space
 				if (select->run() == 1) {
 					return;
 				}
@@ -106,20 +94,12 @@ void StartScreen::run()
 				}
 			
 				break;
-			case 'a':
-			case 75:
-
-				break;
 			case 's':
 			case 80:
 				if (curSel < maxSel -1)
 				{
 					curSel++;
 				}
-				break;
-			case 'd':
-			case 77:
-
 				break;
 			case 27: // ESC
 				exitButton.run();
