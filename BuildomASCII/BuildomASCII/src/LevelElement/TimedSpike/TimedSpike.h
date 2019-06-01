@@ -9,9 +9,9 @@
 
 #include "LevelElement/LevelElement.h"
 
+
 class TimedSpike : public LevelElement
 {
-private:
 public:
 	static const char ownSym = 30;
 	static const char ownKey = '7';
@@ -21,6 +21,5 @@ public:
 	void steppedIn(Build* build) override;
 	TimedSpike* clone() override;
 };
-
 
 #endif // ! TIMED_SPIKE_H

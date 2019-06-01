@@ -7,6 +7,7 @@
 #include "TimedSpike.h"
 #include "Screen/Build/Build.h"
 
+
 TimedSpike::TimedSpike(bool deletable)
 {
 	id = ownId;
@@ -17,23 +18,16 @@ TimedSpike::TimedSpike(bool deletable)
 	fallable = false;
 	canBePlacedByUser = false;
 	backgroundColor = Solid::ownColor;
-
 }
-
-
 
 void TimedSpike::steppedOn(Build* build)
 {
-	if (build->spikey)
-	{
-		build->playerGameOver = true;
-	}
+	if (build->spikey) build->playerGameOver = true;
 }
 
 void TimedSpike::steppedIn(Build* build)
 {
 	build->playerGameOver = true;
-	
 }
 
 TimedSpike* TimedSpike::clone()
