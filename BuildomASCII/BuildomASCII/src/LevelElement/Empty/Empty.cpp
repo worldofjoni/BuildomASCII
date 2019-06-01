@@ -19,18 +19,14 @@ Empty::Empty(bool deletable)
 	canBePlacedByUser = false;
 }
 
-// gets called when on block
+// gets called when on Block
 void Empty::steppedOn(Build *build)
 {
-	//build->currentPos.y += 2;
-	////std::cout << "darauf" << std::endl;
-
 }
 
 // gets called when in Block
 void Empty::steppedIn(Build *build)
 {
-	
 }
 
 // Copys Element
@@ -38,4 +34,3 @@ Empty* Empty::clone()
 {
 	return (new Empty(*this));
 }
-

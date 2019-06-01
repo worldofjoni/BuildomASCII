@@ -9,9 +9,9 @@
 
 #include "LevelElement/LevelElement.h"
 
+
 class Empty : public LevelElement
 {
-private:
 public:
 	static const char ownSym = ' ';
 	static const char ownKey = 8;
@@ -22,11 +22,5 @@ public:
 	Empty* clone() override;
 	
 };
-
-
-
-
-
-
 
 #endif // !EMPTY_H
