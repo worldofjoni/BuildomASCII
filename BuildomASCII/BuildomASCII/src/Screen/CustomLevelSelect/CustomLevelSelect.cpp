@@ -169,7 +169,6 @@ void CustomLevelSelect::initScreen(int prevX, int prevPage)
 
 
 	Pos start_ = { 10, HEIGHT - 7 };
-	start_.y += 2;
 	writeAt(start_, " [ENTER] Level starten \xb3    [F6] : Level bearbeiten   \xb3 [ESC] : Verlassen");
 	start_.y += 2;
 	writeAt(start_, "[BACK] : Level l\x94 \bschen \xb3 [TAB] : Dateiexplorer \x94 \bffnen \xb3 [F5] : Liste aktualisieren");
