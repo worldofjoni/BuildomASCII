@@ -549,18 +549,11 @@ void Build::movePlayer(int xOffset, int yOffset)
 	currentPos.y += yOffset;
 	if (currentPos.y + 1 < level.HEIGHT)
 	{
-		if ((level.at(currentPos)->id == 2 && level.at(currentPos)->id != previousElementID )|| (level.at(currentPos)->id == 3 && level.at(currentPos)->id != previousElementID))
+		if (level.at(currentPos)->id != previousElementID || yOffset >= 0)
 		{
 			level.at(currentPos)->steppedIn(this);
 		}
 		level.at(currentPos.below())->steppedOn(this);
-	}
-	while (level.at(currentPos)->id != previousElementID )
-	{
-		level.at(currentPos)->steppedIn(this);
-		level.at(currentPos.below())->steppedOn(this);
-		previousElementID = level.at(currentPos)->id;
-		
 	}
 }
 
