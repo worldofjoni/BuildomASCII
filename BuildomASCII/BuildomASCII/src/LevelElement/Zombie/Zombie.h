@@ -15,6 +15,7 @@ private:
 public:
 	Pos pos;
 	Pos formPos;
+	bool dead;
 	Direction dir = Direction::RIGHT;
 	static const char ownSym = 2;
 	static const char ownKey = '9';

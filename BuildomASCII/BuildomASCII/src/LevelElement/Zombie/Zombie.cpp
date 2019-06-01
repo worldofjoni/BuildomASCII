@@ -41,13 +41,21 @@ Zombie* Zombie::clone()
 void Zombie::move(Build* build)
 {
 	int fall = build->fallSpeed;
+	if (pos.x + dir == build->level.WIDTH - 1 || pos.x + dir == 0)
+	{
+		dir = (dir == RIGHT) ? LEFT : RIGHT;
+		
+	}
+
 	if ((build->level.at({ pos.x + dir, pos.y })->id != 0) || (build->level.end.x == pos.x + dir && build->level.end.y == pos.y) || build->level.start.x == pos.x + dir && build->level.start.y == pos.y )
 	{
 		dir = (dir == RIGHT) ? LEFT : RIGHT;
 	}
-	if (build->level.at({ pos.x + dir, pos.y })->id == 0 )
+	if (pos.x + dir != build->level.WIDTH - 1 && pos.x + dir != 0)
 	{
-		
+		if (build->level.at({ pos.x + dir, pos.y })->id == 0)
+		{
+
 			build->level.swap(pos, { pos.x + dir, pos.y });
 			build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
 			pos.x += dir;
@@ -58,10 +66,14 @@ void Zombie::move(Build* build)
 				dir = (dir == RIGHT) ? LEFT : RIGHT;
 			}
 
-		
+
+		}
 	}
 	if (build->currentPos == pos)
 		build->playerGameOver = true;
+
+	if (pos.y + 1 == build->level.HEIGHT - 1)
+		return;
 	while (build->level.at(pos.below())->id == 0 && fall != 0)
 	{
 		build->level.swap(pos, pos.below());
@@ -71,11 +83,18 @@ void Zombie::move(Build* build)
 		if (build->currentPos == pos)
 			build->playerGameOver = true;
 		fall--;
+
+		if (pos.y + 1 == build->level.HEIGHT - 1)
+			return;
 	}
+
+	
+
 }
 
 void Zombie::reset(Build* build)
 {
+	dead = false;
 	build->level.swap(pos, formPos);
 	build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
 	pos = formPos;

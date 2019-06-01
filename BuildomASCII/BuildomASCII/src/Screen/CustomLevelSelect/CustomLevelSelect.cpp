@@ -34,7 +34,7 @@ void CustomLevelSelect::run()
 				}
 
 				//reinit screen
-				initScreen(x);
+				initScreen(x, currentPage);
 				
 
 			}
@@ -98,7 +98,7 @@ void CustomLevelSelect::run()
 				{
 					LevelEditor editor(fileManager.getLevel(names[(x - 1) + ((currentPage - 1) * MAX_NAMES_ON_LIST)], LevelType::CUSTOM), names[(x - 1) + ((currentPage - 1) * MAX_NAMES_ON_LIST)]);
 					editor.run();
-					initScreen(x);
+					initScreen(x, currentPage);
 				}
 				break;
 			case 9:
