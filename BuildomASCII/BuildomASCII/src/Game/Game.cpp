@@ -50,22 +50,17 @@ void Game::checkForFiles()
 	
 	fc::waitMs(200);
 	char errorCode = fileManager.fileCheck();
-	if (errorCode == 0)
-	{
-	}
-	else
-	{
+	if(errorCode != 0){
 		fc::playSound("asdasdasdasdasfdsgilkhjagopiudjgfölasdjfkadsa"); // for windows error sound
 		std::cout << std::endl << "     FOLGENDE DATEIEN FEHLEN: " << std::endl;
 		if (errorCode & 0b00000001) std::cout << "     STORY LEVEL" << std::endl;
 		if (errorCode & 0b00000010)
 		{
-			std::cout << "     MUSIC" << std::endl;
+			std::cout << "     MUSIK" << std::endl;
 			musicAllowed() = false;
 		}
 		std::cout << std::endl << "     DRUEKEN SIE ENTER";
 		std::cin.ignore();
 
 	}
-	fc::waitMs(200);
 }
