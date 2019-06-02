@@ -499,13 +499,13 @@ bool Build::runLevel()
 
 
 		// timed exents
-		if (cycleCount > 1024) cycleCount = 0;
+		if (cycleCount >= 1000) cycleCount = 0;
 
 		if ((cycleCount % spikeCycle) == 0)
 		{
 			for (auto& v : spikePos)
 			{
-				level.at(v)->symbol = spikey ? ' ' : Spike::ownSym;
+				level.at(v)->setColor(spikey ? TimedSpike::disabledColor : TimedSpike::ownColor);
 				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
 			}
 			spikey = !spikey;
@@ -515,7 +515,7 @@ bool Build::runLevel()
 		{
 			for (auto& v : spikePos2)
 			{
-				level.at(v)->symbol = spikey2 ? ' ' : TimedSpikeAir::ownSym;
+				level.at(v)->setColor(spikey2 ? TimedSpikeAir::disabledColor : TimedSpikeAir::ownColor);
 				level.at(v)->fallable = !spikey;
 				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
 			}

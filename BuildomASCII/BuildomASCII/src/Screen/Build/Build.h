@@ -25,7 +25,6 @@ private:
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
 	const fc::Color menuBarSymColor = RED, menuBarLineColor = BLUE_LIGHT, menuBarSymbolBackgroundColor = LIGHT_GRAY;
 
-
 	//for levelEditor
 	bool isEditor = false;
 

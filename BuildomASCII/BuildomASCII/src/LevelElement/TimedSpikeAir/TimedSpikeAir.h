@@ -16,6 +16,8 @@ public:
 	static const char ownSym = '^';
 	static const char ownKey = '8';
 	static const int ownId = 9;
+	static const fc::Color ownColor = RED;
+	static const fc::Color disabledColor = DARK_GRAY;
 	TimedSpikeAir(bool deletable);
 	void steppedOn(Build* build) override;
 	void steppedIn(Build* build) override;

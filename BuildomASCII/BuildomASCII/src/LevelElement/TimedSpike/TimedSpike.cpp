@@ -14,7 +14,7 @@ TimedSpike::TimedSpike(bool deletable)
 	symbol = ownSym;
 	key = ownKey;
 	this->deletable = deletable;
-	color = RED;
+	color = ownColor;
 	fallable = false;
 	canBePlacedByUser = false;
 	backgroundColor = Solid::ownColor;
