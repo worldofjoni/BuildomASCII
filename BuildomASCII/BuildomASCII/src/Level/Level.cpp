@@ -58,7 +58,8 @@ void Level::placeAt(LevelElement* element, int x, int y)
 	Pos pos = { x,y };
 
 	// check for Border and set alarmColor
-	if (pos.isOnLevelBorder()) element->backgroundColor = Build::alarmFrameColor;
+	if (pos.isOnLevelBorder()) 
+		element->backgroundColor = Build::alarmFrameColor;
 
 	delete map[x][y];
 	map[x][y] = element;

@@ -621,10 +621,8 @@ bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 	int &x = pos.x;
 	int &y = pos.y;
 
-	if ((level.setElements[id] < level.maxElements[id] || level.maxElements[id] == -1) && level.at(pos)->deletable) // when allowed to place
-	{
-		// take care of stars
-		
+	if ( (level.setElements[id] < level.maxElements[id] || level.maxElements[id] == -1) && level.at(pos)->deletable && !(id == Zombie::ownId && pos.isOnLevelBorder()) ) // when allowed to place; Zombies aren't allowed to be placed on Border
+	{		
 		level.setElements[oldId]--; // decrement deleted
 
 		level.setElements[id]++; // increment new
