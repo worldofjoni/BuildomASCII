@@ -32,12 +32,6 @@ private:
 public:
 
 	void run();
-	StorySelect();
-	~StorySelect();
-	StorySelect(const StorySelect& other) = delete;
-	StorySelect(StorySelect&& other) = delete;
-	StorySelect& operator=(const StorySelect& other) = delete;
-	StorySelect& operator=(StorySelect&& other) = delete;
 };
 
 #endif // !STORY_SELECT_H

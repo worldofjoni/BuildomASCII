@@ -10,6 +10,7 @@
 #include "Screen/WinScreen/WinScreen.h"
 #include "Cursor/Cursor.h"
 
+
 // Constructor with content init
 Build::Build(Level level, bool asEditor)
 	:level(level), isEditor(asEditor)
@@ -198,8 +199,10 @@ void Build::run()
 			cursor.move();
 
 			// print cursor 
-			if (elementPlaced) printOnLevel( level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor );
-			else printOnLevel(cursor.symbol, cursor.pos, cursor.color);
+			if (elementPlaced) 
+				printOnLevel( level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor );
+			else 
+				printOnLevel(cursor.symbol, cursor.pos, cursor.color);
 		}
 		else // cursor blinks only when not moveing
 		{
@@ -288,11 +291,13 @@ bool Build::keyHandeling(LevelElement*& setElement, Cursor& cursor)
 
 	// Other controlls
 	case 13: // Enter
-		if (isEditor) return true;
+		if (isEditor) 
+			return true;
 		
 		printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
 
-		if (runLevel()) return true;
+		if (runLevel()) 
+			return true;
 		else
 		{ // reset after failed runs:
 			//set stars to stars again
@@ -439,7 +444,8 @@ bool Build::runLevel()
 
 		if (!fc::isKeyPressed(32))	//Space
 			movePlayer(playerDirection, 0);
-		else movePlayer(0, 0);
+		else 
+			movePlayer(0, 0);
 
 		// Falling
 		do
@@ -464,10 +470,8 @@ bool Build::runLevel()
 
 			// Falling
 			if (level.at(currentPos.below())->fallable)
-			{
 				movePlayer(0, 1);
-			}
-
+			
 			repeats++;
 
 		} while (repeats < fallSpeed); // Check after every falling for fallSpeed-reapeats
@@ -593,11 +597,8 @@ bool Build::leaveConfirm()
 
 void Build::clearInput()
 {
-	for (int i = 0; i < 20; i++)
-	{
-		if (_kbhit())
-			_getch();
-	}
+	while (_kbhit())
+		_getch();
 }
 
 // prints content at x|y whit color on Screen
@@ -635,7 +636,6 @@ bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 		// old Element
 		if (oldId != 0 && level.maxElements[oldId] != -1 && level.maxElements[oldId] != 0)
 		{
-			
 			fc::setCursorPos(remainingCountPos[oldId].x, remainingCountPos[oldId].y);
 			std::cout << std::setw(3) << (level.maxElements[oldId] - level.setElements[oldId]);
 		}
@@ -660,8 +660,6 @@ bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 		return false;
 	}
 }
-
-
 
 Build::~Build()
 {

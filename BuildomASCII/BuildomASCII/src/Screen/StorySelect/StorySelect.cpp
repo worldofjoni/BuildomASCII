@@ -7,6 +7,7 @@
 #include "StorySelect.h"
 #include "Screen/Build/Build.h"
 
+
 void StorySelect::run()
 {
 	initScreen();
@@ -27,8 +28,6 @@ void StorySelect::run()
 
 				//reinit screen
 				initScreen(x, currentPage);
-
-
 			}
 
 			switch (input)
@@ -84,18 +83,6 @@ void StorySelect::run()
 }
 
 
-
-
-StorySelect::StorySelect()
-{
-	
-}
-
-StorySelect::~StorySelect()
-{
-
-}
-
 void StorySelect::initScreen(int prevX, int prevPage)
 {
 	nameCount = fileManager.getStoryCount();
@@ -119,7 +106,6 @@ void StorySelect::initScreen(int prevX, int prevPage)
 		endNum = 0;
 		maxPage = 1;
 		maxX = 0;
-
 	}
 
 	// Define screen content

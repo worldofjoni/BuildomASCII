@@ -10,23 +10,15 @@
 #include "BdalManager/BdalManager.h"
 
 
-
 void Game::run()
 {
-	
-
 	// Screen Setup
 	setup();
 
 
-
 	StartScreen startScreen;
 	startScreen.run();
-
-
-
 }
-
 
 // Does setup stuff like screensize etc.
 void Game::setup()
@@ -42,7 +34,6 @@ void Game::setup()
 	checkForFiles();
 	playMusic("music\\music.wav");
 }
-
 
 void Game::checkForFiles()
 {
@@ -61,6 +52,5 @@ void Game::checkForFiles()
 		}
 		std::cout << std::endl << "     DRUEKEN SIE ENTER";
 		std::cin.ignore();
-
 	}
 }

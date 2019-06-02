@@ -23,7 +23,8 @@ void SlopeDown::steppedOn(Build *build)
 
 void SlopeDown::steppedIn(Build* build)
 {
-	if (build->playerDirection == LEFT) build->movePlayer(0, -1);
+	if (build->playerDirection == LEFT) 
+		build->movePlayer(0, -1);
 }
 
 SlopeDown* SlopeDown::clone()

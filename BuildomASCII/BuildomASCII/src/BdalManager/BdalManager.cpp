@@ -143,8 +143,6 @@ Level BdalManager::getLevel(std::string levelName, LevelType levelType)
 	}
 	readStream.close();
 	return level;
-
-
 }
 
 bool BdalManager::saveLevel(Level level, std::string cusLvlName, bool overwrite)

@@ -20,7 +20,6 @@ public:
 	void steppedOn(Build *build) override;
 	void steppedIn(Build *build) override;
 	NonDelEmpty* clone() override;
-	
 };
 
 #endif // !NON_DEL_EMPTY_H

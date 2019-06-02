@@ -23,13 +23,11 @@ NonDelEmpty::NonDelEmpty(bool deletable)
 // gets called when on Block
 void NonDelEmpty::steppedOn(Build *build)
 {
-
 }
 
 // gets called when in Block
 void NonDelEmpty::steppedIn(Build *build)
 {
-	
 }
 
 // Copys Element

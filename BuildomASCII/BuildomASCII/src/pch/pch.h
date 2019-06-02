@@ -9,11 +9,12 @@
 // standard librarys
 #include <iostream>
 #include <iomanip>
-#include <conio.h>
 #include <chrono>
 #include <cmath>
 #include <string>
 #include <vector>
+
+#include <conio.h>
 
 // system library
 #include <Windows.h>

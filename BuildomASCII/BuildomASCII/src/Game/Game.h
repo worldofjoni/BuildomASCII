@@ -8,7 +8,6 @@
 #define GAME_H
 
 
-
 // main object containig everything happening in the game
 class Game
 {
@@ -18,6 +17,5 @@ private:
 public:
 	void run();
 };
-
 
 #endif // !GAME_H

@@ -4,19 +4,12 @@
 // ***********************************************************
 
 #include "pch/pch.h"
-#include "Game/Game.h"
 
-#include "Level/Level.h"
-#include "Screen/Build/Build.h"
+#include "Game/Game.h"
 
 
 int main()
-{
-			
+{		
 	Game game;
-
 	game.run();
-
-	
 }
-

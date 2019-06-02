@@ -137,7 +137,6 @@ Level::Level(const Level& other)
 		this->maxElements[i] = other.maxElements[i];
 		this->setElements[i] = other.setElements[i];
 	}
-
 }
 
 // move constructor
@@ -153,7 +152,6 @@ Level::Level(Level && other)
 		maxElements[i] = other.maxElements[i];
 		setElements[i] = other.setElements[i];
 	}
-	
 }
 
 // copy asignment

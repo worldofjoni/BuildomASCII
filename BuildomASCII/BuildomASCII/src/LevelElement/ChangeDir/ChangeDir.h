@@ -9,9 +9,9 @@
 
 #include "LevelElement/LevelElement.h"
 
+
 class ChangeDir : public LevelElement
 {
-private:
 public:
 	static const char ownSym = 29;
 	static const char ownKey = '3';

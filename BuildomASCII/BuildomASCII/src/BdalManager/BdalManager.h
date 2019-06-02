@@ -11,6 +11,7 @@
 #include <filesystem>
 #include "Level/Level.h"
 
+
 enum LevelType {STORY = 0, CUSTOM = 1};
 
 class BdalManager

@@ -19,7 +19,6 @@ WinScreen::WinScreen(Build* old)
 		{
 			fc::setCursorPos(x, y);
 			std::cout << fc::backColor(backgroundColor) << fc::color(textColor) << ' ';
-			
 		}
 	}
 

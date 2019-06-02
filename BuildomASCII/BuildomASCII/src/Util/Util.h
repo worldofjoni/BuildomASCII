@@ -16,7 +16,6 @@ enum Direction
 	RIGHT = 1,
 };
 
-
 struct Pos
 {
 	int x, y;

@@ -48,6 +48,4 @@ public:
 	StartScreen& operator=(StartScreen&& other) = delete;
 };
 
-
-
 #endif

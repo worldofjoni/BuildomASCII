@@ -45,9 +45,7 @@ void CustomLevelSelect::run()
 			case 'w':
 			case 72:
 				if (x > 0)
-				{
 					x--;
-				}
 
 				break;
 			case 'a':
@@ -61,9 +59,8 @@ void CustomLevelSelect::run()
 			case 's':
 			case 80:
 				if (x < maxX)
-				{
 					x++;
-				}
+
 				break;
 			case 'd':
 			case 77:
@@ -120,19 +117,6 @@ void CustomLevelSelect::run()
 	}
 }
 
-
-
-
-CustomLevelSelect::CustomLevelSelect()
-{
-	
-}
-
-CustomLevelSelect::~CustomLevelSelect()
-{
-	
-}
-
 void CustomLevelSelect::initScreen(int prevX, int prevPage)
 {
 	currentPage = prevPage;
@@ -178,7 +162,6 @@ void CustomLevelSelect::initScreen(int prevX, int prevPage)
 	writeAt(start_, "[A] Vorherige Seite \xb3 [D] N\x84\chste Seite");
 
 	current.y = start.y + (x * gap);
-
 
 
 	writeAt(start, createCustomButton.name.c_str());

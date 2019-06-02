@@ -9,9 +9,9 @@
 
 #include "LevelElement/LevelElement.h"
 
+
 class Star : public LevelElement
 {
-private:
 public:
 	static const char ownSym = 15;
 	static const char ownKey = '5';
@@ -21,6 +21,5 @@ public:
 	void steppedIn(Build* build) override;
 	Star* clone() override;
 };
-
 
 #endif // ! STAR_H

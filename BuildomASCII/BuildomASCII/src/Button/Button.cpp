@@ -13,11 +13,11 @@
 #include "Screen/LevelEditor/LevelEditor.h"
 #include "Screen/StorySelect/StorySelect.h"
 
+
 Button::Button(const char str[], int(*run)())
 	:run(run), name(str)
 {
 }
-
 
 int Button::runPlayButton()	// Enters story select
 {
@@ -36,7 +36,6 @@ int Button::runCustomSelectButton()	// Enters custom-slevel-select
 
 	return 0;
 }
-
 
 int Button::runExitButton()	// Exits game
 {
@@ -72,4 +71,3 @@ int Button::runCreateCustomButton()	// Enters level-creation
 
 	return 0;
 }
-

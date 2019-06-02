@@ -9,6 +9,7 @@
 #include "LevelElement/LevelElement.h"
 #include "Screen/Build/Build.h"
 
+
 // constructor for new level
 LevelEditor::LevelEditor()
 {
@@ -43,7 +44,8 @@ LevelEditor::LevelEditor(Level level, std::string name)
 		for (int y = 0; y < level.HEIGHT; y++)
 		{
 			Pos pos = { x,y };
-			if (pos != this->level.start && pos != this->level.end) this->level.at({ x,y })->deletable = true; // allow to delete (all) elements
+			if (pos != this->level.start && pos != this->level.end) 
+				this->level.at({ x,y })->deletable = true; // allow to delete (all) elements
 		}
 	}
 
@@ -58,7 +60,8 @@ void LevelEditor::run()
 
 	level = levelEditor.level;
 
-	if (levelEditor.cancelEdit) return; // cancel
+	if (levelEditor.cancelEdit) 
+		return; // cancel
 		
 	printScreen();
 
@@ -106,7 +109,8 @@ void LevelEditor::run()
 			fc::setCursorPos(5 + msg.length(), 5 + y);
 			fc::showCursor();
 			std::getline(std::cin, input);
-			if (input.length() == 0) input = name; // if nothing is written keep old name
+			if (input.length() == 0) 
+				input = name; // if nothing is written keep old name
 			fc::hideCursor();
 		} while (!isFilename(input));
 

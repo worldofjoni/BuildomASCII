@@ -76,7 +76,6 @@ Blöcke
 	LevelElement* elements[elLen] = {new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false), new Star(false), new NonDelEmpty(false), new TimedSpike(false), new Spike(false), new Solid(false), new TimedSpikeAir(false), new Spike(false), new Zombie(false)};
 
 
-
 public:
 	// Constructor / Destructor
 	Manual();

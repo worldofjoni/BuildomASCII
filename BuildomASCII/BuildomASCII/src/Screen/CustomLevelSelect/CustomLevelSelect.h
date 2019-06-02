@@ -11,6 +11,7 @@
 #include "BdalManager/BdalManager.h"
 #include "Button/Button.h"
 
+
 class CustomLevelSelect : public Screen
 {
 private:
@@ -39,12 +40,6 @@ private:
 public:
 
 	void run();
-	CustomLevelSelect();
-	~CustomLevelSelect();
-	CustomLevelSelect(const CustomLevelSelect& other) = delete;
-	CustomLevelSelect(CustomLevelSelect&& other) = delete;
-	CustomLevelSelect& operator=(const CustomLevelSelect& other) = delete;
-	CustomLevelSelect& operator=(CustomLevelSelect&& other) = delete;
 };
 
 #endif 

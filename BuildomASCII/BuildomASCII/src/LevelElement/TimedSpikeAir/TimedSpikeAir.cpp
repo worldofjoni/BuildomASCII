@@ -21,12 +21,14 @@ TimedSpikeAir::TimedSpikeAir(bool deletable)
 
 void TimedSpikeAir::steppedOn(Build* build)
 {
-	if (build->spikey2) build->playerGameOver = true;
+	if (build->spikey2) 
+		build->playerGameOver = true;
 }
 
 void TimedSpikeAir::steppedIn(Build* build)
 {
-	if (!fallable) build->playerGameOver = true;
+	if (!fallable) 
+		build->playerGameOver = true;
 }
 
 TimedSpikeAir* TimedSpikeAir::clone()

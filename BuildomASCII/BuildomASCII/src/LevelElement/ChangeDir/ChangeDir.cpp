@@ -18,11 +18,8 @@ ChangeDir::ChangeDir(bool deletable)
 	fallable = true;
 }
 
-
-
 void ChangeDir::steppedOn(Build* build)
 {
-
 }
 
 void ChangeDir::steppedIn(Build* build)

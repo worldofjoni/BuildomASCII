@@ -19,7 +19,8 @@ void Screen::printScreen()
 			fc::setTextColor(content[x][y].textColor);
 			std::cout << content[x][y].content;
 		}
-		if (y < HEIGHT - 1) std::cout << std::endl;
+		if (y < HEIGHT - 1) 
+			std::cout << std::endl;
 	}
 	fc::setCursorPos(0, 0);
 }

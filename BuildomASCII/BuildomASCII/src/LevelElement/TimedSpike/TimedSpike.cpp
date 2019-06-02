@@ -22,7 +22,8 @@ TimedSpike::TimedSpike(bool deletable)
 
 void TimedSpike::steppedOn(Build* build)
 {
-	if (build->spikey) build->playerGameOver = true;
+	if (build->spikey) 
+		build->playerGameOver = true;
 }
 
 void TimedSpike::steppedIn(Build* build)

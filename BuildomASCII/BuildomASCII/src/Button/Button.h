@@ -9,10 +9,9 @@
 
 #include "pch/pch.h"
 
+
 class Button
 {
-private:
-
 public:
 	Button(const char str[], int (*run)());
 	std::string name;
@@ -26,10 +25,6 @@ public:
 	static int runCreditsButton();
 	static int runManualButton();
 	static int runCreateCustomButton();
-
 };
-
-
-
 
 #endif // !BUTTON_H

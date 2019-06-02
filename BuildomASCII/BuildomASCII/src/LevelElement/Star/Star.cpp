@@ -7,6 +7,7 @@
 #include "Star.h"
 #include "Screen/Build/Build.h"
 
+
 Star::Star(bool deletable)
 {
 	id = ownId;
@@ -16,19 +17,14 @@ Star::Star(bool deletable)
 	color = YELLOW;
 	fallable = true;
 	canBePlacedByUser = false;
-
 }
-
-
 
 void Star::steppedOn(Build* build)
 {
-	
 }
 
 void Star::steppedIn(Build* build)
 {
-	
 	if (this->symbol == ownSym)
 	{
 		build->starsCollected++;
@@ -36,8 +32,6 @@ void Star::steppedIn(Build* build)
 		fc::beep(NOTE_H, 50);
 		build->displayPlayer();
 	}
-	
-	
 }
 
 Star* Star::clone()

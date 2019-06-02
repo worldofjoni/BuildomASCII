@@ -21,14 +21,10 @@ StartScreen::StartScreen()
 			content[x + logoStart.x][y + logoStart.y].textColor = YELLOW_LIGHT;
 		}
 	}
-	
 }
-
 
 void StartScreen::run()
 {
-	
-
 	int gap = 3;
 
 
@@ -41,7 +37,6 @@ void StartScreen::run()
 	Pos currentPos;
 	currentPos.x = startPos.x - 1;
 	currentPos.y = startPos.y;
-
 
 
 	// Create Buttons
@@ -68,12 +63,12 @@ void StartScreen::run()
 		if (_kbhit())
 		{
 			input = getCharLow();
-			if (input == -32) input = _getch();
+			if (input == -32) 
+				input = _getch();
 
 			if (input == 32 || input == 13) {	// Enter or Space
-				if (select->run() == 1) {
+				if (select->run() == 1)
 					return;
-				}
 				else
 				{
 					// reinit screen
@@ -137,20 +132,11 @@ void StartScreen::run()
 			currentPos.x = (WIDTH - select->name.length()) / 2 - 1;
 			currentPos.y = startPos.y + (curSel * gap);
 			gotoxy(currentPos.x, currentPos.y);
-			std::cout << '>';
-			
+			std::cout << '>';	
 		}
-
 	}
-
-	
-
 }
-
-
-
 
 StartScreen::~StartScreen()
 {
 }
-
