@@ -33,6 +33,7 @@ private:
 	// for runLevel
 	int movespeed = 100;
 	bool leaveConfirm();
+	void clearInput();
 	
 
 	// ++ Special Blocks ++

@@ -534,6 +534,8 @@ bool Build::runLevel()
 	fc::setCursorPos(runCommandPos.x, runCommandPos.y);
 	fc::setBackgroundColor(frameColor);
 	for (int i = 0; i < runCommandWidth; i++) std::cout << " ";
+
+	clearInput();
 	return false;
 }
 
@@ -587,6 +589,15 @@ bool Build::leaveConfirm()
 		std::cout << " ";
 	}
 	return false;
+}
+
+void Build::clearInput()
+{
+	for (int i = 0; i < 20; i++)
+	{
+		if (_kbhit())
+			_getch();
+	}
 }
 
 // prints content at x|y whit color on Screen
