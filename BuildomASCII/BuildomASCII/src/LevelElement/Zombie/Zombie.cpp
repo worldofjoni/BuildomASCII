@@ -66,6 +66,14 @@ void Zombie::move(Build* build)
 
 void Zombie::reset(Build* build)
 {
+	if (build->level.at(formPos)->id == id)
+	{
+		for (int i = 0; i < build->zombieList.size(); i++)
+		{
+			if (build->zombieList[i].pos == formPos)
+				build->zombieList[i].pos = pos;
+		}
+	}
 	build->level.swap(pos, formPos);
 	build->printOnLevel(build->level.at(pos)->symbol, pos, build->level.at(pos)->getColor(), build->level.at(pos)->backgroundColor);
 	pos = formPos;

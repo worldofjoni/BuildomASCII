@@ -47,13 +47,11 @@ private:
 	std::vector<Pos> spikePos2;
 	const int spikeCycle2 = 10;
 
-	//Zombie
-	std::vector<Zombie> zombieList;
-	Pos zombiePos = { 0, 0 };
-	Pos formZombiePos = { 0, 0 };
-	Direction zombieDir = RIGHT;
 
 public:
+
+	//Zombie
+	std::vector<Zombie> zombieList;
 
 	// Constructor / Destructor
 	Build(Level level, bool asEditor = false);
