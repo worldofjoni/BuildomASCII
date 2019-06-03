@@ -189,6 +189,10 @@ void Build::run()
 				return; // leaves editor when e.g. ESC hit or run successfully
 			}
 
+			// overprint old element
+			printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
+
+			cursor.move();
 
 			// if there is a new element...
 			if (setElement != nullptr)
@@ -196,11 +200,6 @@ void Build::run()
 				elementPlaced = placeOnLevelAt(setElement, cursor.pos); // place element in level object
 				cursor.isVisible = !elementPlaced;
 			}
-
-			// overprint old element
-			printOnLevel(level.at(cursor.pos)->symbol, cursor.pos, level.at(cursor.pos)->getColor(), level.at(cursor.pos)->backgroundColor);
-
-			cursor.move();
 
 			// print cursor 
 			if (elementPlaced) 
