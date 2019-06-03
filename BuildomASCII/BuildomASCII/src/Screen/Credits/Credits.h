@@ -18,7 +18,7 @@ public:
 
 private:
 	int contentWidth = 80;
-	int contentHeight = 29;
+	int contentHeight = 32;
 	std::string content =
 R"(
 +------------------------------------------------------------------------------+
@@ -43,11 +43,14 @@ R"(
 |                                                                              |
 |                                                                              |
 |                                                                              |
+|                         Level Music created by MaZe                          |
+|                             soundcloud.com/mazec                             |
+|                            instagram.com/mazec11                             |
 |                                                                              |
 |                                                                              |
-|                        Music from https://filmmusic.io:                      |
-|            "Garden Music" by Kevin MacLeod (https://incompetech.com)         |
-|           Licence: CC BY (http://creativecommons.org/licenses/by/4.0/)       |
+|                    Other Music from https://filmmusic.io:                    |
+|          "Garden Music" by Kevin MacLeod (https://incompetech.com)           |
+|         Licence: CC BY (http://creativecommons.org/licenses/by/4.0/)         |
 |                                                                              |
 +------------------------------------------------------------------------------+
 )";																	 

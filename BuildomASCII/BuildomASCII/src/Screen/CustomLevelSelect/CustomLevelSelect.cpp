@@ -32,6 +32,8 @@ void CustomLevelSelect::run()
 					openSound();
 					Build build(fileManager.getLevel(names[(x - 1) + ((currentPage - 1) * MAX_NAMES_ON_LIST)], LevelType::CUSTOM));
 					build.run();
+					fc::stopSound();
+					fc::playSoundRepeat("music/music.wav");
 				}
 
 				//reinit screen
@@ -96,6 +98,8 @@ void CustomLevelSelect::run()
 				{
 					LevelEditor editor(fileManager.getLevel(names[(x - 1) + ((currentPage - 1) * MAX_NAMES_ON_LIST)], LevelType::CUSTOM), names[(x - 1) + ((currentPage - 1) * MAX_NAMES_ON_LIST)]);
 					editor.run();
+					fc::stopSound();
+					fc::playSoundRepeat("music/music.wav");
 					initScreen(x, currentPage);
 				}
 				break;

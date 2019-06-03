@@ -30,7 +30,7 @@ Sie meinte wenn du sie beim letzten mal nicht verstandest wist du sie nie verste
 
 	std::string	content =
 R"(
-Ziel des Spiels ist es, eine Brücke über vorgegebene Hindernisse zu bauenund dabei 
+Ziel des Spiels ist es, eine Brücke über vorgegebene Hindernisse zu bauen und dabei 
 das begrenzte Material optimal zu nutzen, damit eine Figur vom Start das Ziel erreichen kann.
 
 
@@ -64,9 +64,9 @@ Blöcke
 
 # : Block, durch den die Figur hindurchlaufen, auf dem jedoch kein anderer plaziert werden kann
 
-# : Block, der zwischen # und # wächselt
+# : Block, der zwischen # und # wechselt
 
-# : Block, der zwischen # und einem leeren Block wächselt
+# : Block, der zwischen # und einem leeren Block wechselt
 
 # : wandert hin und her, bei Berührung stirbt die Figur
 )";
