@@ -18,6 +18,8 @@ Credits::Credits()
 	// Available commands
 	std::string keys = "[ESC], [LEER], [ENTER] : Verlassen";
 	writeAt({ (WIDTH - (int)keys.length()) / 2, HEIGHT - 3 }, keys.c_str());
+	keys = "[TAB] : Github Link \x94 \bffnen";
+	writeAt({ (WIDTH - (int)keys.length()) / 2, HEIGHT - 5 }, keys.c_str());
 
 	printScreen();
 }
@@ -32,6 +34,8 @@ void Credits::run()
 			closeSound();
 			return;
 		}
+		else if (c == 9) // TAB
+			fc::openBrowser("https://github.com/worldofjoni/BuildomASCII");
 	}
 	
 }
