@@ -44,7 +44,8 @@ ESC   : Verlassen
 ENTER : Starten
 LEER  : Block plazieren
 BACK  : Löschen
-Sonstige Tasten siehe Menüblaken
+LEER  : Spieler anhalten
+SHIFT : Beschleunigen
 
 
 Blöcke
@@ -53,7 +54,6 @@ Blöcke
 
 # : Treppe, mit der die Figur um 1 nach oben laufen kann, wenn sie von links kommt, 
     jedoch hindurchläuft, wenn sie von rechts kommt
-
 # : genau wie vorheriger, jedoch andersherum
 
 # : bei Berührung ändert die Figur ihre Richtung
@@ -66,7 +66,7 @@ Blöcke
 
 # : Block, der zwischen # und # wechselt
 
-# : Block, der zwischen # und einem leeren Block wechselt
+# : #, der auftaucht und verschwindet
 
 # : wandert hin und her, bei Berührung stirbt die Figur
 )";
