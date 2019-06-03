@@ -76,6 +76,8 @@ int Button::runCreateCustomButton()
 
 	LevelEditor levelEditor;
 	levelEditor.run();
+	fc::stopSound();
+	fc::playSoundRepeat("music/music.wav");
 	return 0;
 }
 
