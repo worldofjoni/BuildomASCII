@@ -5,12 +5,19 @@
 
 #include "pch/pch.h"
 #include "Manual.h"
-
+#include "Screen/Build/Build.h"
 
 int Manual::calls = 0;
 
 Manual::Manual()
 {
+	//set start and endsymbol
+	elements[0]->setColor(Build::startColor);
+	elements[0]->symbol = Build::startChar;
+
+	elements[1]->setColor(Build::endColor);
+	elements[1]->symbol = Build::endChar;
+
 	setBlank();
 
 	if ((calls % 6 == 5)) // easter egg

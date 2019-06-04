@@ -68,7 +68,6 @@ int Button::runCreateCustomButton()	// Enters level-creation
 	openSound();
 	LevelEditor levelEditor;
 	levelEditor.run();
-	fc::stopSound();
-	fc::playSoundRepeat("music/music.wav");
+	playMusic("music/music.wav");
 	return 0;
 }

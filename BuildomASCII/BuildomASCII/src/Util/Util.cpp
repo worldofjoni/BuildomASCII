@@ -72,6 +72,7 @@ static bool musicAllowedVar = true;
 
 void playMusic(const char str[])
 {
+	fc::stopSound();
 	if (musicAllowedVar) fc::playSoundRepeat(str);
 }
 

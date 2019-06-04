@@ -26,8 +26,7 @@ void StorySelect::run()
 				Build build(fileManager.getLevel(std::to_string(x + 1), LevelType::STORY));
 				build.run();
 
-				fc::stopSound();
-				fc::playSoundRepeat("music/music.wav");
+				playMusic("music/music.wav");
 				//reinit screen
 				initScreen(x, currentPage);
 			}

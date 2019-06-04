@@ -100,6 +100,13 @@ void StartScreen::run()
 				exitButton.run();
 				return;
 				break;
+			case 9: // TAB
+				if (musicAllowed())
+					fc::stopSound();
+				else
+					fc::playSoundRepeat("music/music.wav");
+				musicAllowed() = !musicAllowed();
+				break;
 			default:
 				break;
 			}

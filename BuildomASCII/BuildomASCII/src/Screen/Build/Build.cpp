@@ -16,8 +16,7 @@ Build::Build(Level level, bool asEditor)
 	:level(level), isEditor(asEditor)
 {
 	//new Music
-	fc::stopSound();
-	fc::playSoundRepeat("music/music2.wav");
+	playMusic("music/music2.wav");
 
 	fc::clearScreen(frameColor);
 
@@ -164,9 +163,15 @@ Build::Build(Level level, bool asEditor)
 	if (isEditor)
 	{
 		menuPos = { WIDTH - 26, HEIGHT - 5 };
-		menuPos = writeAt(menuPos, "[,] : Start ");
+		content[menuPos.x][menuPos.y].textColor = startColor;
+		content[menuPos.x][menuPos.y].backgroundColor = defaultBackgroundColor;
+		menuPos = writeAt(menuPos, startChar);
+		menuPos = writeAt(menuPos, " [,] : Start ");
 		content[menuPos.x][menuPos.y].textColor = menuBarLineColor;
 		menuPos = writeAt(menuPos, 179);
+		content[menuPos.x][menuPos.y].textColor = endColor;
+		content[menuPos.x][menuPos.y].backgroundColor = defaultBackgroundColor;
+		menuPos = writeAt(menuPos, endChar);
 		menuPos = writeAt(menuPos, " [.] : Ziel ");
 	}
 

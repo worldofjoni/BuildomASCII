@@ -30,8 +30,8 @@ Sie meinte wenn du sie beim letzten mal nicht verstandest wist du sie nie verste
 
 	std::string	content =
 R"(
-Ziel des Spiels ist es, eine Brücke über vorgegebene Hindernisse zu bauen und dabei 
-das begrenzte Material optimal zu nutzen, damit eine Figur vom Start das Ziel erreichen kann.
+Ziel des Spiels ist es, eine Brücke über vorgegebene Hindernisse zu bauen und dabei das 
+begrenzte Material optimal zu nutzen, damit eine Figur vom Start # das Ziel # erreichen kann.
 
 
 Tastenbelegung
@@ -73,7 +73,7 @@ Blöcke
 
 	// LevelElements to be displayed in Manual (instead of #)
 	static const int elLen = 15;
-	LevelElement* elements[elLen] = {new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false), new Star(false), new NonDelEmpty(false), new TimedSpike(false), new Spike(false), new Solid(false), new TimedSpikeAir(false), new Spike(false), new Zombie(false)};
+	LevelElement* elements[elLen] = {new Empty(false) ,new Empty(false), new Solid(false), new SlopeUp(false), new SlopeDown(false), new ChangeDir(false), new Spike(false), new Star(false), new NonDelEmpty(false), new TimedSpike(false), new Spike(false), new Solid(false), new TimedSpikeAir(false), new Spike(false), new Zombie(false)};
 
 
 public:
