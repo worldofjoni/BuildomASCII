@@ -57,8 +57,8 @@ void Level::placeAt(LevelElement* element, int x, int y)
 {
 	Pos pos = { x,y };
 
-	// check for Border and set alarmColor
-	if (pos.isOnLevelBorder()) 
+	// check for Border and set alarmColor (only if not...
+	if (pos.isOnLevelBorder() && !(element->id == NonDelEmpty::ownId || element->id == TimedSpike::ownId)) 
 		element->backgroundColor = Build::alarmFrameColor;
 
 	delete map[x][y];
