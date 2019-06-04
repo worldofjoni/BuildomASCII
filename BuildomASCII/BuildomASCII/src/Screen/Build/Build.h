@@ -23,7 +23,7 @@ private:
 
 	// Layout Variables
 	const fc::Color frameColor = DARK_GRAY, frameTextColor = BLACK;
-	const fc::Color menuBarSymColor = RED, menuBarLineColor = BLUE_LIGHT, menuBarSymbolBackgroundColor = LIGHT_GRAY;
+	const fc::Color menuBarSymColor = RED, menuBarLineColor = BLUE_LIGHT, menuBarSymbolBackgroundColor = LIGHT_GRAY, menuBarCountColor = MAGENTA_DARK;
 
 	//for levelEditor
 	bool isEditor = false;

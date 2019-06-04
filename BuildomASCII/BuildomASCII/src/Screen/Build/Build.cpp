@@ -127,8 +127,12 @@ Build::Build(Level level, bool asEditor)
 		remainingCountPos[i] = menuPos; // save position of number for later updates
 
 		// checks for infinite blocks
-		if (level.maxElements[i] == -1) menuPos = writeAt(menuPos, " - ");
-		else menuPos = writeAt(menuPos, this->level.maxElements[i] - this->level.setElements[i], 3);
+		if (level.maxElements[i] == -1)
+		{
+			content[menuPos.x + 1][menuPos.y].textColor = menuBarCountColor;
+			menuPos = writeAt(menuPos, " - ");
+		}
+		else menuPos = writeAt(menuPos, this->level.maxElements[i] - this->level.setElements[i], 3, menuBarCountColor);
 
 		firstIsPrinted = true;
 
@@ -632,16 +636,16 @@ bool Build::placeOnLevelAt(LevelElement*& element, Pos pos)
 
 		// ++ Replace remainingCount ++
 		fc::setBackgroundColor(frameColor);
-		fc::setTextColor(frameTextColor);
+		fc::setTextColor(menuBarCountColor);
 
-		// old Element
+		// old Element count replacement
 		if (oldId != 0 && level.maxElements[oldId] != -1 && level.maxElements[oldId] != 0)
 		{
 			fc::setCursorPos(remainingCountPos[oldId].x, remainingCountPos[oldId].y);
 			std::cout << std::setw(3) << (level.maxElements[oldId] - level.setElements[oldId]);
 		}
 
-		// new Element
+		// new Element count replacement
 		if (id != 0 && level.maxElements[id] != -1 && level.maxElements[id] != 0)
 		{
 			fc::setCursorPos(remainingCountPos[id].x, remainingCountPos[id].y);

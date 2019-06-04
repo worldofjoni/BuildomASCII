@@ -54,6 +54,8 @@ Pos Screen::writeAt(int x, int y, const char str[])
 	int len;
 	for (len = 0; str[len] != '\0'; len++);
 
+	
+
 	for (int i = 0; i <= len; i++)
 	{
 		content[x + i][y].content = str[i];
@@ -97,11 +99,16 @@ Pos Screen::writeAt(int x, int y, int num)
 	return pos;
 }
 
-Pos Screen::writeAt(int x, int y, int num, unsigned int digis)
+Pos Screen::writeAt(int x, int y, int num, unsigned int digis, fc::Color color)
 {
 	Pos pos;
 	if (num >= 0)
 	{
+		// set Color
+		for (int i = 0; i < num; i++)
+			content[x + i][y].textColor = color;
+		
+
 		int dig = 0, num_ = num;
 
 		// determines count of digets
@@ -136,9 +143,9 @@ Pos Screen::writeAt(int x, int y, int num, unsigned int digis)
 	return pos;
 }
 
-Pos Screen::writeAt(Pos pos, int num, unsigned int digis)
+Pos Screen::writeAt(Pos pos, int num, unsigned int digis, fc::Color color)
 {
-	return writeAt(pos.x, pos.y, num, digis);
+	return writeAt(pos.x, pos.y, num, digis, color);
 }
 
 void Screen::writeMultiline(Pos pos, std::string str, int width, char sym[], fc::Color col[], fc::Color backCol[])
