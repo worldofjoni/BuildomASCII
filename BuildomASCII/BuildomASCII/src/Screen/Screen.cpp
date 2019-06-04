@@ -105,7 +105,7 @@ Pos Screen::writeAt(int x, int y, int num, unsigned int digis, fc::Color color)
 	if (num >= 0)
 	{
 		// set Color
-		for (int i = 0; i < num; i++)
+		for (int i = 0; i < digis; i++)
 			content[x + i][y].textColor = color;
 		
 
