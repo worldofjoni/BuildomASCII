@@ -315,12 +315,12 @@ bool Build::keyHandeling(LevelElement*& setElement, Cursor& cursor)
 			// reset timed modes
 			for (auto& v : spikePos)
 			{
-				level.at(v)->symbol = Spike::ownSym;
+				level.at(v)->setColor(TimedSpike::ownColor);
 				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
 			}
 			for (auto& v : spikePos2)
 			{
-				level.at(v)->symbol = TimedSpikeAir::ownSym;
+				level.at(v)->setColor(TimedSpikeAir::ownColor);
 				level.at(v)->fallable = false;
 				printOnLevel(level.at(v)->symbol, v, level.at(v)->getColor(), level.at(v)->backgroundColor);
 			}
