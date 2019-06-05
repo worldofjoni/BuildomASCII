@@ -27,10 +27,18 @@ bool Pos::operator!=(Pos other)
 	return !((*this) == other);
 }
 
+const char shiftNum[9][2] = { {'1', '!'},{'2', '"'},{'3', '§'},{'4', '$'}, {'5', '%'}, {'6', '&'}, {'7', '/'}, {'8', '('}, {'9', ')'} };
+
 char getCharLow() // Returns pressed keyboard value in lower-case
 {
 	char input = 0;
 	input = _getch();
+
+	for (int i = 0; i < 9; i++)
+	{
+		if (input == shiftNum[i][1])
+			return shiftNum[i][0];
+	}
 	if (input >= 0)
 	{
 		if (isupper(input) && isalpha(input))
