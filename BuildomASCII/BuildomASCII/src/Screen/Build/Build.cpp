@@ -162,7 +162,7 @@ Build::Build(Level level, bool asEditor)
 	//display start and end placement key (if editor)
 	if (isEditor)
 	{
-		menuPos = { WIDTH - 26, HEIGHT - 5 };
+		menuPos = { WIDTH - 31, HEIGHT - 5 };
 		content[menuPos.x][menuPos.y].textColor = startColor;
 		content[menuPos.x][menuPos.y].backgroundColor = defaultBackgroundColor;
 		menuPos = writeAt(menuPos, startChar);
